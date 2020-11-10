@@ -1,12 +1,12 @@
 import { Box, Button, Flex, Heading, Text, useColorMode } from "theme-ui";
-import { ReferencesCollection } from "../api/references";
+import { StoriesCollection } from "../api/stories";
 import { useTracker } from "meteor/react-meteor-data";
 import React from "react";
 import InlineInput from "./InlineInput";
 
 export default (props) => {
   const [colorMode, setColorMode] = useColorMode();
-  const references = useTracker(() => ReferencesCollection.find({}).fetch());
+  const stories = useTracker(() => StoriesCollection.find({}).fetch());
 
   return (
     <Box p={3}>
@@ -23,13 +23,14 @@ export default (props) => {
         </Button>
       </Flex>
       <Flex sx={{ flexFlow: "wrap" }}>
-        {references.map((reference, index) => {
-          const isLast = references.length - 1 === index;
-          switch (reference.type) {
+        {stories.length === 0 && <InlineInput />}
+        {stories.map((story, index) => {
+          const isLast = stories.length - 1 === index;
+          switch (story.type) {
             case "break":
               return (
                 <Flex
-                  key={reference._id}
+                  key={story._id}
                   sx={{ flexBasis: "100%", mb: 3, pt: isLast ? 2 : 0 }}
                 >
                   {isLast && <InlineInput />}
@@ -38,8 +39,8 @@ export default (props) => {
               break;
             default:
               return (
-                <Flex key={reference._id} sx={{ flexShrink: 0 }}>
-                  <Text sx={{ mr: 1 }}>{reference.text}</Text>
+                <Flex key={story._id} sx={{ flexShrink: 0 }}>
+                  <Text sx={{ mr: 1 }}>{story.text}</Text>
                   {isLast && <InlineInput />}
                 </Flex>
               );

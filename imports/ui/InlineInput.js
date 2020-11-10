@@ -1,26 +1,26 @@
 import React, { useState } from "react";
 import { Input } from "theme-ui";
 import { useKeycodes } from "@accessible/use-keycode";
-import { ReferencesCollection } from "../api/references";
+import { StoriesCollection } from "../api/stories";
 
 export default (props) => {
   const [value, setValue] = useState("");
   const ref = useKeycodes({
     13: () => {
       console.log("break");
-      ReferencesCollection.insert({
+      StoriesCollection.insert({
         createdAt: Date.now(),
         type: "text",
         text: value,
       });
-      ReferencesCollection.insert({
+      StoriesCollection.insert({
         createdAt: Date.now(),
         type: "break",
       });
       setValue("");
     },
     32: () => {
-      ReferencesCollection.insert({
+      StoriesCollection.insert({
         createdAt: Date.now(),
         type: "text",
         text: value,

@@ -1,1 +1,1 @@
-import { ReferencesCollection } from "../imports/api/references";
+import { StoriesCollection } from "../imports/api/stories";
