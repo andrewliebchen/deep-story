@@ -4,6 +4,7 @@ import { StoriesCollection } from "../api/stories";
 import { useTracker } from "meteor/react-meteor-data";
 import InlineInput from "./InlineInput";
 import React from "react";
+import StoryBreak from "./StoryBreak";
 
 export default (props) => {
   const [colorMode, setColorMode] = useColorMode();
@@ -31,14 +32,7 @@ export default (props) => {
             const isLast = stories.length - 1 === index;
             switch (story.type) {
               case "break":
-                return (
-                  <Flex
-                    key={story._id}
-                    sx={{ flexBasis: "100%", mb: 3, pt: isLast ? 2 : 0 }}
-                  >
-                    {isLast && <InlineInput />}
-                  </Flex>
-                );
+                return <StoryBreak isLast={isLast} />;
                 break;
               default:
                 return (
