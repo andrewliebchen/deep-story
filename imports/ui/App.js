@@ -1,28 +1,12 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Input,
-  Text,
-  useColorMode,
-} from "theme-ui";
+import { Box, Button, Flex, Heading, Text, useColorMode } from "theme-ui";
 import { ReferencesCollection } from "../api/references";
-import { useKeycode } from "@accessible/use-keycode";
 import { useTracker } from "meteor/react-meteor-data";
-import React, { useState } from "react";
+import React from "react";
+import InlineInput from "./InlineInput";
 
-const App = (props) => {
-  const [value, setValue] = useState("");
+export default (props) => {
   const [colorMode, setColorMode] = useColorMode();
   const references = useTracker(() => ReferencesCollection.find({}).fetch());
-  const ref = useKeycode(32, () => {
-    ReferencesCollection.insert({
-      createdAt: Date.now(),
-      text: value,
-    });
-    setValue("");
-  });
 
   return (
     <Box p={3}>
@@ -38,20 +22,30 @@ const App = (props) => {
           {colorMode === "default" ? "Dark" : "Light"}
         </Button>
       </Flex>
-      <Flex>
-        {references.map((reference) => (
-          <Text key={reference._id} sx={{ flexShrink: 0, mr: 1 }}>
-            {reference.text}
-          </Text>
-        ))}
-        <Input
-          value={value}
-          onChange={(event) => setValue(event.target.value)}
-          ref={ref}
-        />
+      <Flex sx={{ flexFlow: "wrap" }}>
+        {references.map((reference, index) => {
+          const isLast = references.length - 1 === index;
+          switch (reference.type) {
+            case "break":
+              return (
+                <Flex
+                  key={reference._id}
+                  sx={{ flexBasis: "100%", mb: 3, pt: isLast ? 2 : 0 }}
+                >
+                  {isLast && <InlineInput />}
+                </Flex>
+              );
+              break;
+            default:
+              return (
+                <Flex key={reference._id} sx={{ flexShrink: 0 }}>
+                  <Text sx={{ mr: 1 }}>{reference.text}</Text>
+                  {isLast && <InlineInput />}
+                </Flex>
+              );
+          }
+        })}
       </Flex>
     </Box>
   );
 };
-
-export default App;
