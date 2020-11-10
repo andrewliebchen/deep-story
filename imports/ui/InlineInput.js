@@ -34,7 +34,7 @@ export default (props) => {
       autoFocus={true}
       ref={ref}
       value={value}
-      onChange={(event) => setValue(event.target.value)}
+      onChange={(event) => setValue(event.target.value.trim())}
     />
   );
 };

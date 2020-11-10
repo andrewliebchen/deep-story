@@ -21,13 +21,15 @@ export default {
     text: "rgba(0, 0, 0, 1)",
     background: "rgba(255, 255, 255, 1)",
     primary: "rgba(0, 119, 204, 1)",
+    primaryBackground: "rgba(0, 119, 204, 0.2)",
     secondary: "rgba(51, 0, 204, 1)",
     muted: "rgba(0, 0, 0, 0.2)",
     modes: {
       dark: {
         text: "rgba(255, 255, 255, 1)",
         background: "rgba(6, 6, 6, 1)",
-        primary: "rgba(51, 204, 255)",
+        primary: "rgba(51, 204, 255, 1)",
+        primaryBackground: "rgba(51, 204, 255, 0.2)",
         secondary: "rgba(238, 0, 255, 1)",
         muted: "rgba(0, 0, 0, 0.5)",
         highlight: "rgba(41, 17, 44, 1)",

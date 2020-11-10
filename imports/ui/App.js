@@ -42,8 +42,18 @@ export default (props) => {
                 break;
               default:
                 return (
-                  <Flex key={story._id} sx={{ flexShrink: 0 }}>
-                    <Text sx={{ mr: 1 }}>{story.text}</Text>
+                  <Flex
+                    key={story._id}
+                    sx={{
+                      cursor: "pointer",
+                      flexShrink: 0,
+                      ml: -1,
+                      my: -1,
+                      p: 1,
+                      "&:hover": { bg: "primaryBackground" },
+                    }}
+                  >
+                    <Text>{story.text}</Text>
                     {isLast && <InlineInput />}
                   </Flex>
                 );
