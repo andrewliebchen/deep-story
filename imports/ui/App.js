@@ -1,8 +1,9 @@
-import { Box, Button, Flex, Heading, Text, useColorMode } from "theme-ui";
+import { Box, Flex, Heading, IconButton, Text, useColorMode } from "theme-ui";
+import { Moon, Sun } from "react-feather";
 import { StoriesCollection } from "../api/stories";
 import { useTracker } from "meteor/react-meteor-data";
-import React from "react";
 import InlineInput from "./InlineInput";
+import React from "react";
 
 export default (props) => {
   const [colorMode, setColorMode] = useColorMode();
@@ -15,13 +16,14 @@ export default (props) => {
           sx={{ mb: 3, alignItems: "center", justifyContent: "space-between" }}
         >
           <Heading>Deep Story</Heading>
-          <Button
+          <IconButton
+            title="Toggle color mode"
             onClick={() =>
               setColorMode(colorMode === "default" ? "dark" : "default")
             }
           >
-            {colorMode === "default" ? "Dark" : "Light"}
-          </Button>
+            {colorMode === "default" ? <Moon /> : <Sun />}
+          </IconButton>
         </Flex>
         <Flex sx={{ flexFlow: "wrap" }}>
           {stories.length === 0 && <InlineInput />}
