@@ -10,6 +10,7 @@
   "dependencies": {
     "@accessible/use-keycode": "^4.0.2",
     "@babel/runtime": "^7.11.2",
+    "@react-hook/hover": "^4.0.0",
     "meteor-node-stubs": "^1.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
