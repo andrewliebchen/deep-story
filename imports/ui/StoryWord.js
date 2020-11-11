@@ -1,11 +1,13 @@
-import { Flex, IconButton, Text } from "theme-ui";
+import { Flex, IconButton, Input, Text } from "theme-ui";
+import { Edit2, Plus, Trash, X } from "react-feather";
+import { StoriesCollection } from "../api/stories";
 import InlineInput from "./InlineInput";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState } from "react";
 import useHover from "@react-hook/hover";
-import { Edit2, Plus } from "react-feather";
 
 const StoryWord = (props) => {
+  const [editing, setEditing] = useState(false);
   const target = React.useRef(null);
   const isHovering = useHover(target, { enterDelay: 100, leaveDelay: 100 });
 
@@ -35,21 +37,49 @@ const StoryWord = (props) => {
             transform: "translate3d(-50%, 0, 0)",
           }}
         >
-          <IconButton>
-            <Edit2 />
-          </IconButton>
-          <IconButton>
-            <Plus />
-          </IconButton>
+          {editing ? (
+            <IconButton onClick={() => setEditing(false)}>
+              <X />
+            </IconButton>
+          ) : (
+            <Flex>
+              <IconButton onClick={() => setEditing(true)}>
+                <Edit2 />
+              </IconButton>
+              <IconButton onClick={() => console.log("Dive!")}>
+                <Plus />
+              </IconButton>
+              <IconButton
+                onClick={() =>
+                  window.confirm("You sure you want to delete this?") &&
+                  StoriesCollection.remove(props._id)
+                }
+              >
+                <Trash />
+              </IconButton>
+            </Flex>
+          )}
         </Flex>
       )}
-      <Text>{props.text}</Text>
+      {editing ? (
+        <Input
+          value={props.text}
+          onChange={(event) =>
+            StoriesCollection.update(props._id, {
+              $set: { text: event.target.value },
+            })
+          }
+        />
+      ) : (
+        <Text>{props.text}</Text>
+      )}
       {props.isLast && <InlineInput />}
     </Flex>
   );
 };
 
 StoryWord.propTypes = {
+  _id: PropTypes.string,
   text: PropTypes.string,
   isLast: PropTypes.bool,
 };
