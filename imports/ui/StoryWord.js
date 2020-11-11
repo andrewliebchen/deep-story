@@ -22,13 +22,14 @@ const StoryWord = (props) => {
         my: -1,
         p: 1,
         position: "relative",
+        userSelect: "none",
       }}
     >
       {isHovering && (
         <Flex
           sx={{
-            bg: "background",
-            border: "1px solid",
+            bg: "text",
+            color: "background",
             bottom: "100%",
             left: "50%",
             mb: 1,
