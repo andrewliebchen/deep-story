@@ -1,5 +1,5 @@
 import { Flex, IconButton, Input, Text } from "theme-ui";
-import { Edit2, Plus, Trash, X } from "react-feather";
+import { Edit2, ArrowDownCircle, Trash, X } from "react-feather";
 import { StoriesCollection } from "../api/stories";
 import InlineInput from "./InlineInput";
 import PropTypes from "prop-types";
@@ -48,7 +48,7 @@ const StoryWord = (props) => {
                 <Edit2 />
               </IconButton>
               <IconButton onClick={() => console.log("Dive!")}>
-                <Plus />
+                <ArrowDownCircle />
               </IconButton>
               <IconButton
                 onClick={() =>

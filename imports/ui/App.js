@@ -1,15 +1,11 @@
-import { Box, Flex, Heading, IconButton, Text, useColorMode } from "theme-ui";
-import { Moon, Sun } from "react-feather";
-import { StoriesCollection } from "../api/stories";
-import { useTracker } from "meteor/react-meteor-data";
-import InlineInput from "./InlineInput";
 import React from "react";
-import StoryBreak from "./StoryBreak";
-import StoryWord from "./StoryWord";
+import Story from "./Story";
+import { Box, Flex, Heading, IconButton, useColorMode } from "theme-ui";
+import { Moon, Sun } from "react-feather";
 
-export default (props) => {
+const App = (props) => {
   const [colorMode, setColorMode] = useColorMode();
-  const stories = useTracker(() => StoriesCollection.find({}).fetch());
+  console.log("wtf");
 
   return (
     <Flex sx={{ justifyContent: "center" }}>
@@ -27,22 +23,10 @@ export default (props) => {
             {colorMode === "default" ? <Moon /> : <Sun />}
           </IconButton>
         </Flex>
-        <Flex sx={{ flexFlow: "wrap" }}>
-          {stories.length === 0 && <InlineInput />}
-          {stories.map((story, index) => {
-            const isLast = stories.length - 1 === index;
-            switch (story.type) {
-              case "break":
-                return (
-                  <StoryBreak key={story._id} isLast={isLast} {...story} />
-                );
-                break;
-              default:
-                return <StoryWord key={story._id} isLast={isLast} {...story} />;
-            }
-          })}
-        </Flex>
+        <Story />
       </Box>
     </Flex>
   );
 };
+
+export default App;
