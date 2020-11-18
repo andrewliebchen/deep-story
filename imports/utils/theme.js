@@ -39,6 +39,12 @@ export default {
       },
     },
   },
+  text: {
+    story: {
+      fontFamily: "monospace",
+      whiteSpace: "pre-wrap",
+    },
+  },
   styles: {
     root: {
       fontFamily: "body",
