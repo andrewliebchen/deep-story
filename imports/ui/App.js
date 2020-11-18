@@ -1,11 +1,12 @@
-import React from "react";
-import Story from "./Story";
 import { Box, Flex, Heading, IconButton, useColorMode } from "theme-ui";
 import { Moon, Sun } from "react-feather";
+import React, { useState } from "react";
+import Story from "./Story";
+import UserToggle from "./UserToggle";
 
 const App = (props) => {
   const [colorMode, setColorMode] = useColorMode();
-  console.log("wtf");
+  const [currentUser, setCurrentUser] = useState("");
 
   return (
     <Flex sx={{ justifyContent: "center" }}>
@@ -13,7 +14,10 @@ const App = (props) => {
         <Flex
           sx={{ mb: 3, alignItems: "center", justifyContent: "space-between" }}
         >
-          <Heading>Deep Story</Heading>
+          <UserToggle
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
+          />
           <IconButton
             title="Toggle color mode"
             onClick={() =>
