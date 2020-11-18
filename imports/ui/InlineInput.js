@@ -2,20 +2,23 @@ import React, { useState } from "react";
 import { Input } from "theme-ui";
 import { useKeycodes } from "@accessible/use-keycode";
 import { StoriesCollection } from "../api/stories";
+import PropTypes from "prop-types";
 
-export default (props) => {
+const InlineInput = (props) => {
+  console.log(props);
   const [value, setValue] = useState("");
   const ref = useKeycodes({
     13: () => {
-      console.log("break");
       StoriesCollection.insert({
         createdAt: Date.now(),
         type: "text",
         text: value,
+        parentId: props.currentUser,
       });
       StoriesCollection.insert({
         createdAt: Date.now(),
         type: "break",
+        parentId: props.currentUser,
       });
       setValue("");
     },
@@ -24,6 +27,7 @@ export default (props) => {
         createdAt: Date.now(),
         type: "text",
         text: value,
+        parentId: props.currentUser,
       });
       setValue("");
     },
@@ -38,3 +42,9 @@ export default (props) => {
     />
   );
 };
+
+InlineInput.propTypes = {
+  currentUser: PropTypes.string.isRequired,
+};
+
+export default InlineInput;

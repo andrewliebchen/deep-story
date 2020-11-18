@@ -30,7 +30,7 @@ const UserToggle = (props) => {
             zIndex: 1,
           }}
         >
-          <Box sx={{ width: "30vw" }}>
+          <Box sx={{ width: "container" }}>
             <Flex
               sx={{
                 alignItems: "center",

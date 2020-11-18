@@ -10,7 +10,7 @@ const App = (props) => {
 
   return (
     <Flex sx={{ justifyContent: "center" }}>
-      <Box sx={{ p: 3, maxWidth: 600 }}>
+      <Box sx={{ m: 3, width: "container" }}>
         <Flex
           sx={{ mb: 3, alignItems: "center", justifyContent: "space-between" }}
         >
@@ -27,7 +27,7 @@ const App = (props) => {
             {colorMode === "default" ? <Moon /> : <Sun />}
           </IconButton>
         </Flex>
-        <Story />
+        <Story currentUser={currentUser} />
       </Box>
     </Flex>
   );

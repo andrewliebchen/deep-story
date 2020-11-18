@@ -1,5 +1,5 @@
-import { Flex, IconButton, Input, Text } from "theme-ui";
 import { Edit2, ArrowDownCircle, Trash, X } from "react-feather";
+import { Flex, IconButton, Input, Text } from "theme-ui";
 import { StoriesCollection } from "../api/stories";
 import InlineInput from "./InlineInput";
 import PropTypes from "prop-types";
@@ -74,15 +74,16 @@ const StoryWord = (props) => {
       ) : (
         <Text>{props.text}</Text>
       )}
-      {props.isLast && <InlineInput />}
+      {props.isLast && <InlineInput {...props} />}
     </Flex>
   );
 };
 
 StoryWord.propTypes = {
   _id: PropTypes.string,
-  text: PropTypes.string,
+  currentUser: PropTypes.string,
   isLast: PropTypes.bool,
+  text: PropTypes.string,
 };
 
 export default StoryWord;

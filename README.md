@@ -16,6 +16,6 @@ Go deep into a story by adding a story within each word. Maybe like a mini inter
 [ ] Slash command that allow you to add an outgoing connection to another reference
 [ ] Show how many incoming and outgoing references there are to a reference
 [ ] Add a router. Every reference needs a url
-[ ] Add user accounts...maybe just by hash for now? They become the root.
+[X] Add user accounts...maybe just by hash for now? They become the root.
 [ ] Url structure? just `/r/ID`?
 [ ] Every reference has a type
