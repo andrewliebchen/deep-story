@@ -21,3 +21,4 @@ Go deep into a story by adding a story within each word. Maybe like a mini inter
 [ ] Every reference has a type
 [ ] Move hover tooltip tools to the toolbar
 [ ] Store user data in localhost (with a hook?)
+[X] Set up ContextAPI
