@@ -13,9 +13,6 @@ const Story = () => (
       <Flex sx={{ flexFlow: "wrap" }}>
         {props.stories.length === 0 && <InlineInput {...props} />}
         {props.stories.map((story, index) => {
-          {
-            console.log(story);
-          }
           const isLast = props.stories.length - 1 === index;
           switch (story.type) {
             case "break":
