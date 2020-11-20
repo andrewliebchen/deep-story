@@ -5,7 +5,6 @@ import { StoriesCollection } from "../api/stories";
 import PropTypes from "prop-types";
 
 const InlineInput = (props) => {
-  console.log(props);
   const [value, setValue] = useState("");
   const ref = useKeycodes({
     13: () => {

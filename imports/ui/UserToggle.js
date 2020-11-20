@@ -43,21 +43,24 @@ const UserToggle = (props) => {
                 <X />
               </IconButton>
             </Flex>
-            <Input
-              placeholder="Enter your id"
-              value={value}
-              onChange={(event) => setValue(event.target.value)}
-              mb={3}
-            />
-            <Button
-              onClick={() => {
-                props.setCurrentUser(value);
-                setValue("");
-                setShowOverlay(false);
-              }}
-            >
-              Get going
-            </Button>
+            <form>
+              <Input
+                placeholder="Enter your id"
+                value={value}
+                onChange={(event) => setValue(event.target.value)}
+                mb={3}
+              />
+              <Button
+                onClick={(event) => {
+                  event.preventDefault();
+                  props.setCurrentUser(value);
+                  setValue("");
+                  setShowOverlay(false);
+                }}
+              >
+                Get going
+              </Button>
+            </form>
           </Box>
         </Flex>
       )}
