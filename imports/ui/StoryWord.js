@@ -1,74 +1,42 @@
-import { Edit2, ArrowDownCircle, Trash, X } from "react-feather";
+import { X } from "react-feather";
 import { Flex, IconButton, Input, Text } from "theme-ui";
 import { StoriesCollection } from "../api/stories";
 import InlineInput from "./InlineInput";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import useHover from "@react-hook/hover";
 
 const StoryWord = (props) => {
-  const [editing, setEditing] = useState(false);
-  const target = React.useRef(null);
-  const isHovering = useHover(target, { enterDelay: 100, leaveDelay: 100 });
-
+  const isSelected = props.selectedId === props._id;
   return (
     <Flex>
       <Flex
-        ref={target}
         sx={{
-          bg: isHovering && "primaryBackground",
+          bg: isSelected && "primaryBackground",
           cursor: "pointer",
           flexShrink: 0,
           position: "relative",
           userSelect: "none",
+          "&:hover": {
+            bg: "primaryBackground",
+          },
         }}
+        onClick={() => props.setSelectedId(isSelected ? "" : props._id)}
       >
-        {isHovering && (
-          <Flex
-            sx={{
-              bg: "text",
-              color: "background",
-              bottom: "100%",
-              left: "50%",
-              mb: 1,
-              p: 1,
-              position: "absolute",
-              transform: "translate3d(-50%, 0, 0)",
-            }}
-          >
-            {editing ? (
-              <IconButton onClick={() => setEditing(false)}>
-                <X />
-              </IconButton>
-            ) : (
-              <Flex>
-                <IconButton onClick={() => setEditing(true)}>
-                  <Edit2 />
-                </IconButton>
-                <IconButton onClick={() => console.log("Dive!")}>
-                  <ArrowDownCircle />
-                </IconButton>
-                <IconButton
-                  onClick={() =>
-                    window.confirm("You sure you want to delete this?") &&
-                    StoriesCollection.remove(props._id)
-                  }
-                >
-                  <Trash />
-                </IconButton>
-              </Flex>
-            )}
+        {isSelected && props.editing ? (
+          <Flex>
+            {/* This could move up too! */}
+            <Input
+              value={props.text}
+              onChange={(event) =>
+                StoriesCollection.update(props._id, {
+                  $set: { text: event.target.value },
+                })
+              }
+            />
+            <IconButton onClick={() => props.setEditing(false)}>
+              <X />
+            </IconButton>
           </Flex>
-        )}
-        {editing ? (
-          <Input
-            value={props.text}
-            onChange={(event) =>
-              StoriesCollection.update(props._id, {
-                $set: { text: event.target.value },
-              })
-            }
-          />
         ) : (
           <Text variant="story">{props.text}</Text>
         )}
@@ -82,7 +50,11 @@ const StoryWord = (props) => {
 StoryWord.propTypes = {
   _id: PropTypes.string,
   currentUser: PropTypes.string,
+  editing: PropTypes.bool,
   isLast: PropTypes.bool,
+  selectedId: PropTypes.string,
+  setEditing: PropTypes.func,
+  setSelectedId: PropTypes.func,
   text: PropTypes.string,
 };
 

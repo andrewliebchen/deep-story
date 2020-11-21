@@ -7,6 +7,8 @@ import { StoriesCollection } from "../api/stories";
 const AppProvider = (props) => {
   const [colorMode, setColorMode] = useColorMode();
   const [currentUser, setCurrentUser] = useState("");
+  const [selectedId, setSelectedId] = useState("");
+  const [editing, setEditing] = useState(false);
   const stories = useTracker(() =>
     StoriesCollection.find({ parentId: currentUser }).fetch()
   );
@@ -16,9 +18,13 @@ const AppProvider = (props) => {
       value={{
         ...props,
         colorMode,
-        setColorMode,
         currentUser,
+        editing,
+        selectedId,
+        setColorMode,
         setCurrentUser,
+        setEditing,
+        setSelectedId,
         stories,
       }}
     >
