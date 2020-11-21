@@ -14,6 +14,7 @@ const Story = () => (
         {props.stories.length === 0 && <InlineInput {...props} />}
         {props.stories.map((story, index) => {
           const isLast = props.stories.length - 1 === index;
+          const isSelected = props.selectedId === story._id;
           switch (story.type) {
             case "break":
               return (
@@ -30,6 +31,7 @@ const Story = () => (
                 <StoryWord
                   key={story._id}
                   isLast={isLast}
+                  isSelected={isSelected}
                   {...story}
                   {...props}
                 />

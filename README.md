@@ -15,10 +15,10 @@ Go deep into a story by adding a story within each word. Maybe like a mini inter
 [ ] `/commands`, like `/fake` and the Faker tags
 [ ] Slash command that allow you to add an outgoing connection to another reference
 [ ] Show how many incoming and outgoing references there are to a reference
-[ ] Add a router. Every reference needs a url
 [X] Add user accounts...maybe just by hash for now? They become the root.
+[ ] Add a router. Every reference needs a url
 [ ] Url structure? just `/r/ID`?
 [ ] Every reference has a type
-[ ] Move hover tooltip tools to the toolbar
+[X] Move hover tooltip tools to the toolbar
 [ ] Store user data in localhost (with a hook?)
 [X] Set up ContextAPI
