@@ -5,13 +5,13 @@ import React from "react";
 import Story from "./Story";
 import UserToggle from "./UserToggle";
 import { Edit2, ArrowDownCircle, Trash, X } from "react-feather";
-import { StoriesCollection } from "../api/stories";
+import { RefsCollection } from "../api/refs";
 
 const App = () => (
   <AppContext.Consumer>
     {(props) => {
       const selectedRef =
-        props.selectedId && StoriesCollection.findOne(props.selectedId);
+        props.selectedId && RefsCollection.findOne(props.selectedId);
       return (
         <Flex sx={{ justifyContent: "center" }}>
           <Box sx={{ m: 3, width: "container" }}>
@@ -27,7 +27,7 @@ const App = () => (
                   <Input
                     value={selectedRef.text}
                     onChange={(event) =>
-                      StoriesCollection.update(selectedRef._id, {
+                      RefsCollection.update(selectedRef._id, {
                         $set: { text: event.target.value },
                       })
                     }
@@ -38,7 +38,7 @@ const App = () => (
                   <IconButton
                     onClick={() =>
                       window.confirm("You sure you want to delete this?") &&
-                      StoriesCollection.remove(props.selectedId)
+                      RefsCollection.remove(props.selectedId)
                     }
                   >
                     <Trash />

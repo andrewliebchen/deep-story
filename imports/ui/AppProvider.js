@@ -2,7 +2,7 @@ import { useTracker } from "meteor/react-meteor-data";
 import { useColorMode } from "theme-ui";
 import AppContext from "./AppContext";
 import React, { useState } from "react";
-import { StoriesCollection } from "../api/stories";
+import { RefsCollection } from "../api/refs";
 
 const AppProvider = (props) => {
   const [colorMode, setColorMode] = useColorMode();
@@ -10,7 +10,7 @@ const AppProvider = (props) => {
   const [selectedId, setSelectedId] = useState("");
   const [editing, setEditing] = useState(false);
   const stories = useTracker(() =>
-    StoriesCollection.find({ parentId: currentUser }).fetch()
+    RefsCollection.find({ parentId: currentUser }).fetch()
   );
 
   return (
