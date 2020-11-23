@@ -2,7 +2,6 @@ import { Flex, IconButton, Text } from "theme-ui";
 import { useTracker } from "meteor/react-meteor-data";
 import AppContext from "./AppContext";
 import InlineInput from "./InlineInput";
-import PropTypes from "prop-types";
 import React from "react";
 import StoryBreak from "./StoryBreak";
 import StoryWord from "./StoryWord";
@@ -42,9 +41,5 @@ const Story = () => (
     )}
   </AppContext.Consumer>
 );
-
-Story.propTypes = {
-  currentUser: PropTypes.string,
-};
 
 export default Story;

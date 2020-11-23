@@ -10,7 +10,6 @@ const StoryBreak = (props) => (
 );
 
 StoryBreak.propTypes = {
-  currentUser: PropTypes.string,
   isLast: PropTypes.bool,
 };
 

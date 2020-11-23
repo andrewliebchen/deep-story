@@ -1,11 +1,11 @@
 import { Box, Flex, Heading, IconButton, Input } from "theme-ui";
+import { Edit2, ArrowDownCircle, Trash, X } from "react-feather";
 import { Moon, Sun } from "react-feather";
+import { RefsCollection } from "../api/refs";
+import AccountToggle from "./AccountToggle";
 import AppContext from "./AppContext";
 import React from "react";
 import Story from "./Story";
-import UserToggle from "./UserToggle";
-import { Edit2, ArrowDownCircle, Trash, X } from "react-feather";
-import { RefsCollection } from "../api/refs";
 
 const App = () => (
   <AppContext.Consumer>
@@ -45,9 +45,9 @@ const App = () => (
                   </IconButton>
                 </Flex>
               )}
-              <Flex ml="auto">
-                <UserToggle />
+              <Flex ml="auto" sx={{ alignItems: "center" }}>
                 <IconButton
+                  mr={2}
                   title="Toggle color mode"
                   onClick={() =>
                     props.setColorMode(
@@ -57,6 +57,7 @@ const App = () => (
                 >
                   {props.colorMode === "default" ? <Moon /> : <Sun />}
                 </IconButton>
+                <AccountToggle />
               </Flex>
             </Flex>
             <Story {...props} />

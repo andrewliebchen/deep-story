@@ -1,16 +1,16 @@
-import { useTracker } from "meteor/react-meteor-data";
+import { RefsCollection } from "../api/refs";
 import { useColorMode } from "theme-ui";
+import { useTracker } from "meteor/react-meteor-data";
 import AppContext from "./AppContext";
 import React, { useState } from "react";
-import { RefsCollection } from "../api/refs";
+import { Meteor } from "meteor/meteor";
 
 const AppProvider = (props) => {
   const [colorMode, setColorMode] = useColorMode();
-  const [currentUser, setCurrentUser] = useState("");
   const [selectedId, setSelectedId] = useState("");
-  const [editing, setEditing] = useState(false);
+  const user = useTracker(() => Meteor.users.findOne({ _id: Meteor.userId() }));
   const stories = useTracker(() =>
-    RefsCollection.find({ parentId: currentUser }).fetch()
+    user ? RefsCollection.find({ parentId: user._id }).fetch() : []
   );
 
   return (
@@ -18,14 +18,11 @@ const AppProvider = (props) => {
       value={{
         ...props,
         colorMode,
-        currentUser,
-        editing,
         selectedId,
         setColorMode,
-        setCurrentUser,
-        setEditing,
         setSelectedId,
         stories,
+        user,
       }}
     >
       {props.children}

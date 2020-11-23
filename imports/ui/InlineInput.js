@@ -12,12 +12,12 @@ const InlineInput = (props) => {
         createdAt: Date.now(),
         type: "text",
         text: value,
-        parentId: props.currentUser,
+        parentId: props.user._id,
       });
       RefsCollection.insert({
         createdAt: Date.now(),
         type: "break",
-        parentId: props.currentUser,
+        parentId: props.user._id,
       });
       setValue("");
     },
@@ -26,7 +26,7 @@ const InlineInput = (props) => {
         createdAt: Date.now(),
         type: "text",
         text: value,
-        parentId: props.currentUser,
+        parentId: props.user._id,
       });
       setValue("");
     },
@@ -43,7 +43,7 @@ const InlineInput = (props) => {
 };
 
 InlineInput.propTypes = {
-  currentUser: PropTypes.string.isRequired,
+  user: PropTypes.object,
 };
 
 export default InlineInput;

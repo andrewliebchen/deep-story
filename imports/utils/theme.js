@@ -127,6 +127,7 @@ export default {
       borderBottomStyle: "solid",
     },
     img: {
+      display: "block",
       maxWidth: "100%",
     },
   },
