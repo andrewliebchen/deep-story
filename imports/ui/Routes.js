@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 const Routes = (props) => (
   <Router>
     <Switch>
+      <Route path="/r/:refId" component={App} />
       <Route path="/" component={App} />
     </Switch>
   </Router>

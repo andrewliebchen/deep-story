@@ -30,7 +30,6 @@ StoryWord.propTypes = {
   _id: PropTypes.string,
   isLast: PropTypes.bool,
   isSelected: PropTypes.bool,
-  selectedId: PropTypes.string,
   setEditing: PropTypes.func,
   setSelectedId: PropTypes.func,
   text: PropTypes.string,
