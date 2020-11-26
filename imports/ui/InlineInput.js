@@ -3,6 +3,7 @@ import { RefsCollection } from "../api/refs";
 import { useKeycodes } from "@accessible/use-keycode";
 import AppContext from "./AppContext";
 import React, { useState, useContext } from "react";
+import Cursor from "./Cursor";
 
 const InlineInput = () => {
   const { parentId } = useContext(AppContext);
@@ -46,16 +47,16 @@ const InlineInput = () => {
           appearance: "none",
           border: 0,
           caretColor: "transparent",
+          overflow: "visible",
           p: 0,
           width: 0,
-          overflow: "visible",
           "&:focus": {
             outline: "none",
           },
         }}
       />
       <Text variant="ref">{value}</Text>
-      <Box sx={{ bg: "primary", width: "0.5em" }} />
+      <Cursor />
     </Flex>
   );
 };

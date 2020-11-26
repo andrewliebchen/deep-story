@@ -1402,6 +1402,11 @@ react-router@5.2.0:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
+react-simple-animate@^3.3.10:
+  version "3.3.10"
+  resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-3.3.10.tgz#e2feee7f01afe913979063f2581eefa6a8dba617"
+  integrity sha512-iPvhRFmpQecldbE3coA3fqYGCuYaYV3K7WiUtsHa2ql+PdBUCyKXj9+6CU7k8NlFnv37X9kmXC9QAcWNUhaL8g==
+
 react@^16.13.1:
   version "16.14.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
