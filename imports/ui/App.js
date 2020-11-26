@@ -5,7 +5,7 @@ import { RefsCollection } from "../api/refs";
 import AccountToggle from "./AccountToggle";
 import AppContext from "./AppContext";
 import React from "react";
-import Story from "./Story";
+import Refs from "./Refs";
 
 const App = (routeProps) => {
   return (
@@ -64,7 +64,7 @@ const App = (routeProps) => {
                   <AccountToggle />
                 </Flex>
               </Flex>
-              <Story {...props} />
+              <Refs />
             </Box>
           </Flex>
         );

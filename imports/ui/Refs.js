@@ -3,10 +3,10 @@ import { useTracker } from "meteor/react-meteor-data";
 import AppContext from "./AppContext";
 import InlineInput from "./InlineInput";
 import React from "react";
-import StoryBreak from "./StoryBreak";
-import StoryWord from "./StoryWord";
+import RefBreak from "./RefBreak";
+import RefWord from "./RefWord";
 
-const Story = () => (
+const Refs = () => (
   <AppContext.Consumer>
     {(props) => (
       <Flex sx={{ flexFlow: "wrap" }}>
@@ -17,12 +17,12 @@ const Story = () => (
           switch (ref.type) {
             case "break":
               return (
-                <StoryBreak key={ref._id} isLast={isLast} {...ref} {...props} />
+                <RefBreak key={ref._id} isLast={isLast} {...ref} {...props} />
               );
               break;
             default:
               return (
-                <StoryWord
+                <RefWord
                   key={ref._id}
                   isLast={isLast}
                   isSelected={isSelected}
@@ -37,4 +37,4 @@ const Story = () => (
   </AppContext.Consumer>
 );
 
-export default Story;
+export default Refs;

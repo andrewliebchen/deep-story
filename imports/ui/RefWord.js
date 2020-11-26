@@ -4,7 +4,7 @@ import InlineInput from "./InlineInput";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 
-const StoryWord = (props) => (
+const RefWord = (props) => (
   <Flex>
     <Flex
       sx={{
@@ -19,14 +19,14 @@ const StoryWord = (props) => (
       }}
       onClick={() => props.setSelectedId(props.isSelected ? "" : props._id)}
     >
-      <Text variant="story">{props.text}</Text>
+      <Text variant="ref">{props.text}</Text>
     </Flex>
-    <Text variant="story"> </Text>
+    <Text variant="ref"> </Text>
     {props.isLast && <InlineInput {...props} />}
   </Flex>
 );
 
-StoryWord.propTypes = {
+RefWord.propTypes = {
   _id: PropTypes.string,
   isLast: PropTypes.bool,
   isSelected: PropTypes.bool,
@@ -35,4 +35,4 @@ StoryWord.propTypes = {
   text: PropTypes.string,
 };
 
-export default StoryWord;
+export default RefWord;

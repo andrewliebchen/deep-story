@@ -40,7 +40,7 @@ export default {
     },
   },
   text: {
-    story: {
+    ref: {
       fontFamily: "monospace",
       whiteSpace: "pre-wrap",
     },
