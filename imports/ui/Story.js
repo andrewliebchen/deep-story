@@ -10,28 +10,23 @@ const Story = () => (
   <AppContext.Consumer>
     {(props) => (
       <Flex sx={{ flexFlow: "wrap" }}>
-        {props.stories.length === 0 && <InlineInput {...props} />}
-        {props.stories.map((story, index) => {
-          const isLast = props.stories.length - 1 === index;
-          const isSelected = props.refId === story._id;
-          switch (story.type) {
+        {props.refs.length === 0 && <InlineInput {...props} />}
+        {props.refs.map((ref, index) => {
+          const isLast = props.refs.length - 1 === index;
+          const isSelected = props.refId === ref._id;
+          switch (ref.type) {
             case "break":
               return (
-                <StoryBreak
-                  key={story._id}
-                  isLast={isLast}
-                  {...story}
-                  {...props}
-                />
+                <StoryBreak key={ref._id} isLast={isLast} {...ref} {...props} />
               );
               break;
             default:
               return (
                 <StoryWord
-                  key={story._id}
+                  key={ref._id}
                   isLast={isLast}
                   isSelected={isSelected}
-                  {...story}
+                  {...ref}
                   {...props}
                 />
               );

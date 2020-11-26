@@ -9,7 +9,7 @@ const AppProvider = (props) => {
   const [colorMode, setColorMode] = useColorMode();
   const [selectedId, setSelectedId] = useState("");
   const user = useTracker(() => Meteor.users.findOne({ _id: Meteor.userId() }));
-  const stories = useTracker(() =>
+  const refs = useTracker(() =>
     user ? RefsCollection.find({ parentId: user._id }).fetch() : []
   );
 
@@ -21,7 +21,7 @@ const AppProvider = (props) => {
         selectedId,
         setColorMode,
         setSelectedId,
-        stories,
+        refs,
         user,
       }}
     >
