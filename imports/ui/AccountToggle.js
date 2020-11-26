@@ -19,9 +19,12 @@ const AccountToogle = () => {
       ) : (
         <Button
           onClick={() =>
-            Meteor.loginWithGoogle({
-              loginStyle: "popup",
-            })
+            Meteor.loginWithGoogle(
+              {
+                loginStyle: "popup",
+              },
+              (err) => window.location.replace(`/r/${Meteor.userId()}`)
+            )
           }
         >
           Login

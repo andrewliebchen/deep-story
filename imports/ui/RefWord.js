@@ -9,6 +9,8 @@ const RefWord = (props) => {
   const { selectedId, setSelectedId } = useContext(AppContext);
   const isSelected = selectedId === props._id;
 
+  console.log(isSelected);
+
   return (
     <Flex>
       <Flex
