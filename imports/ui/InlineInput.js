@@ -4,6 +4,7 @@ import { useKeycodes } from "@accessible/use-keycode";
 import AppContext from "./AppContext";
 import React, { useState, useContext } from "react";
 import Cursor from "./Cursor";
+import yallist from "yallist";
 
 const InlineInput = () => {
   const { parentId } = useContext(AppContext);
@@ -12,23 +13,26 @@ const InlineInput = () => {
     13: () => {
       RefsCollection.insert({
         createdAt: Date.now(),
-        type: "text",
-        text: value,
         parentId: parentId,
+        story: yallist.create(),
+        text: value,
+        type: "text",
       });
       RefsCollection.insert({
         createdAt: Date.now(),
-        type: "break",
         parentId: parentId,
+        story: yallist.create(),
+        type: "break",
       });
       setValue("");
     },
     32: () => {
       RefsCollection.insert({
         createdAt: Date.now(),
-        type: "text",
-        text: value,
         parentId: parentId,
+        story: yallist.create(),
+        text: value,
+        type: "text",
       });
       setValue("");
     },

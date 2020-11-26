@@ -4,16 +4,24 @@ import { useColorMode } from "theme-ui";
 import { useTracker } from "meteor/react-meteor-data";
 import AppContext from "./AppContext";
 import React, { useState } from "react";
+import yallist from "yallist";
 
 const AppProvider = (props) => {
   const parentId = window.location.pathname.replace("/r/", "");
 
   const [colorMode, setColorMode] = useColorMode();
-  const [selectedId, setSelectedId] = useState("");
-  const user = useTracker(() => Meteor.users.findOne({ _id: Meteor.userId() }));
   const refs = useTracker(() =>
     RefsCollection.find({ parentId: parentId }).fetch()
   );
+  const [selectedId, setSelectedId] = useState("");
+  const user = useTracker(() => Meteor.users.findOne({ _id: Meteor.userId() }));
+
+  // Get the page's story linked list
+  const story =
+    typeof user !== "undefined" &&
+    (user._id === parentId
+      ? user.profile.story
+      : RefsCollection.findOne(parentId).story);
 
   return (
     <AppContext.Provider
@@ -26,6 +34,7 @@ const AppProvider = (props) => {
         refs,
         user,
         parentId,
+        story,
       }}
     >
       {props.children}

@@ -13,7 +13,7 @@ const AccountToogle = () => {
           src={user.services.google.picture}
           sx={{ height: 36, width: 36 }}
           onClick={() =>
-            Meteor.logout((error) => error || window.location.replace("/login"))
+            Meteor.logout((error) => window.location.replace("/login"))
           }
         />
       ) : (
@@ -23,7 +23,10 @@ const AccountToogle = () => {
               {
                 loginStyle: "popup",
               },
-              (err) => window.location.replace(`/r/${Meteor.userId()}`)
+              (error) => {
+                // Need to go to the ref the represents the user
+                window.location.replace(`/r/${Meteor.userId()}`);
+              }
             )
           }
         >

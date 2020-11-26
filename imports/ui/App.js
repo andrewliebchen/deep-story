@@ -5,10 +5,12 @@ import { RefsCollection } from "../api/refs";
 import AccountToggle from "./AccountToggle";
 import AppContext from "./AppContext";
 import React, { useContext } from "react";
-import Refs from "./Refs";
+import Story from "./Story";
 
 const App = () => {
-  const { colorMode, refs, selectedId, setColorMode } = useContext(AppContext);
+  const { colorMode, refs, selectedId, setColorMode, story } = useContext(
+    AppContext
+  );
   const selectedRef = refs.find((ref) => ref._id === selectedId);
 
   return (
@@ -57,7 +59,7 @@ const App = () => {
             <AccountToggle />
           </Flex>
         </Flex>
-        <Refs />
+        {story && <Story />}
       </Box>
     </Flex>
   );
