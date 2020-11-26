@@ -6,13 +6,13 @@ import AppContext from "./AppContext";
 import React, { useState } from "react";
 
 const AppProvider = (props) => {
-  const refQueryId = window.location.pathname.replace("/r/", "");
+  const parentId = window.location.pathname.replace("/r/", "");
 
   const [colorMode, setColorMode] = useColorMode();
   const [selectedId, setSelectedId] = useState("");
   const user = useTracker(() => Meteor.users.findOne({ _id: Meteor.userId() }));
   const refs = useTracker(() =>
-    RefsCollection.find({ parentId: refQueryId }).fetch()
+    RefsCollection.find({ parentId: parentId }).fetch()
   );
 
   return (
@@ -25,6 +25,7 @@ const AppProvider = (props) => {
         setSelectedId,
         refs,
         user,
+        parentId,
       }}
     >
       {props.children}

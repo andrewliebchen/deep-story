@@ -1,10 +1,11 @@
-import React, { useState } from "react";
 import { Input } from "theme-ui";
-import { useKeycodes } from "@accessible/use-keycode";
 import { RefsCollection } from "../api/refs";
-import PropTypes from "prop-types";
+import { useKeycodes } from "@accessible/use-keycode";
+import AppContext from "./AppContext";
+import React, { useState, useContext } from "react";
 
-const InlineInput = (props) => {
+const InlineInput = () => {
+  const { parentId } = useContext(AppContext);
   const [value, setValue] = useState("");
   const ref = useKeycodes({
     13: () => {
@@ -12,12 +13,12 @@ const InlineInput = (props) => {
         createdAt: Date.now(),
         type: "text",
         text: value,
-        parentId: props.user._id,
+        parentId: parentId,
       });
       RefsCollection.insert({
         createdAt: Date.now(),
         type: "break",
-        parentId: props.user._id,
+        parentId: parentId,
       });
       setValue("");
     },
@@ -26,7 +27,7 @@ const InlineInput = (props) => {
         createdAt: Date.now(),
         type: "text",
         text: value,
-        parentId: props.user._id,
+        parentId: parentId,
       });
       setValue("");
     },
@@ -40,10 +41,6 @@ const InlineInput = (props) => {
       onChange={(event) => setValue(event.target.value.trim())}
     />
   );
-};
-
-InlineInput.propTypes = {
-  user: PropTypes.object,
 };
 
 export default InlineInput;
