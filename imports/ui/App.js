@@ -7,10 +7,10 @@ import React, { useContext } from "react";
 import Story from "./Story";
 
 const App = () => {
-  const { colorMode, refs, selectedId, setColorMode, story } = useContext(
+  const { colorMode, refs, selectedRefId, setColorMode, story } = useContext(
     AppContext
   );
-  const selectedRef = refs.find((ref) => ref._id === selectedId);
+  const selectedRef = refs.find((ref) => ref._id === selectedRefId);
 
   return (
     <Flex sx={{ justifyContent: "center" }}>
@@ -22,17 +22,17 @@ const App = () => {
             justifyContent: "space-between",
           }}
         >
-          {selectedId && (
+          {selectedRefId && (
             <Flex sx={{ alignItems: "center" }}>
               <IconButton
-                onClick={() => window.location.replace(`/r/${selectedId}`)}
+                onClick={() => window.location.replace(`/r/${selectedRefId}`)}
               >
                 <ArrowDownCircle />
               </IconButton>
               <IconButton
                 onClick={() =>
                   window.confirm("You sure you want to delete this?") &&
-                  Meteor.call("refs.remove", selectedId)
+                  Meteor.call("refs.remove", selectedRefId)
                 }
               >
                 <Trash />

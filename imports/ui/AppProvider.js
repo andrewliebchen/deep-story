@@ -19,8 +19,10 @@ const AppProvider = (props) => {
     RefsCollection.find({ parentId: parentId }).fetch()
   );
 
-  // Get the selected ref
-  const [selectedId, setSelectedId] = useState("");
+  // Get the selected ref and set up editing state
+  const [selectedRefId, setSelectedRefId] = useState("");
+  const [editingRefId, setEditingRefId] = useState("");
+  const selectedRef = useTracker(() => RefsCollection.findOne(selectedRefId));
 
   // Get the current user, who can also be the parent.
   const user = useTracker(() => Meteor.users.findOne({ _id: Meteor.userId() }));
@@ -41,13 +43,16 @@ const AppProvider = (props) => {
       value={{
         ...props,
         colorMode,
+        editingRefId,
         parentId,
         parentIsUser,
         parentRef,
         refs,
-        selectedId,
+        selectedRef,
+        selectedRefId,
         setColorMode,
-        setSelectedId,
+        setEditingRefId,
+        setSelectedRefId,
         story,
         user,
       }}

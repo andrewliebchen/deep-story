@@ -8,7 +8,7 @@ import Word from "./Word";
 import yallist from "yallist";
 
 const Story = () => {
-  const { refs, story } = useContext(AppContext);
+  const { refs, story, selectedRefId } = useContext(AppContext);
   const hasStory = story.length > 0;
   const storyLinkedList = hasStory && yallist.create(story);
 
@@ -27,7 +27,7 @@ const Story = () => {
             }
           }
         })}
-      <InlineInput />
+      {!selectedRefId && <InlineInput />}
     </Flex>
   );
 };

@@ -15,39 +15,34 @@ import { Meteor } from "meteor/meteor";
 //             />
 
 const Word = (props) => {
-  const { selectedId, setSelectedId } = useContext(AppContext);
-  const isSelected = selectedId === props._id;
+  const {
+    selectedRef,
+    selectedRefId,
+    setSelectedRefId,
+    editingRefId,
+    setEditingRefId,
+  } = useContext(AppContext);
+
+  const isSelected = selectedRefId === props._id;
+  const isEditing = editingRefId === props._id;
 
   return (
     <Flex>
       <Flex
         sx={{
-          bg: isSelected && "primaryBackground",
+          bg: isEditing ? "primary" : isSelected && "primaryBackground",
           cursor: "pointer",
           flexShrink: 0,
           position: "relative",
           userSelect: "none",
           "&:hover": {
-            bg: "primaryBackground",
+            bg: isEditing ? "primary" : "primaryBackground",
+            color: isEditing ? "background" : "text",
           },
         }}
-        onClick={() => setSelectedId(isSelected ? "" : props._id)}
+        onClick={() => setSelectedRefId(isSelected ? "" : props._id)}
       >
-        <Text variant="ref">
-          <ContentEditable
-            html={props.text}
-            onChange={(event) =>
-              Meteor.call(
-                "refs.update",
-                selectedId,
-                {
-                  text: event.target.value,
-                },
-                (error, id) => console.log("yes")
-              )
-            }
-          />
-        </Text>
+        {isSelected ? <InlineInput /> : <Text variant="ref">{props.text}</Text>}
       </Flex>
       <Text variant="ref"> </Text>
     </Flex>
