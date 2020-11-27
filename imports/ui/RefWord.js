@@ -27,14 +27,12 @@ const RefWord = (props) => {
         <Text variant="ref">{props.text}</Text>
       </Flex>
       <Text variant="ref"> </Text>
-      {props.isLast && <InlineInput />}
     </Flex>
   );
 };
 
 RefWord.propTypes = {
   _id: PropTypes.string,
-  isLast: PropTypes.bool,
   text: PropTypes.string,
 };
 

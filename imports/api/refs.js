@@ -1,11 +1,21 @@
 import { Mongo } from "meteor/mongo";
-import yallist from "yallist";
+import { Meteor } from "meteor/meteor";
 
 export const RefsCollection = new Mongo.Collection("refs");
 
 Meteor.methods({
   "refs.insert"(options) {
-    return RefsCollection.insert({ ...options, story: yallist.create() });
+    const newRefId = RefsCollection.insert({
+      ...options,
+      story: [],
+    });
+
+    // TODO: Need to make this work if the parent isn't a user.
+    Meteor.users.update(options.parentId, {
+      $push: { "profile.story": newRefId },
+    });
+
+    return newRefId;
   },
 
   "refs.update"(id, options) {

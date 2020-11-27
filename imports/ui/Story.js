@@ -8,24 +8,23 @@ import RefWord from "./RefWord";
 import yallist from "yallist";
 
 const Story = () => {
-  const { refs, refId, user, story } = useContext(AppContext);
+  const { refs, story } = useContext(AppContext);
+  const storyLinkedList = yallist.create(story);
+  console.log(story);
+  console.log(storyLinkedList);
 
   return (
     <Flex sx={{ flexFlow: "wrap" }}>
-      {story.length === 0 ? (
-        <InlineInput user={user} />
-      ) : (
-        story.forEach((ref) => {
-          console.log(ref);
-          switch (ref.type) {
-            case "break":
-              return <RefBreak key={ref._id} {...ref} />;
-              break;
-            default:
-              return <RefWord key={ref._id} {...ref} />;
-          }
-        })
-      )}
+      {storyLinkedList.map((refId) => {
+        const ref = refs.find((r) => refId === r._id);
+        switch (ref.type) {
+          case "break":
+            return <RefBreak key={ref._id} {...ref} />;
+            break;
+          default:
+            return <RefWord key={ref._id} {...ref} />;
+        }
+      })}
     </Flex>
   );
 };

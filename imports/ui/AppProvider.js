@@ -4,7 +4,6 @@ import { useColorMode } from "theme-ui";
 import { useTracker } from "meteor/react-meteor-data";
 import AppContext from "./AppContext";
 import React, { useState } from "react";
-import yallist from "yallist";
 
 const AppProvider = (props) => {
   const parentId = window.location.pathname.replace("/r/", "");
@@ -16,7 +15,7 @@ const AppProvider = (props) => {
   const [selectedId, setSelectedId] = useState("");
   const user = useTracker(() => Meteor.users.findOne({ _id: Meteor.userId() }));
 
-  // Get the page's story linked list
+  // Once we have a user, get the page's story linked list
   const story =
     typeof user !== "undefined" &&
     (user._id === parentId

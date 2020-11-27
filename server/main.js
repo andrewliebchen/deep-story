@@ -1,10 +1,9 @@
 import { Accounts } from "meteor/accounts-base";
 import { RefsCollection } from "../imports/api/refs";
-import yallist from "yallist";
 
 Accounts.onCreateUser((options, user) => {
   user.profile = options.profile || {};
-  user.profile.story = yallist.create();
+  user.profile.story = [];
 
   return user;
 });
