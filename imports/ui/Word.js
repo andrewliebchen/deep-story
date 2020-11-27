@@ -5,7 +5,7 @@ import InlineInput from "./InlineInput";
 import PropTypes from "prop-types";
 import React, { useState, useContext } from "react";
 
-const RefWord = (props) => {
+const Word = (props) => {
   const { selectedId, setSelectedId } = useContext(AppContext);
   const isSelected = selectedId === props._id;
 
@@ -31,9 +31,9 @@ const RefWord = (props) => {
   );
 };
 
-RefWord.propTypes = {
+Word.propTypes = {
   _id: PropTypes.string,
   text: PropTypes.string,
 };
 
-export default RefWord;
+export default Word;

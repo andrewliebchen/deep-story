@@ -3,8 +3,8 @@ import { useTracker } from "meteor/react-meteor-data";
 import AppContext from "./AppContext";
 import InlineInput from "./InlineInput";
 import React, { useContext } from "react";
-import RefBreak from "./RefBreak";
-import RefWord from "./RefWord";
+import LineBreak from "./LineBreak";
+import Word from "./Word";
 import yallist from "yallist";
 
 const Story = () => {
@@ -19,10 +19,10 @@ const Story = () => {
         const ref = refs.find((r) => refId === r._id);
         switch (ref.type) {
           case "break":
-            return <RefBreak key={ref._id} {...ref} />;
+            return <LineBreak key={ref._id} {...ref} />;
             break;
           default:
-            return <RefWord key={ref._id} {...ref} />;
+            return <Word key={ref._id} {...ref} />;
         }
       })}
     </Flex>
