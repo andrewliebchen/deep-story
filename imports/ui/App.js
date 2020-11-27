@@ -1,7 +1,6 @@
-import { Box, Flex, Heading, IconButton, Input } from "theme-ui";
+import { Box, Flex, IconButton, Input } from "theme-ui";
 import { Edit2, ArrowDownCircle, Trash, X } from "react-feather";
 import { Moon, Sun } from "react-feather";
-import { RefsCollection } from "../api/refs";
 import AccountToggle from "./AccountToggle";
 import AppContext from "./AppContext";
 import React, { useContext } from "react";

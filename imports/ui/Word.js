@@ -1,9 +1,8 @@
-import { Flex, IconButton, Input, Text } from "theme-ui";
-import { X } from "react-feather";
+import { Flex, Text } from "theme-ui";
 import AppContext from "./AppContext";
 import InlineInput from "./InlineInput";
 import PropTypes from "prop-types";
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 
 const Word = (props) => {
   const { selectedId, setSelectedId } = useContext(AppContext);

@@ -1,4 +1,4 @@
-import { Box, Flex, Input, Text } from "theme-ui";
+import { Flex, Input, Text } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { useKeycodes } from "@accessible/use-keycode";
 import AppContext from "./AppContext";

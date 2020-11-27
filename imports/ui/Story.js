@@ -1,9 +1,8 @@
-import { Flex, IconButton, Text } from "theme-ui";
-import { useTracker } from "meteor/react-meteor-data";
+import { Flex } from "theme-ui";
 import AppContext from "./AppContext";
 import InlineInput from "./InlineInput";
-import React, { useContext } from "react";
 import LineBreak from "./LineBreak";
+import React, { useContext } from "react";
 import Word from "./Word";
 import yallist from "yallist";
 
