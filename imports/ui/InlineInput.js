@@ -1,36 +1,32 @@
 import { Box, Flex, Input, Text } from "theme-ui";
-import { RefsCollection } from "../api/refs";
+import { Meteor } from "meteor/meteor";
 import { useKeycodes } from "@accessible/use-keycode";
 import AppContext from "./AppContext";
-import React, { useState, useContext } from "react";
 import Cursor from "./Cursor";
-import yallist from "yallist";
+import React, { useState, useContext } from "react";
 
 const InlineInput = () => {
-  const { parentId } = useContext(AppContext);
+  const { parentId, story } = useContext(AppContext);
   const [value, setValue] = useState("");
   const ref = useKeycodes({
     13: () => {
-      RefsCollection.insert({
+      Meteor.call("refs.insert", {
         createdAt: Date.now(),
         parentId: parentId,
-        story: yallist.create(),
         text: value,
         type: "text",
       });
-      RefsCollection.insert({
+      Meteor.call("refs.insert", {
         createdAt: Date.now(),
         parentId: parentId,
-        story: yallist.create(),
         type: "break",
       });
       setValue("");
     },
     32: () => {
-      RefsCollection.insert({
+      Meteor.call("refs.insert", {
         createdAt: Date.now(),
         parentId: parentId,
-        story: yallist.create(),
         text: value,
         type: "text",
       });

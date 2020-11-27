@@ -28,8 +28,8 @@ const App = () => {
               <Input
                 value={selectedRef.text}
                 onChange={(event) =>
-                  RefsCollection.update(selectedRef._id, {
-                    $set: { text: event.target.value },
+                  Meteor.call("refs.update", selectedId, {
+                    text: event.target.value,
                   })
                 }
               />
@@ -39,7 +39,7 @@ const App = () => {
               <IconButton
                 onClick={() =>
                   window.confirm("You sure you want to delete this?") &&
-                  RefsCollection.remove(props.selectedId)
+                  Meteor.call("refs.remove", selectedId)
                 }
               >
                 <Trash />
