@@ -17,10 +17,11 @@ const AppProvider = (props) => {
 
   // Once we have a user, get the page's story linked list
   const story =
-    typeof user !== "undefined" &&
-    (user._id === parentId
+    typeof user === "undefined"
+      ? []
+      : user._id === parentId
       ? user.profile.story
-      : RefsCollection.findOne(parentId).story);
+      : RefsCollection.findOne(parentId).story;
 
   return (
     <AppContext.Provider

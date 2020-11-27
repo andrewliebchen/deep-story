@@ -6,7 +6,6 @@ import AccountToggle from "./AccountToggle";
 import AppContext from "./AppContext";
 import React, { useContext } from "react";
 import Story from "./Story";
-import InlineInput from "./InlineInput";
 
 const App = () => {
   const { colorMode, refs, selectedId, setColorMode, story } = useContext(
@@ -25,7 +24,7 @@ const App = () => {
           }}
         >
           {selectedId && (
-            <Flex>
+            <Flex sx={{ alignItems: "center" }}>
               <Input
                 value={selectedRef.text}
                 onChange={(event) =>
@@ -34,7 +33,9 @@ const App = () => {
                   })
                 }
               />
-              <IconButton onClick={() => console.log("Dive!")}>
+              <IconButton
+                onClick={() => window.location.replace(`/r/${selectedId}`)}
+              >
                 <ArrowDownCircle />
               </IconButton>
               <IconButton
@@ -60,8 +61,7 @@ const App = () => {
             <AccountToggle />
           </Flex>
         </Flex>
-        {story.length > 0 && <Story />}
-        <InlineInput />
+        <Story />
       </Box>
     </Flex>
   );

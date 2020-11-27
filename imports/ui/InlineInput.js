@@ -47,7 +47,6 @@ const InlineInput = () => {
           appearance: "none",
           border: 0,
           caretColor: "transparent",
-          overflow: "visible",
           p: 0,
           width: 0,
           "&:focus": {

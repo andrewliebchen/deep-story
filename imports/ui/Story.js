@@ -9,22 +9,23 @@ import yallist from "yallist";
 
 const Story = () => {
   const { refs, story } = useContext(AppContext);
-  const storyLinkedList = yallist.create(story);
-  console.log(story);
-  console.log(storyLinkedList);
+  const hasStory = story.length > 0;
+  const storyLinkedList = hasStory && yallist.create(story);
 
   return (
     <Flex sx={{ flexFlow: "wrap" }}>
-      {storyLinkedList.map((refId) => {
-        const ref = refs.find((r) => refId === r._id);
-        switch (ref.type) {
-          case "break":
-            return <LineBreak key={ref._id} {...ref} />;
-            break;
-          default:
-            return <Word key={ref._id} {...ref} />;
-        }
-      })}
+      {hasStory &&
+        storyLinkedList.map((refId) => {
+          const ref = refs.find((r) => refId === r._id);
+          switch (ref.type) {
+            case "break":
+              return <LineBreak key={ref._id} {...ref} />;
+              break;
+            default:
+              return <Word key={ref._id} {...ref} />;
+          }
+        })}
+      <InlineInput />
     </Flex>
   );
 };
