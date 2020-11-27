@@ -6,9 +6,9 @@ Go deep into a story by adding a story within each word. Maybe like a mini inter
 
 [X] CRUD for story words
 [X] Pressing enter saves a line break (could do something with this later)
-[ ] Scalable meta-UI to hold many nested stories, do navigation (stories side by side, with some kind of breadcrumbs up top?)
-[ ] Ability to add more words to the end of a line
-[ ] Autofocus on the input, make it only as wide as the current input
+[X] Scalable meta-UI to hold many nested stories, do navigation (stories side by side, with some kind of breadcrumbs up top?)
+[X] Ability to add more words to the end of a line
+[X] Autofocus on the input, make it only as wide as the current input
 [X] Switch to a monospaced font
 [ ] Periodically create a backup JSON database that can be downloaded as a file
 [ ] Database backup JSON uploader and parser
@@ -17,9 +17,18 @@ Go deep into a story by adding a story within each word. Maybe like a mini inter
 [ ] Show how many incoming and outgoing references there are to a reference
 [X] Add user accounts...maybe just by hash for now? They become the root.
 [X] Add a router.
-[ ] Every reference needs a url. Structure is `/r/ID`?
+[X] Every reference needs a url. Structure is `/r/ID`?
 [ ] Every reference has a type
 [X] Move hover tooltip tools to the toolbar
-[ ] Store user data in localhost (with a hook?)
+~~[ ] Store user data in localhost (with a hook?)~~
 [X] Set up ContextAPI
 [X] Google account login
+[ ] `/details` to show more info about the ref itself
+[ ] Move toolbar to own component
+[X] Fix dive functionality for non-users
+[ ] Fix browser history (`window.location.replace` fucks it up...just use `<Link/>`)
+[ ] Bigger Dive button
+[ ] Navigation in the tool bar...breadcrumbs?
+[ ] Click in story to relocate cursor...use selectedRefId for cursor location?
+[ ] `contentEditable` to direclty edit words
+[ ] Build out data mock type

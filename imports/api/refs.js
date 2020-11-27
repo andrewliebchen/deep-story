@@ -4,16 +4,24 @@ import { Meteor } from "meteor/meteor";
 export const RefsCollection = new Mongo.Collection("refs");
 
 Meteor.methods({
-  "refs.insert"(options) {
+  "refs.insert"(parentIsUser, options) {
     const newRefId = RefsCollection.insert({
       ...options,
       story: [],
     });
 
-    // TODO: Need to make this work if the parent isn't a user.
-    Meteor.users.update(options.parentId, {
-      $push: { "profile.story": newRefId },
-    });
+    // Check if this is a user or not
+    if (parentIsUser) {
+      console.log("user");
+      Meteor.users.update(options.parentId, {
+        $push: { "profile.story": newRefId },
+      });
+    } else {
+      console.log("not user");
+      RefsCollection.update(options.parentId, {
+        $push: { story: newRefId },
+      });
+    }
 
     return newRefId;
   },

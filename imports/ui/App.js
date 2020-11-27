@@ -1,4 +1,4 @@
-import { Box, Flex, IconButton, Input } from "theme-ui";
+import { Box, Flex, IconButton } from "theme-ui";
 import { Edit2, ArrowDownCircle, Trash, X } from "react-feather";
 import { Moon, Sun } from "react-feather";
 import AccountToggle from "./AccountToggle";
@@ -24,14 +24,6 @@ const App = () => {
         >
           {selectedId && (
             <Flex sx={{ alignItems: "center" }}>
-              <Input
-                value={selectedRef.text}
-                onChange={(event) =>
-                  Meteor.call("refs.update", selectedId, {
-                    text: event.target.value,
-                  })
-                }
-              />
               <IconButton
                 onClick={() => window.location.replace(`/r/${selectedId}`)}
               >

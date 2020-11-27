@@ -3,6 +3,16 @@ import AppContext from "./AppContext";
 import InlineInput from "./InlineInput";
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
+import ContentEditable from "react-contenteditable";
+import { Meteor } from "meteor/meteor";
+
+// <ContentEditable
+//               innerRef={this.contentEditable}
+//               html={this.state.html} // innerHTML of the editable div
+//               disabled={false}       // use true to disable editing
+//               onChange={this.handleChange} // handle innerHTML change
+//               tagName='article' // Use a custom HTML tag (uses a div by default)
+//             />
 
 const Word = (props) => {
   const { selectedId, setSelectedId } = useContext(AppContext);
@@ -23,7 +33,21 @@ const Word = (props) => {
         }}
         onClick={() => setSelectedId(isSelected ? "" : props._id)}
       >
-        <Text variant="ref">{props.text}</Text>
+        <Text variant="ref">
+          <ContentEditable
+            html={props.text}
+            onChange={(event) =>
+              Meteor.call(
+                "refs.update",
+                selectedId,
+                {
+                  text: event.target.value,
+                },
+                (error, id) => console.log("yes")
+              )
+            }
+          />
+        </Text>
       </Flex>
       <Text variant="ref"> </Text>
     </Flex>

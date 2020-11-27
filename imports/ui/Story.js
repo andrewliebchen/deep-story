@@ -1,4 +1,5 @@
 import { Flex } from "theme-ui";
+import { isReady } from "../utils/helpers";
 import AppContext from "./AppContext";
 import InlineInput from "./InlineInput";
 import LineBreak from "./LineBreak";
@@ -16,12 +17,14 @@ const Story = () => {
       {hasStory &&
         storyLinkedList.map((refId) => {
           const ref = refs.find((r) => refId === r._id);
-          switch (ref.type) {
-            case "break":
-              return <LineBreak key={ref._id} {...ref} />;
-              break;
-            default:
-              return <Word key={ref._id} {...ref} />;
+          if (isReady(ref)) {
+            switch (ref.type) {
+              case "break":
+                return <LineBreak key={ref._id} {...ref} />;
+                break;
+              default:
+                return <Word key={ref._id} {...ref} />;
+            }
           }
         })}
       <InlineInput />

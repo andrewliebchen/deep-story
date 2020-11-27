@@ -6,17 +6,17 @@ import Cursor from "./Cursor";
 import React, { useState, useContext } from "react";
 
 const InlineInput = () => {
-  const { parentId, story } = useContext(AppContext);
+  const { parentId, parentIsUser, story } = useContext(AppContext);
   const [value, setValue] = useState("");
   const ref = useKeycodes({
     13: () => {
-      Meteor.call("refs.insert", {
+      Meteor.call("refs.insert", parentIsUser, {
         createdAt: Date.now(),
         parentId: parentId,
         text: value,
         type: "text",
       });
-      Meteor.call("refs.insert", {
+      Meteor.call("refs.insert", parentIsUser, {
         createdAt: Date.now(),
         parentId: parentId,
         type: "break",
@@ -24,7 +24,7 @@ const InlineInput = () => {
       setValue("");
     },
     32: () => {
-      Meteor.call("refs.insert", {
+      Meteor.call("refs.insert", parentIsUser, {
         createdAt: Date.now(),
         parentId: parentId,
         text: value,
@@ -42,7 +42,7 @@ const InlineInput = () => {
         value={value}
         onChange={(event) => setValue(event.target.value.trim())}
         tabIndex={0}
-        onBlur={(event) => event.target.focus()}
+        // onBlur={(event) => event.target.focus()}
         sx={{
           appearance: "none",
           border: 0,
