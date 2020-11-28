@@ -4,13 +4,25 @@ import AppContext from "./AppContext";
 import InlineInput from "./InlineInput";
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
+import { useKeycodes } from "@accessible/use-keycode";
+import yallist from "yallist";
 
 const Word = (props) => {
-  const { selectedRefId, setSelectedRefId } = useContext(AppContext);
+  const { selectedRefId, setSelectedRefId, story } = useContext(AppContext);
   const isSelected = selectedRefId === props._id;
 
+  const ref = useKeycodes({
+    39: (event) =>
+      props.text.length === event.target.selectionEnd &&
+      setSelectedRefId(story[props.index + 1]),
+    37: (event) =>
+      event.target.selectionStart === 1 &&
+      setSelectedRefId(story[props.index - 1]),
+    27: () => setSelectedRefId(""),
+  });
+
   return (
-    <Flex>
+    <Flex ref={ref}>
       <Flex
         sx={{
           bg: isSelected && "primaryBackground",
@@ -37,6 +49,7 @@ const Word = (props) => {
 
 Word.propTypes = {
   _id: PropTypes.string,
+  index: PropTypes.number,
   text: PropTypes.string,
 };
 

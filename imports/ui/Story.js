@@ -3,29 +3,34 @@ import { isReady } from "../utils/helpers";
 import AppContext from "./AppContext";
 import NewInput from "./NewInput";
 import LineBreak from "./LineBreak";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Word from "./Word";
 import yallist from "yallist";
 
 const Story = () => {
   const { refs, story, selectedRefId } = useContext(AppContext);
+  let index = 0;
+
   const hasStory = story.length > 0;
   const storyLinkedList = hasStory && yallist.create(story);
 
   return (
     <Flex sx={{ flexFlow: "wrap" }}>
       {hasStory &&
-        storyLinkedList.map((refId) => {
-          const ref = refs.find((r) => refId === r._id);
-          if (isReady(ref)) {
-            switch (ref.type) {
-              case "break":
-                return <LineBreak key={ref._id} {...ref} />;
-                break;
-              default:
-                return <Word key={ref._id} {...ref} />;
-            }
+        storyLinkedList.map((refId, list) => {
+          let node;
+          const ref = refs.find((r) => r._id === refId);
+
+          switch (ref.type) {
+            case "break":
+              node = <LineBreak key={ref._id} index={index} {...ref} />;
+              break;
+            default:
+              node = <Word key={ref._id} index={index} {...ref} />;
           }
+
+          index++;
+          return node;
         })}
       {!selectedRefId && <NewInput />}
     </Flex>
