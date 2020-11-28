@@ -1,7 +1,7 @@
 import { Flex } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import AppContext from "./AppContext";
-import InlineInput from "./InlineInput";
+import NewInput from "./NewInput";
 import LineBreak from "./LineBreak";
 import React, { useContext } from "react";
 import Word from "./Word";
@@ -27,7 +27,7 @@ const Story = () => {
             }
           }
         })}
-      {!selectedRefId && <InlineInput />}
+      {!selectedRefId && <NewInput />}
     </Flex>
   );
 };

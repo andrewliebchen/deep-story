@@ -40,9 +40,13 @@ const Word = (props) => {
             color: isEditing ? "background" : "text",
           },
         }}
-        onClick={() => setSelectedRefId(isSelected ? "" : props._id)}
+        onClick={() => setSelectedRefId(props._id)}
       >
-        {isSelected ? <InlineInput /> : <Text variant="ref">{props.text}</Text>}
+        {isSelected ? (
+          <InlineInput value={props.text} />
+        ) : (
+          <Text variant="ref">{props.text}</Text>
+        )}
       </Flex>
       <Text variant="ref"> </Text>
     </Flex>

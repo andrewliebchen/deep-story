@@ -30,5 +30,7 @@ Go deep into a story by adding a story within each word. Maybe like a mini inter
 [ ] Bigger Dive button
 [ ] Navigation in the tool bar...breadcrumbs?
 [ ] Click in story to relocate cursor...use selectedRefId for cursor location?
-[X] `contentEditable` to directly edit words
+~~[X] `contentEditable` to directly edit words~~
 [ ] Build out data mock type
+[ ] Paginate between words with arrow and tab keys
+[ ] Press esc to switch inline input and new input

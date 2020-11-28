@@ -10,14 +10,12 @@ Meteor.methods({
       story: [],
     });
 
-    // Check if this is a user or not
+    // Check if this is a user or not, update the correct thing
     if (parentIsUser) {
-      console.log("user");
       Meteor.users.update(options.parentId, {
         $push: { "profile.story": newRefId },
       });
     } else {
-      console.log("not user");
       RefsCollection.update(options.parentId, {
         $push: { story: newRefId },
       });

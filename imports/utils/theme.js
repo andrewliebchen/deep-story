@@ -45,6 +45,25 @@ export default {
       whiteSpace: "pre-wrap",
     },
   },
+  input: {
+    inline: {
+      bg: "primaryBackground",
+      border: 0,
+      borderRadius: 0,
+      caretColor: "primary",
+      display: "flex",
+      flex: 1,
+      fontFamily: "monospace",
+      minHeight: 24,
+      minWidth: "auto",
+      p: 0,
+      whiteSpace: "pre-wrap",
+      width: "auto",
+      "&:focus": {
+        outline: "none",
+      },
+    },
+  },
   styles: {
     root: {
       fontFamily: "body",

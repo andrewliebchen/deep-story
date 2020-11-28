@@ -21,7 +21,7 @@ const AppProvider = (props) => {
 
   // Get the selected ref and set up editing state
   const [selectedRefId, setSelectedRefId] = useState("");
-  const [editingRefId, setEditingRefId] = useState("");
+  const [editingRefId, setEditingRefId] = useState(""); // probably can remove this
   const selectedRef = useTracker(() => RefsCollection.findOne(selectedRefId));
 
   // Get the current user, who can also be the parent.
