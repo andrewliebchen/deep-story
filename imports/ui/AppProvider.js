@@ -4,7 +4,7 @@ import { RefsCollection } from "../api/refs";
 import { useColorMode } from "theme-ui";
 import { useTracker } from "meteor/react-meteor-data";
 import AppContext from "./AppContext";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const AppProvider = (props) => {
   // Color mode
@@ -21,7 +21,6 @@ const AppProvider = (props) => {
 
   // Get the selected ref and set up editing state
   const [selectedRefId, setSelectedRefId] = useState("");
-  const [editingRefId, setEditingRefId] = useState(""); // probably can remove this
   const selectedRef = useTracker(() => RefsCollection.findOne(selectedRefId));
 
   // Get the current user, who can also be the parent.
@@ -30,7 +29,8 @@ const AppProvider = (props) => {
   // A check to see if the parent is the user
   const parentIsUser = isReady(user) && parentId === user._id;
 
-  // Once we have a  user, get the page's story linked list
+  // Once we have a  user, get the page's story array.
+  // Convert that array to a yallist linked list as necessary.
   let story = [];
   if (parentIsUser) {
     story = user.profile.story;
@@ -43,7 +43,6 @@ const AppProvider = (props) => {
       value={{
         ...props,
         colorMode,
-        editingRefId,
         parentId,
         parentIsUser,
         parentRef,
@@ -51,7 +50,6 @@ const AppProvider = (props) => {
         selectedRef,
         selectedRefId,
         setColorMode,
-        setEditingRefId,
         setSelectedRefId,
         story,
         user,

@@ -7,10 +7,7 @@ import React, { useContext } from "react";
 import Story from "./Story";
 
 const App = () => {
-  const { colorMode, refs, selectedRefId, setColorMode, story } = useContext(
-    AppContext
-  );
-  const selectedRef = refs.find((ref) => ref._id === selectedRefId);
+  const { colorMode, selectedRefId, setColorMode } = useContext(AppContext);
 
   return (
     <Flex sx={{ justifyContent: "center" }}>
