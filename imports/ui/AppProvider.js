@@ -15,7 +15,9 @@ const AppProvider = (props) => {
   const [colorMode, setColorMode] = useColorMode();
 
   // Get the parentId from the url and the parent record (if one)
-  const parentId = window.location.pathname.replace("/r/", "");
+  const [parentId, setParentId] = useState(
+    window.location.pathname.replace("/r/", "")
+  );
   const parentRef = useTracker(() => RefsCollection.findOne(parentId));
 
   // Get all the refs for this parentId
@@ -41,12 +43,12 @@ const AppProvider = (props) => {
       value={{
         ...props,
         colorMode,
-        parentId,
         parentRef,
         refs,
         selectedRef,
         selectedRefId,
         setColorMode,
+        setParentId,
         setSelectedRefId,
         story,
         user,

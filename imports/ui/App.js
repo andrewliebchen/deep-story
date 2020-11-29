@@ -1,13 +1,25 @@
 import { Box, Flex, IconButton } from "theme-ui";
 import { Edit2, ArrowDownCircle, Trash, X } from "react-feather";
+import { isReady } from "../utils/helpers";
 import { Moon, Sun } from "react-feather";
+import { useParams, Link } from "react-router-dom";
 import AccountToggle from "./AccountToggle";
 import AppContext from "./AppContext";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Story from "./Story";
 
 const App = () => {
-  const { colorMode, selectedRefId, setColorMode } = useContext(AppContext);
+  const {
+    colorMode,
+    selectedRefId,
+    setColorMode,
+    setParentId,
+    parentRef,
+  } = useContext(AppContext);
+  const { refId } = useParams();
+
+  // Can only get the params inside the router. Pass this to the provider
+  useEffect(() => setParentId(refId));
 
   return (
     <Flex sx={{ justifyContent: "center" }}>
@@ -21,11 +33,14 @@ const App = () => {
         >
           {selectedRefId && (
             <Flex sx={{ alignItems: "center" }}>
-              <IconButton
-                onClick={() => window.location.replace(`/r/${selectedRefId}`)}
-              >
-                <ArrowDownCircle />
-              </IconButton>
+              {isReady(parentRef) && (
+                <Link to={`/r/${parentRef.parentId}`}>{parentRef.text}</Link>
+              )}
+              <Link to={`/r/${selectedRefId}`}>
+                <IconButton>
+                  <ArrowDownCircle />
+                </IconButton>
+              </Link>
               <IconButton
                 onClick={() =>
                   window.confirm("You sure you want to delete this?") &&
