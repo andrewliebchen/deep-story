@@ -7,6 +7,10 @@ import AppContext from "./AppContext";
 import React, { useState } from "react";
 
 const AppProvider = (props) => {
+  // Get the current user, who can also be the parent.
+  const userId = Meteor.userId();
+  const user = useTracker(() => Meteor.users.findOne({ _id: userId }));
+
   // Color mode
   const [colorMode, setColorMode] = useColorMode();
 
@@ -16,23 +20,17 @@ const AppProvider = (props) => {
 
   // Get all the refs for this parentId
   const refs = useTracker(() =>
-    RefsCollection.find({ parentId: parentId }).fetch()
+    RefsCollection.find({ createdBy: userId }).fetch()
   );
 
   // Get the selected ref and set up editing state
   const [selectedRefId, setSelectedRefId] = useState("");
   const selectedRef = useTracker(() => RefsCollection.findOne(selectedRefId));
 
-  // Get the current user, who can also be the parent.
-  const user = useTracker(() => Meteor.users.findOne({ _id: Meteor.userId() }));
-
-  // A check to see if the parent is the user
-  const parentIsUser = isReady(user) && parentId === user._id;
-
   // Once we have a  user, get the page's story array.
   // Convert that array to a yallist linked list as necessary.
   let story = [];
-  if (parentIsUser) {
+  if (isReady(user) && parentId === user._id) {
     story = user.profile.story;
   } else {
     story = isReady(parentRef) && parentRef.story;
@@ -44,7 +42,6 @@ const AppProvider = (props) => {
         ...props,
         colorMode,
         parentId,
-        parentIsUser,
         parentRef,
         refs,
         selectedRef,
@@ -53,6 +50,7 @@ const AppProvider = (props) => {
         setSelectedRefId,
         story,
         user,
+        userId,
       }}
     >
       {props.children}
