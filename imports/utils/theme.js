@@ -1,12 +1,21 @@
+const buttonBase = {
+  borderRadius: 3,
+  px: 3,
+  py: 2,
+  cursor: "pointer",
+};
+
 export default {
   useColorSchemeMediaQuery: true,
   colors: {
     background: "rgba(255, 255, 255, 1)",
     muted: "rgba(0, 0, 0, 0.5)",
     negative: "rgba(230, 59, 24, 1)",
-    negativeBackground: "rgba(230, 59, 24, 0.05)",
+    negativeBackground: "rgba(230, 59, 24, 0.2)",
+    negativeMuted: "rgba(230, 59, 24, 0.05)",
     primary: "rgba(0, 119, 204, 1)",
     primaryBackground: "rgba(0, 119, 204, 0.2)",
+    primaryHover: "rgba(0, 104, 178, 1)",
     primaryMuted: "rgba(0, 119, 204, 0.05)",
     secondary: "rgba(51, 0, 204, 1)",
     text: "rgba(0, 0, 0, 1)",
@@ -16,8 +25,10 @@ export default {
         background: "rgba(6, 6, 6, 1)",
         muted: "rgba(255, 255, 255, 0.05)",
         negative: "rgba(230, 59, 24, 1)",
-        negativeBackground: "rgba(230, 59, 24, 0.2)",
+        negativeBackground: "rgba(230, 59, 24, 0.3)",
+        negativeMuted: "rgba(230, 59, 24, 0.2)",
         primary: "rgba(51, 204, 255, 1)",
+        primaryHover: "rgba(46, 184, 229, 1)",
         primaryBackground: "rgba(51, 204, 255, 0.3)",
         primaryMuted: "rgba(51, 204, 255, 0.1)",
         secondary: "rgba(238, 0, 255, 1)",
@@ -32,11 +43,42 @@ export default {
     heading: "inherit",
     monospace: "Menlo, monospace",
   },
-  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
+  fontSizes: [12, 16],
   fontWeights: {
     body: 400,
     heading: 700,
     bold: 700,
+  },
+  button: {
+    default: {
+      ...buttonBase,
+      bg: "primaryMuted",
+      color: "primary",
+      "&:hover": {
+        bg: "primaryBackground",
+      },
+    },
+    primary: {
+      ...buttonBase,
+      bg: "primary",
+      color: "background",
+      fontWeight: "bold",
+      "&:hover": {
+        bg: "primaryHover",
+      },
+    },
+    negative: {
+      ...buttonBase,
+      color: "negative",
+      bg: "negativeBackground", {
+        "&:hover" : {
+
+        },
+      },
+    },
+  },
+  heading: {
+    fontSize: 1,
   },
   input: {
     inline: {
@@ -65,87 +107,12 @@ export default {
   sizes: {
     container: 600,
   },
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
+  space: [0, 4, 8, 16, 32, 40],
   styles: {
     root: {
       fontFamily: "body",
       lineHeight: "body",
       fontWeight: "body",
-    },
-    h1: {
-      color: "text",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontWeight: "heading",
-      fontSize: 5,
-    },
-    h2: {
-      color: "text",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontWeight: "heading",
-      fontSize: 4,
-    },
-    h3: {
-      color: "text",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontWeight: "heading",
-      fontSize: 3,
-    },
-    h4: {
-      color: "text",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontWeight: "heading",
-      fontSize: 2,
-    },
-    h5: {
-      color: "text",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontWeight: "heading",
-      fontSize: 1,
-    },
-    h6: {
-      color: "text",
-      fontFamily: "heading",
-      lineHeight: "heading",
-      fontWeight: "heading",
-      fontSize: 0,
-    },
-    p: {
-      color: "text",
-      fontFamily: "body",
-      fontWeight: "body",
-      lineHeight: "body",
-    },
-    a: {
-      color: "primary",
-    },
-    pre: {
-      fontFamily: "monospace",
-      overflowX: "auto",
-      code: {
-        color: "inherit",
-      },
-    },
-    code: {
-      fontFamily: "monospace",
-      fontSize: "inherit",
-    },
-    table: {
-      width: "100%",
-      borderCollapse: "separate",
-      borderSpacing: 0,
-    },
-    th: {
-      textAlign: "left",
-      borderBottomStyle: "solid",
-    },
-    td: {
-      textAlign: "left",
-      borderBottomStyle: "solid",
     },
     img: {
       display: "block",
@@ -156,6 +123,9 @@ export default {
     ref: {
       fontFamily: "monospace",
       whiteSpace: "pre-wrap",
+    },
+    small: {
+      fontSize: "small",
     },
   },
 };
