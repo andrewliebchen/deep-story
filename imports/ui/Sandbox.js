@@ -1,7 +1,18 @@
 import React, { useContext } from "react";
-import { Divider, Flex, Button, IconButton, Text, Heading } from "theme-ui";
+import {
+  Divider,
+  Flex,
+  Button,
+  IconButton,
+  Text,
+  Heading,
+  Box,
+} from "theme-ui";
 import AppContext from "./AppContext";
-import { Feather, Trash } from "react-feather";
+import Trash from "@iconscout/react-unicons/icons/uil-trash";
+import Moon from "@iconscout/react-unicons/icons/uil-moon";
+import Sun from "@iconscout/react-unicons/icons/uil-sun";
+import ArrowUp from "@iconscout/react-unicons/icons/uil-arrow-up";
 
 const Sandbox = () => {
   const { colorMode, setColorMode } = useContext(AppContext);
@@ -18,6 +29,7 @@ const Sandbox = () => {
     >
       <Heading>Sandbox</Heading>
       <Text>This is a sandbox</Text>
+      <Text variant="text.ref">This is ref body text.</Text>
       <Flex>
         <Button
           variant="button.primary"
@@ -31,8 +43,13 @@ const Sandbox = () => {
         <Button m={3} variant="button.default">
           Default
         </Button>
-        <IconButton variant="iconButton.default" m={3} children={<Feather />} />
-        <IconButton m={3} variant="iconButton.negative">
+        <Button m={3} variant="button.default">
+          <ArrowUp />
+          <Text ml={3}>Parent</Text>
+        </Button>
+        <IconButton variant="iconButton.default" m={3} children={<Sun />} />
+        <IconButton variant="iconButton.primary" m={3} children={<Moon />} />
+        <IconButton m={2} variant="iconButton.negative">
           <Trash />
         </IconButton>
       </Flex>
