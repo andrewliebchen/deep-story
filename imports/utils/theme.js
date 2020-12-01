@@ -3,6 +3,34 @@ const buttonBase = {
   px: 3,
   py: 2,
   cursor: "pointer",
+  minWidth: 40,
+  minHeight: 40,
+  bg: "primaryMuted",
+  color: "primary",
+  "&:hover": {
+    bg: "primaryBackground",
+  },
+};
+
+const buttonPrimaryStyles = {
+  bg: "primary",
+  color: "background",
+  fontWeight: "bold",
+  "&:hover": {
+    bg: "primaryHover",
+  },
+};
+
+const buttonNegativeStyles = {
+  color: "negative",
+  bg: "negativeMuted",
+  "&:hover": {
+    bg: "negativeBackground",
+  },
+};
+
+const iconButtonBase = {
+  p: 0,
 };
 
 export default {
@@ -52,33 +80,34 @@ export default {
   button: {
     default: {
       ...buttonBase,
-      bg: "primaryMuted",
-      color: "primary",
-      "&:hover": {
-        bg: "primaryBackground",
-      },
     },
     primary: {
       ...buttonBase,
-      bg: "primary",
-      color: "background",
-      fontWeight: "bold",
-      "&:hover": {
-        bg: "primaryHover",
-      },
+      ...buttonPrimaryStyles,
     },
     negative: {
       ...buttonBase,
-      color: "negative",
-      bg: "negativeBackground", {
-        "&:hover" : {
-
-        },
-      },
+      ...buttonNegativeStyles,
     },
   },
   heading: {
     fontSize: 1,
+  },
+  iconButton: {
+    default: {
+      ...buttonBase,
+      ...iconButtonBase,
+    },
+    primary: {
+      ...buttonBase,
+      ...buttonPrimaryStyles,
+      ...iconButtonBase,
+    },
+    negative: {
+      ...buttonBase,
+      ...buttonNegativeStyles,
+      ...iconButtonBase,
+    },
   },
   input: {
     inline: {
