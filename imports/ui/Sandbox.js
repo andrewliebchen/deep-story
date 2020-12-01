@@ -7,6 +7,8 @@ import {
   Text,
   Heading,
   Box,
+  Select,
+  Input,
 } from "theme-ui";
 import AppContext from "./AppContext";
 import Trash from "@iconscout/react-unicons/icons/uil-trash";
@@ -53,6 +55,14 @@ const Sandbox = () => {
           <Trash />
         </IconButton>
       </Flex>
+      <Box m={3}>
+        <Select sx={{ variant: "select.default" }}>
+          <option>Option</option>
+        </Select>
+      </Box>
+      <Box m={3}>
+        <Input variant="input.default" placeholder="Placeholder" />
+      </Box>
     </Flex>
   );
 };

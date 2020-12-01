@@ -40,7 +40,7 @@ export default {
   useColorSchemeMediaQuery: true,
   colors: {
     background: "rgba(255, 255, 255, 1)",
-    muted: "rgba(0, 0, 0, 0.5)",
+    muted: "rgba(0, 0, 0, 0.05)",
     negative: "rgba(230, 59, 24, 1)",
     negativeBackground: "rgba(230, 59, 24, 0.2)",
     negativeMuted: "rgba(230, 59, 24, 0.05)",
@@ -113,6 +113,16 @@ export default {
     },
   },
   input: {
+    default: {
+      ...buttonBase,
+      bg: "muted",
+      border: 0,
+      textAlign: "center",
+      color: "text",
+      "&:hover": {
+        color: "text",
+      },
+    },
     inline: {
       bg: "primaryBackground",
       border: 0,
@@ -136,6 +146,13 @@ export default {
     heading: 1.125,
   },
   radii: [0, 4, 8, 12],
+  select: {
+    default: {
+      ...buttonBase,
+      border: 0,
+      minWidth: 200,
+    },
+  },
   sizes: {
     container: 600,
   },
