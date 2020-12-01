@@ -10,6 +10,7 @@ const buttonBase = {
   minWidth: 40,
   px: 3,
   py: 2,
+  textDecoration: "none",
   "&:hover": {
     bg: "primaryBackground",
   },
@@ -162,10 +163,6 @@ export default {
       fontFamily: "body",
       lineHeight: "body",
       fontWeight: "body",
-    },
-    img: {
-      display: "block",
-      maxWidth: "100%",
     },
   },
   text: {
