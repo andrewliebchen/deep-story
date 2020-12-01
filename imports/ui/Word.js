@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import React, { useContext } from "react";
 import { useKeycodes } from "@accessible/use-keycode";
 import yallist from "yallist";
+import Highlight from "./Highlight";
 
 const Word = (props) => {
   const { selectedRefId, setSelectedRefId, story } = useContext(AppContext);
@@ -22,14 +23,21 @@ const Word = (props) => {
   });
 
   return (
-    <Flex ref={ref}>
+    <Flex
+      ref={ref}
+      sx={{ position: "relative", height: 40, alignItems: "center" }}
+    >
       <Flex
         sx={{
           bg: isSelected && "primaryBackground",
           cursor: "pointer",
           flexShrink: 0,
           position: "relative",
+          zIndex: 1,
           userSelect: "none",
+          px: 1,
+          mx: -1,
+          borderRadius: 2,
           "&:hover": {
             bg: "primaryBackground",
           },
@@ -43,6 +51,7 @@ const Word = (props) => {
         )}
       </Flex>
       <Text variant="ref"> </Text>
+      {isSelected && <Highlight />}
     </Flex>
   );
 };

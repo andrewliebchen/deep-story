@@ -1,13 +1,15 @@
-const buttonBase = {
+const controlHeight = 40;
+
+const controlBase = {
   alignItems: "center",
   bg: "primaryMuted",
   borderRadius: 3,
   color: "primary",
   cursor: "pointer",
   display: "flex",
-  height: 40,
+  height: controlHeight,
   justifyContent: "center",
-  minWidth: 40,
+  minWidth: controlHeight,
   px: 3,
   py: 2,
   textDecoration: "none",
@@ -39,6 +41,19 @@ const iconButtonBase = {
 
 export default {
   useColorSchemeMediaQuery: true,
+  button: {
+    default: {
+      ...controlBase,
+    },
+    primary: {
+      ...controlBase,
+      ...buttonPrimaryStyles,
+    },
+    negative: {
+      ...controlBase,
+      ...buttonNegativeStyles,
+    },
+  },
   colors: {
     background: "rgba(255, 255, 255, 1)",
     muted: "rgba(0, 0, 0, 0.05)",
@@ -69,6 +84,14 @@ export default {
       },
     },
   },
+  flex: {
+    highlight: {
+      bg: "primaryMuted",
+      flexGrow: 1,
+      height: controlHeight,
+      borderRadius: 3,
+    },
+  },
   fonts: {
     body:
       'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
@@ -81,41 +104,28 @@ export default {
     heading: 700,
     bold: 700,
   },
-  button: {
-    default: {
-      ...buttonBase,
-    },
-    primary: {
-      ...buttonBase,
-      ...buttonPrimaryStyles,
-    },
-    negative: {
-      ...buttonBase,
-      ...buttonNegativeStyles,
-    },
-  },
   heading: {
     fontSize: 1,
   },
   iconButton: {
     default: {
-      ...buttonBase,
+      ...controlBase,
       ...iconButtonBase,
     },
     primary: {
-      ...buttonBase,
+      ...controlBase,
       ...buttonPrimaryStyles,
       ...iconButtonBase,
     },
     negative: {
-      ...buttonBase,
+      ...controlBase,
       ...buttonNegativeStyles,
       ...iconButtonBase,
     },
   },
   input: {
     default: {
-      ...buttonBase,
+      ...controlBase,
       bg: "muted",
       border: 0,
       textAlign: "center",
@@ -125,7 +135,7 @@ export default {
       },
     },
     inline: {
-      bg: "primaryBackground",
+      bg: "transparent",
       border: 0,
       borderRadius: 0,
       caretColor: "primary",
@@ -149,7 +159,7 @@ export default {
   radii: [0, 4, 8, 12],
   select: {
     default: {
-      ...buttonBase,
+      ...controlBase,
       border: 0,
       minWidth: 200,
     },

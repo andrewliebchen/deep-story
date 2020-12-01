@@ -1,4 +1,4 @@
-import { Input } from "theme-ui";
+import { Input, Flex } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import AppContext from "./AppContext";
 import React, { useContext } from "react";
@@ -18,7 +18,7 @@ const InlineInput = (props) => {
         });
       }}
       tabIndex={0}
-      variant="input.inline"
+      sx={{ variant: "input.inline" }}
     />
   );
 };
