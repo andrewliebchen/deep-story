@@ -1,25 +1,5 @@
 export default {
   useColorSchemeMediaQuery: true,
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
-  sizes: {
-    container: 600,
-  },
-  fonts: {
-    body:
-      'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-    heading: "inherit",
-    monospace: "Menlo, monospace",
-  },
-  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
-  fontWeights: {
-    body: 400,
-    heading: 700,
-    bold: 700,
-  },
-  lineHeights: {
-    body: 1.5,
-    heading: 1.125,
-  },
   colors: {
     background: "rgba(255, 255, 255, 1)",
     muted: "rgba(0, 0, 0, 0.5)",
@@ -46,11 +26,17 @@ export default {
       },
     },
   },
-  text: {
-    ref: {
-      fontFamily: "monospace",
-      whiteSpace: "pre-wrap",
-    },
+  fonts: {
+    body:
+      'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+    heading: "inherit",
+    monospace: "Menlo, monospace",
+  },
+  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
+  fontWeights: {
+    body: 400,
+    heading: 700,
+    bold: 700,
   },
   input: {
     inline: {
@@ -71,6 +57,15 @@ export default {
       },
     },
   },
+  lineHeights: {
+    body: 1.5,
+    heading: 1.125,
+  },
+  radii: [0, 4, 8, 12],
+  sizes: {
+    container: 600,
+  },
+  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   styles: {
     root: {
       fontFamily: "body",
@@ -155,6 +150,12 @@ export default {
     img: {
       display: "block",
       maxWidth: "100%",
+    },
+  },
+  text: {
+    ref: {
+      fontFamily: "monospace",
+      whiteSpace: "pre-wrap",
     },
   },
 };
