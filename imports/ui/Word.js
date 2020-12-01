@@ -1,12 +1,12 @@
 import { Flex, Text } from "theme-ui";
 import { Meteor } from "meteor/meteor";
+import { useKeycodes } from "@accessible/use-keycode";
 import AppContext from "./AppContext";
+import Highlight from "./Highlight";
 import InlineInput from "./InlineInput";
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
-import { useKeycodes } from "@accessible/use-keycode";
 import yallist from "yallist";
-import Highlight from "./Highlight";
 
 const Word = (props) => {
   const { selectedRefId, setSelectedRefId, story } = useContext(AppContext);
@@ -23,21 +23,18 @@ const Word = (props) => {
   });
 
   return (
-    <Flex
-      ref={ref}
-      sx={{ position: "relative", height: 40, alignItems: "center" }}
-    >
+    <Flex ref={ref} sx={{ variant: "flex.controlContainer" }}>
       <Flex
         sx={{
           bg: isSelected && "primaryBackground",
+          borderRadius: 2,
           cursor: "pointer",
           flexShrink: 0,
-          position: "relative",
-          zIndex: 1,
-          userSelect: "none",
-          px: 1,
           mx: -1,
-          borderRadius: 2,
+          position: "relative",
+          px: 1,
+          userSelect: "none",
+          zIndex: 1,
           "&:hover": {
             bg: "primaryBackground",
           },

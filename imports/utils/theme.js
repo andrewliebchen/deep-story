@@ -85,6 +85,11 @@ export default {
     },
   },
   flex: {
+    controlContainer: {
+      position: "relative",
+      height: controlHeight,
+      alignItems: "center",
+    },
     highlight: {
       bg: "primaryMuted",
       flexGrow: 1,
