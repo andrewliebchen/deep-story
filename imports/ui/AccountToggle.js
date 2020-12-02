@@ -11,14 +11,14 @@ const AccountToogle = () => {
       {user ? (
         <Avatar
           src={user.services.google.picture}
-          sx={{ height: 40, width: 40 }}
+          sx={{ variant: "button.floating", p: 0, height: 40, width: 40 }}
           onClick={() =>
             Meteor.logout((error) => window.location.replace("/login"))
           }
         />
       ) : (
         <Button
-          variant="button.default"
+          variant="button.floatingPrimary"
           onClick={() =>
             Meteor.loginWithGoogle(
               {

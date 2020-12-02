@@ -9,7 +9,7 @@ const ColorModeToggle = () => {
 
   return (
     <IconButton
-      variant="iconButton.default"
+      variant="iconButton.floating"
       title="Toggle color mode"
       onClick={() => setColorMode(colorMode === "default" ? "dark" : "default")}
     >

@@ -21,15 +21,15 @@ const Toolbar = () => {
     <>
       <Flex sx={{ top: 2, left: 2, position: "fixed", zIndex: 1 }}>
         <Link to={`/r/${userId}`}>
-          <IconButton variant="iconButton.default" mr={2}>
+          <IconButton variant="iconButton.floating" mr={2}>
             <UilFileBlank />
           </IconButton>
         </Link>
         {isReady(parentRef) && (
           <Link to={`/r/${parentRef.parentId}`}>
-            <Button variant="button.default">
+            <Button variant="button.floating">
               <UilArrowUp />
-              <Text ml={2}>{parentRef.text}</Text>
+              <Text sx={{ variant: "ref", ml: 2 }}>{parentRef.text}</Text>
             </Button>
           </Link>
         )}
@@ -48,12 +48,12 @@ const Toolbar = () => {
         {selectedRefId ? (
           <>
             <IconButton
-              variant="iconButton.default"
+              variant="iconButton.floating"
               children={<UilTimes />}
               onClick={() => setSelectedRefId("")}
             />
             <IconButton
-              sx={{ mx: 2, variant: "iconButton.negative" }}
+              sx={{ mx: 2, variant: "iconButton.floatingNegative" }}
               children={<UilTrash />}
               onClick={() =>
                 window.confirm("You sure you want to delete this?") &&
@@ -61,7 +61,7 @@ const Toolbar = () => {
               }
             />
             <Link to={`/r/${selectedRefId}`}>
-              <Button variant="button.primary">
+              <Button variant="button.floatingPrimary">
                 <UilArrowDown />
                 <Text ml={2}>Dive</Text>
               </Button>
@@ -74,7 +74,7 @@ const Toolbar = () => {
                 key={type}
                 children={refTypes[type].icon}
                 title={type}
-                sx={{ mx: 1, variant: "iconButton.default" }}
+                sx={{ mx: 1, variant: "iconButton.floating" }}
               />
             ))}
           </>
