@@ -7,7 +7,7 @@ import React, { useState, useContext } from "react";
 import Highlight from "./Highlight";
 
 const NewInput = (props) => {
-  const { userId, refs } = useContext(AppContext);
+  const { userId, refs, parentId } = useContext(AppContext);
   const [value, setValue] = useState("");
   const { refId } = useParams();
 
@@ -46,7 +46,7 @@ const NewInput = (props) => {
     <Flex sx={{ variant: "flex.controlContainer" }}>
       <Input
         autoFocus
-        placeholder={refs.length > 0 || "Tell your story..."}
+        placeholder={refs.length > 0 ? "" : "Tell your story..."}
         onBlur={(event) => event.target.focus()}
         onChange={(event) => setValue(event.target.value.trim())}
         ref={ref}
