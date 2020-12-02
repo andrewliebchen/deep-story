@@ -39,9 +39,9 @@ const buttonFloatingStyles = {
   bg: "background",
   boxShadow:
     "0 0 10px 10px rgba(0, 0, 0, 0.02)," +
-    "0px 1px 0px 0px rgba(0, 0, 0, 0.03)," +
-    "0px 6px 10px 0 rgba(0, 0, 0, 0.04)," +
-    "0px 15px 10px 0px rgba(0, 0, 0, 0.05)",
+    "0 6px 10px 0 rgba(0, 0, 0, 0.08)," +
+    "0 15px 10px 0 rgba(0, 0, 0, 0.06)," +
+    "0 0 0 1px rgba(0, 0, 0, 0.05) ",
 };
 
 const iconButtonBase = {
