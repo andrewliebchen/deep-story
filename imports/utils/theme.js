@@ -122,6 +122,16 @@ export default {
       height: controlHeight,
       borderRadius: 3,
     },
+    wordHighlight: {
+      borderRadius: 2,
+      cursor: "pointer",
+      position: "reative",
+      userSelect: "none",
+      zIndex: 1,
+      "&:hover": {
+        bg: "primaryBackground",
+      },
+    },
   },
   fonts: {
     body:

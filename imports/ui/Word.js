@@ -26,18 +26,11 @@ const Word = (props) => {
     <Flex ref={ref} sx={{ variant: "flex.controlContainer" }}>
       <Flex
         sx={{
+          variant: "flex.wordHighlight",
           bg: isSelected && "primaryBackground",
-          borderRadius: 2,
-          cursor: "pointer",
           flexShrink: 0,
           mx: -1,
-          position: "relative",
           px: 1,
-          userSelect: "none",
-          zIndex: 1,
-          "&:hover": {
-            bg: "primaryBackground",
-          },
         }}
         onClick={() => setSelectedRefId(props._id)}
       >
@@ -47,7 +40,13 @@ const Word = (props) => {
           <Text variant="ref">{props.text}</Text>
         )}
       </Flex>
-      <Flex sx={{ width: "1ch" }} />
+      <Flex
+        sx={{
+          variant: "flex.wordHighlight",
+          width: "1ch",
+          height: 24,
+        }}
+      />
       {isSelected && <Highlight />}
     </Flex>
   );
