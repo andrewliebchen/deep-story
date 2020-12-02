@@ -46,7 +46,7 @@ const NewInput = (props) => {
     <Flex sx={{ variant: "flex.controlContainer" }}>
       <Input
         autoFocus
-        placeholder={refs.length > 0 ? "Keep going..." : "Tell your story..."}
+        placeholder={refs.length > 0 || "Tell your story..."}
         onBlur={(event) => event.target.focus()}
         onChange={(event) => setValue(event.target.value.trim())}
         ref={ref}

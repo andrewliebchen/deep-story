@@ -24,13 +24,15 @@ Go deep into a story by adding a story within each word. Maybe like a mini inter
 - ✅ Set up ContextAPI
 - ✅ Google account login
 - `/details` to show more info about the ref itself
-- Move toolbar to own component
+- ✅Move toolbar to own component
 - ✅ Fix dive functionality for non-users
 - ✅ Fix browser history (`window.location.replace` fucks it up...just use `<Link/>`)
-- Bigger Dive button
+- ✅Bigger Dive button
 - ✅ Navigation in the tool bar...breadcrumbs?
-- Click in story to relocate cursor...use selectedRefId for cursor location?
+- ✅ Click in story to relocate cursor...use selectedRefId for cursor location?
 - ✅ ~~`contentEditable` to directly edit words~~
 - Build out data mock type
 - ✅ Paginate between words with arrow and tab keys
 - ✅ Press esc to switch inline input and new input
+- Select spaces between words to add words
+- Select paragraph breaks to add paragraphs
