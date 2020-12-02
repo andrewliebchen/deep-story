@@ -47,7 +47,7 @@ const Word = (props) => {
           <Text variant="ref">{props.text}</Text>
         )}
       </Flex>
-      <Text variant="ref"> </Text>
+      <Flex sx={{ width: "1ch" }} />
       {isSelected && <Highlight />}
     </Flex>
   );
