@@ -1,9 +1,10 @@
-import { Input } from "theme-ui";
+import { Input, Flex } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { useKeycodes } from "@accessible/use-keycode";
 import { useParams } from "react-router-dom";
 import AppContext from "./AppContext";
 import React, { useState, useContext } from "react";
+import Highlight from "./Highlight";
 
 const NewInput = (props) => {
   const { userId } = useContext(AppContext);
@@ -42,15 +43,19 @@ const NewInput = (props) => {
   });
 
   return (
-    <Input
-      autoFocus
-      onBlur={(event) => event.target.focus()}
-      onChange={(event) => setValue(event.target.value.trim())}
-      ref={ref}
-      tabIndex={0}
-      value={value}
-      variant="input.inline"
-    />
+    <Flex sx={{ variant: "flex.controlContainer" }}>
+      <Input
+        autoFocus
+        placeholder="Tell your story..."
+        onBlur={(event) => event.target.focus()}
+        onChange={(event) => setValue(event.target.value.trim())}
+        ref={ref}
+        tabIndex={0}
+        value={value}
+        variant="input.inline"
+      />
+      <Highlight />
+    </Flex>
   );
 };
 
