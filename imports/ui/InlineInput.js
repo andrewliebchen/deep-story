@@ -15,20 +15,10 @@ const InlineInput = (props) => {
 
   const ref = useKeycodes({
     // Right
-    // If we're at the end of the input, blur the input
-    39: (event) =>
-      event.target.selectionStart === props.text.length &&
-      setInputFocused(false),
+    39: (event) => props.rightKeyPress(event),
 
     // Left
-    // If we're at the beginning, select the next ref, and choose it's space
-    37: (event) => {
-      if (event.target.selectionStart === 1) {
-        setSelectedRefId(story[props.index - 1]);
-        setInputFocused(false);
-        event.target.blur();
-      }
-    },
+    37: (event) => props.leftKeyPress(event),
   });
 
   return (
@@ -37,16 +27,19 @@ const InlineInput = (props) => {
       ref={ref}
       sx={{ variant: "input.inline", width }}
       tabIndex={0}
+      onChange={(event) => console.log("This changes things")}
       {...props}
     />
   );
 };
 
 InlineInput.propTypes = {
-  index: PropTypes.number,
   defaultValue: PropTypes.string,
-  onChange: PropTypes.func,
   focus: PropTypes.bool,
+  index: PropTypes.number,
+  leftKeyPress: PropTypes.func,
+  onChange: PropTypes.func,
+  rightKeyPress: PropTypes.func,
 };
 
 export default InlineInput;

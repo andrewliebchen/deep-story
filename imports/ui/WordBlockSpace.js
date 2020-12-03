@@ -18,22 +18,9 @@ import React, { useContext } from "react";
 
 const WordBlockSpace = (props) => {
   const { setInputFocused, story, setSelectedRefId } = useContext(AppContext);
-  const ref = useKeycodes({
-    // Right
-    // Go to the next ref
-    39: (event) => {
-      setSelectedRefId(story[props.index + 1]);
-      setInputFocused(true);
-    },
-
-    // Left
-    // Set input as focused
-    37: () => setInputFocused(true),
-  });
 
   return (
     <Flex
-      ref={ref}
       sx={{
         variant: "flex.wordBlockHighlight",
         bg: "primaryBackground",
@@ -42,7 +29,18 @@ const WordBlockSpace = (props) => {
       }}
       onClick={() => setInputFocused(true)}
     >
-      <InlineInput index={props.index} text=" " isFocused />
+      <InlineInput
+        defaultValue=" "
+        focus
+        onChange={(event) => console.log("This will change things")}
+        leftKeyPress={() => setInputFocused(true)}
+        rightKeyPress={(event) => {
+          if (event.target.selectionStart === event.target.value.length) {
+            setSelectedRefId(story[props.index + 1]);
+            setInputFocused(false);
+          }
+        }}
+      />
     </Flex>
   );
 };

@@ -13,6 +13,7 @@ const WordBlock = (props) => {
     selectedRefId,
     setInputFocused,
     setSelectedRefId,
+    story,
   } = useContext(AppContext);
 
   const isSelected = selectedRefId === props._id;
@@ -37,6 +38,19 @@ const WordBlock = (props) => {
           <InlineInput
             defaultValue={props.text}
             focus={isFocused}
+            leftKeyPress={(event) => {
+              // If we're at the beginning, select the next ref, and choose it's space
+              if (event.target.selectionStart === 1) {
+                setSelectedRefId(story[props.index - 1]);
+                setInputFocused(false);
+                event.target.blur();
+              }
+            }}
+            rightKeyPress={(event) => {
+              // If we're at the end of the input, blur the input
+              event.target.selectionStart === props.text.length &&
+                setInputFocused(false);
+            }}
             onChange={(event) => {
               // Anything other than a spacebar...
               // If it has and ID, call update. Otherwise, make a new one.
