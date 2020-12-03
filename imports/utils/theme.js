@@ -124,12 +124,12 @@ export default {
     },
     wordBlockHighlight: {
       borderRadius: 1,
-      cursor: "pointer",
+      cursor: "text",
       position: "reative",
       userSelect: "none",
       zIndex: 1,
       "&:hover": {
-        bg: "primaryBackground",
+        bg: "muted",
       },
     },
   },

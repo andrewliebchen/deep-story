@@ -5,6 +5,7 @@ import Highlight from "./Highlight";
 import InlineInput from "./InlineInput";
 import PropTypes from "prop-types";
 import React, { useContext, useEffect, useState } from "react";
+import WordBlockSpace from "./WordBlockSpace";
 
 const WordBlock = (props) => {
   const {
@@ -26,10 +27,6 @@ const WordBlock = (props) => {
   return (
     <Flex ref={ref} sx={{ variant: "flex.controlContainer" }}>
       <Flex
-        onClick={() => {
-          setSelectedRefId(props._id);
-          setInputFocused(true);
-        }}
         sx={{
           variant: "flex.wordBlockHighlight",
           bg: isSelected && inputFocused && "primaryBackground",
@@ -39,17 +36,32 @@ const WordBlock = (props) => {
         {isFocused ? (
           <InlineInput value={props.text} isFocused={isFocused} {...props} />
         ) : (
-          <Text variant="ref">{props.text}</Text>
+          <Text
+            variant="ref"
+            onClick={() => {
+              setSelectedRefId(props._id);
+              setInputFocused(true);
+            }}
+          >
+            {props.text}
+          </Text>
         )}
       </Flex>
-      <Flex // Becomes space component
-        sx={{
-          variant: "flex.wordBlockHighlight",
-          bg: isSelected && !inputFocused && "primaryBackground",
-          height: 24,
-          width: "1ch",
-        }}
-      />
+      {isSelected && !inputFocused ? (
+        <WordBlockSpace {...props} />
+      ) : (
+        <Flex
+          sx={{
+            variant: "flex.wordBlockHighlight",
+            height: 24,
+            width: "1ch",
+          }}
+          onClick={() => {
+            setSelectedRefId(props._id);
+            setInputFocused(false);
+          }}
+        />
+      )}
       {isSelected && <Highlight />}
     </Flex>
   );
