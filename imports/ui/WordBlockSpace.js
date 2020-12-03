@@ -3,36 +3,58 @@ import { useKeycodes } from "@accessible/use-keycode";
 import AppContext from "./AppContext";
 import InlineInput from "./InlineInput";
 import PropTypes from "prop-types";
-import React, { useContext } from "react";
-
-// function moveCaretToStart(el) {
-//     if (typeof el.selectionStart == "number") {
-//         el.selectionStart = el.selectionEnd = 0;
-//     } else if (typeof el.createTextRange != "undefined") {
-//         el.focus();
-//         var range = el.createTextRange();
-//         range.collapse(true);
-//         range.select();
-//     }
-// }
+import React, { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Meteor } from "meteor/meteor";
 
 const WordBlockSpace = (props) => {
-  const { setInputFocused, story, setSelectedRefId } = useContext(AppContext);
+  const {
+    userId,
+    parentId,
+    setInputFocused,
+    story,
+    setSelectedRefId,
+  } = useContext(AppContext);
+  const [value, setValue] = useState("");
+  const { refId } = useParams();
+
+  const ref = useKeycodes({
+    // 🪐bar, my friend.
+    32: (event) =>
+      Meteor.call(
+        "refs.insert",
+        true,
+        {
+          createdAt: Date.now(),
+          createdBy: userId,
+          parentId: refId,
+          type: "story",
+          text: value,
+        },
+        (err, id) => {
+          setSelectedRefId(id);
+          setInputFocused(false);
+        }
+      ),
+  });
+
+  const styles = {
+    variant: "flex.wordBlockHighlight",
+    height: 24,
+    minWidth: "1ch",
+  };
 
   return (
     <Flex
-      sx={{
-        variant: "flex.wordBlockHighlight",
-        bg: "primaryBackground",
-        height: 24,
-        width: "1ch",
-      }}
+      ref={ref}
+      sx={{ ...styles, bg: "primaryBackground" }}
       onClick={() => setInputFocused(true)}
     >
+      {value && <Flex sx={styles} />}
       <InlineInput
-        defaultValue=" "
+        defaultValue={value}
         focus
-        onChange={(event) => console.log("This will change things")}
+        onChange={(event) => setValue(event.target.value)}
         leftKeyPress={() => setInputFocused(true)}
         rightKeyPress={(event) => {
           if (event.target.selectionStart === event.target.value.length) {
@@ -41,6 +63,7 @@ const WordBlockSpace = (props) => {
           }
         }}
       />
+      {value && <Flex sx={styles} />}
     </Flex>
   );
 };
