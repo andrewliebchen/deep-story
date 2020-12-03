@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import React, { useContext } from "react";
 import yallist from "yallist";
 
-const Word = (props) => {
+const WordBlock = (props) => {
   const { selectedRefId, setSelectedRefId, story } = useContext(AppContext);
   const isSelected = selectedRefId === props._id;
 
@@ -26,7 +26,7 @@ const Word = (props) => {
     <Flex ref={ref} sx={{ variant: "flex.controlContainer" }}>
       <Flex
         sx={{
-          variant: "flex.wordHighlight",
+          variant: "flex.wordBlockHighlight",
           bg: isSelected && "primaryBackground",
           flexShrink: 0,
           mx: -1,
@@ -42,7 +42,7 @@ const Word = (props) => {
       </Flex>
       <Flex
         sx={{
-          variant: "flex.wordHighlight",
+          variant: "flex.wordBlockHighlight",
           width: "1ch",
           height: 24,
         }}
@@ -52,10 +52,10 @@ const Word = (props) => {
   );
 };
 
-Word.propTypes = {
+WordBlock.propTypes = {
   _id: PropTypes.string,
   index: PropTypes.number,
   text: PropTypes.string,
 };
 
-export default Word;
+export default WordBlock;

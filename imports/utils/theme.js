@@ -1,4 +1,4 @@
-const controlHeight = 40;
+export const controlHeight = 40;
 
 const controlBase = {
   alignItems: "center",
@@ -122,7 +122,7 @@ export default {
       height: controlHeight,
       borderRadius: 3,
     },
-    wordHighlight: {
+    wordBlockHighlight: {
       borderRadius: 2,
       cursor: "pointer",
       position: "reative",

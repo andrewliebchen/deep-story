@@ -4,7 +4,7 @@ import AppContext from "./AppContext";
 import NewInput from "./NewInput";
 import LineBreak from "./LineBreak";
 import React, { useContext, useState } from "react";
-import Word from "./Word";
+import WordBlock from "./WordBlock";
 import yallist from "yallist";
 
 const Story = () => {
@@ -26,7 +26,7 @@ const Story = () => {
               node = <LineBreak key={ref._id} index={index} {...ref} />;
               break;
             default:
-              node = <Word key={ref._id} index={index} {...ref} />;
+              node = <WordBlock key={ref._id} index={index} {...ref} />;
           }
 
           index++;
