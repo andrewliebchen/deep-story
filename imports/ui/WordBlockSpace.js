@@ -16,6 +16,28 @@ const WordBlockSpace = (props) => {
     setSelectedRefId,
   } = useContext(AppContext);
   const [value, setValue] = useState("");
+  const { refId } = useParams();
+
+  const ref = useKeycodes({
+    // 🪐bar, my friend.
+    32: (event) =>
+      Meteor.call(
+        "refs.insert",
+        {
+          createdAt: Date.now(),
+          createdBy: userId,
+          parentId: refId,
+          type: "story",
+          text: value,
+        },
+        true,
+        props.index + 1,
+        (err, id) => {
+          setSelectedRefId(id);
+          setInputFocused(false);
+        }
+      ),
+  });
 
   const styles = {
     variant: "flex.wordBlockHighlight",
@@ -25,6 +47,7 @@ const WordBlockSpace = (props) => {
 
   return (
     <Flex
+      ref={ref}
       sx={{ ...styles, bg: "primaryBackground" }}
       onClick={() => setInputFocused(true)}
     >
@@ -48,6 +71,7 @@ const WordBlockSpace = (props) => {
 
 WordBlockSpace.propTypes = {
   isFocused: PropTypes.bool,
+  index: PropTypes.number,
 };
 
 export default WordBlockSpace;
