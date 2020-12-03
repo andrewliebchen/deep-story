@@ -20,13 +20,13 @@ const Toolbar = () => {
   return (
     <>
       <Flex sx={{ top: 2, left: 2, position: "fixed", zIndex: 1 }}>
-        <Link to={`/r/${userId}`}>
+        <Link to={`/refs/${userId}`}>
           <IconButton variant="iconButton.floating" mr={2}>
             <UilFileBlank />
           </IconButton>
         </Link>
         {isReady(parentRef) && (
-          <Link to={`/r/${parentRef.parentId}`}>
+          <Link to={`/refs/${parentRef.parentId}`}>
             <Button variant="button.floating">
               <UilArrowUp />
               <Text sx={{ variant: "ref", ml: 2 }}>{parentRef.text}</Text>
@@ -60,7 +60,7 @@ const Toolbar = () => {
                 Meteor.call("refs.remove", selectedRefId)
               }
             />
-            <Link to={`/r/${selectedRefId}`}>
+            <Link to={`/refs/${selectedRefId}`}>
               <Button variant="button.floatingPrimary">
                 <UilArrowDown />
                 <Text ml={2}>Dive</Text>

@@ -42,7 +42,7 @@ Go deep into a story by adding a story within each word. Maybe like a mini inter
 - Wrap up work on the cursor
   - Select spaces between words to add words
   - Select paragraph breaks to add paragraphs
-- Update urls to be `/refs/:refId`
+- ✅ Update urls to be `/refs/:refId`
 - Users can have more than one base ref
 - `/refs` is an index list of all refs for that user
 - Basic ref search

@@ -26,7 +26,7 @@ const AccountToogle = () => {
               },
               (error) => {
                 // Need to go to the ref the represents the user
-                window.location.replace(`/r/${Meteor.userId()}`);
+                window.location.replace(`/refs/${Meteor.userId()}`);
               }
             )
           }

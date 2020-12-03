@@ -6,7 +6,7 @@ import Sandbox from "./Sandbox";
 const Routes = (props) => (
   <Router>
     <Switch>
-      <Route path="/r/:refId" component={App} />
+      <Route path="/refs/:refId" component={App} />
       <Route path="/sandbox" component={Sandbox} />
       <Route path="/" component={App} />
     </Switch>

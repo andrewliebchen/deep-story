@@ -16,7 +16,7 @@ const AppProvider = (props) => {
 
   // Get the parentId from the url and the parent record (if one)
   const [parentId, setParentId] = useState(
-    window.location.pathname.replace("/r/", "")
+    window.location.pathname.replace("/refs/", "")
   );
   const parentRef = useTracker(() => RefsCollection.findOne(parentId));
 
