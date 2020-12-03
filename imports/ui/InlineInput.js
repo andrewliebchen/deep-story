@@ -6,12 +6,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { useKeycodes } from "@accessible/use-keycode";
 
 const InlineInput = (props) => {
-  const { inputFocused, setInputFocused, setSelectedRefId, story } = useContext(
-    AppContext
-  );
+  const { setInputFocused, setSelectedRefId, story } = useContext(AppContext);
   const [width, setWidth] = useState(1);
 
-  useEffect(() => setWidth(`${props.text.length}ch`));
+  useEffect(() => {
+    setWidth(`${props.defaultValue.length}ch`);
+  });
 
   const ref = useKeycodes({
     // Right
@@ -34,37 +34,19 @@ const InlineInput = (props) => {
   return (
     <Input
       autoFocus
-      defaultValue={props.text}
-      focus={props.isFocused}
-      onChange={(event) => {
-        // Anything other than a spacebar...
-        props._id
-          ? Meteor.call("refs.update", props._id, {
-              text: event.target.value.trim(),
-              modifiedAt: Date.now(),
-            })
-          : console.log("space");
-
-        // If you hit the spacebar, create a new ref, move the contents to the
-        // right to the new ref and remove them from the old.
-        // Then select the new ref.
-      }}
       ref={ref}
       sx={{ variant: "input.inline", width }}
       tabIndex={0}
+      {...props}
     />
   );
 };
 
 InlineInput.propTypes = {
-  _id: PropTypes.string,
   index: PropTypes.number,
-  isFocused: PropTypes.bool,
-  text: PropTypes.string,
-};
-
-InlineInput.defaultProps = {
-  _id: null,
+  defaultValue: PropTypes.string,
+  onChange: PropTypes.func,
+  focus: PropTypes.bool,
 };
 
 export default InlineInput;

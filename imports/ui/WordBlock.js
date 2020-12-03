@@ -29,12 +29,27 @@ const WordBlock = (props) => {
       <Flex
         sx={{
           variant: "flex.wordBlockHighlight",
-          bg: isSelected && inputFocused && "primaryBackground",
+          bg: isFocused && "primaryBackground",
           flexShrink: 0,
         }}
       >
         {isFocused ? (
-          <InlineInput value={props.text} isFocused={isFocused} {...props} />
+          <InlineInput
+            defaultValue={props.text}
+            focus={isFocused}
+            onChange={(event) => {
+              // Anything other than a spacebar...
+              // If it has and ID, call update. Otherwise, make a new one.
+              Meteor.call("refs.update", props._id, {
+                text: event.target.value.trim(),
+                modifiedAt: Date.now(),
+              });
+
+              // If you hit the spacebar, create a new ref, move the contents to the
+              // right to the new ref and remove them from the old.
+              // Then select the new ref.
+            }}
+          />
         ) : (
           <Text
             variant="ref"
