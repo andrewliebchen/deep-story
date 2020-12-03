@@ -1,32 +1,39 @@
-import React, { useContext } from "react";
 import { Flex } from "theme-ui";
-import PropTypes from "prop-types";
 import { useKeycodes } from "@accessible/use-keycode";
-import InlineInput from "./InlineInput";
 import AppContext from "./AppContext";
+import InlineInput from "./InlineInput";
+import PropTypes from "prop-types";
+import React, { useContext } from "react";
+
+// function moveCaretToStart(el) {
+//     if (typeof el.selectionStart == "number") {
+//         el.selectionStart = el.selectionEnd = 0;
+//     } else if (typeof el.createTextRange != "undefined") {
+//         el.focus();
+//         var range = el.createTextRange();
+//         range.collapse(true);
+//         range.select();
+//     }
+// }
 
 const WordBlockSpace = (props) => {
-  const { setInputFocused } = useContext(AppContext);
+  const { setInputFocused, story, setSelectedRefId } = useContext(AppContext);
   const ref = useKeycodes({
     // Right
     // Go to the next ref
-    39: (event) =>
-      event.target.selectionStart === props.text.length &&
-      setInputFocused(false),
+    39: (event) => {
+      setSelectedRefId(story[props.index + 1]);
+      setInputFocused(true);
+    },
 
     // Left
-    // Go to the previous ref
-    37: (event) => {
-      if (event.target.selectionStart === 1) {
-        setSelectedRefId(story[props.index - 1]);
-        setInputFocused(false);
-        event.target.blur();
-      }
-    },
+    // Set input as focused
+    37: () => setInputFocused(true),
   });
 
   return (
     <Flex
+      ref={ref}
       sx={{
         variant: "flex.wordBlockHighlight",
         bg: "primaryBackground",
@@ -35,7 +42,7 @@ const WordBlockSpace = (props) => {
       }}
       onClick={() => setInputFocused(true)}
     >
-      <InlineInput index={props.index} isFocused />
+      <InlineInput index={props.index} text=" " isFocused />
     </Flex>
   );
 };

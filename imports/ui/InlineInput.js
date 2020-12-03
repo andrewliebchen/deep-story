@@ -9,9 +9,9 @@ const InlineInput = (props) => {
   const { inputFocused, setInputFocused, setSelectedRefId, story } = useContext(
     AppContext
   );
-  const [width, setWidth] = useState(0);
+  const [width, setWidth] = useState(1);
 
-  useEffect(() => props.text && setWidth(`${props.text.length}ch`));
+  useEffect(() => setWidth(`${props.text.length}ch`));
 
   const ref = useKeycodes({
     // Right
@@ -40,7 +40,7 @@ const InlineInput = (props) => {
         // Anything other than a spacebar...
         props._id
           ? Meteor.call("refs.update", props._id, {
-              text: event.target.value,
+              text: event.target.value.trim(),
               modifiedAt: Date.now(),
             })
           : console.log("space");
