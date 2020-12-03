@@ -37,7 +37,7 @@ const WordBlockSpace = (props) => {
         rightKeyPress={(event) => {
           if (event.target.selectionStart === event.target.value.length) {
             setSelectedRefId(story[props.index + 1]);
-            setInputFocused(false);
+            setInputFocused(true);
           }
         }}
       />
