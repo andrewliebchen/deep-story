@@ -1,29 +1,29 @@
 import React from "react";
-import UilImage from "@iconscout/react-unicons/icons/uil-image";
-import UilLinkH from "@iconscout/react-unicons/icons/uil-link-h";
-import UilSmileBeam from "@iconscout/react-unicons/icons/uil-smile-beam";
-import UilTable from "@iconscout/react-unicons/icons/uil-table";
-import UilTextFields from "@iconscout/react-unicons/icons/uil-text-fields";
+import UilCheckCircle from "@iconscout/react-unicons/icons/uil-check-circle";
+import UilFileUpload from "@iconscout/react-unicons/icons/uil-file-upload";
+import UilGrid from "@iconscout/react-unicons/icons/uil-grid";
+import UilHeadSide from "@iconscout/react-unicons/icons/uil-head-side";
+import UilPen from "@iconscout/react-unicons/icons/uil-pen";
 
 export const refTypes = {
   story: {
-    icon: <UilTextFields />,
+    icon: <UilPen />,
     label: "Story",
   },
-  table: {
-    icon: <UilTable />,
-    label: "Table",
-  },
-  image: {
-    icon: <UilImage />,
-    label: "Image",
-  },
-  link: {
-    icon: <UilLinkH />,
-    label: "Link",
+  resource: {
+    icon: <UilFileUpload />,
+    label: "Resource",
   },
   mock: {
-    icon: <UilSmileBeam />,
+    icon: <UilHeadSide />,
     label: "Mock",
+  },
+  table: {
+    icon: <UilGrid />,
+    label: "Table",
+  },
+  tasks: {
+    icon: <UilCheckCircle />,
+    label: "Tasks",
   },
 };
