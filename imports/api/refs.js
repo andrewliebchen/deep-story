@@ -4,7 +4,7 @@ import { Meteor } from "meteor/meteor";
 export const RefsCollection = new Mongo.Collection("refs");
 
 Meteor.methods({
-  "refs.insert"(parentIsUser, options) {
+  "refs.insert"(options, parentIsUser) {
     const newRefId = RefsCollection.insert({
       ...options,
       story: [],
