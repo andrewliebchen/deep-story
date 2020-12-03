@@ -28,6 +28,7 @@ const AppProvider = (props) => {
   // Get the selected ref and set up editing state
   // dk9Be6REK7ihKKa8s
   const [selectedRefId, setSelectedRefId] = useState("");
+  const [inputFocused, setInputFocused] = useState(false);
   const selectedRef = useTracker(() => RefsCollection.findOne(selectedRefId));
 
   // Once we have a  user, get the page's story array.
@@ -44,6 +45,8 @@ const AppProvider = (props) => {
       value={{
         ...props,
         colorMode,
+        inputFocused,
+        setInputFocused,
         parentRef,
         refs,
         selectedRef,

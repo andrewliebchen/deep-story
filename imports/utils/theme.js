@@ -123,7 +123,7 @@ export default {
       borderRadius: 3,
     },
     wordBlockHighlight: {
-      borderRadius: 2,
+      borderRadius: 1,
       cursor: "pointer",
       position: "reative",
       userSelect: "none",
