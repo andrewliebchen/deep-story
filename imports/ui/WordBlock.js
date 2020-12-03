@@ -59,6 +59,7 @@ const WordBlock = (props) => {
                 modifiedAt: Date.now(),
               });
 
+              // BONUS POINTS
               // If you hit the spacebar, create a new ref, move the contents to the
               // right to the new ref and remove them from the old.
               // Then select the new ref.
