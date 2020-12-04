@@ -10,22 +10,19 @@ const AppProvider = (props) => {
   const userId = Meteor.userId();
   const user = useTracker(() => Meteor.users.findOne({ _id: userId }));
 
-  // Get the parentId from the url and the parent record (if one)
-  const [parentId, setParentId] = useState(
-    window.location.pathname.replace("/refs/", "")
-  );
-  const parentRef = useTracker(() => RefsCollection.findOne(parentId));
-
-  // Get all the refs for this parentId
+  // Get all the refs for this user
   const refs = useTracker(() =>
     RefsCollection.find({ createdBy: userId }).fetch()
   );
 
+  // Get the parentId from the url and the parent record (if one)
+  const [parentId, setParentId] = useState("");
+  const parentRef = refs.find((ref) => ref.id === parentId);
+
   // Get the selected ref and set up editing state
-  // dk9Be6REK7ihKKa8s
   const [selectedRefId, setSelectedRefId] = useState("");
   const [inputFocused, setInputFocused] = useState(false);
-  const selectedRef = useTracker(() => RefsCollection.findOne(selectedRefId));
+  const selectedRef = refs.find((ref) => ref.id === selectedRefId);
 
   // Once we have a  user, get the page's story array.
   // Convert that array to a yallist linked list as necessary.
