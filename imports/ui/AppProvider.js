@@ -1,7 +1,6 @@
 import { isReady } from "../utils/helpers";
 import { Meteor } from "meteor/meteor";
 import { RefsCollection } from "../api/refs";
-import { useColorMode } from "theme-ui";
 import { useTracker } from "meteor/react-meteor-data";
 import AppContext from "./AppContext";
 import React, { useState } from "react";
@@ -10,9 +9,6 @@ const AppProvider = (props) => {
   // Get the current user, who can also be the parent.
   const userId = Meteor.userId();
   const user = useTracker(() => Meteor.users.findOne({ _id: userId }));
-
-  // Color mode
-  const [colorMode, setColorMode] = useColorMode();
 
   // Get the parentId from the url and the parent record (if one)
   const [parentId, setParentId] = useState(
@@ -44,14 +40,12 @@ const AppProvider = (props) => {
     <AppContext.Provider
       value={{
         ...props,
-        colorMode,
         inputFocused,
         setInputFocused,
         parentRef,
         refs,
         selectedRef,
         selectedRefId,
-        setColorMode,
         setParentId,
         setSelectedRefId,
         story,

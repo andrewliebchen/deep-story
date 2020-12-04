@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
 import { IconButton } from "theme-ui";
-import AppContext from "./AppContext";
+import { useColorMode } from "theme-ui";
 import Moon from "@iconscout/react-unicons/icons/uil-moon";
+import React from "react";
 import Sun from "@iconscout/react-unicons/icons/uil-sun";
 
 const ColorModeToggle = () => {
-  const { colorMode, setColorMode } = useContext(AppContext);
+  const [colorMode, setColorMode] = useColorMode();
 
   return (
     <IconButton
