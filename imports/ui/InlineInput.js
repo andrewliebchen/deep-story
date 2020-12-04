@@ -27,7 +27,6 @@ const InlineInput = (props) => {
       ref={ref}
       sx={{ variant: "input.inline", width }}
       tabIndex={0}
-      onChange={(event) => console.log("This changes things")}
       {...props}
     />
   );
@@ -38,7 +37,7 @@ InlineInput.propTypes = {
   focus: PropTypes.bool,
   index: PropTypes.number,
   leftKeyPress: PropTypes.func,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   rightKeyPress: PropTypes.func,
 };
 

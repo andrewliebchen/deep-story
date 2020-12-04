@@ -22,8 +22,6 @@ const Story = () => {
           const ref = refs.find((r) => r._id === refId);
           const typeCatcher = ref.type || "story";
 
-          console.log(story.indexOf(refId));
-
           switch (typeCatcher) {
             case "break":
               node = <LineBreak key={ref._id} index={index} {...ref} />;

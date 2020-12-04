@@ -6,10 +6,12 @@ import InlineInput from "./InlineInput";
 import PropTypes from "prop-types";
 import React, { useContext, useEffect, useState } from "react";
 import WordBlockSpace from "./WordBlockSpace";
+import { Link } from "react-router-dom";
 
 const WordBlock = (props) => {
   const {
     inputFocused,
+    refs,
     selectedRefId,
     setInputFocused,
     setSelectedRefId,
@@ -18,6 +20,7 @@ const WordBlock = (props) => {
 
   const isSelected = selectedRefId === props._id;
   const isFocused = isSelected && inputFocused;
+  const hasChildren = refs.find((ref) => ref.parentId === props._id);
 
   const ref = useKeycodes({
     // esc
@@ -67,7 +70,10 @@ const WordBlock = (props) => {
           />
         ) : (
           <Text
-            variant="ref"
+            sx={{
+              variant: "text.ref",
+              color: hasChildren ? "primary" : "Text",
+            }}
             onClick={() => {
               setSelectedRefId(props._id);
               setInputFocused(true);
