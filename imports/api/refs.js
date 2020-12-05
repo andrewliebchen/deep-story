@@ -4,27 +4,17 @@ import { Meteor } from "meteor/meteor";
 export const RefsCollection = new Mongo.Collection("refs");
 
 Meteor.methods({
-  "refs.insert"(options, parentIsUser, position) {
+  "refs.insert"(options, position) {
     const newRefId = RefsCollection.insert({
       ...options,
       story: [],
     });
 
-    // Check if this is a user or not, update the correct thing
-    if (parentIsUser) {
-      Meteor.users.update(options.parentId, {
-        $push: {
-          "profile.story": {
-            $each: [newRefId],
-            $position: position,
-          },
-        },
-      });
-    } else {
+    // Check if this ref is parent or not, then update the parent's story list.
+    options.parentId &&
       RefsCollection.update(options.parentId, {
         $push: { story: newRefId },
       });
-    }
 
     return newRefId;
   },

@@ -1,22 +1,17 @@
-import { Box, Flex, IconButton } from "theme-ui";
+import { Box, Flex, IconButton, Button, Text } from "theme-ui";
+import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
 import { refTypes } from "../utils/types";
-import { useParams } from "react-router-dom";
 import AppContext from "./AppContext";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Story from "./Story";
 import Toolbar from "./Toolbar";
 import UilArrowDown from "@iconscout/react-unicons/icons/uil-arrow-down";
-import UilArrowUp from "@iconscout/react-unicons/icons/uil-arrow-up";
 import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 
 const App = () => {
-  const { setParentId, selectedRefId } = useContext(AppContext);
-  const { refId } = useParams();
-
-  // Can only get the params inside the router. Pass this to the provider
-  useEffect(() => setParentId(refId));
+  const { selectedRefId, setSelectedRefId } = useContext(AppContext);
 
   return (
     <>
@@ -26,7 +21,7 @@ const App = () => {
             <IconButton
               variant="iconButton.floating"
               children={<UilTimes />}
-              onClick={() => setSelectedRefId("")}
+              onClick={() => setSelectedRefId(false)}
             />
             <IconButton
               sx={{ mx: 2, variant: "iconButton.floatingNegative" }}

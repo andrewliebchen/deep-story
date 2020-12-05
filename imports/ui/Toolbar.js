@@ -1,24 +1,30 @@
 import { Box, Button, Flex, IconButton, Text } from "theme-ui";
 import { isReady } from "../utils/helpers";
-import { Link } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import AccountToggle from "./AccountToggle";
 import AppContext from "./AppContext";
 import ColorModeToggle from "./ColorModeToggle";
 import React, { useContext } from "react";
-import UilFileBlank from "@iconscout/react-unicons/icons/uil-file-blank";
+import UilPen from "@iconscout/react-unicons/icons/uil-pen";
+import UilArrowUp from "@iconscout/react-unicons/icons/uil-arrow-up";
 
 const Toolbar = (props) => {
-  const { parentRef, userId } = useContext(AppContext);
+  const { userId, refs } = useContext(AppContext);
+  const { refId } = useParams();
+  const history = useHistory();
+
+  const parentRef = refs.find((ref) => ref._id === refId);
+  const grandparentId = isReady(parentRef) && parentRef.parentId;
 
   return (
     <>
       <Flex sx={{ top: 2, left: 2, position: "fixed", zIndex: 1 }}>
-        <Link to={`/refs/${userId}`}>
-          <IconButton variant="iconButton.floating" mr={2}>
-            <UilFileBlank />
+        <Link to="/refs">
+          <IconButton sx={{ variant: "iconButton.floating", mr: 2 }}>
+            <UilPen />
           </IconButton>
         </Link>
-        {isReady(parentRef) && (
+        {grandparentId && (
           <Link to={`/refs/${parentRef.parentId}`}>
             <Button variant="button.floating">
               <UilArrowUp />

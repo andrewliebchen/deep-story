@@ -1,28 +1,29 @@
 import { Flex } from "theme-ui";
 import { isReady } from "../utils/helpers";
+import { useParams } from "react-router-dom";
 import AppContext from "./AppContext";
-import NewInput from "./NewInput";
 import LineBreak from "./LineBreak";
+import NewInput from "./NewInput";
 import React, { useContext, useState } from "react";
 import WordBlock from "./WordBlock";
 import yallist from "yallist";
 
 const Story = () => {
-  const { refs, story, selectedRefId } = useContext(AppContext);
+  const { refs, selectedRefId } = useContext(AppContext);
+  const { refId } = useParams();
   let index = 0;
 
-  const hasStory = story.length > 0;
-  const storyLinkedList = hasStory && yallist.create(story);
+  const parentRef = refs.find((ref) => ref._id === refId);
+  const hasStory = isReady(parentRef) && parentRef.story.length > 0;
 
   return (
     <Flex sx={{ flexFlow: "wrap" }}>
       {hasStory &&
-        storyLinkedList.map((refId, list) => {
+        yallist.create(parentRef.story).map((childRefId, list) => {
           let node;
-          const ref = refs.find((r) => r._id === refId);
-          const typeCatcher = ref.type || "story";
+          const ref = refs.find((r) => r._id === childRefId);
 
-          switch (typeCatcher) {
+          switch (ref.type) {
             case "break":
               node = <LineBreak key={ref._id} index={index} {...ref} />;
               break;

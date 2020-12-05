@@ -11,45 +11,31 @@ const NewInput = (props) => {
   const [value, setValue] = useState("");
   const { refId } = useParams();
 
-  const parentIsUser = userId === refId;
-
   const ref = useKeycodes({
     13: () => {
-      Meteor.call(
-        "refs.insert",
-        {
-          createdAt: Date.now(),
-          createdBy: userId,
-          parentId: refId,
-          text: value,
-          type: "text",
-        },
-        parentIsUser
-      );
-      Meteor.call(
-        "refs.insert",
-        {
-          createdAt: Date.now(),
-          createdBy: userId,
-          parentId: refId,
-          type: "break",
-        },
-        parentIsUser
-      );
+      Meteor.call("refs.insert", {
+        createdAt: Date.now(),
+        createdBy: userId,
+        parentId: refId,
+        text: value,
+        type: "text",
+      });
+      Meteor.call("refs.insert", {
+        createdAt: Date.now(),
+        createdBy: userId,
+        parentId: refId,
+        type: "break",
+      });
       setValue("");
     },
     32: () => {
-      Meteor.call(
-        "refs.insert",
-        {
-          createdAt: Date.now(),
-          createdBy: userId,
-          parentId: refId,
-          text: value,
-          type: "text",
-        },
-        parentIsUser
-      );
+      Meteor.call("refs.insert", {
+        createdAt: Date.now(),
+        createdBy: userId,
+        parentId: refId,
+        text: value,
+        type: "text",
+      });
       setValue("");
     },
   });

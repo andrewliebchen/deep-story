@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
-import { Box, Flex, Text, Button, Grid, IconButton } from "theme-ui";
+import { Box, Button, Flex, Grid, IconButton, Text } from "theme-ui";
+import { Link } from "react-router-dom";
 import AppContext from "./AppContext";
+import React, { useContext } from "react";
 import Toolbar from "./Toolbar";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
-import { Link } from "react-router-dom";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 
 const RefsList = () => {
-  const { refs, userId, parentIsUser } = useContext(AppContext);
+  const { refs, userId } = useContext(AppContext);
 
   return (
     <Box>
@@ -22,8 +22,8 @@ const RefsList = () => {
                 createdBy: userId,
                 parentId: null,
                 type: "text",
+                story: [],
               },
-              parentIsUser,
               null,
               (error, id) => console.log(id)
             )

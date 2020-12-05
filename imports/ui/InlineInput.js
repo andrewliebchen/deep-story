@@ -1,12 +1,11 @@
-import { Input, Flex } from "theme-ui";
-import { Meteor } from "meteor/meteor";
+import { Input } from "theme-ui";
 import { useKeycodes } from "@accessible/use-keycode";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext, useEffect, useState } from "react";
 
 const InlineInput = (props) => {
-  const { setInputFocused, setSelectedRefId, story } = useContext(AppContext);
+  const { setInputFocused, setSelectedRefId } = useContext(AppContext);
   const [width, setWidth] = useState(0);
 
   useEffect(() => {
