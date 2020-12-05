@@ -122,6 +122,16 @@ export default {
       height: controlHeight,
       borderRadius: 3,
     },
+    tile: {
+      borderRadius: 2,
+      bg: "background",
+      color: "text",
+      height: 160,
+      p: 3,
+      "&:hover": {
+        bg: "primaryMuted",
+      },
+    },
     wordBlockHighlight: {
       borderRadius: 1,
       cursor: "text",

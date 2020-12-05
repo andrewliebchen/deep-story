@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { Box, Flex, Text, Button } from "theme-ui";
+import { Box, Flex, Text, Button, Grid } from "theme-ui";
 import AppContext from "./AppContext";
 import Toolbar from "./Toolbar";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
+import { Link } from "react-router-dom";
 
 const RefsList = () => {
   const { refs } = useContext(AppContext);
@@ -26,11 +27,22 @@ const RefsList = () => {
           width: "100vw",
         }}
       >
-        <Box sx={{ m: 3, width: "container" }}>
+        <Grid
+          sx={{
+            gridTemplateColumns: "repeat(3, 1fr)",
+            m: 3,
+            gap: 0,
+            width: "container",
+          }}
+        >
           {refs.map((ref) => (
-            <Text key={ref._id}>{ref._id}</Text>
+            <Link key={ref._id} to={`/refs/${ref._id}`}>
+              <Flex variant="flex.tile">
+                <Text variant="text.ref">{ref.text}</Text>
+              </Flex>
+            </Link>
           ))}
-        </Box>
+        </Grid>
       </Flex>
     </Box>
   );
