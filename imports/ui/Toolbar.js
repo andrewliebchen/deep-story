@@ -1,21 +1,14 @@
 import { Box, Button, Flex, IconButton, Text } from "theme-ui";
 import { isReady } from "../utils/helpers";
-import { refTypes } from "../utils/types";
 import { Link } from "react-router-dom";
 import AccountToggle from "./AccountToggle";
 import AppContext from "./AppContext";
 import ColorModeToggle from "./ColorModeToggle";
 import React, { useContext } from "react";
-import UilArrowDown from "@iconscout/react-unicons/icons/uil-arrow-down";
-import UilArrowUp from "@iconscout/react-unicons/icons/uil-arrow-up";
 import UilFileBlank from "@iconscout/react-unicons/icons/uil-file-blank";
-import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
-import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 
-const Toolbar = () => {
-  const { selectedRefId, parentRef, userId, setSelectedRefId } = useContext(
-    AppContext
-  );
+const Toolbar = (props) => {
+  const { parentRef, userId } = useContext(AppContext);
 
   return (
     <>
@@ -45,40 +38,7 @@ const Toolbar = () => {
           zIndex: 1,
         }}
       >
-        {selectedRefId ? (
-          <>
-            <IconButton
-              variant="iconButton.floating"
-              children={<UilTimes />}
-              onClick={() => setSelectedRefId("")}
-            />
-            <IconButton
-              sx={{ mx: 2, variant: "iconButton.floatingNegative" }}
-              children={<UilTrash />}
-              onClick={() =>
-                window.confirm("You sure you want to delete this?") &&
-                Meteor.call("refs.remove", selectedRefId)
-              }
-            />
-            <Link to={`/refs/${selectedRefId}`}>
-              <Button variant="button.floatingPrimary">
-                <UilArrowDown />
-                <Text ml={2}>Dive</Text>
-              </Button>
-            </Link>
-          </>
-        ) : (
-          <>
-            {Object.keys(refTypes).map((type) => (
-              <IconButton
-                key={type}
-                children={refTypes[type].icon}
-                title={type}
-                sx={{ mx: 1, variant: "iconButton.floating" }}
-              />
-            ))}
-          </>
-        )}
+        {props.children}
       </Flex>
 
       <Flex
