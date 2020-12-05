@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { Box, Flex, Text, Button, Grid } from "theme-ui";
+import { Box, Flex, Text, Button, Grid, IconButton } from "theme-ui";
 import AppContext from "./AppContext";
 import Toolbar from "./Toolbar";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
 import { Link } from "react-router-dom";
+import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 
 const RefsList = () => {
   const { refs, userId, parentIsUser } = useContext(AppContext);
@@ -52,8 +53,23 @@ const RefsList = () => {
             .filter((ref) => !ref.parentId)
             .map((ref) => (
               <Link key={ref._id} to={`/refs/${ref._id}`}>
-                <Flex variant="flex.tile">
+                <Flex
+                  sx={{
+                    variant: "flex.tile",
+                    justifyContent: "space-between",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
                   <Text variant="text.ref">{ref._id}</Text>
+                  <IconButton
+                    sx={{ mx: 2, variant: "iconButton.negative" }}
+                    children={<UilTrash />}
+                    onClick={(event) => {
+                      window.confirm("You sure you want to delete this?") &&
+                        Meteor.call("refs.remove", ref._id);
+                    }}
+                  />
                 </Flex>
               </Link>
             ))}

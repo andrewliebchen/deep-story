@@ -167,12 +167,19 @@
   resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-1.6.21.tgz#86d962471a5e160c59a6b32054aa55c0c7ca404e"
   integrity sha512-CgSNT9sq2LAlhEbVlPg7DwUQkypz+CWaWGcJbkgmp9WCAy6vW33CQ44UbKPiH3wet9o+UbXeQOqzZd041va83g==
 
-"@react-hook/event@^1.2.2":
+"@react-hook/event@^1.2.1", "@react-hook/event@^1.2.2":
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/@react-hook/event/-/event-1.2.3.tgz#cfe86d5cf36f53e85b367ff619990d001b5c82ae"
   integrity sha512-WMBwLnYY2rubLeecsi4skl1imfx0oiXTgazV/1ByPT6WkmLvxUao3hC+mxps5D/+JK4Fq3uG9OWU/dn5jMtXyg==
   dependencies:
     "@react-hook/passive-layout-effect" "^1.2.0"
+
+"@react-hook/hover@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@react-hook/hover/-/hover-4.0.0.tgz#8a4b147cbf4857d01695c0ca94cdd62ef81e6f9d"
+  integrity sha512-uBBXWte0f4ywxsleyTG2FzZRPqR7X2Dxa8tcCE24ZPzWNXXcToicFHunKVnSKMsVq6wzi8F0MZ1/KJ1XdorAjw==
+  dependencies:
+    "@react-hook/event" "^1.2.1"
 
 "@react-hook/passive-layout-effect@^1.2.0":
   version "1.2.1"
