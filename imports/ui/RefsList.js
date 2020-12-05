@@ -6,14 +6,27 @@ import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
 import { Link } from "react-router-dom";
 
 const RefsList = () => {
-  const { refs } = useContext(AppContext);
+  const { refs, userId, parentIsUser } = useContext(AppContext);
 
   return (
     <Box>
       <Toolbar>
         <Button
           variant="button.floatingPrimary"
-          onClick={() => console.log("create")}
+          onClick={() =>
+            Meteor.call(
+              "refs.insert",
+              {
+                createdAt: Date.now(),
+                createdBy: userId,
+                parentId: null,
+                type: "text",
+              },
+              parentIsUser,
+              null,
+              (error, id) => console.log(id)
+            )
+          }
         >
           <UilPlus />
           <Text ml={2}>Create</Text>
@@ -35,13 +48,15 @@ const RefsList = () => {
             width: "container",
           }}
         >
-          {refs.map((ref) => (
-            <Link key={ref._id} to={`/refs/${ref._id}`}>
-              <Flex variant="flex.tile">
-                <Text variant="text.ref">{ref.text}</Text>
-              </Flex>
-            </Link>
-          ))}
+          {refs
+            .filter((ref) => !ref.parentId)
+            .map((ref) => (
+              <Link key={ref._id} to={`/refs/${ref._id}`}>
+                <Flex variant="flex.tile">
+                  <Text variant="text.ref">{ref._id}</Text>
+                </Flex>
+              </Link>
+            ))}
         </Grid>
       </Flex>
     </Box>
