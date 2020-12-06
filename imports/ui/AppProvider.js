@@ -10,9 +10,8 @@ const AppProvider = (props) => {
   const user = useTracker(() => Meteor.users.findOne({ _id: userId }));
 
   // Get all the refs for this user
-  const refs = useTracker(() =>
-    RefsCollection.find({ createdBy: userId }).fetch()
-  );
+  let refs = [];
+  refs = useTracker(() => RefsCollection.find({ createdBy: userId }).fetch());
 
   // Get the selected ref and set up editing state
   const [selectedRefId, setSelectedRefId] = useState(false);

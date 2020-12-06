@@ -23,12 +23,14 @@ const Story = () => {
           let node;
           const ref = refs.find((r) => r._id === childRefId);
 
-          switch (ref.type) {
-            case "break":
-              node = <LineBreak key={ref._id} index={index} {...ref} />;
-              break;
-            default:
-              node = <WordBlock key={ref._id} index={index} {...ref} />;
+          if (isReady(ref)) {
+            switch (ref.type) {
+              case "break":
+                node = <LineBreak key={ref._id} index={index} {...ref} />;
+                break;
+              default:
+                node = <WordBlock key={ref._id} index={index} {...ref} />;
+            }
           }
 
           index++;

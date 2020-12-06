@@ -26,10 +26,10 @@ const App = () => {
             <IconButton
               sx={{ mx: 2, variant: "iconButton.floatingNegative" }}
               children={<UilTrash />}
-              onClick={() =>
-                window.confirm("You sure you want to delete this?") &&
-                Meteor.call("refs.remove", selectedRefId)
-              }
+              // onClick={() =>
+              //   window.confirm("You sure you want to delete this?") &&
+              //   Meteor.call("refs.remove", selectedRefId)
+              // }
             />
             <Link to={`/refs/${selectedRefId}`}>
               <Button variant="button.floatingPrimary">

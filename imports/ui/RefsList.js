@@ -1,10 +1,10 @@
-import { Box, Button, Flex, Grid, IconButton, Text } from "theme-ui";
+import { Box, Button, Flex, Grid, Text } from "theme-ui";
 import { Link } from "react-router-dom";
 import AppContext from "./AppContext";
 import React, { useContext } from "react";
 import Toolbar from "./Toolbar";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
-import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
+import { isReady } from "../utils/helpers";
 
 const RefsList = () => {
   const { refs, userId } = useContext(AppContext);
@@ -35,17 +35,17 @@ const RefsList = () => {
       </Toolbar>
       <Flex
         sx={{
-          justifyContent: "center",
           alignItems: "center",
           height: "100vh",
+          justifyContent: "center",
           width: "100vw",
         }}
       >
         <Grid
           sx={{
+            gap: 0,
             gridTemplateColumns: "repeat(3, 1fr)",
             m: 3,
-            gap: 0,
             width: "container",
           }}
         >
@@ -53,24 +53,45 @@ const RefsList = () => {
             .filter((ref) => !ref.parentId)
             .map((ref) => (
               <Link key={ref._id} to={`/refs/${ref._id}`}>
-                <Flex
-                  sx={{
-                    variant: "flex.tile",
-                    justifyContent: "space-between",
-                    flexDirection: "column",
-                    alignItems: "center",
-                  }}
-                >
-                  <Text variant="text.ref">{ref._id}</Text>
-                  <IconButton
-                    sx={{ mx: 2, variant: "iconButton.negative" }}
-                    children={<UilTrash />}
-                    onClick={(event) => {
-                      window.confirm("You sure you want to delete this?") &&
-                        Meteor.call("refs.remove", ref._id);
+                {ref.story.length > 0 ? (
+                  <Flex
+                    sx={{
+                      variant: "flex.tile",
+                      flexFlow: "wrap",
+                      overflow: "hidden",
+                      position: "relative",
                     }}
-                  />
-                </Flex>
+                  >
+                    {ref.story.map((id) => {
+                      const wordRef = refs.find((ref) => ref._id === id);
+                      return (
+                        <Text
+                          key={id}
+                          children={isReady(wordRef) && `${wordRef.text} `}
+                          sx={{ variant: "text.ref", fontSize: "small" }}
+                        />
+                      );
+                    })}
+                  </Flex>
+                ) : (
+                  <Flex
+                    sx={{
+                      variant: "flex.tile",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text
+                      sx={{
+                        variant: "text.ref",
+                        color: "textSecondary",
+                        fontSize: "small",
+                      }}
+                    >
+                      Nothing yet
+                    </Text>
+                  </Flex>
+                )}
               </Link>
             ))}
         </Grid>

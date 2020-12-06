@@ -3,9 +3,11 @@ import { Meteor } from "meteor/meteor";
 import AppContext from "./AppContext";
 import React, { useContext } from "react";
 import { controlHeight } from "../utils/theme";
+import { useHistory } from "react-router-dom";
 
 const AccountToogle = () => {
   const { user } = useContext(AppContext);
+  const history = useHistory();
 
   return (
     <Box>
@@ -32,7 +34,7 @@ const AccountToogle = () => {
               },
               (error) => {
                 // Need to go to the ref the represents the user
-                window.location.replace(`/refs/${Meteor.userId()}`);
+                history.push("/refs");
               }
             )
           }

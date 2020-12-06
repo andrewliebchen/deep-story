@@ -5,8 +5,8 @@ import AccountToggle from "./AccountToggle";
 import AppContext from "./AppContext";
 import ColorModeToggle from "./ColorModeToggle";
 import React, { useContext } from "react";
-import UilPen from "@iconscout/react-unicons/icons/uil-pen";
 import UilArrowUp from "@iconscout/react-unicons/icons/uil-arrow-up";
+import UilPen from "@iconscout/react-unicons/icons/uil-pen";
 
 const Toolbar = (props) => {
   const { userId, refs } = useContext(AppContext);
