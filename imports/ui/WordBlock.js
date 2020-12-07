@@ -10,8 +10,8 @@ import { Link } from "react-router-dom";
 
 const WordBlock = (props) => {
   const {
+    getRef,
     inputFocused,
-    refs,
     selectedRefId,
     setInputFocused,
     setSelectedRefId,
@@ -20,7 +20,7 @@ const WordBlock = (props) => {
 
   const isSelected = selectedRefId === props._id;
   const isFocused = isSelected && inputFocused;
-  const hasChildren = refs.find((ref) => ref.parentId === props._id);
+  const hasChildren = getRef(props._id, "parentId");
 
   const ref = useKeycodes({
     // esc

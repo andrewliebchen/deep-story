@@ -9,11 +9,11 @@ import UilArrowUp from "@iconscout/react-unicons/icons/uil-arrow-up";
 import UilPen from "@iconscout/react-unicons/icons/uil-pen";
 
 const Toolbar = (props) => {
-  const { userId, refs } = useContext(AppContext);
+  const { getRef, userId } = useContext(AppContext);
   const { refId } = useParams();
   const history = useHistory();
 
-  const parentRef = refs.find((ref) => ref._id === refId);
+  const parentRef = getRef(refId);
   const grandparentId = isReady(parentRef) && parentRef.parentId;
 
   return (

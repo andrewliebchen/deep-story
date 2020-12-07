@@ -8,7 +8,7 @@ import UilEditAlt from "@iconscout/react-unicons/icons/uil-edit-alt";
 import UilTextFields from "@iconscout/react-unicons/icons/uil-text-fields";
 
 const RefTile = (props) => {
-  const { refs } = useContext(AppContext);
+  const { getRef } = useContext(AppContext);
   const hasStory = props.story.length > 0;
 
   return (
@@ -18,7 +18,7 @@ const RefTile = (props) => {
           <Flex sx={{ overflow: "hidden" }}>
             <Flex sx={{ flexFlow: "wrap" }}>
               {props.story.map((id) => {
-                const wordRef = refs.find((ref) => ref._id === id);
+                const wordRef = getRef(id);
                 return (
                   <Text
                     key={id}

@@ -9,11 +9,11 @@ import WordBlock from "./WordBlock";
 import yallist from "yallist";
 
 const Story = () => {
-  const { refs, selectedRefId } = useContext(AppContext);
+  const { getRef, selectedRefId } = useContext(AppContext);
   const { refId } = useParams();
   let index = 0;
 
-  const parentRef = refs.find((ref) => ref._id === refId);
+  const parentRef = getRef(refId);
   const hasStory = isReady(parentRef) && parentRef.story.length > 0;
 
   return (
@@ -21,7 +21,7 @@ const Story = () => {
       {hasStory &&
         yallist.create(parentRef.story).map((childRefId, list) => {
           let node;
-          const ref = refs.find((r) => r._id === childRefId);
+          const ref = getRef(childRefId);
 
           if (isReady(ref)) {
             switch (ref.type) {

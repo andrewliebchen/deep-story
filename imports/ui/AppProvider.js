@@ -13,6 +13,8 @@ const AppProvider = (props) => {
   let refs = [];
   refs = useTracker(() => RefsCollection.find({ createdBy: userId }).fetch());
 
+  const getRef = (id, field = "_id") => refs.find((ref) => ref[field] === id);
+
   // Get the selected ref and set up editing state
   const [selectedRefId, setSelectedRefId] = useState(false);
   const [inputFocused, setInputFocused] = useState(false);
@@ -21,10 +23,11 @@ const AppProvider = (props) => {
     <AppContext.Provider
       value={{
         ...props,
+        getRef,
         inputFocused,
-        setInputFocused,
         refs,
         selectedRefId,
+        setInputFocused,
         setSelectedRefId,
         user,
         userId,
