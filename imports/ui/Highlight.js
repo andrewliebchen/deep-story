@@ -6,7 +6,7 @@ const Highlight = () => (
     sx={{
       position: "fixed",
       width: "100vw",
-      p: 2,
+      px: 2,
       left: 0,
       justifyContent: "stretch",
     }}

@@ -122,6 +122,18 @@ export default {
       height: controlHeight,
       borderRadius: 3,
     },
+    lineBreak: {
+      cursor: "pointer",
+      height: controlHeight,
+      flexBasis: "100%",
+      flexGrow: 1,
+      position: "relative",
+      mb: 1,
+      "&:hover": {
+        borderRadius: 2,
+        bg: "muted",
+      },
+    },
     tile: {
       borderRadius: 2,
       bg: "background",
