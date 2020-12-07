@@ -128,9 +128,21 @@ export default {
       color: "text",
       height: 160,
       p: 3,
+      flexDirection: "column",
       "&:hover": {
         bg: "primaryMuted",
       },
+    },
+    tileFooterItem: {
+      alignItems: "center",
+      justifyContent: "center",
+      bg: "muted",
+      borderRadius: 2,
+      px: 2,
+      py: 1,
+      m: 2,
+      flexGrow: 2,
+      color: "textSecondary",
     },
     wordBlockHighlight: {
       borderRadius: 1,
