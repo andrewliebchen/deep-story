@@ -5,6 +5,7 @@ import React, { useContext } from "react";
 import Toolbar from "./Toolbar";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
 import { isReady } from "../utils/helpers";
+import RefTile from "./RefTile";
 
 const RefsList = () => {
   const { refs, userId } = useContext(AppContext);
@@ -52,47 +53,7 @@ const RefsList = () => {
           {refs
             .filter((ref) => !ref.parentId)
             .map((ref) => (
-              <Link key={ref._id} to={`/refs/${ref._id}`}>
-                {ref.story.length > 0 ? (
-                  <Flex
-                    sx={{
-                      variant: "flex.tile",
-                      flexFlow: "wrap",
-                      overflow: "hidden",
-                      position: "relative",
-                    }}
-                  >
-                    {ref.story.map((id) => {
-                      const wordRef = refs.find((ref) => ref._id === id);
-                      return (
-                        <Text
-                          key={id}
-                          children={isReady(wordRef) && `${wordRef.text} `}
-                          sx={{ variant: "text.ref", fontSize: "small" }}
-                        />
-                      );
-                    })}
-                  </Flex>
-                ) : (
-                  <Flex
-                    sx={{
-                      variant: "flex.tile",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Text
-                      sx={{
-                        variant: "text.ref",
-                        color: "textSecondary",
-                        fontSize: "small",
-                      }}
-                    >
-                      Nothing yet
-                    </Text>
-                  </Flex>
-                )}
-              </Link>
+              <RefTile key={ref._id} {...ref} />
             ))}
         </Grid>
       </Flex>
