@@ -40,9 +40,10 @@ Go deep into a story by adding a story within each word. Maybe like a mini inter
   - ✅ Select spaces between words to add words
   - Select paragraph breaks to add paragraphs
 - ✅ Update urls to be `/refs/:refId`
-- Users can have more than one base ref
-- `/refs` is an index list of all refs for that user
+- ✅ Users can have more than one base ref
+- ✅ `/refs` is an index list of all refs for that user
 - Basic ref search
+- Should there be a top-level keycode listener in the provider? Or one place that has all the keycode stuff at least.
 
 ### ⏳ Milestone 2: Create, edit, and manage `mock` ref types
 

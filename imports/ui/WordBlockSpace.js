@@ -27,7 +27,7 @@ const WordBlockSpace = (props) => {
           createdAt: Date.now(),
           createdBy: userId,
           parentId: refId,
-          type: "story",
+          type: "text",
           text: value,
         },
         true,

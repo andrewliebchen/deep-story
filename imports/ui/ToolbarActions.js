@@ -1,4 +1,5 @@
 import { Button, Flex, IconButton, Text } from "theme-ui";
+import { isReady } from "../utils/helpers";
 import { Link } from "react-router-dom";
 import { refTypes } from "../utils/types";
 import AppContext from "./AppContext";
@@ -12,7 +13,7 @@ const ToolbarActions = (props) => {
   const { getRef, selectedRefId, setSelectedRefId } = useContext(AppContext);
   let actions = props.actions;
 
-  if (selectedRefId) {
+  if (isReady(props.actions) && selectedRefId) {
     switch (getRef(selectedRefId).type) {
       case "break":
         actions = (

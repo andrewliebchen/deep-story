@@ -6,7 +6,7 @@ import UilHeadSide from "@iconscout/react-unicons/icons/uil-head-side";
 import UilPen from "@iconscout/react-unicons/icons/uil-pen";
 
 export const refTypes = {
-  story: {
+  text: {
     icon: <UilPen />,
     label: "Story",
   },
