@@ -4,7 +4,9 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import AccountToggle from "./AccountToggle";
 import AppContext from "./AppContext";
 import ColorModeToggle from "./ColorModeToggle";
+import PropTypes from "prop-types";
 import React, { useContext } from "react";
+import ToolbarActions from "./ToolbarActions";
 import UilArrowUp from "@iconscout/react-unicons/icons/uil-arrow-up";
 import UilPen from "@iconscout/react-unicons/icons/uil-pen";
 
@@ -34,18 +36,7 @@ const Toolbar = (props) => {
         )}
       </Flex>
 
-      <Flex
-        sx={{
-          alignItems: "center",
-          position: "fixed",
-          top: 2,
-          left: "50%",
-          transform: "translateX(-50%)",
-          zIndex: 1,
-        }}
-      >
-        {props.children}
-      </Flex>
+      <ToolbarActions {...props} />
 
       <Flex
         ml="auto"
@@ -64,6 +55,10 @@ const Toolbar = (props) => {
       </Flex>
     </>
   );
+};
+
+Toolbar.propTypes = {
+  actions: PropTypes.node,
 };
 
 export default Toolbar;

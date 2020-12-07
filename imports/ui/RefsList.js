@@ -11,28 +11,30 @@ const RefsList = () => {
 
   return (
     <Box>
-      <Toolbar>
-        <Button
-          variant="button.floatingPrimary"
-          onClick={() =>
-            Meteor.call(
-              "refs.insert",
-              {
-                createdAt: Date.now(),
-                createdBy: userId,
-                parentId: null,
-                type: "text",
-                story: [],
-              },
-              null,
-              (error, id) => console.log(id)
-            )
-          }
-        >
-          <UilPlus />
-          <Text ml={2}>Create</Text>
-        </Button>
-      </Toolbar>
+      <Toolbar
+        actions={
+          <Button
+            variant="button.floatingPrimary"
+            onClick={() =>
+              Meteor.call(
+                "refs.insert",
+                {
+                  createdAt: Date.now(),
+                  createdBy: userId,
+                  parentId: null,
+                  type: "text",
+                  story: [],
+                },
+                null,
+                (error, id) => console.log(id)
+              )
+            }
+          >
+            <UilPlus />
+            <Text ml={2}>Create</Text>
+          </Button>
+        }
+      />
       <Flex
         sx={{
           alignItems: "center",
