@@ -38,7 +38,7 @@ const buttonNegativeStyles = {
 const buttonFloatingStyles = {
   bg: "background",
   boxShadow:
-    "0 0 20px 10px rgba(0, 0, 0, 0.03)," +
+    "0 0 20px 10px rgba(0, 0, 0, 0.05)," +
     "0 6px 10px 1px rgba(0, 0, 0, 0.05)," +
     "0 0 0 1px rgba(0, 0, 0, 0.05) ",
 };
@@ -90,6 +90,7 @@ export default {
     primaryHover: "rgba(0, 104, 178, 1)",
     primaryMuted: "rgba(0, 119, 204, 0.05)",
     secondary: "rgba(51, 0, 204, 1)",
+    shadow: "rgba(0, 0, 0, 0.05)",
     text: "rgba(0, 0, 0, 1)",
     textSecondary: "rgba(0, 0, 0, 0.5)",
     modes: {
@@ -104,6 +105,7 @@ export default {
         primaryBackground: "rgba(51, 204, 255, 0.3)",
         primaryMuted: "rgba(51, 204, 255, 0.1)",
         secondary: "rgba(238, 0, 255, 1)",
+        shadow: "rgba(0, 0, 0, 0.05)",
         text: "rgba(255, 255, 255, 1)",
         textSecondary: "rgba(255, 255, 255, 0.5)",
       },
