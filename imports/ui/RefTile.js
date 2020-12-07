@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { Box, Flex, Text } from "theme-ui";
+import { Flex, Text } from "theme-ui";
+import { isReady } from "../utils/helpers";
 import { Link } from "react-router-dom";
 import AppContext from "./AppContext";
-import { isReady } from "../utils/helpers";
+import React, { useContext } from "react";
+import TimeAgo from "react-timeago";
 import UilEditAlt from "@iconscout/react-unicons/icons/uil-edit-alt";
 import UilTextFields from "@iconscout/react-unicons/icons/uil-text-fields";
-import TimeAgo from "react-timeago";
 
 const RefTile = (props) => {
   const { refs } = useContext(AppContext);

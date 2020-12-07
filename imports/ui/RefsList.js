@@ -1,11 +1,10 @@
 import { Box, Button, Flex, Grid, Text } from "theme-ui";
-import { Link } from "react-router-dom";
+import { isReady } from "../utils/helpers";
 import AppContext from "./AppContext";
 import React, { useContext } from "react";
+import RefTile from "./RefTile";
 import Toolbar from "./Toolbar";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
-import { isReady } from "../utils/helpers";
-import RefTile from "./RefTile";
 
 const RefsList = () => {
   const { refs, userId } = useContext(AppContext);
