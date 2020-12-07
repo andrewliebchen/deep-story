@@ -10,10 +10,16 @@ import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 
 const ToolbarActions = (props) => {
-  const { getRef, selectedRefId, setSelectedRefId } = useContext(AppContext);
+  const {
+    getRef,
+    selectedRefId,
+    setSelectedRefId,
+    newMockType,
+    setNewMockType,
+  } = useContext(AppContext);
   let actions = props.actions;
 
-  if (isReady(props.actions) && selectedRefId) {
+  if (!isReady(props.actions) && selectedRefId) {
     switch (getRef(selectedRefId).type) {
       case "break":
         actions = (
@@ -23,7 +29,13 @@ const ToolbarActions = (props) => {
                 key={type}
                 children={refTypes[type].icon}
                 title={type}
-                sx={{ mx: 1, variant: "iconButton.floating" }}
+                onClick={() => setNewMockType(type)}
+                sx={{
+                  variant: `iconButton.${
+                    type === newMockType ? "floatingPrimary" : "floating"
+                  }`,
+                  mx: 1,
+                }}
               />
             ))}
           </>
