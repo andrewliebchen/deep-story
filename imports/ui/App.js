@@ -10,6 +10,17 @@ import UilArrowDown from "@iconscout/react-unicons/icons/uil-arrow-down";
 import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 
+/*
+Maybe all the toolbar center actions are conditional based on app state from
+the provider?
+
+Selected?
+...and a linebreak? Show type selector
+...or text? Show the dive controls.
+
+Nothing selected? Don't render anything!
+*/
+
 const App = () => {
   const { selectedRefId, setSelectedRefId } = useContext(AppContext);
 
