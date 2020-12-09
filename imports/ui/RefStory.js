@@ -10,8 +10,6 @@ const RefStory = () => {
   const { parentRefId } = useParams();
   const { refs } = useChildRefs(parentRefId);
 
-  console.log(selectedRefId);
-
   return (
     <Flex
       sx={{ width: "100vw", alignItems: "center", flexDirection: "column" }}

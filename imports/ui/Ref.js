@@ -1,7 +1,8 @@
-import { Flex, IconButton } from "theme-ui";
+import { Flex, IconButton, Text } from "theme-ui";
+import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
-import AppContext from "./AppContext";
+import RefContent from "./RefContent";
 import UilPen from "@iconscout/react-unicons/icons/uil-pen";
 import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
@@ -54,9 +55,8 @@ const Ref = (props) => {
           children={<UilTrash />}
         />
       )}
-      <Flex sx={{ variant: "flex.ref" }}>
-        {props.rank}: {props._id}
-      </Flex>
+
+      <RefContent {...props} />
     </Flex>
   );
 };

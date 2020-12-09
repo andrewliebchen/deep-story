@@ -39,6 +39,29 @@ const iconButtonBase = {
   p: 0,
 };
 
+const invisibleInputBase = {
+  bg: "transparent",
+  border: 0,
+  borderRadius: 0,
+  caretColor: "primary",
+  fontFamily: "monospace",
+  minWidth: "auto",
+  p: 0,
+  whiteSpace: "pre-wrap",
+  "&:focus": {
+    outline: "none",
+  },
+};
+
+const flexRefBase = {
+  p: 3,
+  bg: "background",
+  borderRadius: 3,
+  width: "ref",
+  mx: "auto",
+  flexDirection: "column",
+};
+
 export default {
   useColorSchemeMediaQuery: true,
   button: {
@@ -93,11 +116,7 @@ export default {
       alignItems: "center",
     },
     ref: {
-      p: 3,
-      bg: "background",
-      borderRadius: 3,
-      width: "ref",
-      mx: "auto",
+      ...flexRefBase,
     },
     refNew: {
       width: "100vw",
@@ -127,14 +146,14 @@ export default {
     heading: "inherit",
     monospace: "Menlo, monospace",
   },
-  fontSizes: [12, 16],
+  fontSizes: [12, 16, 18],
   fontWeights: {
     body: 400,
     heading: 700,
     bold: 700,
   },
   heading: {
-    fontSize: 1,
+    fontSize: 2,
   },
   iconButton: {
     default: {
@@ -169,21 +188,11 @@ export default {
       },
     },
     inline: {
-      bg: "transparent",
-      border: 0,
-      borderRadius: 0,
-      caretColor: "primary",
+      ...invisibleInputBase,
       display: "flex",
       flex: 1,
-      fontFamily: "monospace",
-      minHeight: 24,
-      minWidth: "auto",
-      p: 0,
-      whiteSpace: "pre-wrap",
       width: "auto",
-      "&:focus": {
-        outline: "none",
-      },
+      minHeight: 24,
     },
   },
   lineHeights: {
@@ -216,6 +225,12 @@ export default {
     },
     small: {
       fontSize: "small",
+    },
+  },
+  textarea: {
+    ref: {
+      ...invisibleInputBase,
+      ...flexRefBase,
     },
   },
 };

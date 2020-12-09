@@ -13,37 +13,10 @@ Go deep into a story by adding a story within each word. Maybe like a mini inter
 
 ### 🚧 Milestone 1: Basic CRUD for `story` ref types
 
-- ✅ CRUD for story words
-- ✅ Pressing enter saves a line break (could do something with this later)
-- ✅ Scalable meta-UI to hold many nested stories, do navigation (stories side by side, with some kind of breadcrumbs up top?)
-- ✅ Ability to add more words to the end of a line
-- ✅ Autofocus on the input, make it only as wide as the current input
-- ✅ Switch to a monospaced font
-- Download backup (JSON?) for the collection
-- Database backup JSON uploader and parser
-- ✅ Add user accounts...maybe just by hash for now? They become the root.
-- ✅ Add a router.
-- ✅ Every reference needs a url. Structure is `/r/ID`?
-- ✅ Every reference has a type
-- ✅ Move hover tooltip tools to the toolbar
-- ✅ Set up ContextAPI
-- ✅ Google account login
-- ✅Move toolbar to own component
-- ✅ Fix dive functionality for non-users
-- ✅ Fix browser history (`window.location.replace` fucks it up...just use `<Link/>`)
-- ✅ Bigger Dive button
-- ✅ Navigation in the tool bar...breadcrumbs?
-- ✅ Click in story to relocate cursor...use selectedRefId for cursor location?
-- ✅ Paginate between words with arrow and tab keys
-- ✅ Press esc to switch inline input and new input
-- Wrap up work on the cursor
-  - ✅ Select spaces between words to add words
-  - Select paragraph breaks to add paragraphs
-- ✅ Update urls to be `/refs/:refId`
-- ✅ Users can have more than one base ref
-- ✅ `/refs` is an index list of all refs for that user
-- Basic ref search
-- Should there be a top-level keycode listener in the provider? Or one place that has all the keycode stuff at least.
+- Press esc to un-select a Ref.
+- Press enter to select the next ref.
+- Arrow up/down to select previous/next ref.
+- Affordance to toggle title on/off.
 
 ### ⏳ Milestone 2: Create, edit, and manage `mock` ref types
 
