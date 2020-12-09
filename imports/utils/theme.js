@@ -63,7 +63,7 @@ export default {
     primary: "rgba(0, 119, 204, 1)",
     primaryBackground: "rgba(0, 119, 204, 0.2)",
     primaryHover: "rgba(0, 104, 178, 1)",
-    primaryMuted: "rgba(0, 119, 204, 0.05)",
+    primaryMuted: "rgba(242, 248, 252, 1)",
     secondary: "rgba(51, 0, 204, 1)",
     shadow: "rgba(0, 0, 0, 0.05)",
     text: "rgba(0, 0, 0, 1)",
@@ -98,6 +98,19 @@ export default {
       borderRadius: 3,
       width: "ref",
       mx: "auto",
+    },
+    refNew: {
+      width: "100vw",
+      alignItems: "center",
+      px: 3,
+      justifyContent: "flex-end",
+      cursor: "pointer",
+      position: "relative",
+      height: 8,
+      "&:hover": {
+        bg: "primaryMuted",
+        zIndex: 1,
+      },
     },
     refWrapper: {
       alignItems: "center",

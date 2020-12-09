@@ -10,6 +10,8 @@ const RefStory = () => {
   const { parentRefId } = useParams();
   const { refs } = useChildRefs(parentRefId);
 
+  console.log(selectedRefId);
+
   return (
     <Flex
       sx={{ width: "100vw", alignItems: "center", flexDirection: "column" }}
@@ -21,13 +23,7 @@ const RefStory = () => {
         return (
           <Box key={ref._id}>
             <RefNew rank={newRefRank} />
-            <Ref
-              isSelected={ref._id === selectedRefId}
-              onRefClick={() =>
-                setSelectedRefId(selectedRefId === ref._id || ref._id)
-              }
-              {...ref}
-            />
+            <Ref {...ref} />
           </Box>
         );
       })}

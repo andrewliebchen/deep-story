@@ -1,14 +1,16 @@
 import { Flex, IconButton } from "theme-ui";
-import AppContext from "./AppContext";
 import PropTypes from "prop-types";
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
+import AppContext from "./AppContext";
 import UilPen from "@iconscout/react-unicons/icons/uil-pen";
 import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 import useHover from "@react-hook/hover";
 
 const Ref = (props) => {
-  const [isEditing, setIsEditing] = useState(false);
+  const { selectedRefId, setSelectedRefId } = useContext(AppContext);
+
+  const isSelected = selectedRefId === props._id;
 
   const target = React.useRef(null);
   const isHovering = useHover(target);
@@ -18,24 +20,26 @@ const Ref = (props) => {
       ref={target}
       sx={{
         variant: "flex.refWrapper",
-        bg: props.isSelected && "primaryMuted",
+        bg: isSelected && "primaryMuted",
         "&:hover": {
-          bg: props.isSelected || "muted",
+          bg: isSelected || "muted",
         },
       }}
     >
-      {(props.isSelected || isHovering) && (
+      {(isSelected || isHovering) && (
         <IconButton
-          onClick={props.onRefClick}
+          onClick={() =>
+            setSelectedRefId(selectedRefId === props._id || props._id)
+          }
           sx={{
             variant: "iconButton.white",
             position: "absolute",
             left: 3,
           }}
-          children={props.isSelected ? <UilTimes /> : <UilPen />}
+          children={isSelected ? <UilTimes /> : <UilPen />}
         />
       )}
-      {props.isSelected && (
+      {isSelected && (
         <IconButton
           onClick={() =>
             window.confirm("Are you sure you want to delete this ref?") &&
@@ -59,8 +63,6 @@ const Ref = (props) => {
 
 Ref.propTypes = {
   _id: PropTypes.string,
-  isSelected: PropTypes.bool,
-  onRefClick: PropTypes.func,
   rank: PropTypes.number,
 };
 
