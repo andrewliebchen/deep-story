@@ -1,4 +1,4 @@
-import { Flex } from "theme-ui";
+import { Box, Flex } from "theme-ui";
 import React, { useState } from "react";
 import RefNew from "./RefNew";
 import { useParams } from "react-router-dom";
@@ -14,27 +14,26 @@ const RefStory = () => {
   const { parentRefId } = useParams();
   const { refs } = useChildRefs(parentRefId);
 
-  // Return the child refs in order.
-  const childRefs = yallist.create(refs);
-
-  console.log(refs);
+  // Use rank to order
 
   return (
     <Flex
       sx={{ width: "100vw", alignItems: "center", flexDirection: "column" }}
     >
-      <RefNew />
-      {childRefs.map((ref) => (
-        <Ref
-          key={ref._id}
-          isSelected={ref._id === selectedRefId}
-          onRefClick={() =>
-            setSelectedRefId(selectedRefId === ref._id || ref._id)
-          }
-          {...ref}
-        />
+      {refs.map((ref) => (
+        <Box key={ref._id}>
+          <RefNew rank={0} />
+          {/* Rank is average of this ref's length and previous ref's length */}
+          <Ref
+            isSelected={ref._id === selectedRefId}
+            onRefClick={() =>
+              setSelectedRefId(selectedRefId === ref._id || ref._id)
+            }
+            {...ref}
+          />
+        </Box>
       ))}
-      <RefNew />
+      <RefNew rank={refs.length + 1} />
     </Flex>
   );
 };

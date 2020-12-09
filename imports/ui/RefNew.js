@@ -2,6 +2,7 @@ import React from "react";
 import { Flex, IconButton } from "theme-ui";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
 import { useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const RefNew = () => {
   const { parentRefId } = useParams();
@@ -20,6 +21,10 @@ const RefNew = () => {
       />
     </Flex>
   );
+};
+
+RefNew.propTypes = {
+  rank: PropTypes.number,
 };
 
 export default RefNew;
