@@ -12,8 +12,6 @@ const BaseRefsList = () => {
   const { refs } = useBaseRefs();
   const history = useHistory();
 
-  console.log(refs);
-
   return (
     <Box>
       <Button
