@@ -1,15 +1,48 @@
-import { Flex } from "theme-ui";
-import React, { useContext, useState } from "react";
+import { Flex, IconButton } from "theme-ui";
+import React, { useState, useContext } from "react";
 import AppContext from "./AppContext";
-import { isReady } from "../utils/helpers";
+import UilPen from "@iconscout/react-unicons/icons/uil-pen";
+import UilTimes from "@iconscout/react-unicons/icons/uil-times";
+import useHover from "@react-hook/hover";
+import PropTypes from "prop-types";
 
 const Ref = (props) => {
-  const { selectedRefId, getRef } = useContext(AppContext);
   const [isEditing, setIsEditing] = useState(false);
 
-  const ref = getRef(selectedRefId);
+  const target = React.useRef(null);
+  const isHovering = useHover(target);
 
-  return <Flex>{isReady(ref) && ref._id}</Flex>;
+  return (
+    <Flex
+      ref={target}
+      sx={{
+        variant: "flex.refWrapper",
+        bg: props.isSelected && "primaryMuted",
+        "&:hover": {
+          bg: props.isSelected || "muted",
+        },
+      }}
+    >
+      {(props.isSelected || isHovering) && (
+        <IconButton
+          onClick={props.onRefClick}
+          sx={{
+            variant: "iconButton.white",
+            position: "absolute",
+            left: 3,
+          }}
+          children={props.isSelected ? <UilTimes /> : <UilPen />}
+        />
+      )}
+      <Flex sx={{ variant: "flex.ref" }}>{props._id}</Flex>
+    </Flex>
+  );
+};
+
+Ref.propTypes = {
+  _id: PropTypes.string,
+  isSelected: PropTypes.bool,
+  onRefClick: PropTypes.func,
 };
 
 export default Ref;

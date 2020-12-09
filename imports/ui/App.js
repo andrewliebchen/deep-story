@@ -14,7 +14,7 @@ const App = (props) => (
 
     <Router>
       <Switch>
-        <Route path="/refs/:refId" component={RefStory} />
+        <Route path="/refs/:parentRefId" component={RefStory} />
         <Route path="/sandbox" component={Sandbox} />
         <Route path="/" component={BaseRefsList} />
       </Switch>

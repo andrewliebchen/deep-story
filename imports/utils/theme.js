@@ -35,14 +35,6 @@ const buttonNegativeStyles = {
   },
 };
 
-const buttonFloatingStyles = {
-  bg: "background",
-  boxShadow:
-    "0 0 20px 10px rgba(0, 0, 0, 0.05)," +
-    "0 6px 10px 1px rgba(0, 0, 0, 0.05)," +
-    "0 0 0 1px rgba(0, 0, 0, 0.05) ",
-};
-
 const iconButtonBase = {
   p: 0,
 };
@@ -60,23 +52,6 @@ export default {
     negative: {
       ...controlBase,
       ...buttonNegativeStyles,
-    },
-    floating: {
-      ...controlBase,
-      ...buttonFloatingStyles,
-    },
-    floatingPrimary: {
-      ...controlBase,
-      ...buttonFloatingStyles,
-      ...buttonPrimaryStyles,
-    },
-    floatingNegative: {
-      ...controlBase,
-      ...buttonFloatingStyles,
-      color: "negative",
-      "&:hover": {
-        bg: "negativeBackground",
-      },
     },
   },
   colors: {
@@ -117,55 +92,20 @@ export default {
       height: controlHeight,
       alignItems: "center",
     },
-    highlight: {
-      bg: "primaryMuted",
-      flexGrow: 1,
-      height: controlHeight,
-      borderRadius: 3,
-    },
-    lineBreak: {
-      cursor: "pointer",
-      height: controlHeight,
-      flexBasis: "100%",
-      flexGrow: 1,
-      position: "relative",
-      mb: 1,
-      "&:hover": {
-        borderRadius: 2,
-        bg: "muted",
-      },
-    },
-    tile: {
-      borderRadius: 2,
-      bg: "background",
-      color: "text",
-      height: 160,
+    ref: {
       p: 3,
-      flexDirection: "column",
-      "&:hover": {
-        bg: "primaryMuted",
-      },
+      bg: "background",
+      borderRadius: 3,
+      width: "ref",
+      mx: "auto",
     },
-    tileFooterItem: {
+    refWrapper: {
       alignItems: "center",
       justifyContent: "center",
-      bg: "muted",
-      borderRadius: 2,
-      px: 2,
-      py: 1,
-      m: 2,
-      flexGrow: 2,
-      color: "textSecondary",
-    },
-    wordBlockHighlight: {
-      borderRadius: 1,
-      cursor: "text",
-      position: "reative",
-      userSelect: "none",
-      zIndex: 1,
-      "&:hover": {
-        bg: "muted",
-      },
+      width: "100vw",
+      position: "relative",
+      px: 3,
+      py: 2,
     },
   },
   fonts: {
@@ -198,25 +138,10 @@ export default {
       ...buttonNegativeStyles,
       ...iconButtonBase,
     },
-    floating: {
+    white: {
       ...controlBase,
-      ...buttonFloatingStyles,
       ...iconButtonBase,
-    },
-    floatingPrimary: {
-      ...controlBase,
-      ...buttonFloatingStyles,
-      ...buttonPrimaryStyles,
-      ...iconButtonBase,
-    },
-    floatingNegative: {
-      ...controlBase,
-      ...buttonFloatingStyles,
-      ...iconButtonBase,
-      color: "negative",
-      "&:hover": {
-        bg: "negativeBackground",
-      },
+      bg: "background",
     },
   },
   input: {
@@ -261,7 +186,7 @@ export default {
     },
   },
   sizes: {
-    container: 600,
+    ref: 600,
   },
   space: [0, 4, 8, 16, 32, 40],
   styles: {

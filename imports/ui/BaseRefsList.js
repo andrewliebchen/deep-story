@@ -1,21 +1,28 @@
 import { Box, Button, Flex, Grid, Text } from "theme-ui";
 import { isReady } from "../utils/helpers";
+import { Link, useHistory } from "react-router-dom";
+import { useAccount, useBaseRefs } from "../utils/hooks";
 import AppContext from "./AppContext";
 import React, { useContext } from "react";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
-import { Link, useHistory } from "react-router-dom";
 
 const BaseRefsList = () => {
-  const { refs, userId } = useContext(AppContext);
+  const { getRefs } = useContext(AppContext);
+  const { userId } = useAccount();
+  const { refs } = useBaseRefs();
   const history = useHistory();
+
+  console.log(refs);
 
   return (
     <Box>
       <Button
-        variant="button.floatingPrimary"
+        variant="button.primary"
         onClick={() =>
-          Meteor.call("refs.insert", { type: "base" }, (error, id) =>
-            history.push(`/refs/${id}`)
+          Meteor.call(
+            "refs.insert",
+            { type: "base", parentId: userId },
+            (error, id) => history.push(`/refs/${id}`)
           )
         }
       >
@@ -38,13 +45,11 @@ const BaseRefsList = () => {
             width: "container",
           }}
         >
-          {refs
-            .filter((ref) => ref.type === "base")
-            .map((ref) => (
-              <Link key={ref._id} to={`/refs/${ref._id}`}>
-                {ref._id}
-              </Link>
-            ))}
+          {refs.map((ref) => (
+            <Link key={ref._id} to={`/refs/${ref._id}`}>
+              {ref._id}
+            </Link>
+          ))}
         </Grid>
       </Flex>
     </Box>
