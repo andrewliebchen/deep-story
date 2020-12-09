@@ -3,7 +3,7 @@ import { IconButton } from "theme-ui";
 import UilArrowLeft from "@iconscout/react-unicons/icons/uil-arrow-left";
 
 const Nav = (props) => (
-  <IconButton {...props}>
+  <IconButton variant="iconButton.default" {...props}>
     <UilArrowLeft />
   </IconButton>
 );

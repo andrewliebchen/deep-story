@@ -3,7 +3,6 @@ import { RefsCollection } from "../imports/api/refs";
 
 Accounts.onCreateUser((options, user) => {
   user.profile = options.profile || {};
-
   return user;
 });
 

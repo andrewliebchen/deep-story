@@ -8,6 +8,7 @@ const RefStory = () => {
 
   return (
     <Flex>
+      {}
       <RefNew />
     </Flex>
   );

@@ -20,9 +20,7 @@ const AccountToogle = (props) => {
             height: controlHeight,
             width: controlHeight,
           }}
-          onClick={() =>
-            Meteor.logout((error) => window.location.replace("/login"))
-          }
+          onClick={() => Meteor.logout((error) => history.push("/"))}
         />
       ) : (
         <Button
@@ -32,10 +30,7 @@ const AccountToogle = (props) => {
               {
                 loginStyle: "popup",
               },
-              (error) => {
-                // Need to go to the ref the represents the user
-                history.push("/refs");
-              }
+              (error) => history.push("/refs")
             )
           }
         >

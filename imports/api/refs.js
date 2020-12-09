@@ -4,10 +4,10 @@ import { Meteor } from "meteor/meteor";
 export const RefsCollection = new Mongo.Collection("refs");
 
 Meteor.methods({
-  "refs.insert"(options, position) {
+  "refs.insert"(options) {
     return RefsCollection.insert({
       createdAt: Date.now(),
-      cretedBy: Meteor.userId(),
+      createdBy: Meteor.userId(),
       ...options,
     });
   },

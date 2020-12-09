@@ -2,39 +2,26 @@ import { Box, Button, Flex, Grid, Text } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import AppContext from "./AppContext";
 import React, { useContext } from "react";
-import BaseRefsListTile from "./RefsListTile";
-import Toolbar from "./Toolbar";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
+import { Link, useHistory } from "react-router-dom";
 
 const BaseRefsList = () => {
   const { refs, userId } = useContext(AppContext);
+  const history = useHistory();
 
   return (
     <Box>
-      <Toolbar
-        actions={
-          <Button
-            variant="button.floatingPrimary"
-            onClick={() =>
-              Meteor.call(
-                "refs.insert",
-                {
-                  createdAt: Date.now(),
-                  createdBy: userId,
-                  parentId: null,
-                  type: "text",
-                  story: [],
-                },
-                null,
-                (error, id) => console.log(id)
-              )
-            }
-          >
-            <UilPlus />
-            <Text ml={2}>Create</Text>
-          </Button>
+      <Button
+        variant="button.floatingPrimary"
+        onClick={() =>
+          Meteor.call("refs.insert", { type: "base" }, (error, id) =>
+            history.push(`/refs/${id}`)
+          )
         }
-      />
+      >
+        <UilPlus />
+        <Text ml={2}>Create</Text>
+      </Button>
       <Flex
         sx={{
           alignItems: "center",
@@ -52,9 +39,11 @@ const BaseRefsList = () => {
           }}
         >
           {refs
-            .filter((ref) => !ref.parentId)
+            .filter((ref) => ref.type === "base")
             .map((ref) => (
-              <BaseRefsListTile key={ref._id} {...ref} />
+              <Link key={ref._id} to={`/refs/${ref._id}`}>
+                {ref._id}
+              </Link>
             ))}
         </Grid>
       </Flex>
