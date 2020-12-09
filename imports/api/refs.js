@@ -5,18 +5,11 @@ export const RefsCollection = new Mongo.Collection("refs");
 
 Meteor.methods({
   "refs.insert"(options, position) {
-    const newRefId = RefsCollection.insert({
+    return RefsCollection.insert({
+      createdAt: Date.now(),
+      cretedBy: Meteor.userId(),
       ...options,
-      story: [],
     });
-
-    // Check if this ref is parent or not, then update the parent's story list.
-    options.parentId &&
-      RefsCollection.update(options.parentId, {
-        $push: { story: newRefId },
-      });
-
-    return newRefId;
   },
 
   "refs.update"(id, options) {

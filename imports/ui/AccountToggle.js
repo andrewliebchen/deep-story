@@ -5,12 +5,12 @@ import React, { useContext } from "react";
 import { controlHeight } from "../utils/theme";
 import { useHistory } from "react-router-dom";
 
-const AccountToogle = () => {
+const AccountToogle = (props) => {
   const { user } = useContext(AppContext);
   const history = useHistory();
 
   return (
-    <Box>
+    <Box {...props}>
       {user ? (
         <Avatar
           src={user.services.google.picture}

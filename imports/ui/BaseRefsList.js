@@ -2,11 +2,11 @@ import { Box, Button, Flex, Grid, Text } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import AppContext from "./AppContext";
 import React, { useContext } from "react";
-import RefTile from "./RefTile";
+import BaseRefsListTile from "./RefsListTile";
 import Toolbar from "./Toolbar";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
 
-const RefsList = () => {
+const BaseRefsList = () => {
   const { refs, userId } = useContext(AppContext);
 
   return (
@@ -54,7 +54,7 @@ const RefsList = () => {
           {refs
             .filter((ref) => !ref.parentId)
             .map((ref) => (
-              <RefTile key={ref._id} {...ref} />
+              <BaseRefsListTile key={ref._id} {...ref} />
             ))}
         </Grid>
       </Flex>
@@ -62,4 +62,4 @@ const RefsList = () => {
   );
 };
 
-export default RefsList;
+export default BaseRefsList;

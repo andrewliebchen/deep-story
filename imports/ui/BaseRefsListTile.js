@@ -7,7 +7,7 @@ import TimeAgo from "react-timeago";
 import UilEditAlt from "@iconscout/react-unicons/icons/uil-edit-alt";
 import UilTextFields from "@iconscout/react-unicons/icons/uil-text-fields";
 
-const RefTile = (props) => {
+const BaseRefsListTile = (props) => {
   const { getRef } = useContext(AppContext);
   const hasStory = props.story.length > 0;
 
@@ -62,4 +62,4 @@ const RefTile = (props) => {
   );
 };
 
-export default RefTile;
+export default BaseRefsListTile;
