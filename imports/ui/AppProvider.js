@@ -1,6 +1,3 @@
-import { Meteor } from "meteor/meteor";
-import { RefsCollection } from "../api/refs";
-import { useTracker } from "meteor/react-meteor-data";
 import AppContext from "./AppContext";
 import React, { useState } from "react";
 

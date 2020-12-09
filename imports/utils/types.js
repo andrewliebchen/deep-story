@@ -8,7 +8,7 @@ import UilPen from "@iconscout/react-unicons/icons/uil-pen";
 export const refTypes = {
   text: {
     icon: <UilPen />,
-    label: "Story",
+    label: "Text",
   },
   resource: {
     icon: <UilFileUpload />,

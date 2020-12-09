@@ -8,22 +8,16 @@
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {
-    "@accessible/use-keycode": "^4.0.2",
     "@babel/runtime": "^7.11.2",
     "@iconscout/react-unicons": "^1.1.5",
     "@react-hook/hover": "^4.0.0",
-    "array-previous": "^0.0.1",
     "bcrypt": "^5.0.0",
     "meteor-node-stubs": "^1.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
-    "react-contenteditable": "^3.3.5",
     "react-dom": "^16.13.1",
-    "react-feather": "^2.0.8",
     "react-router-dom": "^5.2.0",
-    "react-timeago": "^5.2.0",
-    "theme-ui": "^0.3.3",
-    "yallist": "^4.0.0"
+    "theme-ui": "^0.3.3"
   },
   "meteor": {
     "mainModule": {

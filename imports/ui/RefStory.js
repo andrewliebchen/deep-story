@@ -1,12 +1,9 @@
 import { Box, Flex } from "theme-ui";
-import React, { useState } from "react";
-import RefNew from "./RefNew";
-import { useParams } from "react-router-dom";
-import Ref from "./Ref";
 import { useChildRefs } from "../utils/hooks";
-
-// Need to use Yallist for the Refs during the session, save an index on each item.
-// Write those indexes back to the Ref collection...
+import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import Ref from "./Ref";
+import RefNew from "./RefNew";
 
 const RefStory = () => {
   const [selectedRefId, setSelectedRefId] = useState(false);

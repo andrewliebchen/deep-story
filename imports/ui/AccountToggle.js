@@ -1,12 +1,12 @@
 import { Avatar, Box, Button } from "theme-ui";
-import { Meteor } from "meteor/meteor";
-import AppContext from "./AppContext";
-import React, { useContext } from "react";
 import { controlHeight } from "../utils/theme";
+import { Meteor } from "meteor/meteor";
+import { useAccount } from "../utils/hooks";
 import { useHistory } from "react-router-dom";
+import React from "react";
 
 const AccountToogle = (props) => {
-  const { user } = useContext(AppContext);
+  const { user } = useAccount();
   const history = useHistory();
 
   return (
@@ -15,7 +15,7 @@ const AccountToogle = (props) => {
         <Avatar
           src={user.services.google.picture}
           sx={{
-            variant: "button.floating",
+            variant: "button.default",
             p: 0,
             height: controlHeight,
             width: controlHeight,
@@ -24,7 +24,7 @@ const AccountToogle = (props) => {
         />
       ) : (
         <Button
-          variant="button.floatingPrimary"
+          variant="button.primary"
           onClick={() =>
             Meteor.loginWithGoogle(
               {

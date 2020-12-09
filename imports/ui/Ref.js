@@ -1,11 +1,11 @@
 import { Flex, IconButton } from "theme-ui";
-import React, { useState, useContext } from "react";
 import AppContext from "./AppContext";
+import PropTypes from "prop-types";
+import React, { useState, useContext } from "react";
 import UilPen from "@iconscout/react-unicons/icons/uil-pen";
 import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 import useHover from "@react-hook/hover";
-import PropTypes from "prop-types";
 
 const Ref = (props) => {
   const [isEditing, setIsEditing] = useState(false);
