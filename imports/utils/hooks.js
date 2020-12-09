@@ -24,7 +24,10 @@ export const useBaseRefs = () =>
 
 export const useChildRefs = (parentId) =>
   useTracker(() => {
-    const refs = RefsCollection.find({ parentId: parentId }).fetch();
+    const refs = RefsCollection.find(
+      { parentId: parentId },
+      { sort: { rank: 1 } }
+    ).fetch();
     return {
       refs,
     };

@@ -380,6 +380,11 @@ are-we-there-yet@~1.1.2:
     delegates "^1.0.0"
     readable-stream "^2.0.6"
 
+array-previous@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/array-previous/-/array-previous-0.0.1.tgz#f83c7605b2eb8f8e105b4c6e7d52eb7acbaca310"
+  integrity sha512-VTdSkKJUqqU5eaDXRcUq1xAV+Aj/KX75VnuhxLa9UjAHWMzQ+o8tR2k13WtKJiTmFeXygaCCpjQNRho6aMT0ug==
+
 asn1.js@^5.2.0:
   version "5.4.1"
   resolved "https://registry.yarnpkg.com/asn1.js/-/asn1.js-5.4.1.tgz#11a980b84ebb91781ce35b0fdc2ee294e3783f07"

@@ -4,7 +4,7 @@ import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const RefNew = () => {
+const RefNew = (props) => {
   const { parentRefId } = useParams();
 
   return (
@@ -14,6 +14,7 @@ const RefNew = () => {
           Meteor.call("refs.insert", {
             type: "text",
             parentId: parentRefId,
+            rank: props.rank,
           })
         }
         sx={{ variant: "iconButton.default" }}

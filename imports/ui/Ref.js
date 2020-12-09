@@ -50,7 +50,9 @@ const Ref = (props) => {
           children={<UilTrash />}
         />
       )}
-      <Flex sx={{ variant: "flex.ref" }}>{props._id}</Flex>
+      <Flex sx={{ variant: "flex.ref" }}>
+        {props.rank}: {props._id}
+      </Flex>
     </Flex>
   );
 };
@@ -59,6 +61,7 @@ Ref.propTypes = {
   _id: PropTypes.string,
   isSelected: PropTypes.bool,
   onRefClick: PropTypes.func,
+  rank: PropTypes.number,
 };
 
 export default Ref;
