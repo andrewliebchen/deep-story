@@ -8,6 +8,7 @@ Meteor.methods({
     return RefsCollection.insert({
       createdAt: Date.now(),
       createdBy: Meteor.userId(),
+      showTitle: true,
       ...options,
     });
   },

@@ -1,8 +1,18 @@
-import { Text, Box, Textarea, Flex, Input, Heading } from "theme-ui";
+import {
+  Text,
+  Box,
+  Textarea,
+  Flex,
+  Input,
+  Heading,
+  IconButton,
+} from "theme-ui";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
 import Markdown from "react-markdown";
+import UilEye from "@iconscout/react-unicons/icons/uil-eye";
+import UilEyeSlash from "@iconscout/react-unicons/icons/uil-eye-slash";
 
 const allowedMarkdownTypes = [
   "root",
@@ -24,7 +34,9 @@ const RefContent = (props) => {
     default:
       content = (
         <Flex sx={{ variant: "flex.ref" }}>
-          {props.title && <Heading mb={2}>{props.title}</Heading>}
+          {props.title && props.showTitle && (
+            <Heading mb={2}>{props.title}</Heading>
+          )}
           <Text
             sx={{
               variant: "text.default",
@@ -43,7 +55,24 @@ const RefContent = (props) => {
       );
       form = (
         <Box>
-          <Flex sx={{ variant: "flex.ref", mb: 2, py: 2 }}>
+          <Flex
+            sx={{
+              variant: "flex.ref",
+              mb: 2,
+              p: 2,
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <IconButton
+              sx={{ variant: "iconButton.default", mr: 2 }}
+              children={props.showTitle ? <UilEye /> : <UilEyeSlash />}
+              onClick={() =>
+                Meteor.call("refs.update", props._id, {
+                  showTitle: !props.showTitle,
+                })
+              }
+            />
             <Input
               variant="input.inline"
               placeholder="Add a title..."
@@ -53,6 +82,10 @@ const RefContent = (props) => {
                   title: event.target.value,
                 })
               }
+              sx={{
+                fontWeight: "bold",
+                color: props.showTitle ? "text" : "textSecondary",
+              }}
             />
           </Flex>
           <Textarea
@@ -78,6 +111,7 @@ RefContent.propTypes = {
   rank: PropTypes.number,
   title: PropTypes.string,
   type: PropTypes.oneOf(["text"]),
+  showTitle: PropTypes.bool,
 };
 
 export default RefContent;
