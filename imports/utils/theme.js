@@ -139,6 +139,12 @@ export default {
       px: 3,
       py: 2,
     },
+    refRightButtons: {
+      position: "absolute",
+      right: 3,
+      width: 36,
+      justifyContent: "flex-end",
+    },
   },
   fonts: {
     body:

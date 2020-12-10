@@ -6,6 +6,7 @@ import RefContent from "./RefContent";
 import UilPen from "@iconscout/react-unicons/icons/uil-pen";
 import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
+import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
 import useHover from "@react-hook/hover";
 
 const Ref = (props) => {
@@ -41,21 +42,39 @@ const Ref = (props) => {
         />
       )}
       {isSelected && (
-        <IconButton
-          onClick={() =>
-            window.confirm("Are you sure you want to delete this ref?") &&
-            Meteor.call("refs.remove", props._id)
-          }
-          sx={{
-            variant: "iconButton.white",
-            color: "negative",
-            position: "absolute",
-            right: 3,
-          }}
-          children={<UilTrash />}
-        />
+        <Flex variant="flex.refRightButtons">
+          <IconButton
+            onClick={() =>
+              window.confirm("Are you sure you want to delete this ref?") &&
+              Meteor.call("refs.remove", props._id)
+            }
+            sx={{
+              variant: "iconButton.white",
+              color: "negative",
+              mr: 2,
+              "&:hover": {
+                bg: "negativeBackground",
+              },
+            }}
+            children={<UilTrash />}
+          />
+          <IconButton
+            onClick={() =>
+              Meteor.call(
+                "refs.insert",
+                {
+                  type: "text",
+                  parentId: props._id,
+                  rank: 1,
+                },
+                (error, id) => alert(`/refs/${id}`)
+              )
+            }
+            variant="iconButton.primary"
+            children={<UilPlus />}
+          />
+        </Flex>
       )}
-
       <RefContent {...props} />
     </Flex>
   );

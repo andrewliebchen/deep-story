@@ -5,3 +5,11 @@ img {
 a {
   text-decoration: none;
 }
+
+p {
+  margin: 0;
+}
+
+p + p {
+  margin-top: 16px;
+}
