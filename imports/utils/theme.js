@@ -231,6 +231,7 @@ export default {
     ref: {
       ...invisibleInputBase,
       ...flexRefBase,
+      resize: "none",
     },
   },
 };

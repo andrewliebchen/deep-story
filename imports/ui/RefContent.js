@@ -2,6 +2,18 @@ import { Text, Box, Textarea, Flex, Input, Heading } from "theme-ui";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
+import Markdown from "react-markdown";
+
+const allowedMarkdownTypes = [
+  "root",
+  "text",
+  "paragraph",
+  "emphasis",
+  "strong",
+  "link",
+  "inlineCode",
+  "code",
+];
 
 const RefContent = (props) => {
   const { selectedRefId } = useContext(AppContext);
@@ -19,7 +31,13 @@ const RefContent = (props) => {
               color: props.content || "textSecondary",
             }}
           >
-            {props.content || "Tell a story..."}
+            {props.content ? (
+              <Markdown allowedTypes={allowedMarkdownTypes}>
+                {props.content}
+              </Markdown>
+            ) : (
+              "Tell a story..."
+            )}
           </Text>
         </Flex>
       );

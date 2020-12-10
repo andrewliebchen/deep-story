@@ -13,10 +13,11 @@ Go deep into a story by adding a story within each word. Maybe like a mini inter
 
 ### 🚧 Milestone 1: Basic CRUD for `story` ref types
 
-- Press esc to un-select a Ref.
-- Press enter to select the next ref.
-- Arrow up/down to select previous/next ref.
-- Affordance to toggle title on/off.
+- Press esc or enger to un-select a Ref
+- Affordance to toggle title on/off
+- Add new ref creation component
+- Markdown
+- Create a new child ref from a word
 
 ### ⏳ Milestone 2: Create, edit, and manage `mock` ref types
 
@@ -53,3 +54,4 @@ This might change...but this was always an interesting feature of Quip, especial
 - `/commands`, like `/fake` and the Faker tags
 - Slash command that allow you to add an outgoing connection to another reference
 - Show how many incoming and outgoing references there are to a reference
+- Arrow up/down to select previous/next ref
