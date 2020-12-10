@@ -15,7 +15,7 @@ Go deep into a story by adding a story within each word. Maybe like a mini inter
 
 - Press esc or enter to un-select a Ref
 - ✅ Affordance to toggle title on/off
-- Add new ref creation component
+- ✅ Add new ref creation component
 - ✅ Markdown
 - ✅ Create a new child ref from a word
 
