@@ -8,9 +8,12 @@ import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
 import useHover from "@react-hook/hover";
+import ultralightCopy from "copy-to-clipboard-ultralight";
 
 const Ref = (props) => {
-  const { selectedRefId, setSelectedRefId } = useContext(AppContext);
+  const { selectedRefId, setSelectedRefId, setToastMessage } = useContext(
+    AppContext
+  );
 
   const isSelected = selectedRefId === props._id;
 
@@ -67,7 +70,12 @@ const Ref = (props) => {
                   parentId: props._id,
                   rank: 1,
                 },
-                (error, id) => alert(`/refs/${id}`)
+                (error, id) => {
+                  ultralightCopy(`/refs/${id}`);
+                  setToastMessage(
+                    "New ref created and link copied to clipboard"
+                  );
+                }
               )
             }
             variant="iconButton.primary"

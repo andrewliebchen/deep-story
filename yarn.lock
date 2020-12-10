@@ -644,6 +644,11 @@ convert-source-map@^1.5.0:
   dependencies:
     safe-buffer "~5.1.1"
 
+copy-to-clipboard-ultralight@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/copy-to-clipboard-ultralight/-/copy-to-clipboard-ultralight-1.0.2.tgz#9bf9aa1d336714e4f7c8e4b1c2cb9431deafb688"
+  integrity sha512-O7OZEgXzEHydQoMa1RvAroUh8KUCbhv3TxIi547jJohAnDZZCWsIvGKclTd4sOWELjRiaN94vepR3LLPmdf7NA==
+
 core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
@@ -1479,7 +1484,7 @@ process@^0.11.10:
   resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
   integrity sha1-czIwDoQBYb2j5podHZGn1LwW8YI=
 
-prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -1559,6 +1564,13 @@ react-dom@^16.13.1:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     scheduler "^0.19.1"
+
+react-interval@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-interval/-/react-interval-2.1.1.tgz#5de76277c62c1a6679e3f761690516ce82393350"
+  integrity sha512-ElqbAlARY9mkcCPxdwbn5deX1Dx6oKEbIWy4Voubbf6+8oVLPdXHxX5fEALkGerIom0T+WBYzdumjrSkgPlEzA==
+  dependencies:
+    prop-types "^15.6.0"
 
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.6:
   version "16.13.1"

@@ -6,6 +6,7 @@ import Nav from "./Nav";
 import React from "react";
 import RefStory from "./RefStory";
 import Sandbox from "./Sandbox";
+import Toasts from "./Toasts";
 
 const App = (props) => (
   <Router>
@@ -18,6 +19,7 @@ const App = (props) => (
         <Route path="/" component={BaseRefsList} />
       </Switch>
     </Box>
+    <Toasts />
   </Router>
 );
 

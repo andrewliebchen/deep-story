@@ -6,12 +6,17 @@ const AppProvider = (props) => {
   // "Z8JfW3Nm7FzKh6XPF"
   const [selectedRefId, setSelectedRefId] = useState(false);
 
+  // Toast
+  const [toastMessage, setToastMessage] = useState(false);
+
   return (
     <AppContext.Provider
       value={{
         ...props,
         selectedRefId,
         setSelectedRefId,
+        toastMessage,
+        setToastMessage,
       }}
     >
       {props.children}
