@@ -7,6 +7,7 @@ import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
 import UilTextFields from "@iconscout/react-unicons/icons/uil-text-fields";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 import useHover from "@react-hook/hover";
+import { refTypes } from "../utils/types";
 
 const RefNew = (props) => {
   const { setSelectedRefId } = useContext(AppContext);
@@ -16,34 +17,43 @@ const RefNew = (props) => {
   const target = React.useRef(null);
   const isHovering = useHover(target);
 
+  const insert = (type) =>
+    Meteor.call(
+      "refs.insert",
+      {
+        type: type,
+        parentId: parentRefId,
+        rank: props.rank,
+      },
+      (error, id) => {
+        setSelectedRefId(id);
+        setIsSelectingType(false);
+      }
+    );
+
   return (
     <>
       {isSelectingType ? (
-        <Flex sx={{ variant: "flex.refWrapper", bg: "primaryMuted" }}>
-          <IconButton
-            onClick={() =>
-              Meteor.call(
-                "refs.insert",
-                {
-                  type: "text",
-                  parentId: parentRefId,
-                  rank: props.rank,
-                },
-                (error, id) => {
-                  setSelectedRefId(id);
-                  setIsSelectingType(false);
-                }
-              )
-            }
-            sx={{ variant: "iconButton.white", mr: 2 }}
-            children={<UilTextFields />}
-          />
+        <Flex
+          sx={{ variant: "flex.refWrapper", bg: "primaryMuted", px: 3, py: 4 }}
+        >
+          {refTypes.map((type) => (
+            <IconButton
+              key={type.stub}
+              onClick={() => insert(type.stub)}
+              sx={{ variant: "iconButton.white", mr: 2 }}
+              children={type.icon}
+              disabled={!type.active}
+            />
+          ))}
+
           <IconButton
             onClick={() => setIsSelectingType(false)}
             sx={{
               variant: "iconButton.white",
               color: "negative",
-              mr: 2,
+              position: "absolute",
+              right: 3,
               "&:hover": {
                 bg: "negativeBackground",
               },

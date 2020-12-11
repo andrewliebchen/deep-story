@@ -3,27 +3,37 @@ import UilCheckCircle from "@iconscout/react-unicons/icons/uil-check-circle";
 import UilFileUpload from "@iconscout/react-unicons/icons/uil-file-upload";
 import UilGrid from "@iconscout/react-unicons/icons/uil-grid";
 import UilHeadSide from "@iconscout/react-unicons/icons/uil-head-side";
-import UilPen from "@iconscout/react-unicons/icons/uil-pen";
+import UilTextFields from "@iconscout/react-unicons/icons/uil-text-fields";
 
-export const refTypes = {
-  text: {
-    icon: <UilPen />,
+export const refTypes = [
+  {
+    active: true,
+    icon: <UilTextFields />,
     label: "Text",
+    stub: "text",
   },
-  resource: {
-    icon: <UilFileUpload />,
-    label: "Resource",
-  },
-  mock: {
+  {
+    active: true,
     icon: <UilHeadSide />,
     label: "Mock",
+    stub: "mock",
   },
-  table: {
+  {
+    active: false,
+    icon: <UilFileUpload />,
+    label: "Resource",
+    stub: "resource",
+  },
+  {
+    active: false,
     icon: <UilGrid />,
     label: "Table",
+    stub: "table",
   },
-  tasks: {
+  {
+    active: false,
     icon: <UilCheckCircle />,
     label: "Tasks",
+    stub: "tasks",
   },
-};
+];

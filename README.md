@@ -11,15 +11,15 @@ Go deep into a story by adding a story within each word. Maybe like a mini inter
 5. Add teams
 6. Deployment
 
-### 🚧 Milestone 1: Basic CRUD for `story` ref types
+### ✅ Milestone 1: Basic CRUD for `story` ref types
 
-- Press esc or enter to un-select a Ref
+- ⏳ Press esc or enter to un-select a Ref
 - ✅ Affordance to toggle title on/off
 - ✅ Add new ref creation component
 - ✅ Markdown
 - ✅ Create a new child ref from a word
 
-### ⏳ Milestone 2: Create, edit, and manage `mock` ref types
+### 🚧 Milestone 2: Create, edit, and manage `mock` ref types
 
 Hopefully, this will be the first real "magic moment..."
 

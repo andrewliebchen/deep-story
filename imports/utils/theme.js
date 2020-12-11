@@ -16,6 +16,13 @@ const controlBase = {
   "&:hover": {
     bg: "primaryBackground",
   },
+  "&:disabled": {
+    color: "primaryBackground",
+    cursor: "not-allowed",
+    "&:hover": {
+      bg: "background",
+    },
+  },
 };
 
 const buttonPrimaryStyles = {
