@@ -26,7 +26,8 @@ Hopefully, this will be the first real "magic moment..."
 - Mock CRUD
 - Display Mock ref inline
 - `/mocks` index page list of all mocks
-- Add an existing mock to a ref
+- Link a ref to an existing mock (or any ref)
+- Pin the reference line to the top of the story... "...blah blah WORD blah blah..."
 
 ### ⏳ Milestone 3: Add `resource` ref types
 
