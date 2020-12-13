@@ -210,6 +210,10 @@ export default {
       "&:hover": {
         color: "text",
       },
+      "&:disabled": {
+        color: "textSecondary",
+        cursor: "not-allowed",
+      },
     },
     inline: {
       ...invisibleInputBase,

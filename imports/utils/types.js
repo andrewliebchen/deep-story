@@ -37,3 +37,45 @@ export const refTypes = [
     stub: "tasks",
   },
 ];
+
+export const mockTypes = {
+  person: {
+    type: "object",
+    label: "Person",
+    properties: {
+      name: {
+        type: "string",
+        faker: "name.findName",
+      },
+      email: {
+        type: "string",
+        format: "email",
+        faker: "internet.email",
+      },
+      avatar: {
+        type: "string",
+        format: "uri",
+        faker: "image.avatar",
+      },
+    },
+  },
+  transaction: {
+    type: "object",
+    label: "Transaction",
+    properties: {
+      amount: {
+        type: "number",
+        faker: "finance.amount",
+      },
+      date: {
+        type: "string",
+        faker: "date.past",
+        format: "date-time",
+      },
+      business: {
+        type: "string",
+        fake: "company.companyName",
+      },
+    },
+  },
+};

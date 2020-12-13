@@ -3,6 +3,8 @@ import { Box, Button, Flex, IconButton, Input, Select, Text } from "theme-ui";
 import UilCornerRightDown from "@iconscout/react-unicons/icons/uil-corner-right-down";
 import UilRefresh from "@iconscout/react-unicons/icons/uil-refresh";
 import PropTypes from "prop-types";
+import { mockTypes } from "../utils/types";
+import { Meteor } from "meteor/meteor";
 
 const RefMockEdit = (props) => (
   <Box>
@@ -12,8 +14,22 @@ const RefMockEdit = (props) => (
           <Text sx={{ fontWeight: "bold", textAlign: "center", mb: 2 }}>
             Type of mock
           </Text>
-          <Select sx={{ variant: "select.default" }}>
-            <option>Person</option>
+          <Select
+            sx={{ variant: "select.default" }}
+            value={props.schema && props.schema.label}
+            onChange={(event) =>
+              Meteor.call(
+                "refs.changeSchemaType",
+                props._id,
+                event.target.value
+              )
+            }
+          >
+            {Object.keys(mockTypes).map((key) => (
+              <option key={key} value={key}>
+                {mockTypes[key].label}
+              </option>
+            ))}
           </Select>
         </Flex>
         <Flex sx={{ flexDirection: "column", m: 2, flex: "1 1 0" }}>
@@ -35,22 +51,26 @@ const RefMockEdit = (props) => (
     </Flex>
 
     <Flex sx={{ variant: "flex.ref", mt: 2 }}>
-      <Flex m={-1}>
-        <Input disabled value="name" sx={{ variant: "input.default", m: 1 }} />
-        <Input
-          sx={{ variant: "input.default", m: 1 }}
-          value="Marky Mark"
-          readOnly
-        />
-        <IconButton
-          children={<UilRefresh />}
-          sx={{ variant: "iconButton.default", m: 1 }}
-        />
-      </Flex>
-      <Button variant="button.default" mt={3}>
-        <UilCornerRightDown />
-        <Text>See all default parameters</Text>
-      </Button>
+      <Box m={-1}>
+        {Object.keys(props.data).map((key) => (
+          <Flex m={1} key={key}>
+            <Input
+              disabled
+              value={key}
+              sx={{ variant: "input.default", m: 1 }}
+            />
+            <Input
+              sx={{ variant: "input.default", m: 1 }}
+              value={props.data[key]}
+              readOnly
+            />
+            <IconButton
+              children={<UilRefresh />}
+              sx={{ variant: "iconButton.default", m: 1 }}
+            />
+          </Flex>
+        ))}
+      </Box>
     </Flex>
 
     {/* TODO: Add custom params */}
@@ -60,6 +80,7 @@ const RefMockEdit = (props) => (
 RefMockEdit.propTypes = {
   _id: PropTypes.string,
   nickname: PropTypes.string,
+  data: PropTypes.object,
 };
 
 export default RefMockEdit;
