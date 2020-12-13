@@ -5,7 +5,7 @@ const AppProvider = (props) => {
   // Get the selected ref and set up editing state
   // "Z8JfW3Nm7FzKh6XPF"
   // "nJNc7a28Cba6WXfQE"
-  const [selectedRefId, setSelectedRefId] = useState("nJNc7a28Cba6WXfQE");
+  const [selectedRefId, setSelectedRefId] = useState("");
 
   // Toast
   const [toastMessage, setToastMessage] = useState(false);

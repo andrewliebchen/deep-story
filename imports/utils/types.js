@@ -42,6 +42,7 @@ export const mockTypes = {
   person: {
     type: "object",
     label: "Person",
+    additionalProperties: false,
     properties: {
       name: {
         type: "string",
@@ -52,16 +53,17 @@ export const mockTypes = {
         format: "email",
         faker: "internet.email",
       },
-      avatar: {
+      image: {
         type: "string",
         format: "uri",
-        faker: "image.avatar",
+        faker: "image.people",
       },
     },
   },
   transaction: {
     type: "object",
     label: "Transaction",
+    additionalProperties: false,
     properties: {
       amount: {
         type: "number",
