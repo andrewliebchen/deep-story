@@ -14,7 +14,7 @@ const allowedMarkdownTypes = [
   "code",
 ];
 
-const RefContentText = (props) => (
+const RefTextView = (props) => (
   <Flex sx={{ variant: "flex.ref" }}>
     {props.title && props.showTitle && <Heading mb={2}>{props.title}</Heading>}
     <Text
@@ -32,10 +32,10 @@ const RefContentText = (props) => (
   </Flex>
 );
 
-RefContentText.propTypes = {
+RefTextView.propTypes = {
   content: PropTypes.node,
   title: PropTypes.string,
   showTitle: PropTypes.bool,
 };
 
-export default RefContentText;
+export default RefTextView;

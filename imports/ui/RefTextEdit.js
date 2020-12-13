@@ -4,7 +4,7 @@ import React from "react";
 import UilEye from "@iconscout/react-unicons/icons/uil-eye";
 import UilEyeSlash from "@iconscout/react-unicons/icons/uil-eye-slash";
 
-const RefContentTextForm = (props) => (
+const RefTextEdit = (props) => (
   <Box>
     <Flex
       sx={{
@@ -52,10 +52,10 @@ const RefContentTextForm = (props) => (
   </Box>
 );
 
-RefContentTextForm.propTypes = {
+RefTextEdit.propTypes = {
   _id: PropTypes.string,
   content: PropTypes.node,
   title: PropTypes.string,
 };
 
-export default RefContentTextForm;
+export default RefTextEdit;

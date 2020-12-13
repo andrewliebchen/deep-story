@@ -1,28 +1,28 @@
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
-import RefContentText from "./RefContentText";
-import RefContentTextForm from "./RefContentTextForm";
-import RefContentMock from "./RefContentMock";
-import RefContentMockForm from "./RefContentMockForm";
+import RefTextView from "./RefTextView";
+import RefTextEdit from "./RefTextEdit";
+import RefMockView from "./RefMockView";
+import RefMockEdit from "./RefMockEdit";
 
 const RefContent = (props) => {
   const { selectedRefId } = useContext(AppContext);
   const isSelected = selectedRefId === props._id;
 
-  let content, form;
+  let view, edit;
 
   switch (props.type) {
     case "mock":
-      content = <RefContentMock {...props} />;
-      form = <RefContentMockForm {...props} />;
+      view = <RefMockView {...props} />;
+      edit = <RefMockEdit {...props} />;
       break;
     default:
-      content = <RefContentText {...props} />;
-      form = <RefContentTextForm {...props} />;
+      view = <RefTextView {...props} />;
+      edit = <RefTextEdit {...props} />;
   }
 
-  return isSelected ? form : content;
+  return isSelected ? edit : view;
 };
 
 RefContent.propTypes = {
