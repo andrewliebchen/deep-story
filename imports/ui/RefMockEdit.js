@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button, Flex, IconButton, Input, Select, Text } from "theme-ui";
 import UilCornerRightDown from "@iconscout/react-unicons/icons/uil-corner-right-down";
 import UilRefresh from "@iconscout/react-unicons/icons/uil-refresh";
-import UilAngleDown from "@iconscout/react-unicons/icons/uil-angle-down";
+import PropTypes from "prop-types";
 
 const RefMockEdit = (props) => (
   <Box>
@@ -12,7 +12,7 @@ const RefMockEdit = (props) => (
           <Text sx={{ fontWeight: "bold", textAlign: "center", mb: 2 }}>
             Type of mock
           </Text>
-          <Select sx={{ variant: "select.default" }} arrow={<UilAngleDown />}>
+          <Select sx={{ variant: "select.default" }}>
             <option>Person</option>
           </Select>
         </Flex>
@@ -23,6 +23,12 @@ const RefMockEdit = (props) => (
           <Input
             placeholder="Make it unique..."
             sx={{ variant: "input.default" }}
+            value={props.nickname}
+            onChange={(event) =>
+              Meteor.call("refs.update", props._id, {
+                nickname: event.target.value,
+              })
+            }
           />
         </Flex>
       </Flex>
@@ -50,5 +56,10 @@ const RefMockEdit = (props) => (
     {/* TODO: Add custom params */}
   </Box>
 );
+
+RefMockEdit.propTypes = {
+  _id: PropTypes.string,
+  nickname: PropTypes.string,
+};
 
 export default RefMockEdit;
