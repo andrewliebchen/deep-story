@@ -4,7 +4,8 @@ import React, { useState } from "react";
 const AppProvider = (props) => {
   // Get the selected ref and set up editing state
   // "Z8JfW3Nm7FzKh6XPF"
-  const [selectedRefId, setSelectedRefId] = useState(false);
+  // "nJNc7a28Cba6WXfQE"
+  const [selectedRefId, setSelectedRefId] = useState("nJNc7a28Cba6WXfQE");
 
   // Toast
   const [toastMessage, setToastMessage] = useState(false);

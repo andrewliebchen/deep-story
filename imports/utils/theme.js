@@ -228,7 +228,7 @@ export default {
     default: {
       ...controlBase,
       border: 0,
-      minWidth: 200,
+      width: "100%",
     },
   },
   sizes: {
