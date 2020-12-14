@@ -16,7 +16,7 @@ const RefMockEdit = (props) => (
           </Text>
           <Select
             sx={{ variant: "select.default" }}
-            value={props.schema && props.schema.label}
+            defaultValue={props.schema && props.schema.label}
             onChange={(event) =>
               Meteor.call(
                 "refs.changeSchemaType",
@@ -26,7 +26,7 @@ const RefMockEdit = (props) => (
             }
           >
             {Object.keys(mockTypes).map((key) => (
-              <option key={key} defaultValue={key}>
+              <option key={key} value={key}>
                 {mockTypes[key].label}
               </option>
             ))}
@@ -52,24 +52,25 @@ const RefMockEdit = (props) => (
 
     <Flex sx={{ variant: "flex.ref", mt: 2 }}>
       <Box m={-1}>
-        {Object.keys(props.data).map((key) => (
-          <Flex m={1} key={key}>
-            <Input
-              disabled
-              value={key}
-              sx={{ variant: "input.default", m: 1 }}
-            />
-            <Input
-              sx={{ variant: "input.default", m: 1 }}
-              value={props.data[key]}
-              readOnly
-            />
-            <IconButton
-              children={<UilRefresh />}
-              sx={{ variant: "iconButton.default", m: 1 }}
-            />
-          </Flex>
-        ))}
+        {props.data &&
+          Object.keys(props.data).map((key) => (
+            <Flex m={1} key={key}>
+              <Input
+                disabled
+                value={key}
+                sx={{ variant: "input.default", m: 1 }}
+              />
+              <Input
+                sx={{ variant: "input.default", m: 1 }}
+                value={props.data[key]}
+                readOnly
+              />
+              <IconButton
+                children={<UilRefresh />}
+                sx={{ variant: "iconButton.default", m: 1 }}
+              />
+            </Flex>
+          ))}
       </Box>
     </Flex>
 

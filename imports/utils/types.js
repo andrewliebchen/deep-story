@@ -56,7 +56,7 @@ export const mockTypes = {
       image: {
         type: "string",
         format: "uri",
-        faker: "image.people",
+        faker: "image.avatar",
       },
     },
   },
