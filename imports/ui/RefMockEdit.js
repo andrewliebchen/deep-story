@@ -26,7 +26,7 @@ const RefMockEdit = (props) => (
             }
           >
             {Object.keys(mockTypes).map((key) => (
-              <option key={key} value={key}>
+              <option key={key} defaultValue={key}>
                 {mockTypes[key].label}
               </option>
             ))}

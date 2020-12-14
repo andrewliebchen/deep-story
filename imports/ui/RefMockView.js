@@ -3,6 +3,8 @@ import { Avatar, Box, Text, Flex } from "theme-ui";
 import PropTypes from "prop-types";
 import { mockTypes } from "../utils/types";
 
+const imageSize = 72;
+
 const RefMockView = (props) => (
   <Box
     sx={{
@@ -12,8 +14,13 @@ const RefMockView = (props) => (
       "&:hover": { borderColor: "background" },
     }}
   >
-    <Flex>
-      {props.data.image && <Avatar src={props.data.image} size={108} />}
+    <Flex sx={{ alignItems: "center" }}>
+      {props.data.image && (
+        <Avatar
+          src={props.data.image}
+          sx={{ height: imageSize, width: imageSize }}
+        />
+      )}
       <Box sx={{ ml: 3 }}>
         {Object.keys(props.data).map((key) => (
           <Flex key={key}>
