@@ -1,13 +1,13 @@
 import { Box, Flex } from "theme-ui";
+import { isReady } from "../utils/helpers";
 import { useChildRefs } from "../utils/hooks";
-import { useParams } from "react-router-dom";
 import { useKeycodes } from "@accessible/use-keycode";
+import { useParams } from "react-router-dom";
 import React, { useState } from "react";
 import Ref from "./Ref";
+import RefContent from "./RefContent";
 import RefNew from "./RefNew";
 import RefTextView from "./RefTextView";
-import RefContent from "./RefContent";
-import { isReady } from "../utils/helpers";
 
 const RefStory = () => {
   const [selectedRefId, setSelectedRefId] = useState(false);

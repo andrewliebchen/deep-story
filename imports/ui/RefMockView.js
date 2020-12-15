@@ -1,7 +1,8 @@
-import React from "react";
 import { Avatar, Box, Button, Text, Flex, Heading } from "theme-ui";
-import PropTypes from "prop-types";
 import { mockTypes } from "../utils/types";
+import PropTypes from "prop-types";
+import React from "react";
+import UilCornerRightDown from "@iconscout/react-unicons/icons/uil-corner-right-down";
 
 const imageSize = 72;
 
@@ -36,7 +37,8 @@ const RefMockView = (props) => (
       </Flex>
     )}
     <Button sx={{ variant: "button.default", mt: 3, width: "100%" }}>
-      See all parameters
+      <UilCornerRightDown />
+      <Text ml={2}>See all parameters</Text>
     </Button>
   </Box>
 );

@@ -1,17 +1,14 @@
-import { Flex, IconButton, Text } from "theme-ui";
+import { Flex, IconButton } from "theme-ui";
+import { useHistory } from "react-router-dom";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
 import RefContent from "./RefContent";
-import UilPen from "@iconscout/react-unicons/icons/uil-pen";
-import UilCheck from "@iconscout/react-unicons/icons/uil-check";
-import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
-import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
 import UilArrowRight from "@iconscout/react-unicons/icons/uil-arrow-right";
+import UilCheck from "@iconscout/react-unicons/icons/uil-check";
+import UilPen from "@iconscout/react-unicons/icons/uil-pen";
+import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 import useHover from "@react-hook/hover";
-import ultralightCopy from "copy-to-clipboard-ultralight";
-import { isReady } from "../utils/helpers";
-import { useHistory } from "react-router-dom";
 
 import { RefsCollection } from "../api/refs";
 

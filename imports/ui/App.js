@@ -1,11 +1,11 @@
 import { Box } from "theme-ui";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import BaseRefsList from "./BaseRefsList";
+import Header from "./Header";
 import React from "react";
 import RefStory from "./RefStory";
 import Sandbox from "./Sandbox";
 import Toasts from "./Toasts";
-import Header from "./Header";
 
 const App = (props) => (
   <Router>

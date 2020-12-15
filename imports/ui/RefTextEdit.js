@@ -1,4 +1,4 @@
-import { Text, Box, Textarea, Flex, Input, IconButton } from "theme-ui";
+import { Box, Flex, Input, IconButton, Text, Textarea } from "theme-ui";
 import PropTypes from "prop-types";
 import React from "react";
 import UilEye from "@iconscout/react-unicons/icons/uil-eye";

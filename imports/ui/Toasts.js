@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react";
-import AppContext from "./AppContext";
 import { Flex, Text } from "theme-ui";
+import AppContext from "./AppContext";
+import React, { useContext, useEffect } from "react";
 import ReactInterval from "react-interval";
 
 const Toasts = (props) => {

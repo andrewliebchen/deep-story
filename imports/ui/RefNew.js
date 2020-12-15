@@ -1,13 +1,12 @@
 import { Flex, IconButton } from "theme-ui";
+import { refTypes } from "../utils/types";
 import { useParams } from "react-router-dom";
+import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext, useState } from "react";
-import AppContext from "./AppContext";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
-import UilTextFields from "@iconscout/react-unicons/icons/uil-text-fields";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 import useHover from "@react-hook/hover";
-import { refTypes } from "../utils/types";
 
 const RefNew = (props) => {
   const { setSelectedRefId } = useContext(AppContext);

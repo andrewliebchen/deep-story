@@ -1,7 +1,7 @@
-import React from "react";
 import { Flex, Heading, Text } from "theme-ui";
 import Markdown from "react-markdown";
 import PropTypes from "prop-types";
+import React from "react";
 
 const allowedMarkdownTypes = [
   "root",

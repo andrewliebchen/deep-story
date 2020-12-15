@@ -1,10 +1,9 @@
-import React from "react";
 import { Box, Button, Flex, IconButton, Input, Select, Text } from "theme-ui";
-import UilCornerRightDown from "@iconscout/react-unicons/icons/uil-corner-right-down";
-import UilRefresh from "@iconscout/react-unicons/icons/uil-refresh";
-import PropTypes from "prop-types";
-import { mockTypes } from "../utils/types";
 import { Meteor } from "meteor/meteor";
+import { mockTypes } from "../utils/types";
+import PropTypes from "prop-types";
+import React from "react";
+import UilRefresh from "@iconscout/react-unicons/icons/uil-refresh";
 
 const RefMockEdit = (props) => (
   <Box>
