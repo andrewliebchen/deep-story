@@ -37,6 +37,10 @@ export const useChildRefs = (parentId) =>
       refs,
       parentRef,
     };
-  }, []);
+  });
 
-export const useRef = (id) => useTracker(() => RefsCollection.findOne(id), []);
+export const useGetRef = (key = "_id", value) => {
+  let query = {};
+  query[key] = value;
+  return useTracker(() => RefsCollection.findOne(query), []);
+};

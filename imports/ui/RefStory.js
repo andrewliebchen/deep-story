@@ -1,5 +1,5 @@
 import { Box, Flex } from "theme-ui";
-import { useChildRefs, useRef } from "../utils/hooks";
+import { useChildRefs } from "../utils/hooks";
 import { useParams } from "react-router-dom";
 import { useKeycodes } from "@accessible/use-keycode";
 import React, { useState } from "react";
@@ -14,8 +14,6 @@ const RefStory = () => {
   const { parentRefId } = useParams();
 
   const { refs, parentRef } = useChildRefs(parentRefId);
-
-  console.log(parentRef);
 
   // TODO: Fix this...?
   const keycodesListener = useKeycodes({

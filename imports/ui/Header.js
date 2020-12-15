@@ -5,12 +5,12 @@ import ColorModeToggle from "./ColorModeToggle";
 import Sandbox from "./Sandbox";
 import Nav from "./Nav";
 import { useParams } from "react-router-dom";
-import { useRef } from "../utils/hooks";
+import { useGetRef } from "../utils/hooks";
 import { isReady } from "../utils/helpers";
 
 const Header = () => {
   const { parentRefId } = useParams();
-  const parentRef = useRef(parentRefId);
+  const parentRef = useGetRef(parentRefId);
 
   return (
     <Flex

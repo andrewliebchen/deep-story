@@ -4,16 +4,22 @@ import PropTypes from "prop-types";
 import React, { useContext } from "react";
 import RefContent from "./RefContent";
 import UilPen from "@iconscout/react-unicons/icons/uil-pen";
-import UilTimes from "@iconscout/react-unicons/icons/uil-times";
+import UilCheck from "@iconscout/react-unicons/icons/uil-check";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
+import UilArrowRight from "@iconscout/react-unicons/icons/uil-arrow-right";
 import useHover from "@react-hook/hover";
 import ultralightCopy from "copy-to-clipboard-ultralight";
+import { isReady } from "../utils/helpers";
+import { useHistory } from "react-router-dom";
+
+import { RefsCollection } from "../api/refs";
 
 const Ref = (props) => {
   const { selectedRefId, setSelectedRefId, setToastMessage } = useContext(
     AppContext
   );
+  const history = useHistory();
 
   const isSelected = selectedRefId === props._id;
 
@@ -37,47 +43,36 @@ const Ref = (props) => {
             setSelectedRefId(selectedRefId === props._id || props._id)
           }
           sx={{
-            variant: "iconButton.white",
+            variant: `iconButton.${isSelected ? "whitePositive" : "white"}`,
             position: "absolute",
             left: 3,
           }}
-          children={isSelected ? <UilTimes /> : <UilPen />}
+          children={isSelected ? <UilCheck /> : <UilPen />}
         />
       )}
-      {isSelected && (
+      {isHovering && (
         <Flex variant="flex.refRightButtons">
-          <IconButton
-            onClick={() =>
-              window.confirm("Are you sure you want to delete this ref?") &&
-              Meteor.call("refs.remove", props._id)
-            }
-            sx={{
-              variant: "iconButton.white",
-              color: "negative",
-              mr: 2,
-              "&:hover": {
-                bg: "negativeBackground",
-              },
-            }}
-            children={<UilTrash />}
-          />
-          <IconButton
-            onClick={() =>
-              Meteor.call(
-                "refs.insert",
-                {
-                  type: "text",
-                  parentId: props._id,
-                  rank: 1,
+          {isSelected && (
+            <IconButton
+              onClick={() =>
+                window.confirm("Are you sure you want to delete this ref?") &&
+                Meteor.call("refs.remove", props._id)
+              }
+              sx={{
+                variant: "iconButton.white",
+                color: "negative",
+                mr: 2,
+                "&:hover": {
+                  bg: "negativeBackground",
                 },
-                (error, id) => {
-                  setSelectedRefId(id);
-                  window.location.href = `/refs/${props._id}`;
-                }
-              )
-            }
+              }}
+              children={<UilTrash />}
+            />
+          )}
+          <IconButton
+            onClick={() => history.push(`/refs/${props._id}`)}
             variant="iconButton.primary"
-            children={<UilPlus />}
+            children={<UilArrowRight />}
           />
         </Flex>
       )}

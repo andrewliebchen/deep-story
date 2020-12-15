@@ -200,6 +200,12 @@ export default {
       ...iconButtonBase,
       bg: "background",
     },
+    whitePositive: {
+      ...controlBase,
+      ...iconButtonBase,
+      bg: "background",
+      color: "positive",
+    },
   },
   input: {
     default: {

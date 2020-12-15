@@ -27,7 +27,7 @@ const RefContent = (props) => {
 
 RefContent.propTypes = {
   _id: PropTypes.string,
-  type: PropTypes.oneOf(["text", "mock"]),
+  type: PropTypes.oneOf(["text", "mock", "base"]),
 };
 
 export default RefContent;
