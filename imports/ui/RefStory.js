@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import Ref from "./Ref";
 import RefContent from "./RefContent";
 import RefNew from "./RefNew";
+import RefNewTypeSelector from "./RefNewTypeSelector";
 import RefTextView from "./RefTextView";
 
 const RefStory = () => {
@@ -32,18 +33,24 @@ const RefStory = () => {
       {isReady(parentRef) && parentRef.type !== "base" && (
         <RefContent {...parentRef} />
       )}
-      {refs.map((ref, index) => {
-        const prevRef = refs[index - 1];
-        const newRefRank = (ref.rank + (prevRef ? prevRef.rank : 0)) / 2;
+      {refs.length > 0 ? (
+        <Box>
+          {refs.map((ref, index) => {
+            const prevRef = refs[index - 1];
+            const newRefRank = (ref.rank + (prevRef ? prevRef.rank : 0)) / 2;
 
-        return (
-          <Box key={ref._id}>
-            <RefNew rank={newRefRank} />
-            <Ref {...ref} />
-          </Box>
-        );
-      })}
-      <RefNew rank={refs.length + 1} />
+            return (
+              <Box key={ref._id}>
+                <RefNew rank={newRefRank} />
+                <Ref {...ref} />
+              </Box>
+            );
+          })}
+          <RefNew rank={refs.length + 1} />
+        </Box>
+      ) : (
+        <RefNewTypeSelector isSelectingType />
+      )}
     </Flex>
   );
 };

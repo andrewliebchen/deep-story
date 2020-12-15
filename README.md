@@ -23,11 +23,13 @@ Go deep into a story by adding a story within each word. Maybe like a mini inter
 
 Hopefully, this will be the first real "magic moment..."
 
-- Mock CRUD
-- Display Mock ref inline
-- `/mocks` index page list of all mocks
+- ✅Mock CRUD
+- ✅Display Mock ref inline
+- Design and style base refs page
+- `/mocks` index page list of all mocks (use base refs page design)
 - Link a ref to an existing mock (or any ref)
-- Pin the reference line to the top of the story... "...blah blah WORD blah blah..."
+- ✅Show parent ref at the top of the story
+- Add tooltips
 
 ### ⏳ Milestone 3: Add `resource` ref types
 
