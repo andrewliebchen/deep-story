@@ -31,8 +31,11 @@ export const useChildRefs = (parentId) =>
       { sort: { rank: 1 } }
     ).fetch();
 
+    const parentRef = RefsCollection.findOne(parentId);
+
     return {
       refs,
+      parentRef,
     };
   }, []);
 

@@ -5,7 +5,6 @@ import { useAccount, useBaseRefs } from "../utils/hooks";
 import AppContext from "./AppContext";
 import React, { useContext } from "react";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
-import Header from "./Header";
 
 const BaseRefsList = () => {
   const { getRefs } = useContext(AppContext);
@@ -15,7 +14,6 @@ const BaseRefsList = () => {
 
   return (
     <>
-      <Header />
       <Button
         variant="button.primary"
         onClick={() =>

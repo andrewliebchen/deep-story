@@ -178,6 +178,7 @@ export default {
   },
   heading: {
     fontSize: 2,
+    mb: 2,
   },
   iconButton: {
     default: {

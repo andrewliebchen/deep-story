@@ -1,8 +1,7 @@
 import React from "react";
-import { Avatar, Box, Text, Flex } from "theme-ui";
+import { Avatar, Box, Button, Text, Flex, Heading } from "theme-ui";
 import PropTypes from "prop-types";
 import { mockTypes } from "../utils/types";
-import isImageUrl from "image-url-validator";
 
 const imageSize = 72;
 
@@ -23,15 +22,22 @@ const RefMockView = (props) => (
           />
         )}
         <Box sx={{ ml: 3 }}>
-          {Object.keys(props.data).map((key) => (
-            <Flex key={key}>
-              <Text sx={{ fontWeight: "bold", mr: 2 }}>{key}</Text>
-              <Text>{props.data[key]}</Text>
-            </Flex>
-          ))}
+          {props.nickname && <Heading>{props.nickname}</Heading>}
+          {Object.keys(props.data).map(
+            (key) =>
+              key !== "image" && (
+                <Flex key={key}>
+                  <Text sx={{ fontWeight: "bold", mr: 2 }}>{key}</Text>
+                  <Text>{props.data[key]}</Text>
+                </Flex>
+              )
+          )}
         </Box>
       </Flex>
     )}
+    <Button sx={{ variant: "button.default", mt: 3, width: "100%" }}>
+      See all parameters
+    </Button>
   </Box>
 );
 

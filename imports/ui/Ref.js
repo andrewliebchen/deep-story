@@ -71,10 +71,8 @@ const Ref = (props) => {
                   rank: 1,
                 },
                 (error, id) => {
-                  ultralightCopy(`/refs/${id}`);
-                  setToastMessage(
-                    "New ref created and link copied to clipboard"
-                  );
+                  setSelectedRefId(id);
+                  window.location.href = `/refs/${props._id}`;
                 }
               )
             }

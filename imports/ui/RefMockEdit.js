@@ -39,7 +39,7 @@ const RefMockEdit = (props) => (
           <Input
             placeholder="Make it unique..."
             sx={{ variant: "input.default" }}
-            value={props.nickname}
+            defaultValue={props.nickname}
             onChange={(event) =>
               Meteor.call("refs.update", props._id, {
                 nickname: event.target.value,
