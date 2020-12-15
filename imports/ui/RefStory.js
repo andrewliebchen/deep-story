@@ -5,6 +5,7 @@ import { useKeycodes } from "@accessible/use-keycode";
 import React, { useState } from "react";
 import Ref from "./Ref";
 import RefNew from "./RefNew";
+import Header from "./Header";
 
 const RefStory = () => {
   const [selectedRefId, setSelectedRefId] = useState(false);
@@ -20,23 +21,26 @@ const RefStory = () => {
   });
 
   return (
-    <Flex
-      ref={keycodesListener}
-      sx={{ width: "100vw", alignItems: "center", flexDirection: "column" }}
-    >
-      {refs.map((ref, index) => {
-        const prevRef = refs[index - 1];
-        const newRefRank = (ref.rank + (prevRef ? prevRef.rank : 0)) / 2;
+    <>
+      <Header />
+      <Flex
+        ref={keycodesListener}
+        sx={{ width: "100vw", alignItems: "center", flexDirection: "column" }}
+      >
+        {refs.map((ref, index) => {
+          const prevRef = refs[index - 1];
+          const newRefRank = (ref.rank + (prevRef ? prevRef.rank : 0)) / 2;
 
-        return (
-          <Box key={ref._id}>
-            <RefNew rank={newRefRank} />
-            <Ref {...ref} />
-          </Box>
-        );
-      })}
-      <RefNew rank={refs.length + 1} />
-    </Flex>
+          return (
+            <Box key={ref._id}>
+              <RefNew rank={newRefRank} />
+              <Ref {...ref} />
+            </Box>
+          );
+        })}
+        <RefNew rank={refs.length + 1} />
+      </Flex>
+    </>
   );
 };
 
