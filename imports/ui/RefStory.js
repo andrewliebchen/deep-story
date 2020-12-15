@@ -28,7 +28,10 @@ const RefStory = () => {
       ref={keycodesListener}
       sx={{ width: "100vw", alignItems: "center", flexDirection: "column" }}
     >
-      {isReady(parentRef) && <RefContent {...parentRef} />}
+      {/* Parent ref */}
+      {isReady(parentRef) && parentRef.type !== "base" && (
+        <RefContent {...parentRef} />
+      )}
       {refs.map((ref, index) => {
         const prevRef = refs[index - 1];
         const newRefRank = (ref.rank + (prevRef ? prevRef.rank : 0)) / 2;
