@@ -10,26 +10,31 @@ export const refTypes = {
     active: true,
     icon: <UilTextFields />,
     label: "Text",
+    color: "#0077CC",
   },
   mock: {
     active: true,
     icon: <UilHeadSide />,
     label: "Mock",
+    color: "#ECA400",
   },
   resource: {
     active: false,
     icon: <UilFileUpload />,
     label: "Resource",
+    color: "#540D6E",
   },
   table: {
     active: false,
     icon: <UilGrid />,
     label: "Table",
+    color: "#15796E",
   },
   tasks: {
     active: false,
     icon: <UilCheckCircle />,
     label: "Tasks",
+    color: "#9A275A",
   },
 };
 
