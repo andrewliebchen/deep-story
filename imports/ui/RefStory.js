@@ -3,24 +3,22 @@ import { isReady } from "../utils/helpers";
 import { useChildRefs } from "../utils/hooks";
 import { useKeycodes } from "@accessible/use-keycode";
 import { useParams } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import AppContext from "./AppContext";
+import React, { useContext, useEffect } from "react";
 import Ref from "./Ref";
 import RefContent from "./RefContent";
 import RefNew from "./RefNew";
 import RefTextView from "./RefTextView";
 
 const RefStory = () => {
-  const [selectedRefId, setSelectedRefId] = useState(false);
+  const { setSelectedRefId } = useContext(AppContext);
   const { parentRefId } = useParams();
 
   const { refs, parentRef } = useChildRefs(parentRefId);
 
-  // TODO: Fix this...?
   const keycodesListener = useKeycodes({
     // esc
     27: () => setSelectedRefId(false),
-    // enter
-    13: () => setSelectedRefId(false),
   });
 
   return (

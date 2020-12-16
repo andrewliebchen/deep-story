@@ -34,10 +34,10 @@ const RefNew = (props) => {
       title="Add a new ref here..."
       sx={{
         variant: "flex.refWrapper",
-        p: isExpanded && 3,
         bg: isExpanded && "primaryMuted",
-        height: isExpanded ? "auto" : 8,
         cursor: isExpanded ? "default" : "pointer",
+        height: isExpanded ? "auto" : 8,
+        p: isExpanded && 3,
         postion: "relative",
         "&:hover": { bg: isExpanded || "muted" },
       }}
@@ -49,11 +49,11 @@ const RefNew = (props) => {
           const type = refTypes[stub];
           return (
             <IconButton
+              children={type.icon}
+              disabled={!type.active}
               key={stub}
               onClick={() => insert(stub)}
               sx={{ variant: "iconButton.background", mr: 2 }}
-              children={type.icon}
-              disabled={!type.active}
               title={`Create a ${stub} ref`}
             />
           );
@@ -82,8 +82,8 @@ RefNew.defaultProps = {
 };
 
 RefNew.propTypes = {
-  rank: PropTypes.number.isRequired,
   isExpanded: PropTypes.bool,
+  rank: PropTypes.number.isRequired,
 };
 
 export default RefNew;

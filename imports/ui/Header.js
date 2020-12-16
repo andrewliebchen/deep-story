@@ -3,7 +3,6 @@ import { isReady } from "../utils/helpers";
 import AccountToggle from "./AccountToggle";
 import Nav from "./Nav";
 import React from "react";
-import Sandbox from "./Sandbox";
 
 const Header = () => (
   <Flex

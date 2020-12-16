@@ -5,21 +5,15 @@ import PropTypes from "prop-types";
 import React, { useContext, useEffect } from "react";
 import RefContent from "./RefContent";
 import UilArrowRight from "@iconscout/react-unicons/icons/uil-arrow-right";
-import UilCornerUpLeft from "@iconscout/react-unicons/icons/uil-corner-up-left";
-import UilCornerRightDown from "@iconscout/react-unicons/icons/uil-corner-right-down";
 import UilCheck from "@iconscout/react-unicons/icons/uil-check";
+import UilCornerRightDown from "@iconscout/react-unicons/icons/uil-corner-right-down";
+import UilCornerUpLeft from "@iconscout/react-unicons/icons/uil-corner-up-left";
 import UilPen from "@iconscout/react-unicons/icons/uil-pen";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 import useHover from "@react-hook/hover";
 
-import theme from "../utils/theme";
-
-import { RefsCollection } from "../api/refs";
-
 const Ref = (props) => {
-  const { selectedRefId, setSelectedRefId, setToastMessage } = useContext(
-    AppContext
-  );
+  const { selectedRefId, setSelectedRefId } = useContext(AppContext);
   const [colorMode, setColorMode] = useColorMode();
   const history = useHistory();
 
@@ -95,7 +89,6 @@ const Ref = (props) => {
           />
         )}
       </Flex>
-
       <RefContent {...props} />
     </Flex>
   );
@@ -103,8 +96,8 @@ const Ref = (props) => {
 
 Ref.propTypes = {
   _id: PropTypes.string,
-  rank: PropTypes.number,
   isParentRef: PropTypes.bool,
+  rank: PropTypes.number,
 };
 
 export default Ref;

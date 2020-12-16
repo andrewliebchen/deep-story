@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 import React from "react";
 
 const allowedMarkdownTypes = [
-  "root",
-  "text",
-  "paragraph",
-  "emphasis",
-  "strong",
-  "link",
-  "inlineCode",
   "code",
+  "emphasis",
+  "inlineCode",
+  "link",
+  "paragraph",
+  "root",
+  "strong",
+  "text",
 ];
 
 const RefTextView = (props) => (
@@ -34,9 +34,9 @@ const RefTextView = (props) => (
 
 RefTextView.propTypes = {
   content: PropTypes.node,
-  title: PropTypes.string,
-  showTitle: PropTypes.bool,
   isParentRef: PropTypes.bool,
+  showTitle: PropTypes.bool,
+  title: PropTypes.string,
 };
 
 export default RefTextView;

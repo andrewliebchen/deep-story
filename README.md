@@ -25,15 +25,15 @@ Hopefully, this will be the first real "magic moment..."
 
 - ✅ Mock CRUD
 - ✅ Display Mock ref inline
-- Design and style base refs page
-- `/mocks` index page list of all mocks (use base refs page design)
 - Link a ref to an existing mock (or any ref)
 - ✅ Show parent ref at the top of the story
 - Refresh mock values
 - Add custom parameters
 
 - Auto-expanding text box
+- Improve base refs page
 - ✅ Add button `titles` (maybe tooltips)
+- ✅ Color themes based on type
 
 ### ⏳ Milestone 3: Add `resource` ref types
 

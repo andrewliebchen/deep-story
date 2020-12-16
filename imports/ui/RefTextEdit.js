@@ -9,10 +9,10 @@ const RefTextEdit = (props) => (
     <Flex
       sx={{
         variant: "flex.ref",
+        alignItems: "center",
+        flexDirection: "row",
         mb: 2,
         p: 2,
-        flexDirection: "row",
-        alignItems: "center",
       }}
     >
       <Input
