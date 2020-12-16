@@ -37,7 +37,7 @@ const RefNewTypeSelector = (props) => {
         <IconButton
           key={type.stub}
           onClick={() => insert(type.stub)}
-          sx={{ variant: "iconButton.white", mr: 2 }}
+          sx={{ variant: "iconButton.background", mr: 2 }}
           children={type.icon}
           disabled={!type.active}
           title={`Create a ${type.stub} ref`}

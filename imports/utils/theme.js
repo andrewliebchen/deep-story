@@ -70,7 +70,6 @@ const flexRefBase = {
 };
 
 export default {
-  useColorSchemeMediaQuery: true,
   button: {
     default: {
       ...controlBase,
@@ -93,39 +92,23 @@ export default {
     positive: "rgba(19, 201, 141, 1)",
     positiveHover: "rgba(14, 177, 123, 1)",
     primary: "rgba(0, 119, 204, 1)",
-    primaryBackground: "rgba(204, 228, 245, 1)",
+    primaryBackground: "rgba(0, 119, 204, 0.3)",
     primaryHover: "rgba(0, 104, 178, 1)",
-    primaryMuted: "rgba(242, 248, 252, 1)",
+    primaryMuted: "rgba(0, 119, 204, 0.1)",
     secondary: "rgba(123, 97, 255, 1)",
-    shadow: "rgba(0, 0, 0, 0.05)",
     text: "rgba(0, 0, 0, 1)",
     textSecondary: "rgba(0, 0, 0, 0.5)",
     modes: {
       dark: {
         background: "rgba(6, 6, 6, 1)",
         muted: "rgba(255, 255, 255, 0.05)",
-        negative: "rgba(230, 59, 24, 1)",
-        negativeBackground: "rgba(230, 59, 24, 0.3)",
-        negativeMuted: "rgba(230, 59, 24, 0.2)",
-        positive: "rgba(19, 201, 141, 1)",
-        positiveHover: "rgba(14, 177, 123, 1)",
-        primary: "rgba(51, 204, 255, 1)",
-        primaryBackground: "rgba(19, 65, 81, 1)",
-        primaryHover: "rgba(46, 184, 229, 1)",
-        primaryMuted: "rgba(10, 26, 31, 1)",
         secondary: "rgba(145, 123, 255, 1)",
-        shadow: "rgba(0, 0, 0, 0.05)",
         text: "rgba(255, 255, 255, 1)",
         textSecondary: "rgba(255, 255, 255, 0.5)",
       },
     },
   },
   flex: {
-    controlContainer: {
-      position: "relative",
-      height: controlHeight,
-      alignItems: "center",
-    },
     ref: {
       ...flexRefBase,
     },
@@ -154,7 +137,6 @@ export default {
       px: 3,
       py: 2,
     },
-    refParentWrapper: {},
     refRightButtons: {
       position: "absolute",
       right: 3,
@@ -202,15 +184,15 @@ export default {
       ...buttonPrimaryStyles,
       ...iconButtonBase,
     },
+    background: {
+      ...controlBase,
+      ...iconButtonBase,
+      bg: "background",
+    },
     negative: {
       ...controlBase,
       ...buttonNegativeStyles,
       ...iconButtonBase,
-    },
-    white: {
-      ...controlBase,
-      ...iconButtonBase,
-      bg: "background",
     },
     positive: {
       ...controlBase,
@@ -283,13 +265,6 @@ export default {
           color: "primaryHover",
         },
       },
-    },
-    ref: {
-      fontFamily: "monospace",
-      whiteSpace: "pre-wrap",
-    },
-    small: {
-      fontSize: "small",
     },
   },
   textarea: {

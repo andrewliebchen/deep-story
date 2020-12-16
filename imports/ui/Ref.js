@@ -42,14 +42,14 @@ const Ref = (props) => {
             {props.isParentRef ? (
               <IconButton
                 onClick={() => history.goBack()}
-                variant="iconButton.white"
+                variant="iconButton.background"
                 children={<UilCornerUpLeft />}
                 title="Back to parent"
               />
             ) : (
               <IconButton
                 onClick={() => history.push(`/refs/${props._id}`)}
-                variant="iconButton.white"
+                variant="iconButton.background"
                 children={<UilCornerRightDown />}
                 title="Show children"
               />
@@ -63,7 +63,7 @@ const Ref = (props) => {
                   Meteor.call("refs.remove", props._id)
                 }
                 sx={{
-                  variant: "iconButton.white",
+                  variant: "iconButton.background",
                   color: "negative",
                   mr: 2,
                   "&:hover": {
@@ -79,7 +79,7 @@ const Ref = (props) => {
                 setSelectedRefId(selectedRefId === props._id || props._id)
               }
               sx={{
-                variant: `iconButton.${isSelected ? "positive" : "white"}`,
+                variant: `iconButton.${isSelected ? "positive" : "background"}`,
               }}
               children={isSelected ? <UilCheck /> : <UilPen />}
               title={isSelected ? "Finish" : "Edit"}

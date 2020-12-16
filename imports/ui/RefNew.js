@@ -28,7 +28,7 @@ const RefNew = (props) => {
           <IconButton
             onClick={() => setIsSelectingType(false)}
             sx={{
-              variant: "iconButton.white",
+              variant: "iconButton.background",
               color: "negative",
               position: "absolute",
               right: 3,
