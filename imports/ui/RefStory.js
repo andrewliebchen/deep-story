@@ -3,7 +3,7 @@ import { isReady } from "../utils/helpers";
 import { useChildRefs } from "../utils/hooks";
 import { useKeycodes } from "@accessible/use-keycode";
 import { useParams } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Ref from "./Ref";
 import RefContent from "./RefContent";
 import RefNew from "./RefNew";

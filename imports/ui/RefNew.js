@@ -49,7 +49,7 @@ const RefNew = (props) => {
           const type = refTypes[stub];
           return (
             <IconButton
-              key={type.stub}
+              key={stub}
               onClick={() => insert(stub)}
               sx={{ variant: "iconButton.background", mr: 2 }}
               children={type.icon}

@@ -1,3 +1,17 @@
+import { refTypes } from "./types";
+import Color from "color";
+
+let refTypeColorModes = {};
+Object.keys(refTypes).map((type) => {
+  refTypeColor = Color(refTypes[type].color);
+  refTypeColorModes[type] = {
+    primary: refTypeColor.toString(),
+    primaryHover: refTypeColor.darken(0.1).rgb().toString(),
+    primaryBackground: refTypeColor.alpha(0.2).rgb().toString(),
+    primaryMuted: refTypeColor.alpha(0.1).rgb().toString(),
+  };
+});
+
 export const controlHeight = 40;
 
 const controlBase = {
@@ -84,6 +98,10 @@ export default {
     },
   },
   colors: {
+    primary: refTypeColorModes.text.primary,
+    primaryHover: refTypeColorModes.text.primaryHover,
+    primaryBackground: refTypeColorModes.text.primaryBackground,
+    primaryMuted: refTypeColorModes.text.primaryMuted,
     background: "rgba(255, 255, 255, 1)",
     muted: "rgba(0, 0, 0, 0.05)",
     negative: "rgba(230, 59, 24, 1)",
@@ -91,22 +109,10 @@ export default {
     negativeMuted: "rgba(230, 59, 24, 0.03)",
     positive: "rgba(19, 201, 141, 1)",
     positiveHover: "rgba(14, 177, 123, 1)",
-    primary: "rgba(0, 119, 204, 1)",
-    primaryBackground: "rgba(0, 119, 204, 0.3)",
-    primaryHover: "rgba(0, 104, 178, 1)",
-    primaryMuted: "rgba(0, 119, 204, 0.1)",
     secondary: "rgba(123, 97, 255, 1)",
     text: "rgba(0, 0, 0, 1)",
     textSecondary: "rgba(0, 0, 0, 0.5)",
-    modes: {
-      dark: {
-        background: "rgba(6, 6, 6, 1)",
-        muted: "rgba(255, 255, 255, 0.05)",
-        secondary: "rgba(145, 123, 255, 1)",
-        text: "rgba(255, 255, 255, 1)",
-        textSecondary: "rgba(255, 255, 255, 0.5)",
-      },
-    },
+    modes: refTypeColorModes,
   },
   flex: {
     ref: {

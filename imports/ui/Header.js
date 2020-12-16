@@ -1,7 +1,6 @@
 import { Flex, Text, Input } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import AccountToggle from "./AccountToggle";
-import ColorModeToggle from "./ColorModeToggle";
 import Nav from "./Nav";
 import React from "react";
 import Sandbox from "./Sandbox";
@@ -27,10 +26,7 @@ const Header = () => (
         sx={{ variant: "input.default" }}
       />
     </Flex>
-    <Flex sx={{ width: 36, justifyContent: "flex-end" }}>
-      <ColorModeToggle />
-      <AccountToggle sx={{ ml: 2, minWidth: "auto" }} />
-    </Flex>
+    <AccountToggle sx={{ ml: 2, minWidth: "auto" }} />
   </Flex>
 );
 
