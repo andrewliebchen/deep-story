@@ -45,16 +45,19 @@ const RefNew = (props) => {
       onClick={() => setIsExpanded(true)}
     >
       {isExpanded &&
-        refTypes.map((type) => (
-          <IconButton
-            key={type.stub}
-            onClick={() => insert(type.stub)}
-            sx={{ variant: "iconButton.background", mr: 2 }}
-            children={type.icon}
-            disabled={!type.active}
-            title={`Create a ${type.stub} ref`}
-          />
-        ))}
+        Object.keys(refTypes).map((stub) => {
+          const type = refTypes[stub];
+          return (
+            <IconButton
+              key={type.stub}
+              onClick={() => insert(stub)}
+              sx={{ variant: "iconButton.background", mr: 2 }}
+              children={type.icon}
+              disabled={!type.active}
+              title={`Create a ${stub} ref`}
+            />
+          );
+        })}
       {isExpanded && !props.isExpanded && (
         <IconButton
           onClick={(event) => {
