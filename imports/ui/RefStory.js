@@ -31,7 +31,7 @@ const RefStory = () => {
     >
       {/* Parent ref */}
       {isReady(parentRef) && parentRef.type !== "base" && (
-        <RefContent {...parentRef} />
+        <Ref {...parentRef} isParentRef />
       )}
       {refs.length > 0 ? (
         <Box>

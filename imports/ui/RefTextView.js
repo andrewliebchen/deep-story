@@ -15,7 +15,7 @@ const allowedMarkdownTypes = [
 ];
 
 const RefTextView = (props) => (
-  <Flex sx={{ variant: "flex.ref" }}>
+  <Flex sx={{ variant: props.isParentRef ? "flex.parent" : "flex.ref" }}>
     {props.title && props.showTitle && <Heading>{props.title}</Heading>}
     <Text
       sx={{
@@ -36,6 +36,7 @@ RefTextView.propTypes = {
   content: PropTypes.node,
   title: PropTypes.string,
   showTitle: PropTypes.bool,
+  isParentRef: PropTypes.bool,
 };
 
 export default RefTextView;

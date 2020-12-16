@@ -15,15 +15,6 @@ const RefTextEdit = (props) => (
         alignItems: "center",
       }}
     >
-      <IconButton
-        sx={{ variant: "iconButton.default", mr: 2 }}
-        children={props.showTitle ? <UilEye /> : <UilEyeSlash />}
-        onClick={() =>
-          Meteor.call("refs.update", props._id, {
-            showTitle: !props.showTitle,
-          })
-        }
-      />
       <Input
         variant="input.inline"
         placeholder="Add a title..."
@@ -37,6 +28,15 @@ const RefTextEdit = (props) => (
           fontWeight: "bold",
           color: props.showTitle ? "text" : "textSecondary",
         }}
+      />
+      <IconButton
+        sx={{ variant: "iconButton.default", mr: 2 }}
+        children={props.showTitle ? <UilEye /> : <UilEyeSlash />}
+        onClick={() =>
+          Meteor.call("refs.update", props._id, {
+            showTitle: !props.showTitle,
+          })
+        }
       />
     </Flex>
     <Textarea

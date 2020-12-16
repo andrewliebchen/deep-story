@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import React, { useContext } from "react";
 import RefContent from "./RefContent";
 import UilArrowRight from "@iconscout/react-unicons/icons/uil-arrow-right";
+import UilCornerUpLeft from "@iconscout/react-unicons/icons/uil-corner-up-left";
+import UilCornerRightDown from "@iconscout/react-unicons/icons/uil-corner-right-down";
 import UilCheck from "@iconscout/react-unicons/icons/uil-check";
 import UilPen from "@iconscout/react-unicons/icons/uil-pen";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
@@ -28,7 +30,7 @@ const Ref = (props) => {
       ref={target}
       sx={{
         variant: "flex.refWrapper",
-        bg: isSelected && "primaryMuted",
+        bg: isSelected ? "primaryMuted" : props.isParentRef && "muted",
         "&:hover": {
           bg: isSelected || "muted",
         },
@@ -40,7 +42,7 @@ const Ref = (props) => {
             setSelectedRefId(selectedRefId === props._id || props._id)
           }
           sx={{
-            variant: `iconButton.${isSelected ? "whitePositive" : "white"}`,
+            variant: `iconButton.${isSelected ? "positive" : "white"}`,
             position: "absolute",
             left: 3,
           }}
@@ -66,11 +68,19 @@ const Ref = (props) => {
               children={<UilTrash />}
             />
           )}
-          <IconButton
-            onClick={() => history.push(`/refs/${props._id}`)}
-            variant="iconButton.primary"
-            children={<UilArrowRight />}
-          />
+          {props.isParentRef ? (
+            <IconButton
+              onClick={() => history.goBack()}
+              variant="iconButton.white"
+              children={<UilCornerUpLeft />}
+            />
+          ) : (
+            <IconButton
+              onClick={() => history.push(`/refs/${props._id}`)}
+              variant="iconButton.primary"
+              children={<UilCornerRightDown />}
+            />
+          )}
         </Flex>
       )}
       <RefContent {...props} />
@@ -81,6 +91,7 @@ const Ref = (props) => {
 Ref.propTypes = {
   _id: PropTypes.string,
   rank: PropTypes.number,
+  isParentRef: PropTypes.bool,
 };
 
 export default Ref;

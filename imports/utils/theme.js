@@ -89,8 +89,9 @@ export default {
     muted: "rgba(0, 0, 0, 0.05)",
     negative: "rgba(230, 59, 24, 1)",
     negativeBackground: "rgba(230, 59, 24, 0.2)",
-    negativeMuted: "rgba(230, 59, 24, 0.05)",
+    negativeMuted: "rgba(230, 59, 24, 0.03)",
     positive: "rgba(19, 201, 141, 1)",
+    positiveHover: "rgba(14, 177, 123, 1)",
     primary: "rgba(0, 119, 204, 1)",
     primaryBackground: "rgba(204, 228, 245, 1)",
     primaryHover: "rgba(0, 104, 178, 1)",
@@ -107,6 +108,7 @@ export default {
         negativeBackground: "rgba(230, 59, 24, 0.3)",
         negativeMuted: "rgba(230, 59, 24, 0.2)",
         positive: "rgba(19, 201, 141, 1)",
+        positiveHover: "rgba(14, 177, 123, 1)",
         primary: "rgba(51, 204, 255, 1)",
         primaryBackground: "rgba(19, 65, 81, 1)",
         primaryHover: "rgba(46, 184, 229, 1)",
@@ -126,6 +128,10 @@ export default {
     },
     ref: {
       ...flexRefBase,
+    },
+    parent: {
+      ...flexRefBase,
+      bg: "transparent",
     },
     refNew: {
       width: "100vw",
@@ -148,6 +154,7 @@ export default {
       px: 3,
       py: 2,
     },
+    refParentWrapper: {},
     refRightButtons: {
       position: "absolute",
       right: 3,
@@ -200,11 +207,12 @@ export default {
       ...iconButtonBase,
       bg: "background",
     },
-    whitePositive: {
+    positive: {
       ...controlBase,
       ...iconButtonBase,
-      bg: "background",
-      color: "positive",
+      bg: "positive",
+      color: "background",
+      "&:hover": { bg: "positiveHover" },
     },
   },
   input: {
