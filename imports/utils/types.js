@@ -16,13 +16,13 @@ export const refTypes = {
     active: true,
     icon: <UilHeadSide />,
     label: "Mock",
-    color: "#ECA400",
+    color: "#C48208",
   },
   resource: {
     active: false,
     icon: <UilFileUpload />,
     label: "Resource",
-    color: "#540D6E",
+    color: "#7E13A4",
   },
   table: {
     active: false,
