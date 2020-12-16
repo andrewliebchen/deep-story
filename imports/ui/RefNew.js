@@ -16,7 +16,7 @@ const RefNew = (props) => {
   const target = React.useRef(null);
   const isHovering = useHover(target);
 
-  const [isExpanded, setIsExpanded] = useState(props.isSelectingType || false);
+  const [isExpanded, setIsExpanded] = useState(props.isExpanded || false);
 
   console.log(props.rank);
 
@@ -74,7 +74,7 @@ const RefNew = (props) => {
 
 RefNew.propTypes = {
   rank: PropTypes.number.isRequired,
-  isSelectingType: PropTypes.bool,
+  isExpanded: PropTypes.bool,
 };
 
 export default RefNew;

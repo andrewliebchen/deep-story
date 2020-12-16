@@ -30,7 +30,10 @@ const RefStory = () => {
     >
       {/* Parent ref, if there is one */}
       {isReady(parentRef) && parentRef.type !== "base" && (
-        <Ref {...parentRef} isParentRef />
+        <>
+          <Ref {...parentRef} isParentRef />
+          <RefNew rank={1} isExpanded />
+        </>
       )}
       {/* The child refs */}
       {refs.map((ref, index) => {
