@@ -161,6 +161,11 @@ export default {
       width: 36,
       justifyContent: "flex-end",
     },
+    refLeftButtons: {
+      position: "absolute",
+      left: 3,
+      width: 36,
+    },
     toast: {
       color: "background",
       bg: "positive",

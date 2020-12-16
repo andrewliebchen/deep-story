@@ -36,56 +36,56 @@ const Ref = (props) => {
         },
       }}
     >
-      {(isSelected || isHovering) && (
-        <IconButton
-          onClick={() =>
-            setSelectedRefId(selectedRefId === props._id || props._id)
-          }
-          sx={{
-            variant: `iconButton.${isSelected ? "positive" : "white"}`,
-            position: "absolute",
-            left: 3,
-          }}
-          children={isSelected ? <UilCheck /> : <UilPen />}
-          title={isSelected ? "Finish" : "Edit"}
-        />
-      )}
       {isHovering && (
-        <Flex variant="flex.refRightButtons">
-          {isSelected && (
+        <>
+          <Flex variant="flex.refLeftButtons">
+            {props.isParentRef ? (
+              <IconButton
+                onClick={() => history.goBack()}
+                variant="iconButton.white"
+                children={<UilCornerUpLeft />}
+                title="Back to parent"
+              />
+            ) : (
+              <IconButton
+                onClick={() => history.push(`/refs/${props._id}`)}
+                variant="iconButton.white"
+                children={<UilCornerRightDown />}
+                title="Show children"
+              />
+            )}
+          </Flex>
+          <Flex variant="flex.refRightButtons">
+            {isSelected && (
+              <IconButton
+                onClick={() =>
+                  window.confirm("Are you sure you want to delete this ref?") &&
+                  Meteor.call("refs.remove", props._id)
+                }
+                sx={{
+                  variant: "iconButton.white",
+                  color: "negative",
+                  mr: 2,
+                  "&:hover": {
+                    bg: "negativeBackground",
+                  },
+                }}
+                children={<UilTrash />}
+                title="Delete"
+              />
+            )}
             <IconButton
               onClick={() =>
-                window.confirm("Are you sure you want to delete this ref?") &&
-                Meteor.call("refs.remove", props._id)
+                setSelectedRefId(selectedRefId === props._id || props._id)
               }
               sx={{
-                variant: "iconButton.white",
-                color: "negative",
-                mr: 2,
-                "&:hover": {
-                  bg: "negativeBackground",
-                },
+                variant: `iconButton.${isSelected ? "positive" : "white"}`,
               }}
-              children={<UilTrash />}
-              title="Delete"
+              children={isSelected ? <UilCheck /> : <UilPen />}
+              title={isSelected ? "Finish" : "Edit"}
             />
-          )}
-          {props.isParentRef ? (
-            <IconButton
-              onClick={() => history.goBack()}
-              variant="iconButton.white"
-              children={<UilCornerUpLeft />}
-              title="Back to parent"
-            />
-          ) : (
-            <IconButton
-              onClick={() => history.push(`/refs/${props._id}`)}
-              variant="iconButton.primary"
-              children={<UilCornerRightDown />}
-              title="Show children"
-            />
-          )}
-        </Flex>
+          </Flex>
+        </>
       )}
       <RefContent {...props} />
     </Flex>
