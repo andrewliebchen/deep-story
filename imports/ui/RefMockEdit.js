@@ -67,6 +67,7 @@ const RefMockEdit = (props) => (
               <IconButton
                 children={<UilRefresh />}
                 sx={{ variant: "iconButton.default", m: 1 }}
+                title="Refresh"
               />
             </Flex>
           ))}

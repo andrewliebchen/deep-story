@@ -37,6 +37,7 @@ const RefTextEdit = (props) => (
             showTitle: !props.showTitle,
           })
         }
+        title={props.showTitle ? "Hide ref title" : "Show ref title"}
       />
     </Flex>
     <Textarea

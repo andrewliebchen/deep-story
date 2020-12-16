@@ -47,6 +47,7 @@ const Ref = (props) => {
             left: 3,
           }}
           children={isSelected ? <UilCheck /> : <UilPen />}
+          title={isSelected ? "Finish" : "Edit"}
         />
       )}
       {isHovering && (
@@ -66,6 +67,7 @@ const Ref = (props) => {
                 },
               }}
               children={<UilTrash />}
+              title="Delete"
             />
           )}
           {props.isParentRef ? (
@@ -73,12 +75,14 @@ const Ref = (props) => {
               onClick={() => history.goBack()}
               variant="iconButton.white"
               children={<UilCornerUpLeft />}
+              title="Back to parent"
             />
           ) : (
             <IconButton
               onClick={() => history.push(`/refs/${props._id}`)}
               variant="iconButton.primary"
               children={<UilCornerRightDown />}
+              title="Show children"
             />
           )}
         </Flex>

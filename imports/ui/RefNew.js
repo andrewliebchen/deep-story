@@ -25,7 +25,6 @@ const RefNew = (props) => {
             setIsSelectingType={setIsSelectingType}
             {...props}
           />
-
           <IconButton
             onClick={() => setIsSelectingType(false)}
             sx={{
@@ -38,6 +37,7 @@ const RefNew = (props) => {
               },
             }}
             children={<UilTrash />}
+            title="Nevermind..."
           />
         </Flex>
       ) : (
@@ -47,6 +47,7 @@ const RefNew = (props) => {
               onClick={() => setIsSelectingType(true)}
               sx={{ variant: "iconButton.default" }}
               children={<UilPlus />}
+              title="Add a ref"
             />
           )}
         </Flex>

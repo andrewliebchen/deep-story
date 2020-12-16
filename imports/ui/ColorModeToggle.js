@@ -6,14 +6,16 @@ import Sun from "@iconscout/react-unicons/icons/uil-sun";
 
 const ColorModeToggle = () => {
   const [colorMode, setColorMode] = useColorMode();
+  const isLightMode = colorMode === "default";
 
   return (
     <IconButton
       variant="iconButton.default"
       title="Toggle color mode"
-      onClick={() => setColorMode(colorMode === "default" ? "dark" : "default")}
+      onClick={() => setColorMode(isLightMode ? "dark" : "default")}
+      title={isLightMode ? "Switch to dark mode" : "Switch to light mode"}
     >
-      {colorMode === "default" ? <Moon /> : <Sun />}
+      {isLightMode ? <Moon /> : <Sun />}
     </IconButton>
   );
 };
