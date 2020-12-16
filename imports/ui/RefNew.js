@@ -37,7 +37,7 @@ const RefNew = (props) => {
         p: isExpanded && 3,
         bg: isExpanded && "primaryMuted",
         height: isExpanded ? "auto" : 8,
-        cursor: "pointer",
+        cursor: isExpanded ? "default" : "pointer",
         postion: "relative",
         "&:hover": { bg: isExpanded || "muted" },
       }}
@@ -55,9 +55,12 @@ const RefNew = (props) => {
             title={`Create a ${type.stub} ref`}
           />
         ))}
-      {props.isExpanded || (
+      {isExpanded && !props.isExpanded && (
         <IconButton
-          onClick={() => setIsExpanded(false)}
+          onClick={(event) => {
+            event.stopPropagation();
+            setIsExpanded(false);
+          }}
           sx={{
             variant: "iconButton.background",
             position: "absolute",
