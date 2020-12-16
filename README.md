@@ -31,7 +31,8 @@ Hopefully, this will be the first real "magic moment..."
 - Add custom parameters
 
 - Auto-expanding text box
-- Improve base refs page
+- ✅ Improve base refs page
+- Favorite refs
 - ✅ Add button `titles` (maybe tooltips)
 - ✅ Color themes based on type
 

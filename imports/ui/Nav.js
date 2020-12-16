@@ -7,7 +7,12 @@ const Nav = (props) => {
   const history = useHistory();
 
   return (
-    <IconButton variant="iconButton.default" title="Back to home" {...props}>
+    <IconButton
+      variant="iconButton.default"
+      title="Back to home"
+      onClick={() => history.push("/refs")}
+      {...props}
+    >
       <UilHomeAlt />
     </IconButton>
   );
