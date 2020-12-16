@@ -16,9 +16,7 @@ const RefNew = (props) => {
   const target = React.useRef(null);
   const isHovering = useHover(target);
 
-  const [isExpanded, setIsExpanded] = useState(props.isExpanded || false);
-
-  console.log(props.rank);
+  const [isExpanded, setIsExpanded] = useState(props.isExpanded);
 
   const insert = (type) =>
     Meteor.call(
@@ -44,7 +42,7 @@ const RefNew = (props) => {
         "&:hover": { bg: isExpanded || "muted" },
       }}
       ref={target}
-      onClick={() => setIsExpanded(!isExpanded)}
+      onClick={() => setIsExpanded(true)}
     >
       {isExpanded &&
         refTypes.map((type) => (
@@ -57,8 +55,9 @@ const RefNew = (props) => {
             title={`Create a ${type.stub} ref`}
           />
         ))}
-      {isExpanded && (
+      {props.isExpanded || (
         <IconButton
+          onClick={() => setIsExpanded(false)}
           sx={{
             variant: "iconButton.background",
             position: "absolute",
@@ -70,6 +69,10 @@ const RefNew = (props) => {
       )}
     </Flex>
   );
+};
+
+RefNew.defaultProps = {
+  isExpanded: false,
 };
 
 RefNew.propTypes = {
