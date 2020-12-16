@@ -31,6 +31,7 @@ const Ref = (props) => {
       sx={{
         variant: "flex.refWrapper",
         bg: isSelected ? "primaryMuted" : props.isParentRef && "muted",
+        mb: props.isParentRef && 3,
         "&:hover": {
           bg: isSelected || "muted",
         },

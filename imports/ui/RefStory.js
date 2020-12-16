@@ -7,7 +7,6 @@ import React, { useState } from "react";
 import Ref from "./Ref";
 import RefContent from "./RefContent";
 import RefNew from "./RefNew";
-import RefNewTypeSelector from "./RefNewTypeSelector";
 import RefTextView from "./RefTextView";
 
 const RefStory = () => {
@@ -29,28 +28,25 @@ const RefStory = () => {
       ref={keycodesListener}
       sx={{ width: "100vw", alignItems: "center", flexDirection: "column" }}
     >
-      {/* Parent ref */}
+      {/* Parent ref, if there is one */}
       {isReady(parentRef) && parentRef.type !== "base" && (
         <Ref {...parentRef} isParentRef />
       )}
-      {refs.length > 0 ? (
-        <Box>
-          {refs.map((ref, index) => {
-            const prevRef = refs[index - 1];
-            const newRefRank = (ref.rank + (prevRef ? prevRef.rank : 0)) / 2;
+      {/* The child refs */}
+      {refs.map((ref, index) => {
+        const prevRef = index === 0 ? { rank: 0 } : refs[index - 1];
+        const newRefRank = (parseInt(ref.rank) + parseInt(prevRef.rank)) / 2;
 
-            return (
-              <Box key={ref._id}>
-                <RefNew rank={newRefRank} />
-                <Ref {...ref} />
-              </Box>
-            );
-          })}
-          <RefNew rank={refs.length + 1} />
-        </Box>
-      ) : (
-        <RefNewTypeSelector isSelectingType />
-      )}
+        console.log(prevRef.rank, newRefRank);
+
+        return (
+          <Box key={ref._id}>
+            <RefNew rank={newRefRank} />
+            <Ref {...ref} />
+          </Box>
+        );
+      })}
+      <RefNew rank={refs.length + 1} />
     </Flex>
   );
 };

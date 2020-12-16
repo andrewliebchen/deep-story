@@ -6,58 +6,74 @@ import PropTypes from "prop-types";
 import React, { useContext, useState } from "react";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
+import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 import useHover from "@react-hook/hover";
-import RefNewTypeSelector from "./RefNewTypeSelector";
 
 const RefNew = (props) => {
-  const [isSelectingType, setIsSelectingType] = useState("");
+  const { setSelectedRefId } = useContext(AppContext);
+  const { parentRefId } = useParams();
 
   const target = React.useRef(null);
   const isHovering = useHover(target);
 
+  const [isExpanded, setIsExpanded] = useState(props.isSelectingType || false);
+
+  console.log(props.rank);
+
+  const insert = (type) =>
+    Meteor.call(
+      "refs.insert",
+      {
+        type: type,
+        parentId: parentRefId,
+        rank: props.rank,
+      },
+      (error, id) => setSelectedRefId(id)
+    );
+
   return (
-    <>
-      {isSelectingType || props.isSelectingType ? (
-        <Flex
-          sx={{ variant: "flex.refWrapper", bg: "primaryMuted", px: 3, py: 4 }}
-        >
-          <RefNewTypeSelector
-            setIsSelectingType={setIsSelectingType}
-            {...props}
-          />
+    <Flex
+      title="Add a new ref here..."
+      sx={{
+        variant: "flex.refWrapper",
+        p: isExpanded && 3,
+        bg: isExpanded && "primaryMuted",
+        height: isExpanded ? "auto" : 8,
+        cursor: "pointer",
+        postion: "relative",
+        "&:hover": { bg: isExpanded || "muted" },
+      }}
+      ref={target}
+      onClick={() => setIsExpanded(!isExpanded)}
+    >
+      {isExpanded &&
+        refTypes.map((type) => (
           <IconButton
-            onClick={() => setIsSelectingType(false)}
-            sx={{
-              variant: "iconButton.background",
-              color: "negative",
-              position: "absolute",
-              right: 3,
-              "&:hover": {
-                bg: "negativeBackground",
-              },
-            }}
-            children={<UilTrash />}
-            title="Nevermind..."
+            key={type.stub}
+            onClick={() => insert(type.stub)}
+            sx={{ variant: "iconButton.background", mr: 2 }}
+            children={type.icon}
+            disabled={!type.active}
+            title={`Create a ${type.stub} ref`}
           />
-        </Flex>
-      ) : (
-        <Flex ref={target} sx={{ variant: "flex.refNew" }}>
-          {isHovering && (
-            <IconButton
-              onClick={() => setIsSelectingType(true)}
-              sx={{ variant: "iconButton.default" }}
-              children={<UilPlus />}
-              title="Add a ref"
-            />
-          )}
-        </Flex>
+        ))}
+      {isExpanded && (
+        <IconButton
+          sx={{
+            variant: "iconButton.background",
+            position: "absolute",
+            right: 3,
+          }}
+          children={<UilTimes />}
+          title="Nevermind"
+        />
       )}
-    </>
+    </Flex>
   );
 };
 
 RefNew.propTypes = {
-  rank: PropTypes.number,
+  rank: PropTypes.number.isRequired,
   isSelectingType: PropTypes.bool,
 };
 
