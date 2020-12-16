@@ -13,8 +13,10 @@ import {
 import AppContext from "./AppContext";
 import Trash from "@iconscout/react-unicons/icons/uil-trash";
 import Moon from "@iconscout/react-unicons/icons/uil-moon";
+import { refTypes } from "../utils/types";
 import Sun from "@iconscout/react-unicons/icons/uil-sun";
 import ArrowUp from "@iconscout/react-unicons/icons/uil-arrow-up";
+import theme from "../utils/theme";
 
 const Sandbox = () => {
   const { colorMode, setColorMode } = useContext(AppContext);
@@ -33,36 +35,26 @@ const Sandbox = () => {
       <Text>This is a sandbox</Text>
       <Text variant="text.ref">This is ref body text.</Text>
       <Flex>
-        <Button
-          variant="button.primary"
-          m={3}
-          title="Toggle color mode"
-          children={colorMode === "default" ? "Light" : "Dark"}
-          onClick={() =>
-            setColorMode(colorMode === "default" ? "dark" : "default")
-          }
-        />
-        <Button m={3} variant="button.default">
-          Default
-        </Button>
-        <Button m={3} variant="button.default">
-          <ArrowUp />
-          <Text ml={3}>Parent</Text>
-        </Button>
-        <IconButton variant="iconButton.default" m={3} children={<Sun />} />
-        <IconButton variant="iconButton.primary" m={3} children={<Moon />} />
-        <IconButton m={2} variant="iconButton.negative">
-          <Trash />
-        </IconButton>
+        {Object.keys(refTypes).map((key) => {
+          const type = refTypes[key];
+          return (
+            <IconButton
+              key={key}
+              variant="iconButton.primary"
+              m={1}
+              children={type.icon}
+              sx={{
+                color: theme.colors.modes[key].primary,
+                bg: theme.colors.modes[key].primaryMuted,
+                "&:hover": {
+                  bg: theme.colors.modes[key].primaryHover,
+                  color: "background",
+                },
+              }}
+            />
+          );
+        })}
       </Flex>
-      <Box m={3}>
-        <Select sx={{ variant: "select.default" }}>
-          <option>Option</option>
-        </Select>
-      </Box>
-      <Box m={3}>
-        <Input variant="input.default" placeholder="Placeholder" />
-      </Box>
     </Flex>
   );
 };

@@ -22,7 +22,7 @@ export const refTypes = {
     active: false,
     icon: <UilFileUpload />,
     label: "Resource",
-    color: "#7E13A4",
+    color: "#9b64bf",
   },
   table: {
     active: false,
@@ -34,7 +34,7 @@ export const refTypes = {
     active: false,
     icon: <UilCheckCircle />,
     label: "Tasks",
-    color: "#9A275A",
+    color: "#fe714a",
   },
 };
 
