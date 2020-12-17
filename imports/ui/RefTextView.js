@@ -16,7 +16,9 @@ const allowedMarkdownTypes = [
 
 const RefTextView = (props) => (
   <Flex sx={{ variant: props.isParentRef ? "flex.parent" : "flex.ref" }}>
-    {props.title && props.showTitle && <Heading>{props.title}</Heading>}
+    {props.title && props.showTitle && (
+      <Heading sx={{ fontSize: props.isParentRef && 3 }}>{props.title}</Heading>
+    )}
     <Text
       sx={{
         variant: "text.default",

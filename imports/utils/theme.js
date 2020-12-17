@@ -170,7 +170,7 @@ export default {
     heading: "inherit",
     monospace: "Menlo, monospace",
   },
-  fontSizes: [12, 16, 18],
+  fontSizes: [12, 16, 18, 24],
   fontWeights: {
     body: 400,
     heading: 700,
