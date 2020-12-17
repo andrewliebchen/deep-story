@@ -1,4 +1,4 @@
-import { Flex, IconButton, useColorMode } from "theme-ui";
+import { Flex, IconButton, Text, useColorMode } from "theme-ui";
 import { useHistory } from "react-router-dom";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
@@ -11,12 +11,15 @@ import UilCornerUpLeft from "@iconscout/react-unicons/icons/uil-corner-up-left";
 import UilPen from "@iconscout/react-unicons/icons/uil-pen";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 import useHover from "@react-hook/hover";
+import { useChildRefsCount } from "../utils/hooks";
 
 const Ref = (props) => {
   const { selectedRefId, setSelectedRefId } = useContext(AppContext);
   const history = useHistory();
 
   const isSelected = selectedRefId === props._id;
+
+  const refCount = useChildRefsCount(props._id);
 
   const target = React.useRef(null);
   const isHovering = useHover(target);
@@ -43,12 +46,21 @@ const Ref = (props) => {
               title="Back to parent"
             />
           ) : (
-            <IconButton
-              onClick={() => history.push(`/refs/${props._id}`)}
-              variant="iconButton.background"
-              children={<UilCornerRightDown />}
-              title="Show children"
-            />
+            <Flex sx={{ alignItems: "center" }}>
+              <IconButton
+                onClick={() => history.push(`/refs/${props._id}`)}
+                variant="iconButton.background"
+                children={<UilCornerRightDown />}
+                title="Show children"
+              />
+              {refCount > 0 && (
+                <Text
+                  sx={{ fontWeight: "bold", ml: 2, color: "textSecondary" }}
+                >
+                  {refCount}
+                </Text>
+              )}
+            </Flex>
           ))}
       </Flex>
       <Flex variant="flex.refRightButtons">

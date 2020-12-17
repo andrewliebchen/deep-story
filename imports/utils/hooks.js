@@ -42,6 +42,9 @@ export const useChildRefs = (parentId) =>
     };
   });
 
+export const useChildRefsCount = (parentId) =>
+  useTracker(() => RefsCollection.find({ parentId: parentId }).fetch().length);
+
 export const useGetRef = (key = "_id", value) => {
   let query = {};
   query[key] = value;
