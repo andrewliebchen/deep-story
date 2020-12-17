@@ -64,3 +64,17 @@ This might change...but this was always an interesting feature of Quip, especial
 - Slash command that allow you to add an outgoing connection to another reference
 - Show how many incoming and outgoing references there are to a reference
 - Arrow up/down to select previous/next ref
+
+## Glossary
+
+### Parent ref
+
+The first ref of a story. The parent ref's parent is the user.
+
+## Story
+
+A family of refs. The parent ref and it's immediate children.
+
+## Ref
+
+A chunk of information that's connected to other chunks.
