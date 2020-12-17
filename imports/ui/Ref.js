@@ -14,18 +14,12 @@ import useHover from "@react-hook/hover";
 
 const Ref = (props) => {
   const { selectedRefId, setSelectedRefId } = useContext(AppContext);
-  const [colorMode, setColorMode] = useColorMode();
   const history = useHistory();
 
   const isSelected = selectedRefId === props._id;
 
   const target = React.useRef(null);
   const isHovering = useHover(target);
-
-  useEffect(
-    () => setColorMode(props.type === "base" ? "text" : props.type),
-    []
-  );
 
   return (
     <Flex

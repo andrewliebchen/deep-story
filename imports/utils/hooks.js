@@ -17,7 +17,10 @@ export const useAccount = () =>
 
 export const useBaseRefs = () =>
   useTracker(() => {
+    console.log(userId);
     const refs = RefsCollection.find({ parentId: userId }).fetch();
+
+    console.log(refs);
 
     return {
       refs,

@@ -5,6 +5,7 @@ import RefTextView from "./RefTextView";
 import RefTextEdit from "./RefTextEdit";
 import RefMockView from "./RefMockView";
 import RefMockEdit from "./RefMockEdit";
+import { refTypes } from "../utils/types";
 
 const RefContent = (props) => {
   const { selectedRefId } = useContext(AppContext);
@@ -27,7 +28,7 @@ const RefContent = (props) => {
 
 RefContent.propTypes = {
   _id: PropTypes.string,
-  type: PropTypes.oneOf(["text", "mock", "base"]),
+  type: PropTypes.oneOf(Object.keys(refTypes)),
   isParentRef: PropTypes.bool,
 };
 

@@ -1,4 +1,4 @@
-import { Box, Flex } from "theme-ui";
+import { Box, Flex, useColorMode } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import { useChildRefs } from "../utils/hooks";
 import { useKeycodes } from "@accessible/use-keycode";
@@ -21,6 +21,14 @@ const RefStory = () => {
     27: () => setSelectedRefId(false),
   });
 
+  // Set the color mode based on the parent ref type
+  const [colorMode, setColorMode] = useColorMode();
+  useEffect(() =>
+    setColorMode(isReady(parentRef) ? parentRef.type : "default")
+  );
+
+  console.log(isReady(parentRef) && parentRef.type);
+
   return (
     <Flex
       ref={keycodesListener}
@@ -29,7 +37,7 @@ const RefStory = () => {
       {isReady(parentRef) && (
         <>
           {/* Parent ref, if there is one */}
-          {parentRef.type !== "base" && <Ref {...parentRef} isParentRef />}
+          <Ref {...parentRef} isParentRef />
           {/* The child refs */}
           {refs.map((ref, index) => {
             const prevRef = index === 0 ? { rank: 0 } : refs[index - 1];

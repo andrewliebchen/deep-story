@@ -12,6 +12,8 @@ const Header = () => {
   const { userId } = useAccount();
   const history = useHistory();
 
+  console.log(userId);
+
   return (
     <Flex
       sx={{
@@ -40,7 +42,7 @@ const Header = () => {
           onClick={() =>
             Meteor.call(
               "refs.insert",
-              { type: "base", parentId: userId },
+              { type: "text", parentId: userId },
               (error, id) => history.push(`/refs/${id}`)
             )
           }

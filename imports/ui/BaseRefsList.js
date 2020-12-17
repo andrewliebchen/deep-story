@@ -1,10 +1,14 @@
-import { Box, Flex, Text } from "theme-ui";
+import { Box, Heading, Flex, Text, useColorMode } from "theme-ui";
 import { useBaseRefs } from "../utils/hooks";
-import React from "react";
+import React, { useEffect } from "react";
 import RefsListRow from "./RefsListRow";
+import Ref from "./Ref";
 
 const BaseRefsList = () => {
   const { refs } = useBaseRefs();
+  const [colorMode, setColorMode] = useColorMode();
+
+  useEffect(() => setColorMode("default"));
 
   return (
     <Flex
@@ -15,7 +19,7 @@ const BaseRefsList = () => {
     >
       <Box>
         {refs.map((ref) => (
-          <RefsListRow key={ref._id} {...ref} />
+          <Ref key={ref._id} {...ref} />
         ))}
       </Box>
     </Flex>

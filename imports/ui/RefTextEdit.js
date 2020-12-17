@@ -12,11 +12,11 @@ const RefTextEdit = (props) => (
         alignItems: "center",
         flexDirection: "row",
         mb: 2,
-        p: 2,
+        px: 3,
+        py: 2,
       }}
     >
       <Input
-        variant="input.inline"
         placeholder="Add a title..."
         defaultValue={props.title}
         onChange={(event) =>
@@ -25,6 +25,7 @@ const RefTextEdit = (props) => (
           })
         }
         sx={{
+          variant: "input.inline",
           fontWeight: "bold",
           color: props.showTitle ? "text" : "textSecondary",
         }}
