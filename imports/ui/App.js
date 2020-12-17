@@ -1,6 +1,5 @@
 import { Box } from "theme-ui";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import BaseRefsList from "./BaseRefsList";
 import Header from "./Header";
 import React from "react";
 import RefStory from "./RefStory";
@@ -14,7 +13,7 @@ const App = (props) => (
       <Switch>
         <Route path="/refs/:parentRefId" component={RefStory} />
         <Route path="/sandbox" component={Sandbox} />
-        <Route path="/" component={BaseRefsList} />
+        <Route path="/" component={RefStory} />
       </Switch>
     </Box>
     <Toasts />

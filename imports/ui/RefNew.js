@@ -18,17 +18,6 @@ const RefNew = (props) => {
 
   const [isExpanded, setIsExpanded] = useState(props.isExpanded);
 
-  const insert = (type) =>
-    Meteor.call(
-      "refs.insert",
-      {
-        type: type,
-        parentId: parentRefId,
-        rank: props.rank,
-      },
-      (error, id) => setSelectedRefId(id)
-    );
-
   return (
     <Flex
       title="Add a new ref here..."
@@ -52,7 +41,20 @@ const RefNew = (props) => {
               children={type.icon}
               disabled={!type.active}
               key={stub}
-              onClick={() => insert(stub)}
+              onClick={() =>
+                Meteor.call(
+                  "refs.insert",
+                  {
+                    type: stub,
+                    parentId: parentRefId,
+                    rank: props.rank,
+                  },
+                  (error, id) => {
+                    setIsExpanded(false);
+                    setSelectedRefId(id);
+                  }
+                )
+              }
               sx={{ variant: "iconButton.background", mr: 2 }}
               title={`Create a ${stub} ref`}
             />

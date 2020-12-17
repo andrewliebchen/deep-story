@@ -35,6 +35,7 @@ Hopefully, this will be the first real "magic moment..."
 - Favorite refs
 - ✅ Add button `titles` (maybe tooltips)
 - ✅ Color themes based on type
+- Show how many children a ref has...
 
 ### ⏳ Milestone 3: Add `resource` ref types
 
