@@ -15,7 +15,6 @@ const Header = () => {
   return (
     <Flex
       sx={{
-        bg: "background",
         justifyContent: "space-between",
         alignItems: "center",
         position: "sticky",

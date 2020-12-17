@@ -11,7 +11,6 @@ const RefsListRow = (props) => {
 
   return (
     <Flex
-      key={props._id}
       onClick={() => history.push(`/refs/${props._id}`)}
       sx={{
         cursor: "pointer",
