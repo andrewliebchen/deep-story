@@ -7,6 +7,7 @@ import React, { useContext, useState } from "react";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 import UilTimes from "@iconscout/react-unicons/icons/uil-times";
+import UilSearchPlus from "@iconscout/react-unicons/icons/uil-search-plus";
 import useHover from "@react-hook/hover";
 
 const RefNew = (props) => {
@@ -34,33 +35,41 @@ const RefNew = (props) => {
       ref={target}
       onClick={() => setIsExpanded(true)}
     >
-      {isExpanded &&
-        Object.keys(refTypes).map((stub) => {
-          const type = refTypes[stub];
-          return (
-            <IconButton
-              children={type.icon}
-              disabled={!type.active}
-              key={stub}
-              onClick={() =>
-                Meteor.call(
-                  "refs.insert",
-                  {
-                    type: stub,
-                    parentId: parentRefId,
-                    rank: props.rank,
-                  },
-                  (error, id) => {
-                    setIsExpanded(false);
-                    setSelectedRefId(id);
-                  }
-                )
-              }
-              sx={{ variant: "iconButton.background", mr: 2 }}
-              title={`Create a ${stub} ref`}
-            />
-          );
-        })}
+      {isExpanded && (
+        <Flex>
+          {Object.keys(refTypes).map((stub) => {
+            const type = refTypes[stub];
+            return (
+              <IconButton
+                children={type.icon}
+                disabled={!type.active}
+                key={stub}
+                onClick={() =>
+                  Meteor.call(
+                    "refs.insert",
+                    {
+                      type: stub,
+                      parentId: parentRefId,
+                      rank: props.rank,
+                    },
+                    (error, id) => {
+                      setIsExpanded(false);
+                      setSelectedRefId(id);
+                    }
+                  )
+                }
+                sx={{ variant: "iconButton.background", mr: 2 }}
+                title={`Create a ${stub} ref`}
+              />
+            );
+          })}
+          <IconButton
+            children={<UilSearchPlus />}
+            sx={{ variant: "iconButton.background", ml: 3 }}
+            title="Add an existing ref"
+          />
+        </Flex>
+      )}
       {isExpanded && !props.isExpanded && (
         <IconButton
           onClick={(event) => {
