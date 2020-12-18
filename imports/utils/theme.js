@@ -120,6 +120,7 @@ export default {
     },
     parent: {
       ...flexRefBase,
+      bg: "transparent",
       my: 3,
     },
     refNew: {
