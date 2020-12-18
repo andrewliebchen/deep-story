@@ -18,7 +18,7 @@ const RefMockEdit = (props) => (
             defaultValue={props.schema && props.schema.label}
             onChange={(event) =>
               Meteor.call(
-                "refs.changeSchemaType",
+                "refs.updateSchemaType",
                 props._id,
                 event.target.value
               )

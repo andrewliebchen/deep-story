@@ -9,19 +9,25 @@ export const RefsCollection = new Mongo.Collection("refs");
 
 Meteor.methods({
   "refs.insert"(options) {
-    return RefsCollection.insert({
+    const newRefId = RefsCollection.insert({
       createdAt: Date.now(),
       createdBy: Meteor.userId(),
       showTitle: true,
       ...options,
     });
+
+    if (options.type === "mock") {
+      Meteor.call("refs.updateSchemaType", newRefId, "person");
+    }
+
+    return newRefId;
   },
 
   "refs.update"(id, options) {
     return RefsCollection.update(id, { $set: options });
   },
 
-  "refs.changeSchemaType"(id, schema) {
+  "refs.updateSchemaType"(id, schema) {
     const generatedData = jsf.generate(mockTypes[schema]);
     return RefsCollection.update(id, {
       $set: {
