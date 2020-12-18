@@ -120,7 +120,7 @@ export default {
     },
     parent: {
       ...flexRefBase,
-      bg: "transparent",
+      my: 3,
     },
     refNew: {
       width: "100vw",
@@ -278,6 +278,7 @@ export default {
       ...invisibleInputBase,
       ...flexRefBase,
       resize: "none",
+      fontSize: 1,
     },
   },
 };

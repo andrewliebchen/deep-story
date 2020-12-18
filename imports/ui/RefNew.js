@@ -28,6 +28,7 @@ const RefNew = (props) => {
         height: isExpanded ? "auto" : 8,
         p: isExpanded && 3,
         postion: "relative",
+        borderColor: "background",
         "&:hover": { bg: isExpanded || "muted" },
       }}
       ref={target}

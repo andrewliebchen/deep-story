@@ -30,12 +30,12 @@ Hopefully, this will be the first real "magic moment..."
 - Refresh mock values
 - Add custom parameters
 
-- Auto-expanding text box
+- ✅ Auto-expanding text box
 - ✅ Improve base refs page
 - Favorite refs
 - ✅ Add button `titles` (maybe tooltips)
 - ✅ Color themes based on type
-- Show how many children a ref has...
+- ✅ Show how many children a ref has...
 
 ### ⏳ Milestone 3: Add `resource` ref types
 

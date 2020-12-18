@@ -1,8 +1,11 @@
-import { Box, Flex, Input, IconButton, Text, Textarea } from "theme-ui";
+/** @jsx jsx */
+
+import { Box, Flex, Input, IconButton, Text, Textarea, jsx } from "theme-ui";
 import PropTypes from "prop-types";
 import React from "react";
 import UilEye from "@iconscout/react-unicons/icons/uil-eye";
 import UilEyeSlash from "@iconscout/react-unicons/icons/uil-eye-slash";
+import TextareaAutosize from "react-textarea-autosize";
 
 const RefTextEdit = (props) => (
   <Box>
@@ -41,7 +44,7 @@ const RefTextEdit = (props) => (
         title={props.showTitle ? "Hide ref title" : "Show ref title"}
       />
     </Flex>
-    <Textarea
+    <TextareaAutosize
       onChange={(event) =>
         Meteor.call("refs.update", props._id, {
           content: event.target.value,
