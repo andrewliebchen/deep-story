@@ -95,7 +95,7 @@ const Ref = (props) => {
           />
         )}
       </Flex>
-      <RefContent {...props} />
+      <RefContent isHovering={isHovering} {...props} />
     </Flex>
   );
 };

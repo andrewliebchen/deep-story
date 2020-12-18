@@ -54,14 +54,16 @@ const RefMockView = (props) => {
                       <Label>{capitalize(key)}</Label>
                       <Text>{props.data[key]}</Text>
                     </Box>
-                    <IconButton
-                      children={<UilCopy />}
-                      sx={{ variant: "iconButton.default", ml: "auto" }}
-                      onClick={() => {
-                        ultralightCopy(props.data[key]);
-                        setToastMessage("Copied to clipboard");
-                      }}
-                    />
+                    {props.isHovering && (
+                      <IconButton
+                        children={<UilCopy />}
+                        sx={{ variant: "iconButton.default", ml: "auto" }}
+                        onClick={() => {
+                          ultralightCopy(props.data[key]);
+                          setToastMessage("Copied to clipboard");
+                        }}
+                      />
+                    )}
                   </Flex>
                 )
             )}
@@ -74,6 +76,13 @@ const RefMockView = (props) => {
     </Button> */}
     </Flex>
   );
+};
+
+RefMockView.propTypes = {
+  data: PropTypes.object,
+  isHovering: PropTypes.bool,
+  showTitle: PropTypes.bool,
+  title: PropTypes.string,
 };
 
 export default RefMockView;
