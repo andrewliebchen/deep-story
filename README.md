@@ -13,7 +13,7 @@ Go deep into a story by adding a story within each word. Maybe like a mini inter
 
 ### ✅ Milestone 1: Basic CRUD for `story` ref types
 
-- ⏳ Press esc or enter to un-select a Ref
+- ✅ Press esc or ~~enter~~ to un-select a Ref
 - ✅ Affordance to toggle title on/off
 - ✅ Add new ref creation component
 - ✅ Markdown
@@ -27,8 +27,9 @@ Hopefully, this will be the first real "magic moment..."
 - ✅ Display Mock ref inline
 - Link a ref to an existing mock (or any ref)
 - ✅ Show parent ref at the top of the story
-- Refresh mock values
+- ✅ Refresh mock values
 - Add custom parameters
+- Use standard title field instead of nickname
 
 - ✅ Auto-expanding text box
 - ✅ Improve base refs page

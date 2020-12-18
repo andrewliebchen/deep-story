@@ -12,7 +12,7 @@ const Toasts = (props) => {
         position: "fixed",
         zIndex: 1,
         left: "50%",
-        top: 3,
+        bottom: 3,
         transform: "translateX(-50%)",
       }}
     >

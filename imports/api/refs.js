@@ -2,6 +2,7 @@ import { Mongo } from "meteor/mongo";
 import { Meteor } from "meteor/meteor";
 import { mockTypes } from "../utils/types";
 import jsf from "json-schema-faker";
+import faker from "faker";
 
 jsf.extend("faker", () => require("faker"));
 
@@ -39,5 +40,14 @@ Meteor.methods({
 
   "refs.remove"(id) {
     return RefsCollection.remove(id);
+  },
+
+  "refs.refreshMockData"(id, schema, key) {
+    let newField = {};
+    newField[`data.${key}`] = faker.fake(
+      `{{${mockTypes[schema].properties[key].faker}}}`
+    );
+
+    return RefsCollection.update(id, { $set: newField });
   },
 });
