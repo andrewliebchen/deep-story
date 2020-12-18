@@ -23,16 +23,20 @@ const RefMockView = (props) => {
   const { setToastMessage } = useContext(AppContext);
 
   return (
-    <Box variant="flex.ref">
-      {props.title && <Heading mb={3}>{props.title}</Heading>}
+    <Flex
+      sx={{
+        variant: "flex.ref",
+        border: "3px solid",
+        borderColor: "muted",
+      }}
+    >
+      {props.title && props.showTitle && (
+        <Heading mb={3}>{props.title}</Heading>
+      )}
       {props.data && (
         <Flex
           sx={{
             alignItems: "center",
-            border: "3px solid",
-            borderColor: "muted",
-            p: 3,
-            borderRadius: 2,
           }}
         >
           {props.data.image && (
@@ -42,7 +46,6 @@ const RefMockView = (props) => {
             />
           )}
           <Flex sx={{ flexDirection: "column", flexGrow: 2, m: -1 }}>
-            {props.nickname && <Heading>{props.nickname}</Heading>}
             {Object.keys(props.data).map(
               (key) =>
                 key !== "image" && (
@@ -69,7 +72,7 @@ const RefMockView = (props) => {
       <UilArrowDown />
       <Text ml={2}>See all parameters</Text>
     </Button> */}
-    </Box>
+    </Flex>
   );
 };
 

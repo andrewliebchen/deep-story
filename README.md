@@ -29,7 +29,7 @@ Hopefully, this will be the first real "magic moment..."
 - ✅ Show parent ref at the top of the story
 - ✅ Refresh mock values
 - Add custom parameters
-- Use standard title field instead of nickname
+- ✅ Use standard title field instead of nickname
 
 - ✅ Auto-expanding text box
 - ✅ Improve base refs page
