@@ -3,47 +3,12 @@
 import { Box, Flex, Input, IconButton, Text, Textarea, jsx } from "theme-ui";
 import PropTypes from "prop-types";
 import React from "react";
-import UilEye from "@iconscout/react-unicons/icons/uil-eye";
-import UilEyeSlash from "@iconscout/react-unicons/icons/uil-eye-slash";
 import TextareaAutosize from "react-textarea-autosize";
+import TitleInput from "./TitleInput";
 
 const RefTextEdit = (props) => (
   <Box>
-    <Flex
-      sx={{
-        variant: "flex.ref",
-        alignItems: "center",
-        flexDirection: "row",
-        mb: 2,
-        px: 3,
-        py: 2,
-      }}
-    >
-      <Input
-        placeholder="Add a title..."
-        defaultValue={props.title}
-        onChange={(event) =>
-          Meteor.call("refs.update", props._id, {
-            title: event.target.value,
-          })
-        }
-        sx={{
-          variant: "input.inline",
-          fontWeight: "bold",
-          color: props.showTitle ? "text" : "textSecondary",
-        }}
-      />
-      <IconButton
-        sx={{ variant: "iconButton.default", mr: 2 }}
-        children={props.showTitle ? <UilEye /> : <UilEyeSlash />}
-        onClick={() =>
-          Meteor.call("refs.update", props._id, {
-            showTitle: !props.showTitle,
-          })
-        }
-        title={props.showTitle ? "Hide ref title" : "Show ref title"}
-      />
-    </Flex>
+    <TitleInput {...props} />
     <TextareaAutosize
       onChange={(event) =>
         Meteor.call("refs.update", props._id, {
@@ -52,7 +17,7 @@ const RefTextEdit = (props) => (
       }
       defaultValue={props.content}
       placeholder="Tell a story..."
-      sx={{ variant: "textarea.ref" }}
+      sx={{ variant: "textarea.ref", mt: 2 }}
     />
   </Box>
 );

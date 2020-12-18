@@ -280,6 +280,7 @@ export default {
       ...flexRefBase,
       resize: "none",
       fontSize: 1,
+      minHeight: controlHeight * 2,
     },
   },
 };
