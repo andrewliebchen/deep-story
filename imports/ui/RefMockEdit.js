@@ -1,24 +1,37 @@
-import { Box, Button, Flex, IconButton, Input, Select, Text } from "theme-ui";
+import {
+  Box,
+  Button,
+  Flex,
+  IconButton,
+  Input,
+  Label,
+  Select,
+  Text,
+} from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { mockTypes } from "../utils/types";
+import AppContext from "./AppContext";
+import capitalize from "capitalize";
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
+import TitleInput from "./TitleInput";
 import UilRefresh from "@iconscout/react-unicons/icons/uil-refresh";
-import AppContext from "./AppContext";
 
 const RefMockEdit = (props) => {
   const { setToastMessage } = useContext(AppContext);
 
   return (
     <Box>
-      <Flex sx={{ variant: "flex.ref" }}>
-        <Flex m={-2}>
-          <Flex sx={{ flexDirection: "column", m: 2, flex: "1 1 0" }}>
-            <Text sx={{ fontWeight: "bold", textAlign: "center", mb: 2 }}>
-              Type of mock
-            </Text>
+      <TitleInput {...props} />
+
+      <Flex sx={{ variant: "flex.ref", p: 0, mt: 2 }}>
+        <Box>
+          <Flex sx={{ alignItems: "center", m: 3 }}>
+            <Label>Type</Label>
             <Select
-              sx={{ variant: "select.default" }}
+              sx={{
+                variant: "select.default",
+              }}
               defaultValue={props.schema && props.schema.label}
               onChange={(event) =>
                 Meteor.call(
@@ -35,42 +48,18 @@ const RefMockEdit = (props) => {
               ))}
             </Select>
           </Flex>
-          <Flex sx={{ flexDirection: "column", m: 2, flex: "1 1 0" }}>
-            <Text sx={{ fontWeight: "bold", textAlign: "center", mb: 2 }}>
-              Nickname
-            </Text>
-            <Input
-              placeholder="Make it unique..."
-              sx={{ variant: "input.default" }}
-              defaultValue={props.nickname}
-              onChange={(event) =>
-                Meteor.call("refs.update", props._id, {
-                  nickname: event.target.value,
-                })
-              }
-            />
-          </Flex>
-        </Flex>
-      </Flex>
-
-      <Flex sx={{ variant: "flex.ref", mt: 2 }}>
-        <Box m={-1}>
           {props.data &&
             Object.keys(props.data).map((key) => (
-              <Flex m={1} key={key}>
+              <Flex key={key} sx={{ alignItems: "center", m: 3 }}>
+                <Label>{capitalize(key)}</Label>
                 <Input
-                  disabled
-                  value={key}
-                  sx={{ variant: "input.default", m: 1 }}
-                />
-                <Input
-                  sx={{ variant: "input.default", m: 1 }}
+                  sx={{ variant: "input.default", mr: 2 }}
                   value={props.data[key]}
                   readOnly
                 />
                 <IconButton
                   children={<UilRefresh />}
-                  sx={{ variant: "iconButton.default", m: 1 }}
+                  sx={{ variant: "iconButton.default" }}
                   title="Refresh"
                   onClick={() =>
                     Meteor.call(

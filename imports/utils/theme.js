@@ -171,7 +171,7 @@ export default {
     heading: "inherit",
     monospace: "Menlo, monospace",
   },
-  fontSizes: [12, 16, 18, 24],
+  fontSizes: [14, 16, 18, 24],
   fontWeights: {
     body: 400,
     heading: 700,
@@ -231,6 +231,11 @@ export default {
       width: "auto",
       minHeight: 24,
     },
+  },
+  label: {
+    fontWeight: "bold",
+    fontSize: 0,
+    maxWidth: 100,
   },
   lineHeights: {
     body: 1.5,
