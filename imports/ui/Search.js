@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Flex, Input } from "theme-ui";
 import RefListRow from "./RefsListRow";
 import PropTypes from "prop-types";
 import RefsListRow from "./RefsListRow";
-import { useRefSearch } from "../utils/hooks";
+import { useRefSearch, useFocus } from "../utils/hooks";
 import { useKeycodes } from "@accessible/use-keycode";
 
 const Search = (props) => {
   const [value, setValue] = useState(props.value || "");
-  const [focus, setFocus] = useState(false);
+  const [setFocus, focusProps] = useFocus();
   const searchResults = useRefSearch(value);
 
   const keycodesListener = useKeycodes({
     // esc
     27: () => {
-      setValue(false);
+      setValue("");
       setFocus(false);
     },
   });
@@ -34,9 +34,8 @@ const Search = (props) => {
         }}
         onChange={(event) => setValue(event.target.value)}
         defaultValue={value}
-        focus={focus}
-        onClick={() => setFocus(true)}
         {...props}
+        {...focusProps}
       />
       {value.length > 2 && (
         <>
