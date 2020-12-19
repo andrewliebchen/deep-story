@@ -223,6 +223,9 @@ export default {
         color: "textSecondary",
         cursor: "not-allowed",
       },
+      "&:focus": {
+        bg: "background",
+      },
     },
     inline: {
       ...invisibleInputBase,
@@ -241,7 +244,7 @@ export default {
     body: 1.5,
     heading: 1.125,
   },
-  radii: [0, 4, 8, 12],
+  radii: [0, 4, 8, 12, 20, 28],
   select: {
     default: {
       ...controlBase,

@@ -17,10 +17,7 @@ export const useAccount = () =>
 
 export const useBaseRefs = () =>
   useTracker(() => {
-    console.log(userId);
     const refs = RefsCollection.find({ parentId: userId }).fetch();
-
-    console.log(refs);
 
     return {
       refs,
@@ -49,4 +46,10 @@ export const useGetRef = (key = "_id", value) => {
   let query = {};
   query[key] = value;
   return useTracker(() => RefsCollection.findOne(query), []);
+};
+
+export const useRefSearch = (value) => {
+  const refs = useTracker(() => RefsCollection.find({}).fetch());
+
+  return refs.filter((ref) => ref.title && ref.title.includes(value));
 };

@@ -6,6 +6,7 @@ import React from "react";
 import { controlHeight } from "../utils/theme";
 import { useHistory } from "react-router-dom";
 import { useAccount } from "../utils/hooks";
+import Search from "./Search";
 
 const Header = () => {
   const { userId } = useAccount();
@@ -24,13 +25,7 @@ const Header = () => {
       }}
     >
       <Nav />
-      <Flex sx={{ px: 3, width: "ref" }}>
-        <Input
-          type="search"
-          placeholder="Search"
-          sx={{ variant: "input.default" }}
-        />
-      </Flex>
+      <Search />
       <AccountToggle sx={{ minWidth: "auto" }} />
     </Flex>
   );

@@ -9,6 +9,7 @@ import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 import UilSearchPlus from "@iconscout/react-unicons/icons/uil-search-plus";
 import useHover from "@react-hook/hover";
+import Search from "./Search";
 
 const RefNew = (props) => {
   const { setSelectedRefId } = useContext(AppContext);
@@ -18,6 +19,7 @@ const RefNew = (props) => {
   const isHovering = useHover(target);
 
   const [isExpanded, setIsExpanded] = useState(props.isExpanded);
+  const [isSearching, setIsSearching] = useState(false);
 
   return (
     <Flex
@@ -35,7 +37,7 @@ const RefNew = (props) => {
       ref={target}
       onClick={() => setIsExpanded(true)}
     >
-      {isExpanded && (
+      {isExpanded && !isSearching && (
         <Flex>
           {Object.keys(refTypes).map((stub) => {
             const type = refTypes[stub];
@@ -67,14 +69,16 @@ const RefNew = (props) => {
             children={<UilSearchPlus />}
             sx={{ variant: "iconButton.background", ml: 3 }}
             title="Add an existing ref"
+            onClick={() => setIsSearching(true)}
           />
         </Flex>
       )}
+      {isSearching && <Search autoFocus />}
       {isExpanded && !props.isExpanded && (
         <IconButton
           onClick={(event) => {
             event.stopPropagation();
-            setIsExpanded(false);
+            isSearching ? setIsSearching(false) : setIsExpanded(false);
           }}
           sx={{
             variant: "iconButton.background",
