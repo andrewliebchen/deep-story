@@ -26,7 +26,7 @@ const RefsListRow = (props) => {
           <UilFile />
         </Box>
         <Text sx={{ variant: "text.default", fontWeight: "bold" }}>
-          {props._id}
+          {props.title}
         </Text>
       </Flex>
       <Flex sx={{ alignItems: "center" }}>
