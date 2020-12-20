@@ -4,12 +4,10 @@ import { useParams } from "react-router-dom";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext, useState } from "react";
-import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
-import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
-import UilTimes from "@iconscout/react-unicons/icons/uil-times";
-import UilSearchPlus from "@iconscout/react-unicons/icons/uil-search-plus";
-import useHover from "@react-hook/hover";
 import Search from "./Search";
+import UilSearchPlus from "@iconscout/react-unicons/icons/uil-search-plus";
+import UilTimes from "@iconscout/react-unicons/icons/uil-times";
+import useHover from "@react-hook/hover";
 
 const RefNew = (props) => {
   const { setSelectedRefId } = useContext(AppContext);
@@ -27,11 +25,11 @@ const RefNew = (props) => {
       sx={{
         variant: "flex.refWrapper",
         bg: isExpanded && "primaryMuted",
+        borderColor: "background",
         cursor: isExpanded ? "default" : "pointer",
         height: isExpanded ? "auto" : 8,
         p: isExpanded && 3,
         postion: "relative",
-        borderColor: "background",
         "&:hover": { bg: isExpanded || "muted" },
       }}
       ref={target}
@@ -67,9 +65,9 @@ const RefNew = (props) => {
           })}
           <IconButton
             children={<UilSearchPlus />}
+            onClick={() => setIsSearching(true)}
             sx={{ variant: "iconButton.background", ml: 3 }}
             title="Add an existing ref"
-            onClick={() => setIsSearching(true)}
           />
         </Flex>
       )}

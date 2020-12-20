@@ -1,11 +1,9 @@
-import { Flex, Text, IconButton, Input } from "theme-ui";
-import { isReady } from "../utils/helpers";
+import { Flex } from "theme-ui";
+import { useAccount } from "../utils/hooks";
+import { useHistory } from "react-router-dom";
 import AccountToggle from "./AccountToggle";
 import Nav from "./Nav";
 import React from "react";
-import { controlHeight } from "../utils/theme";
-import { useHistory } from "react-router-dom";
-import { useAccount } from "../utils/hooks";
 import Search from "./Search";
 
 const Header = () => {

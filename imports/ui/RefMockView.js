@@ -8,7 +8,6 @@ import {
   Label,
   Text,
 } from "theme-ui";
-import { mockTypes } from "../utils/types";
 import AppContext from "./AppContext";
 import capitalize from "capitalize";
 import PropTypes from "prop-types";

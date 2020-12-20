@@ -1,22 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Flex, Input } from "theme-ui";
-import RefListRow from "./RefsListRow";
-import PropTypes from "prop-types";
-import RefsListRow from "./RefsListRow";
-import { useRefSearch, useFocus } from "../utils/hooks";
+import { Flex, Input, IconButton } from "theme-ui";
 import { useKeycodes } from "@accessible/use-keycode";
+import { useRefSearch, useFocus } from "../utils/hooks";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
+import RefsListRow from "./RefsListRow";
+import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 
 const Search = (props) => {
   const [value, setValue] = useState(props.value || "");
   const [setFocus, focusProps] = useFocus();
   const searchResults = useRefSearch(value);
 
+  const setBlur = () => {
+    setValue("");
+    setFocus(false);
+  };
+
   const keycodesListener = useKeycodes({
     // esc
-    27: () => {
-      setValue("");
-      setFocus(false);
-    },
+    27: () => setBlur(),
   });
 
   return (
@@ -41,36 +43,41 @@ const Search = (props) => {
         <>
           <Flex
             sx={{
-              width: "100vw",
+              bg: "rgba(255, 255, 255, 0.9)",
               height: "100vh",
+              left: 0,
               position: "fixed",
               top: 0,
-              left: 0,
-              bg: "rgba(255, 255, 255, 0.9)",
+              width: "100vw",
             }}
-          />
+          >
+            <IconButton
+              sx={{
+                variant: "iconButton.default",
+                position: "absolute",
+                right: 3,
+                top: 3,
+                zIndex: 1,
+              }}
+              onClick={() => setBlur()}
+              children={<UilTimes />}
+            />
+          </Flex>
           <Flex
             sx={{
               variant: "flex.ref",
-              position: "absolute",
-              top: -3,
-              left: 0,
-              pt: 72,
               borderRadius: 5,
               boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)",
               flexDirection: "column",
+              left: 0,
+              position: "absolute",
+              pt: 72,
+              top: -3,
             }}
           >
             {value &&
               searchResults.map((ref) => (
-                <RefsListRow
-                  {...ref}
-                  key={ref._id}
-                  onClick={() => {
-                    setValue("");
-                    setFocus(false);
-                  }}
-                />
+                <RefsListRow {...ref} key={ref._id} onClick={() => setBlur()} />
               ))}
           </Flex>
         </>
@@ -80,6 +87,7 @@ const Search = (props) => {
 };
 
 Search.propTypes = {
+  autoFocus: PropTypes.bool,
   value: PropTypes.string,
 };
 

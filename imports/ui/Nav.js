@@ -8,9 +8,9 @@ const Nav = (props) => {
 
   return (
     <IconButton
-      variant="iconButton.default"
-      title="Back to home"
       onClick={() => history.push("/refs")}
+      title="Back to home"
+      variant="iconButton.default"
       {...props}
     >
       <UilHomeAlt />

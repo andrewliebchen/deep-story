@@ -1,11 +1,11 @@
+import { refTypes } from "../utils/types";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
-import RefTextView from "./RefTextView";
-import RefTextEdit from "./RefTextEdit";
-import RefMockView from "./RefMockView";
 import RefMockEdit from "./RefMockEdit";
-import { refTypes } from "../utils/types";
+import RefMockView from "./RefMockView";
+import RefTextEdit from "./RefTextEdit";
+import RefTextView from "./RefTextView";
 
 const RefContent = (props) => {
   const { selectedRefId } = useContext(AppContext);
@@ -28,8 +28,8 @@ const RefContent = (props) => {
 
 RefContent.propTypes = {
   _id: PropTypes.string,
-  type: PropTypes.oneOf(Object.keys(refTypes)),
   isParentRef: PropTypes.bool,
+  type: PropTypes.oneOf(Object.keys(refTypes)),
 };
 
 export default RefContent;

@@ -1,9 +1,9 @@
-import React from "react";
 import { Flex, Input, IconButton } from "theme-ui";
+import { Meteor } from "meteor/meteor";
+import PropTypes from "prop-types";
+import React from "react";
 import UilEye from "@iconscout/react-unicons/icons/uil-eye";
 import UilEyeSlash from "@iconscout/react-unicons/icons/uil-eye-slash";
-import PropTypes from "prop-types";
-import { Meteor } from "meteor/meteor";
 
 const TitleInput = (props) => (
   <Flex
@@ -16,8 +16,8 @@ const TitleInput = (props) => (
     }}
   >
     <Input
-      placeholder="Add a title..."
       defaultValue={props.title}
+      placeholder="Add a title..."
       onChange={(event) =>
         Meteor.call("refs.update", props._id, {
           title: event.target.value,
@@ -25,8 +25,8 @@ const TitleInput = (props) => (
       }
       sx={{
         variant: "input.inline",
-        fontWeight: "bold",
         color: props.showTitle ? "text" : "textSecondary",
+        fontWeight: "bold",
       }}
     />
     <IconButton
@@ -43,8 +43,8 @@ const TitleInput = (props) => (
 );
 
 TitleInput.propTypes = {
-  showTitle: PropTypes.bool,
   _id: PropTypes.string,
+  showTitle: PropTypes.bool,
   title: PropTypes.string,
 };
 

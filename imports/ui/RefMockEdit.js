@@ -1,13 +1,4 @@
-import {
-  Box,
-  Button,
-  Flex,
-  IconButton,
-  Input,
-  Label,
-  Select,
-  Text,
-} from "theme-ui";
+import { Box, Button, Flex, IconButton, Input, Label, Select } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { mockTypes } from "../utils/types";
 import AppContext from "./AppContext";
@@ -53,9 +44,9 @@ const RefMockEdit = (props) => {
               <Flex key={key} sx={{ alignItems: "center", m: 3 }}>
                 <Label>{capitalize(key)}</Label>
                 <Input
+                  readOnly
                   sx={{ variant: "input.default", mr: 2 }}
                   value={props.data[key]}
-                  readOnly
                 />
                 <IconButton
                   children={<UilRefresh />}
@@ -84,8 +75,8 @@ const RefMockEdit = (props) => {
 
 RefMockEdit.propTypes = {
   _id: PropTypes.string,
-  nickname: PropTypes.string,
   data: PropTypes.object,
+  nickname: PropTypes.string,
 };
 
 export default RefMockEdit;

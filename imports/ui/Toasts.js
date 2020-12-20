@@ -1,6 +1,6 @@
 import { Flex, Text } from "theme-ui";
 import AppContext from "./AppContext";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import ReactInterval from "react-interval";
 
 const Toasts = (props) => {
@@ -9,19 +9,19 @@ const Toasts = (props) => {
   return (
     <Flex
       sx={{
-        position: "fixed",
-        zIndex: 1,
-        left: "50%",
         bottom: 3,
+        left: "50%",
+        position: "fixed",
         transform: "translateX(-50%)",
+        zIndex: 1,
       }}
     >
       {toastMessage && (
         <Flex variant="flex.toast">
           <ReactInterval
-            timeout={5000}
             callback={() => setToastMessage(false)}
             enabled
+            timeout={5000}
           />
           <Text>{toastMessage}</Text>
         </Flex>

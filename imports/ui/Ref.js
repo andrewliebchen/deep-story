@@ -1,28 +1,26 @@
-import { Flex, IconButton, Text, useColorMode } from "theme-ui";
+import { Flex, IconButton, Text } from "theme-ui";
+import { useChildRefsCount } from "../utils/hooks";
 import { useHistory } from "react-router-dom";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import RefContent from "./RefContent";
-import UilArrowRight from "@iconscout/react-unicons/icons/uil-arrow-right";
 import UilCheck from "@iconscout/react-unicons/icons/uil-check";
 import UilCornerRightDown from "@iconscout/react-unicons/icons/uil-corner-right-down";
 import UilCornerUpLeft from "@iconscout/react-unicons/icons/uil-corner-up-left";
 import UilPen from "@iconscout/react-unicons/icons/uil-pen";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 import useHover from "@react-hook/hover";
-import { useChildRefsCount } from "../utils/hooks";
 
 const Ref = (props) => {
   const { selectedRefId, setSelectedRefId } = useContext(AppContext);
   const history = useHistory();
-
-  const isSelected = selectedRefId === props._id;
-
   const refCount = useChildRefsCount(props._id);
 
   const target = React.useRef(null);
   const isHovering = useHover(target);
+
+  const isSelected = selectedRefId === props._id;
 
   return (
     <Flex
@@ -40,22 +38,22 @@ const Ref = (props) => {
         {isHovering &&
           (props.isParentRef ? (
             <IconButton
-              onClick={() => history.goBack()}
-              variant="iconButton.background"
               children={<UilCornerUpLeft />}
+              onClick={() => history.goBack()}
               title="Back to parent"
+              variant="iconButton.background"
             />
           ) : (
             <Flex sx={{ alignItems: "center" }}>
               <IconButton
-                onClick={() => history.push(`/refs/${props._id}`)}
-                variant="iconButton.background"
                 children={<UilCornerRightDown />}
+                onClick={() => history.push(`/refs/${props._id}`)}
                 title="Show children"
+                variant="iconButton.background"
               />
               {refCount > 0 && (
                 <Text
-                  sx={{ fontWeight: "bold", ml: 2, color: "textSecondary" }}
+                  sx={{ color: "textSecondary", fontWeight: "bold", ml: 2 }}
                 >
                   {refCount}
                 </Text>

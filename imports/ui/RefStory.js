@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, IconButton, useColorMode } from "theme-ui";
+import { Box, Flex, useColorMode } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import { useChildRefs, useAccount } from "../utils/hooks";
 import { useKeycodes } from "@accessible/use-keycode";
@@ -6,10 +6,7 @@ import { useParams } from "react-router-dom";
 import AppContext from "./AppContext";
 import React, { useContext, useEffect } from "react";
 import Ref from "./Ref";
-import RefContent from "./RefContent";
 import RefNew from "./RefNew";
-import RefTextView from "./RefTextView";
-import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
 
 const RefStory = () => {
   const { setSelectedRefId } = useContext(AppContext);
