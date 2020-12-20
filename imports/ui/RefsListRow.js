@@ -35,14 +35,21 @@ const RefsListRow = (props) => {
   return (
     <>
       {props.navigate ? (
-        <Link to={`/refs/${props._id}`} onClick={props.onClick}>
+        <Link
+          to={`/refs/${props._id}`}
+          onClick={() => props.onClick(props._id)}
+        >
           {rowContent}
         </Link>
       ) : (
-        <Box onClick={props.onClick}>{rowContent}</Box>
+        <Box onClick={() => props.onClick(props._id)}>{rowContent}</Box>
       )}
     </>
   );
+};
+
+RefsListRow.defaultProps = {
+  navigate: true,
 };
 
 RefsListRow.propTypes = {

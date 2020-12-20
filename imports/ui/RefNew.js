@@ -8,6 +8,7 @@ import Search from "./Search";
 import UilSearchPlus from "@iconscout/react-unicons/icons/uil-search-plus";
 import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 import useHover from "@react-hook/hover";
+import { Meteor } from "meteor/meteor";
 
 const RefNew = (props) => {
   const { setSelectedRefId } = useContext(AppContext);
@@ -72,7 +73,15 @@ const RefNew = (props) => {
           />
         </Flex>
       )}
-      {isSearching && <Search autoFocus />}
+      {isSearching && (
+        <Search
+          autoFocus
+          navigate={false}
+          onClick={(selectedRefId) =>
+            Meteor.call("refs.insertLink", selectedRefId, parentRefId)
+          }
+        />
+      )}
       {isExpanded && !props.isExpanded && (
         <IconButton
           onClick={(event) => {

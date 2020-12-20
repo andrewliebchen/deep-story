@@ -77,7 +77,12 @@ const Search = (props) => {
           >
             {value &&
               searchResults.map((ref) => (
-                <RefsListRow {...ref} key={ref._id} onClick={() => setBlur()} />
+                <RefsListRow
+                  key={ref._id}
+                  onClick={() => setBlur()}
+                  {...props}
+                  {...ref}
+                />
               ))}
           </Flex>
         </>
@@ -89,6 +94,7 @@ const Search = (props) => {
 Search.propTypes = {
   autoFocus: PropTypes.bool,
   value: PropTypes.string,
+  navigate: PropTypes.bool,
 };
 
 export default Search;

@@ -50,4 +50,10 @@ Meteor.methods({
 
     return RefsCollection.update(id, { $set: newField });
   },
+
+  "refs.insertLink"(selectedRefId, parentRefId) {
+    // Should create a new ref that is a child of the parent ref,
+    // has a type of "link" and a linkId of the selectedRefId
+    console.log(selectedRefId, parentRefId);
+  },
 });
