@@ -30,6 +30,7 @@ const RefNew = (props) => {
         height: isExpanded ? "auto" : 8,
         p: isExpanded && 3,
         postion: "relative",
+        zIndex: 1,
         "&:hover": { bg: isExpanded || "muted" },
       }}
       ref={target}

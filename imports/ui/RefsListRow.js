@@ -5,8 +5,8 @@ import React from "react";
 import TimeAgo from "react-timeago";
 import UilFile from "@iconscout/react-unicons/icons/uil-file";
 
-const RefsListRow = (props) => (
-  <Link to={`/refs/${props._id}`} onClick={props.onClick}>
+const RefsListRow = (props) => {
+  const rowContent = (
     <Flex
       sx={{
         borderRadius: 2,
@@ -30,12 +30,26 @@ const RefsListRow = (props) => (
         </Text>
       </Flex>
     </Flex>
-  </Link>
-);
+  );
+
+  return (
+    <>
+      {props.navigate ? (
+        <Link to={`/refs/${props._id}`} onClick={props.onClick}>
+          {rowContent}
+        </Link>
+      ) : (
+        <Box onClick={props.onClick}>{rowContent}</Box>
+      )}
+    </>
+  );
+};
 
 RefsListRow.propTypes = {
   _id: PropTypes.string,
   createdAt: PropTypes.number,
+  onClick: PropTypes.func,
+  navigate: PropTypes.bool,
 };
 
 export default RefsListRow;
