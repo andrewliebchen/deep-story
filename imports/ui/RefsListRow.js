@@ -1,18 +1,14 @@
 import { Flex, Box, Text, IconButton } from "theme-ui";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import React from "react";
 import TimeAgo from "react-timeago";
 import UilArrowRight from "@iconscout/react-unicons/icons/uil-arrow-right";
 import UilFile from "@iconscout/react-unicons/icons/uil-file";
 
-const RefsListRow = (props) => {
-  const history = useHistory();
-
-  return (
+const RefsListRow = (props) => (
+  <Link to={`/refs/${props._id}`} onClick={props.onClick}>
     <Flex
-      key={props._id}
-      onClick={() => history.push(`/refs/${props._id}`)}
       sx={{
         cursor: "pointer",
         p: 3,
@@ -39,8 +35,8 @@ const RefsListRow = (props) => {
         />
       </Flex>
     </Flex>
-  );
-};
+  </Link>
+);
 
 RefsListRow.propTypes = {
   _id: PropTypes.string,

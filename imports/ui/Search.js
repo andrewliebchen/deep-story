@@ -63,7 +63,14 @@ const Search = (props) => {
           >
             {value &&
               searchResults.map((ref) => (
-                <RefsListRow {...ref} key={ref._id} />
+                <RefsListRow
+                  {...ref}
+                  key={ref._id}
+                  onClick={() => {
+                    setValue("");
+                    setFocus(false);
+                  }}
+                />
               ))}
           </Flex>
         </>
