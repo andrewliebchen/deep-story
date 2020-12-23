@@ -52,8 +52,15 @@ Meteor.methods({
   },
 
   "refs.insertLink"(selectedRefId, parentRefId) {
-    // Should create a new ref that is a child of the parent ref,
-    // has a type of "link" and a linkId of the selectedRefId
+    // Also need the rank!
     console.log(selectedRefId, parentRefId);
+
+    return RefsCollection.insert({
+      createdAt: Date.now(),
+      createdBy: Meteor.userId(),
+      type: "link",
+      parentId: parentRefId,
+      linkTo: selectedRefId,
+    });
   },
 });

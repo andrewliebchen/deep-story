@@ -29,7 +29,6 @@ const RefContent = (props) => {
 RefContent.propTypes = {
   _id: PropTypes.string,
   isParentRef: PropTypes.bool,
-  type: PropTypes.oneOf(Object.keys(refTypes)),
 };
 
 export default RefContent;
