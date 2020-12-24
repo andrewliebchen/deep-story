@@ -6,6 +6,8 @@ import RefMockEdit from "./RefMockEdit";
 import RefMockView from "./RefMockView";
 import RefTextEdit from "./RefTextEdit";
 import RefTextView from "./RefTextView";
+import RefLinkView from "./RefLinkView";
+import RefLinkEdit from "./RefLinkEdit";
 
 const RefContent = (props) => {
   const { selectedRefId } = useContext(AppContext);
@@ -14,6 +16,10 @@ const RefContent = (props) => {
   let view, edit;
 
   switch (props.type) {
+    case "link":
+      view = <RefLinkView {...props} />;
+      edit = <RefLinkEdit {...props} />;
+      break;
     case "mock":
       view = <RefMockView {...props} />;
       edit = <RefMockEdit {...props} />;

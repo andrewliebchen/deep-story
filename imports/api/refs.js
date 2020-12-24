@@ -51,16 +51,15 @@ Meteor.methods({
     return RefsCollection.update(id, { $set: newField });
   },
 
-  "refs.insertLink"(selectedRefId, parentRefId) {
+  "refs.insertLink"(args) {
     // Also need the rank!
-    console.log(selectedRefId, parentRefId);
+    console.log(args);
 
     return RefsCollection.insert({
       createdAt: Date.now(),
       createdBy: Meteor.userId(),
       type: "link",
-      parentId: parentRefId,
-      linkTo: selectedRefId,
+      ...args,
     });
   },
 });

@@ -77,8 +77,12 @@ const RefNew = (props) => {
         <Search
           autoFocus
           navigate={false}
-          onClick={(selectedRefId) =>
-            Meteor.call("refs.insertLink", selectedRefId, parentRefId)
+          onClick={(linkTargetRefId) =>
+            Meteor.call("refs.insertLink", {
+              parentId: parentRefId,
+              linkId: linkTargetRefId,
+              rank: props.rank,
+            })
           }
         />
       )}
