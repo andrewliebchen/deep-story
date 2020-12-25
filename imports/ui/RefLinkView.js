@@ -5,12 +5,7 @@ import { useGetRef } from "../utils/hooks";
 const RefLinkView = (props) => {
   const ref = useGetRef(props.linkId);
 
-  return (
-    <>
-      Link
-      <RefContent {...ref} />
-    </>
-  );
+  return <RefContent {...ref} />;
 };
 
 export default RefLinkView;

@@ -10,6 +10,7 @@ import UilCornerRightDown from "@iconscout/react-unicons/icons/uil-corner-right-
 import UilCornerUpLeft from "@iconscout/react-unicons/icons/uil-corner-up-left";
 import UilPen from "@iconscout/react-unicons/icons/uil-pen";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
+import UilLink from "@iconscout/react-unicons/icons/uil-link";
 import useHover from "@react-hook/hover";
 
 const Ref = (props) => {
@@ -39,7 +40,10 @@ const Ref = (props) => {
           (props.isParentRef ? (
             <IconButton
               children={<UilCornerUpLeft />}
-              onClick={() => history.goBack()}
+              onClick={() => {
+                setSelectedRefId("");
+                history.goBack();
+              }}
               title="Back to parent"
               variant="iconButton.background"
             />
@@ -80,18 +84,32 @@ const Ref = (props) => {
             title="Delete"
           />
         )}
-        {(isHovering || isSelected) && (
-          <IconButton
-            onClick={() =>
-              setSelectedRefId(selectedRefId === props._id || props._id)
-            }
-            sx={{
-              variant: `iconButton.${isSelected ? "primary" : "background"}`,
-            }}
-            children={isSelected ? <UilCheck /> : <UilPen />}
-            title={isSelected ? "Finish" : "Edit"}
-          />
-        )}
+        {props.type !== "link"
+          ? (isHovering || isSelected) && (
+              <IconButton
+                onClick={() =>
+                  setSelectedRefId(selectedRefId === props._id || props._id)
+                }
+                sx={{
+                  variant: `iconButton.${
+                    isSelected ? "primary" : "background"
+                  }`,
+                }}
+                children={isSelected ? <UilCheck /> : <UilPen />}
+                title={isSelected ? "Finish" : "Edit"}
+              />
+            )
+          : isHovering && (
+              <IconButton
+                children={<UilLink />}
+                sx={{ variant: "iconButton.background" }}
+                title="Go to ref page to edit linked refs"
+                onClick={() => {
+                  setSelectedRefId(props.linkId);
+                  history.push(`/refs/${props.linkId}`);
+                }}
+              />
+            )}
       </Flex>
       <RefContent isHovering={isHovering} {...props} />
     </Flex>
