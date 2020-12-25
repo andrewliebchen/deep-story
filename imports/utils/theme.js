@@ -196,6 +196,15 @@ export default {
       ...iconButtonBase,
       bg: "background",
     },
+    backgroundNegative: {
+      ...controlBase,
+      ...iconButtonBase,
+      bg: "background",
+      color: "negative",
+      "&:hover": {
+        bg: "negativeBackground",
+      },
+    },
     negative: {
       ...controlBase,
       ...buttonNegativeStyles,

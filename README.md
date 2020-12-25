@@ -25,7 +25,7 @@ Hopefully, this will be the first real "magic moment..."
 
 - ✅ Mock CRUD
 - ✅ Display Mock ref inline
-- Link a ref to an existing mock (or any ref)
+- ✅Link a ref to an existing mock (or any ref)
 - ✅ Show parent ref at the top of the story
 - ✅ Refresh mock values
 - Add custom parameters

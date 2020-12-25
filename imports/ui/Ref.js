@@ -11,6 +11,7 @@ import UilCornerUpLeft from "@iconscout/react-unicons/icons/uil-corner-up-left";
 import UilPen from "@iconscout/react-unicons/icons/uil-pen";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 import UilLink from "@iconscout/react-unicons/icons/uil-link";
+import UilLinkBroken from "@iconscout/react-unicons/icons/uil-link-broken";
 import useHover from "@react-hook/hover";
 
 const Ref = (props) => {
@@ -65,27 +66,24 @@ const Ref = (props) => {
             </Flex>
           ))}
       </Flex>
-      <Flex variant="flex.refRightButtons">
-        {isSelected && (
-          <IconButton
-            onClick={() =>
-              window.confirm("Are you sure you want to delete this ref?") &&
-              Meteor.call("refs.remove", props._id)
-            }
-            sx={{
-              variant: "iconButton.background",
-              color: "negative",
-              mr: 2,
-              "&:hover": {
-                bg: "negativeBackground",
-              },
-            }}
-            children={<UilTrash />}
-            title="Delete"
-          />
-        )}
-        {props.type !== "link"
-          ? (isHovering || isSelected) && (
+      {props.type !== "link"
+        ? (isHovering || isSelected) && (
+            <Flex variant="flex.refRightButtons">
+              {isSelected && (
+                <IconButton
+                  onClick={() =>
+                    window.confirm(
+                      "Are you sure you want to delete this ref?"
+                    ) && Meteor.call("refs.remove", props._id)
+                  }
+                  sx={{
+                    variant: "iconButton.backgroundNegative",
+                    mr: 2,
+                  }}
+                  children={<UilTrash />}
+                  title="Delete"
+                />
+              )}
               <IconButton
                 onClick={() =>
                   setSelectedRefId(selectedRefId === props._id || props._id)
@@ -98,8 +96,16 @@ const Ref = (props) => {
                 children={isSelected ? <UilCheck /> : <UilPen />}
                 title={isSelected ? "Finish" : "Edit"}
               />
-            )
-          : isHovering && (
+            </Flex>
+          )
+        : isHovering && (
+            <Flex variant="flex.refRightButtons">
+              <IconButton
+                children={<UilLinkBroken />}
+                sx={{ variant: "iconButton.backgroundNegative", mr: 2 }}
+                title="Remove linked ref"
+                onClick={() => Meteor.call("refs.remove", props._id)}
+              />
               <IconButton
                 children={<UilLink />}
                 sx={{ variant: "iconButton.background" }}
@@ -109,8 +115,8 @@ const Ref = (props) => {
                   history.push(`/refs/${props.linkId}`);
                 }}
               />
-            )}
-      </Flex>
+            </Flex>
+          )}
       <RefContent isHovering={isHovering} {...props} />
     </Flex>
   );
