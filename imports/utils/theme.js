@@ -259,6 +259,7 @@ export default {
     fontWeight: "bold",
     fontSize: 0,
     maxWidth: 100,
+    mr: 2,
   },
   lineHeights: {
     body: 1.5,

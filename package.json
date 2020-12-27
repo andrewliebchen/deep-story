@@ -19,6 +19,7 @@
     "faker": "4.1.x",
     "image-url-validator": "^0.2.4",
     "json-schema-faker": "^0.5.0-rcv.32",
+    "link-preview-generator": "^0.0.4",
     "meteor-node-stubs": "^1.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
