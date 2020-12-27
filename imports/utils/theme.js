@@ -258,7 +258,6 @@ export default {
     default: {
       ...controlBase,
       border: 0,
-      width: "100%",
     },
   },
   sizes: {

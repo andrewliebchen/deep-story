@@ -3,6 +3,7 @@ import { Meteor } from "meteor/meteor";
 import { mockTypes } from "../utils/types";
 import jsf from "json-schema-faker";
 import faker from "faker";
+import fakerKeys from "../utils/fakerKeys";
 
 jsf.extend("faker", () => require("faker"));
 
@@ -30,6 +31,7 @@ Meteor.methods({
 
   "refs.updateSchemaType"(id, schema) {
     const generatedData = jsf.generate(mockTypes[schema]);
+
     return RefsCollection.update(id, {
       $set: {
         schema: schema,
@@ -43,18 +45,24 @@ Meteor.methods({
   },
 
   "refs.refreshMockData"(id, schema, key) {
-    let newField = {};
-    newField[`data.${key}`] = faker.fake(
+    let newData = {};
+    newData[`data.${key}`] = faker.fake(
       `{{${mockTypes[schema].properties[key].faker}}}`
     );
 
-    return RefsCollection.update(id, { $set: newField });
+    return RefsCollection.update(id, { $set: newData });
+  },
+
+  "refs.updateCustomMockData"(id, key) {
+    let newCustomParamData = {};
+    newCustomParamData[`customParamData.${key}`] = faker.fake(
+      `{{${fakerKeys[key]}}}`
+    );
+
+    return RefsCollection.update(id, { $set: newCustomParamData });
   },
 
   "refs.insertLink"(args) {
-    // Also need the rank!
-    console.log(args);
-
     return RefsCollection.insert({
       createdAt: Date.now(),
       createdBy: Meteor.userId(),

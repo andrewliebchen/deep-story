@@ -1,4 +1,4 @@
-import { Box, Button, Flex, IconButton, Input, Label, Select } from "theme-ui";
+import { Box, Flex, IconButton, Input, Label, Select } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { mockTypes } from "../utils/types";
 import AppContext from "./AppContext";
@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import React, { useContext } from "react";
 import TitleInput from "./TitleInput";
 import UilRefresh from "@iconscout/react-unicons/icons/uil-refresh";
+import CustomParams from "./CustomParams";
 
 const RefMockEdit = (props) => {
   const { setToastMessage } = useContext(AppContext);
@@ -20,9 +21,7 @@ const RefMockEdit = (props) => {
           <Flex sx={{ alignItems: "center", m: 3 }}>
             <Label>Type</Label>
             <Select
-              sx={{
-                variant: "select.default",
-              }}
+              sx={{ variant: "select.default" }}
               defaultValue={props.schema && props.schema.label}
               onChange={(event) =>
                 Meteor.call(
@@ -68,7 +67,7 @@ const RefMockEdit = (props) => {
         </Box>
       </Flex>
 
-      {/* TODO: Add custom params */}
+      <CustomParams {...props} />
     </Box>
   );
 };
