@@ -53,6 +53,15 @@ Meteor.methods({
     return RefsCollection.update(id, { $set: newData });
   },
 
+  "refs.removeMockField"(id, key) {
+    const ref = RefsCollection.findOne(id);
+    delete ref.customFieldData[key];
+
+    return RefsCollection.update(id, {
+      $set: { customFieldData: ref.customFieldData },
+    });
+  },
+
   "refs.updateCustomMockData"(id, key) {
     let newCustomFieldData = {};
     newCustomFieldData[`customFieldData.${key}`] = faker.fake(

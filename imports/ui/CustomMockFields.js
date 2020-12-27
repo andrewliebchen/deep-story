@@ -2,13 +2,15 @@ import { Flex, Text, Button, Input, IconButton } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import fakerKeys from "../utils/fakerKeys";
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
 import UilRefresh from "@iconscout/react-unicons/icons/uil-refresh";
 import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
+import AppContext from "./AppContext";
 
 const CustomMockFields = (props) => {
+  const { setToastMessage } = useContext(AppContext);
   const [selectingField, setSelectingField] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
@@ -29,6 +31,15 @@ const CustomMockFields = (props) => {
               children={<UilTrash />}
               sx={{ variant: "iconButton.negative", mr: 2 }}
               title="Remove field"
+              onClick={() =>
+                Meteor.call(
+                  "refs.removeMockField",
+                  props._id,
+                  key,
+                  (error, success) =>
+                    success && setToastMessage(`Custom field "${key}" removed`)
+                )
+              }
             />
             <IconButton
               children={<UilRefresh />}
@@ -99,7 +110,12 @@ const CustomMockFields = (props) => {
                         "refs.updateCustomMockData",
                         props._id,
                         key,
-                        (error, success) => success && setSelectingField(false)
+                        (error, success) => {
+                          if (success) {
+                            setSelectingField(false);
+                            setToastMessage(`Custom field "${key}" added`);
+                          }
+                        }
                       )
                     }
                   >
