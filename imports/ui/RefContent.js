@@ -8,6 +8,8 @@ import RefTextEdit from "./RefTextEdit";
 import RefTextView from "./RefTextView";
 import RefLinkView from "./RefLinkView";
 import RefLinkEdit from "./RefLinkEdit";
+import RefResourceView from "./RefResourceView";
+import RefResourceEdit from "./RefResourceEdit";
 
 const RefContent = (props) => {
   const { selectedRefId } = useContext(AppContext);
@@ -16,6 +18,10 @@ const RefContent = (props) => {
   let view, edit;
 
   switch (props.type) {
+    case "resource":
+      view = <RefResourceView {...props} />;
+      edit = <RefResourceEdit {...props} />;
+      break;
     case "link":
       view = <RefLinkView {...props} />;
       edit = <RefLinkEdit {...props} />;

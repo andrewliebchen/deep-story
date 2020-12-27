@@ -19,7 +19,7 @@ Go deep into a story by adding a story within each word. Maybe like a mini inter
 - ✅ Markdown
 - ✅ Create a new child ref from a word
 
-### 🚧 Milestone 2: Create, edit, and manage `mock` ref types
+### ✅ Milestone 2: Create, edit, and manage `mock` ref types
 
 Hopefully, this will be the first real "magic moment..."
 
@@ -29,13 +29,12 @@ Hopefully, this will be the first real "magic moment..."
 - ✅ Show parent ref at the top of the story
 - ✅ Refresh mock values
 - ✅ Add custom fields
-- Refresh custom fields
-- Remove custom fields
+- ✅ Refresh custom fields
+- ✅ Remove custom fields
 - ✅ Use standard title field instead of nickname
 
 - ✅ Auto-expanding text box
 - ✅ Improve base refs page
-- Favorite refs
 - ✅ Add button `titles` (maybe tooltips)
 - ✅ Color themes based on type
 - ✅ Show how many children a ref has...
@@ -46,7 +45,9 @@ Important to demonstrate that it at least has the ambition to work with the outs
 
 - Add a resource (can be website, doc, or image)
 - Inline preview
-- `/resources` index page list of all resources
+- Filter `/refs` page by all or type
+
+- Favorite refs
 
 ### ⏳ Milestone 4: Add `task` ref types
 

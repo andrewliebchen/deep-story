@@ -19,7 +19,7 @@ export const refTypes = {
     color: "#C48208",
   },
   resource: {
-    active: false,
+    active: true,
     icon: <UilFileUpload />,
     label: "Resource",
     color: "#9b64bf",
