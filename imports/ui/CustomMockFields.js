@@ -1,12 +1,12 @@
 import { Flex, Text, Button, Input, IconButton } from "theme-ui";
+import { isReady } from "../utils/helpers";
+import fakerKeys from "../utils/fakerKeys";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
 import UilRefresh from "@iconscout/react-unicons/icons/uil-refresh";
-import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
-import { isReady } from "../utils/helpers";
-import fakerKeys from "../utils/fakerKeys";
 import UilTimes from "@iconscout/react-unicons/icons/uil-times";
+import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 
 const CustomMockFields = (props) => {
   const [selectingField, setSelectingField] = useState(false);

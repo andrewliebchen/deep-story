@@ -28,7 +28,9 @@ Hopefully, this will be the first real "magic moment..."
 - ✅Link a ref to an existing mock (or any ref)
 - ✅ Show parent ref at the top of the story
 - ✅ Refresh mock values
-- Add custom parameters
+- ✅ Add custom fields
+- Refresh custom fields
+- Remove custom fields
 - ✅ Use standard title field instead of nickname
 
 - ✅ Auto-expanding text box
