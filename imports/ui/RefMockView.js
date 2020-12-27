@@ -20,7 +20,7 @@ const imageSize = 120;
 
 const RefMockView = (props) => {
   const { setToastMessage } = useContext(AppContext);
-  const mockDataSet = { ...props.data, ...props.customParamData };
+  const mockDataSet = { ...props.data, ...props.customFieldData };
 
   return (
     <Flex

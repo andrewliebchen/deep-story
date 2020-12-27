@@ -41,16 +41,7 @@ const Search = (props) => {
       />
       {value.length > 2 && (
         <>
-          <Flex
-            sx={{
-              bg: "rgba(255, 255, 255, 0.9)",
-              height: "100vh",
-              left: 0,
-              position: "fixed",
-              top: 0,
-              width: "100vw",
-            }}
-          >
+          <Flex sx={{ variant: "flex.overlayBackground" }}>
             <IconButton
               sx={{
                 variant: "iconButton.default",
@@ -67,7 +58,7 @@ const Search = (props) => {
             sx={{
               variant: "flex.ref",
               borderRadius: 5,
-              boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)",
+              boxShadow: "overlay",
               flexDirection: "column",
               left: 0,
               position: "absolute",

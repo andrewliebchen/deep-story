@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import React, { useContext } from "react";
 import TitleInput from "./TitleInput";
 import UilRefresh from "@iconscout/react-unicons/icons/uil-refresh";
-import CustomParams from "./CustomParams";
+import CustomMockFields from "./CustomMockFields";
 
 const RefMockEdit = (props) => {
   const { setToastMessage } = useContext(AppContext);
@@ -67,7 +67,7 @@ const RefMockEdit = (props) => {
         </Box>
       </Flex>
 
-      <CustomParams {...props} />
+      <CustomMockFields {...props} />
     </Box>
   );
 };

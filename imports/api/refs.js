@@ -54,12 +54,12 @@ Meteor.methods({
   },
 
   "refs.updateCustomMockData"(id, key) {
-    let newCustomParamData = {};
-    newCustomParamData[`customParamData.${key}`] = faker.fake(
+    let newCustomFieldData = {};
+    newCustomFieldData[`customFieldData.${key}`] = faker.fake(
       `{{${fakerKeys[key]}}}`
     );
 
-    return RefsCollection.update(id, { $set: newCustomParamData });
+    return RefsCollection.update(id, { $set: newCustomFieldData });
   },
 
   "refs.insertLink"(args) {

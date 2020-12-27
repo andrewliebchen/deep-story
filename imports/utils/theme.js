@@ -164,6 +164,17 @@ export default {
       borderRadius: 3,
       fontWeight: "bold",
     },
+    overlayBackground: {
+      bg: "rgba(255, 255, 255, 0.9)",
+      height: "100vh",
+      left: 0,
+      position: "fixed",
+      top: 0,
+      width: "100vw",
+      zIndex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+    },
   },
   fonts: {
     body:
@@ -259,6 +270,9 @@ export default {
       ...controlBase,
       border: 0,
     },
+  },
+  shadows: {
+    overlay: "0 8px 16px rgba(0, 0, 0, 0.1)",
   },
   sizes: {
     ref: 600,
