@@ -20,6 +20,7 @@ const imageSize = 120;
 
 const RefMockView = (props) => {
   const { setToastMessage } = useContext(AppContext);
+  const mockDataSet = { ...props.data, ...props.customParamData };
 
   return (
     <Flex
@@ -32,33 +33,33 @@ const RefMockView = (props) => {
       {props.title && props.showTitle && (
         <Heading mb={3}>{props.title}</Heading>
       )}
-      {props.data && (
+      {mockDataSet && (
         <Flex
           sx={{
             alignItems: "center",
           }}
         >
-          {props.data.image && (
+          {mockDataSet.image && (
             <Avatar
-              src={props.data.image}
+              src={mockDataSet.image}
               sx={{ height: imageSize, width: imageSize, mr: 3 }}
             />
           )}
           <Flex sx={{ flexDirection: "column", flexGrow: 2, m: -1 }}>
-            {Object.keys(props.data).map(
+            {Object.keys(mockDataSet).map(
               (key) =>
                 key !== "image" && (
                   <Flex key={key} sx={{ alignItems: "center", m: 1 }}>
                     <Box>
                       <Label>{capitalize(key)}</Label>
-                      <Text>{props.data[key]}</Text>
+                      <Text>{mockDataSet[key]}</Text>
                     </Box>
                     {props.isHovering && (
                       <IconButton
                         children={<UilCopy />}
                         sx={{ variant: "iconButton.default", ml: "auto" }}
                         onClick={() => {
-                          ultralightCopy(props.data[key]);
+                          ultralightCopy(mockDataSet[key]);
                           setToastMessage("Copied to clipboard");
                         }}
                       />
