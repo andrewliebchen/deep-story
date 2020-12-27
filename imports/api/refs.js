@@ -44,11 +44,9 @@ Meteor.methods({
     return RefsCollection.remove(id);
   },
 
-  "refs.refreshMockData"(id, schema, key) {
+  "refs.refreshMockData"(id, key, source = "data") {
     let newData = {};
-    newData[`data.${key}`] = faker.fake(
-      `{{${mockTypes[schema].properties[key].faker}}}`
-    );
+    newData[`${source}.${key}`] = faker.fake(`{{${fakerKeys[key]}}}`);
 
     return RefsCollection.update(id, { $set: newData });
   },

@@ -148,6 +148,7 @@ export default {
   jobDescriptor: "name.jobDescriptor",
   jobArea: "name.jobArea",
   jobType: "name.jobType",
+  name: "name.findName",
   // phone
   phoneNumber: "phone.phoneNumber",
   phoneNumberFormat: "phone.phoneNumberFormat",

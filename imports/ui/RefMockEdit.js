@@ -55,7 +55,6 @@ const RefMockEdit = (props) => {
                     Meteor.call(
                       "refs.refreshMockData",
                       props._id,
-                      props.schema,
                       key,
                       (error, id) =>
                         setToastMessage("Mock data field refreshed")

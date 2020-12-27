@@ -45,6 +45,15 @@ const CustomMockFields = (props) => {
               children={<UilRefresh />}
               sx={{ variant: "iconButton.default" }}
               title="Refresh"
+              onClick={() =>
+                Meteor.call(
+                  "refs.refreshMockData",
+                  props._id,
+                  key,
+                  "customFieldData",
+                  (error, id) => setToastMessage("Mock data field refreshed")
+                )
+              }
             />
           </Flex>
         ))}
