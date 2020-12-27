@@ -50,7 +50,9 @@ export const useGetRef = (id) => {
 export const useRefSearch = (value) => {
   const refs = useTracker(() => RefsCollection.find({}).fetch());
 
-  return refs.filter((ref) => ref.title && ref.title.includes(value));
+  return refs.filter(
+    (ref) => ref.title && ref.title.toLowerCase().includes(value.toLowerCase())
+  );
 };
 
 export const useFocus = () => {

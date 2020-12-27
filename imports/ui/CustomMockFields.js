@@ -6,6 +6,7 @@ import UilRefresh from "@iconscout/react-unicons/icons/uil-refresh";
 import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 import { isReady } from "../utils/helpers";
 import fakerKeys from "../utils/fakerKeys";
+import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 
 const CustomMockFields = (props) => {
   const [selectingField, setSelectingField] = useState(false);
@@ -27,7 +28,7 @@ const CustomMockFields = (props) => {
             <IconButton
               children={<UilTrash />}
               sx={{ variant: "iconButton.negative", mr: 2 }}
-              title="Remove parameter"
+              title="Remove field"
             />
             <IconButton
               children={<UilRefresh />}
@@ -39,66 +40,87 @@ const CustomMockFields = (props) => {
 
       <Button
         sx={{ variant: "button.default" }}
-        onClick={() =>
-          Meteor.call("refs.updateCustomMockData", props._id, "city")
-        }
+        onClick={() => setSelectingField(true)}
       >
         <UilPlus />
         <Text ml={2}>Add custom field</Text>
       </Button>
 
-      <Flex sx={{ variant: "flex.overlayBackground" }}>
-        <Flex
-          sx={{
-            variant: "flex.ref",
-            borderRadius: 5,
-            boxShadow: "overlay",
-            overflow: "scroll",
-            p: 0,
-            maxHeight: "ref",
-          }}
-        >
+      {selectingField && (
+        <Flex sx={{ variant: "flex.overlayBackground" }}>
           <Flex
             sx={{
-              position: "sticky",
-              top: 0,
-              bg: "background",
-              p: 3,
+              variant: "flex.ref",
+              borderRadius: 5,
+              boxShadow: "overlay",
+              overflow: "scroll",
+              p: 0,
+              maxHeight: "ref",
             }}
           >
-            <Input
-              type="search"
-              placeholder="Search"
-              sx={{ variant: "input.default" }}
-              defaultValue={searchValue}
-              onChange={(event) => setSearchValue(event.target.value)}
-            />
+            <Flex
+              sx={{
+                position: "sticky",
+                top: 0,
+                bg: "background",
+                p: 3,
+              }}
+            >
+              <Input
+                type="search"
+                placeholder="Search"
+                sx={{ variant: "input.default" }}
+                defaultValue={searchValue}
+                onChange={(event) => setSearchValue(event.target.value)}
+              />
+            </Flex>
+            <Flex
+              sx={{
+                flexWrap: "wrap",
+                justifyContent: "center",
+                px: 3,
+                pb: 3,
+              }}
+            >
+              {Object.keys(fakerKeys)
+                .filter(
+                  (key) =>
+                    searchValue.length < 2 ||
+                    fakerKeys[key]
+                      .toLowerCase()
+                      .includes(searchValue.toLowerCase())
+                )
+                .map((key) => (
+                  <Button
+                    key={key}
+                    sx={{ variant: "button.default", m: 1 }}
+                    onClick={() =>
+                      Meteor.call(
+                        "refs.updateCustomMockData",
+                        props._id,
+                        key,
+                        (error, success) => success && setSelectingField(false)
+                      )
+                    }
+                  >
+                    {fakerKeys[key]}
+                  </Button>
+                ))}
+            </Flex>
           </Flex>
-          <Flex
+          <IconButton
             sx={{
-              flexWrap: "wrap",
-              justifyContent: "center",
-              px: 3,
-              pb: 3,
+              variant: "iconButton.default",
+              position: "absolute",
+              top: 3,
+              right: 3,
             }}
-          >
-            {Object.keys(fakerKeys)
-              .filter(
-                (key) =>
-                  searchValue.length < 2 || fakerKeys[key].includes(searchValue)
-              )
-              .map((key) => (
-                <Button
-                  key={key}
-                  sx={{ variant: "button.default", m: 1 }}
-                  onClick={() => console.log(key)}
-                >
-                  {fakerKeys[key]}
-                </Button>
-              ))}
-          </Flex>
+            children={<UilTimes />}
+            title="Close"
+            onClick={() => setSelectingField(false)}
+          />
         </Flex>
-      </Flex>
+      )}
     </Flex>
   );
 };

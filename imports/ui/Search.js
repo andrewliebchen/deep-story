@@ -27,15 +27,15 @@ const Search = (props) => {
       sx={{ px: 3, width: "ref", position: "relative" }}
     >
       <Input
-        type="search"
+        type="text"
         placeholder="Search"
         sx={{
           variant: "input.default",
           position: "relative",
-          zIndex: 1,
+          zIndex: 2,
         }}
         onChange={(event) => setValue(event.target.value)}
-        defaultValue={value}
+        value={value}
         {...props}
         {...focusProps}
       />
@@ -64,6 +64,7 @@ const Search = (props) => {
               position: "absolute",
               pt: 72,
               top: -3,
+              zIndex: 1,
             }}
           >
             {value &&
