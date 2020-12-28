@@ -27,6 +27,7 @@ const controlBase = {
   px: 3,
   py: 2,
   textDecoration: "none",
+  userSelect: "none",
   "&:hover": {
     bg: "primaryBackground",
   },
