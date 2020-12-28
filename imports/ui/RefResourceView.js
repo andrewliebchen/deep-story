@@ -2,7 +2,7 @@ import { Flex, Text, Heading, Link, Image, Box } from "theme-ui";
 import React from "react";
 
 const RefResourceView = (props) => (
-  <Flex sx={{ variant: "flex.ref" }}>
+  <Flex sx={{ variant: props.isParentRef ? "flex.parent" : "flex.ref" }}>
     {props.title && props.showTitle && <Heading mb={3}>{props.title}</Heading>}
     <Link
       href={props.resourceUrl}

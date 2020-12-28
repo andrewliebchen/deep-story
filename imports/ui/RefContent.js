@@ -1,15 +1,16 @@
-import { refTypes } from "../utils/types";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
+import RefLinkEdit from "./RefLinkEdit";
+import RefLinkView from "./RefLinkView";
 import RefMockEdit from "./RefMockEdit";
 import RefMockView from "./RefMockView";
+import RefResourceEdit from "./RefResourceEdit";
+import RefResourceView from "./RefResourceView";
+import RefTasksEdit from "./RefTasksEdit";
+import RefTasksView from "./RefTasksView";
 import RefTextEdit from "./RefTextEdit";
 import RefTextView from "./RefTextView";
-import RefLinkView from "./RefLinkView";
-import RefLinkEdit from "./RefLinkEdit";
-import RefResourceView from "./RefResourceView";
-import RefResourceEdit from "./RefResourceEdit";
 
 const RefContent = (props) => {
   const { selectedRefId } = useContext(AppContext);
@@ -18,10 +19,6 @@ const RefContent = (props) => {
   let view, edit;
 
   switch (props.type) {
-    case "resource":
-      view = <RefResourceView {...props} />;
-      edit = <RefResourceEdit {...props} />;
-      break;
     case "link":
       view = <RefLinkView {...props} />;
       edit = <RefLinkEdit {...props} />;
@@ -29,6 +26,14 @@ const RefContent = (props) => {
     case "mock":
       view = <RefMockView {...props} />;
       edit = <RefMockEdit {...props} />;
+      break;
+    case "resource":
+      view = <RefResourceView {...props} />;
+      edit = <RefResourceEdit {...props} />;
+      break;
+    case "tasks":
+      view = <RefTasksView {...props} />;
+      edit = <RefTasksEdit {...props} />;
       break;
     default:
       view = <RefTextView {...props} />;

@@ -25,7 +25,7 @@ const RefMockView = (props) => {
   return (
     <Flex
       sx={{
-        variant: "flex.ref",
+        variant: props.isParentRef ? "flex.parent" : "flex.ref",
         border: "3px solid",
         borderColor: "muted",
       }}

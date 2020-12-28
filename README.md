@@ -39,23 +39,29 @@ Hopefully, this will be the first real "magic moment..."
 - ✅ Color themes based on type
 - ✅ Show how many children a ref has...
 
-### ⏳ Milestone 3: Add `resource` ref types
+### ✅ Milestone 3: Add `resource` ref types
 
 Important to demonstrate that it at least has the ambition to work with the outside world.
 
 - ✅ Add a resource (can be website, doc, or image)
 - ✅ Inline preview
-- Filter `/refs` page by all or type
+- ✅ Filter `/refs` page by all or type
 
-- Favorite refs
-
-### ⏳ Milestone 4: Add `task` ref types
+### 🚧 Milestone 4: Add `task` ref types
 
 This might change...but this was always an interesting feature of Quip, especially when they started doing things with tasks composed of structured data.
+
+#### Todos
 
 - Add a task list
 - Todo list CRUD
 - `/task` index page list of all tasks
+
+#### Other
+
+- Improve design
+- Add PRD content
+- Favorite refs
 
 ### ⏳ Milestone 5: Add teams
 

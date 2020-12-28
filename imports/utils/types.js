@@ -31,7 +31,7 @@ export const refTypes = {
     color: "#15796E",
   },
   tasks: {
-    active: false,
+    active: true,
     icon: <UilCheckCircle />,
     label: "Tasks",
     color: "#fe714a",
