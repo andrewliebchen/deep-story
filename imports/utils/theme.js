@@ -228,6 +228,11 @@ export default {
       color: "background",
       "&:hover": { bg: "positiveHover" },
     },
+    transparent: {
+      ...controlBase,
+      ...iconButtonBase,
+      bg: "transparent",
+    },
   },
   input: {
     default: {

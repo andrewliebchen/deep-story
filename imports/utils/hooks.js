@@ -1,5 +1,6 @@
 import { Meteor } from "meteor/meteor";
 import { RefsCollection } from "../api/refs";
+import { TasksCollection } from "../api/tasks";
 import { useTracker } from "meteor/react-meteor-data";
 import { useState } from "react";
 
@@ -69,3 +70,11 @@ export const useFocus = () => {
     },
   ];
 };
+
+export const useGetTasks = (parentId) =>
+  useTracker(() =>
+    TasksCollection.find(
+      { parentId: parentId },
+      { sort: { createdAt: -1 } }
+    ).fetch()
+  );
