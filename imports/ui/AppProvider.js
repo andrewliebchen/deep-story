@@ -5,6 +5,9 @@ const AppProvider = (props) => {
   // Get the selected ref and set up editing state
   const [selectedRefId, setSelectedRefId] = useState("");
 
+  // Global ref filter
+  const [refFilterIndex, setRefFilterIndex] = useState(0);
+
   // Toast
   const [toastMessage, setToastMessage] = useState(false);
 
@@ -12,10 +15,12 @@ const AppProvider = (props) => {
     <AppContext.Provider
       value={{
         ...props,
+        refFilterIndex,
         selectedRefId,
+        setRefFilterIndex,
         setSelectedRefId,
-        toastMessage,
         setToastMessage,
+        toastMessage,
       }}
     >
       {props.children}

@@ -43,8 +43,8 @@ Hopefully, this will be the first real "magic moment..."
 
 Important to demonstrate that it at least has the ambition to work with the outside world.
 
-- Add a resource (can be website, doc, or image)
-- Inline preview
+- ✅ Add a resource (can be website, doc, or image)
+- ✅ Inline preview
 - Filter `/refs` page by all or type
 
 - Favorite refs

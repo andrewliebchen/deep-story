@@ -1,10 +1,11 @@
-import { Flex, Input, IconButton } from "theme-ui";
+import { Flex, Input, IconButton, Button } from "theme-ui";
 import { useKeycodes } from "@accessible/use-keycode";
 import { useRefSearch, useFocus } from "../utils/hooks";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import RefsListRow from "./RefsListRow";
 import UilTimes from "@iconscout/react-unicons/icons/uil-times";
+import RefFilter from "./RefFilter";
 
 const Search = (props) => {
   const [value, setValue] = useState(props.value || "");
@@ -39,6 +40,7 @@ const Search = (props) => {
         {...props}
         {...focusProps}
       />
+      {props.showFilter && <RefFilter />}
       {value.length > 2 && (
         <>
           <Flex sx={{ variant: "flex.overlayBackground" }}>
@@ -87,6 +89,7 @@ Search.propTypes = {
   autoFocus: PropTypes.bool,
   value: PropTypes.string,
   navigate: PropTypes.bool,
+  showFilter: PropTypes.bool,
 };
 
 export default Search;

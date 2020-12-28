@@ -1,4 +1,4 @@
-import { Flex } from "theme-ui";
+import { Flex, Button } from "theme-ui";
 import { useAccount } from "../utils/hooks";
 import { useHistory } from "react-router-dom";
 import AccountToggle from "./AccountToggle";
@@ -23,7 +23,8 @@ const Header = () => {
       }}
     >
       <Nav />
-      <Search />
+      <Search showFilter />
+
       <AccountToggle sx={{ minWidth: "auto" }} />
     </Flex>
   );
