@@ -4,7 +4,7 @@ import Header from "./Header";
 import React from "react";
 import RefStory from "./RefStory";
 import Sandbox from "./Sandbox";
-import TasksRefsView from "./TasksRefsView";
+import AssignedTasksView from "./AssignedTasksView";
 import Toasts from "./Toasts";
 
 const App = (props) => (
@@ -13,7 +13,7 @@ const App = (props) => (
     <Box sx={{ position: "relative", width: "100vw" }}>
       <Switch>
         <Route path="/refs/:parentRefId" component={RefStory} />
-        <Route path="/tasks" component={TasksRefsView} />
+        <Route path="/tasks" component={AssignedTasksView} />
         <Route path="/sandbox" component={Sandbox} />
         <Route path="/" component={RefStory} />
       </Switch>

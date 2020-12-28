@@ -55,10 +55,10 @@ This might change...but this was always an interesting feature of Quip, especial
 
 - ✅ Add a task list
 - ✅ Tasks list CRUD
-- Task completion
+- Progress completing tasks
 - Assign tasks to someone
 - Mark priority
-- `/tasks` index page list of all tasks
+- ✅ `/tasks` index page list of all tasks
 
 #### Other
 
