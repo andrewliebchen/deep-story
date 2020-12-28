@@ -5,7 +5,7 @@ import AppContext from "./AppContext";
 import capitalize from "capitalize";
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
-import TitleInput from "./TitleInput";
+import TitleEdit from "./TitleEdit";
 import UilRefresh from "@iconscout/react-unicons/icons/uil-refresh";
 import CustomMockFields from "./CustomMockFields";
 
@@ -14,7 +14,7 @@ const RefMockEdit = (props) => {
 
   return (
     <Box>
-      <TitleInput {...props} />
+      <TitleEdit {...props} />
 
       <Flex sx={{ variant: "flex.ref", p: 0, mt: 2 }}>
         <Box>

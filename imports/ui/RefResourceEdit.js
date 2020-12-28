@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Box, Flex, Text, Input, Label, Button } from "theme-ui";
 import AppContext from "./AppContext";
-import TitleInput from "./TitleInput";
+import TitleEdit from "./TitleEdit";
 
 const RefResourceEdit = (props) => {
   const { setToastMessage } = useContext(AppContext);
@@ -9,7 +9,7 @@ const RefResourceEdit = (props) => {
 
   return (
     <Box>
-      <TitleInput {...props} />
+      <TitleEdit {...props} />
       <Flex
         sx={{
           variant: "flex.ref",

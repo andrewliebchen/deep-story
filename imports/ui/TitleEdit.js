@@ -5,7 +5,7 @@ import React from "react";
 import UilEye from "@iconscout/react-unicons/icons/uil-eye";
 import UilEyeSlash from "@iconscout/react-unicons/icons/uil-eye-slash";
 
-const TitleInput = (props) => (
+const TitleEdit = (props) => (
   <Flex
     sx={{
       variant: "flex.ref",
@@ -42,10 +42,10 @@ const TitleInput = (props) => (
   </Flex>
 );
 
-TitleInput.propTypes = {
+TitleEdit.propTypes = {
   _id: PropTypes.string,
   showTitle: PropTypes.bool,
   title: PropTypes.string,
 };
 
-export default TitleInput;
+export default TitleEdit;
