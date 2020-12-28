@@ -12,6 +12,7 @@ import AppContext from "./AppContext";
 import capitalize from "capitalize";
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
+import TitleView from "./TitleView";
 import UilArrowDown from "@iconscout/react-unicons/icons/uil-arrow-down";
 import UilCopy from "@iconscout/react-unicons/icons/uil-copy";
 import ultralightCopy from "copy-to-clipboard-ultralight";
@@ -30,9 +31,7 @@ const RefMockView = (props) => {
         borderColor: "muted",
       }}
     >
-      {props.title && props.showTitle && (
-        <Heading mb={3}>{props.title}</Heading>
-      )}
+      <TitleView {...props} />
       {mockDataSet && (
         <Flex
           sx={{
