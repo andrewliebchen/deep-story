@@ -108,6 +108,8 @@ export default {
     negativeBackground: "rgba(230, 59, 24, 0.2)",
     negativeMuted: "rgba(230, 59, 24, 0.03)",
     positive: "rgba(19, 201, 141, 1)",
+    positiveBackground: "rgba(19, 201, 141, 0.2)",
+    positiveMuted: "rgba(19, 201, 141, 0.03)",
     positiveHover: "rgba(14, 177, 123, 1)",
     secondary: "rgba(123, 97, 255, 1)",
     text: "rgba(0, 0, 0, 1)",

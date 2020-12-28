@@ -35,7 +35,7 @@ const RefTasksEdit = (props) => {
           />
         </Flex>
         <Box sx={{ mx: 3, mb: 3 }}>
-          <TasksList parentId={props._id} canDelete />
+          <TasksList parentId={props._id} />
         </Box>
       </Flex>
     </Box>

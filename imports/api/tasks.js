@@ -23,4 +23,8 @@ Meteor.methods({
   "tasks.remove"(id) {
     return TasksCollection.remove(id);
   },
+
+  "tasks.update"(id, value) {
+    return TasksCollection.update(id, { $set: { text: value } });
+  },
 });
