@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
 import { Button } from "theme-ui";
-import { refTypes } from "../utils/types";
+import { refTypeLabels } from "../utils/types";
 import AppContext from "./AppContext";
 import capitalize from "capitalize";
+import React, { useContext } from "react";
 
-const types = ["all", ...Object.keys(refTypes)];
 const RefFilter = (props) => {
   const { refFilterIndex, setRefFilterIndex } = useContext(AppContext);
 
@@ -13,11 +12,11 @@ const RefFilter = (props) => {
       sx={{ variant: "button.default", ml: 2 }}
       onClick={() =>
         setRefFilterIndex(
-          refFilterIndex < types.length - 1 ? refFilterIndex + 1 : 0
+          refFilterIndex < refTypeLabels.length - 1 ? refFilterIndex + 1 : 0
         )
       }
     >
-      {capitalize(types[refFilterIndex])}
+      {capitalize(refTypeLabels[refFilterIndex])}
     </Button>
   );
 };

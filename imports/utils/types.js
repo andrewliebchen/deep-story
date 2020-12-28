@@ -38,6 +38,8 @@ export const refTypes = {
   },
 };
 
+export const refTypeLabels = ["all", ...Object.keys(refTypes)];
+
 export const mockTypes = {
   person: {
     type: "object",
