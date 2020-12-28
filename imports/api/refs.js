@@ -5,6 +5,7 @@ import jsf from "json-schema-faker";
 import faker from "faker";
 import fakerKeys from "../utils/fakerKeys";
 import linkPreviewGenerator from "link-preview-generator";
+import shurley from "shurley";
 
 jsf.extend("faker", () => require("faker"));
 
@@ -79,18 +80,20 @@ Meteor.methods({
     });
   },
 
-  "refs.updateResourceUrl"(id, url) {
-    // console.log(url);
-    // const previewData = async () => {
-    //   const result = await
-    //   return result;
-    // };
-    //
-    // console.log(previewData.title);
+  "refs.updateResourceUrl"(id, resourceUrl) {
+    const parsedUrl = shurley.parse(resourceUrl);
 
-    async () => {
-      const previewData = await linkPreviewGenerator(url);
-      console.log(previewData);
+    const previewData = async () => {
+      const result = await linkPreviewGenerator(parsedUrl);
+      return result;
     };
+
+    RefsCollection.update(id, {
+      $set: { resourceUrl: resourceUrl },
+    });
+
+    return previewData().then((data) =>
+      RefsCollection.update(id, { $set: { data: data } })
+    );
   },
 });
