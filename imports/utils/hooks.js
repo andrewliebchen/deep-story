@@ -71,10 +71,7 @@ export const useFocus = () => {
   ];
 };
 
-export const useGetTasks = (parentId) =>
+export const useGetTasks = (query) =>
   useTracker(() =>
-    TasksCollection.find(
-      { parentId: parentId },
-      { sort: { createdAt: -1 } }
-    ).fetch()
+    TasksCollection.find(query, { sort: { createdAt: -1 } }).fetch()
   );

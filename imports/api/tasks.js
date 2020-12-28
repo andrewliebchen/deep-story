@@ -11,6 +11,7 @@ Meteor.methods({
       text: value,
       done: false,
       parentId: parentId,
+      assignedTo: Meteor.userId(), // TODO: This needs to be in the edit ui
     });
   },
 

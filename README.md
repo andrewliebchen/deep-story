@@ -54,7 +54,8 @@ This might change...but this was always an interesting feature of Quip, especial
 #### Todos
 
 - ✅ Add a task list
-- Tasks list CRUD
+- ✅ Tasks list CRUD
+- Task completion
 - Assign tasks to someone
 - Mark priority
 - `/tasks` index page list of all tasks

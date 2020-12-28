@@ -5,38 +5,16 @@ import PropTypes from "prop-types";
 import TasksList from "./TasksList";
 import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
 import { useKeycodes } from "@accessible/use-keycode";
+import { useGetTasks } from "../utils/hooks";
 
 const RefTasksEdit = (props) => {
-  const [value, setValue] = useState("");
-
-  // Listen for keycodesListener
-  const keycodesListener = useKeycodes({
-    // esc
-    13: () => {
-      Meteor.call(
-        "tasks.insert",
-        props._id,
-        value,
-        (error, success) => success && setValue("")
-      );
-    },
-  });
+  const tasks = useGetTasks({ parentId: props._id });
 
   return (
-    <Box ref={keycodesListener}>
+    <Box>
       <TitleEdit {...props} />
-      <Flex sx={{ variant: "flex.ref", mt: 2, p: 0 }}>
-        <Flex sx={{ m: 3 }}>
-          <Input
-            sx={{ variant: "input.default" }}
-            placeholder="Add a task and press enter"
-            value={value}
-            onChange={(event) => setValue(event.target.value)}
-          />
-        </Flex>
-        <Box sx={{ mx: 3, mb: 3 }}>
-          <TasksList parentId={props._id} />
-        </Box>
+      <Flex sx={{ variant: "flex.ref", mt: 2 }}>
+        <TasksList tasks={tasks} parentRefId={props._id} isEditingRef />
       </Flex>
     </Box>
   );

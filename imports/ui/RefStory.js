@@ -32,7 +32,7 @@ const RefStory = () => {
   return (
     <Flex
       ref={keycodesListener}
-      sx={{ width: "100vw", alignItems: "center", flexDirection: "column" }}
+      sx={{ alignItems: "center", flexDirection: "column" }}
     >
       {parentRef && <Ref {...parentRef} isParentRef />}
       {refs

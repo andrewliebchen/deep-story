@@ -284,6 +284,7 @@ export default {
   },
   sizes: {
     ref: 600,
+    control: controlHeight,
   },
   space: [0, 4, 8, 16, 32, 40],
   styles: {
