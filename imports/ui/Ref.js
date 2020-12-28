@@ -3,7 +3,7 @@ import { useChildRefsCount } from "../utils/hooks";
 import { useHistory } from "react-router-dom";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import RefContent from "./RefContent";
 import UilCheck from "@iconscout/react-unicons/icons/uil-check";
 import UilCornerRightDown from "@iconscout/react-unicons/icons/uil-corner-right-down";
@@ -19,7 +19,7 @@ const Ref = (props) => {
   const history = useHistory();
   const refCount = useChildRefsCount(props._id);
 
-  const target = React.useRef(null);
+  const target = useRef(null);
   const isHovering = useHover(target);
 
   const isSelected = selectedRefId === props._id;

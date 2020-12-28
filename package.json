@@ -11,6 +11,7 @@
     "@accessible/use-keycode": "^4.0.2",
     "@babel/runtime": "^7.11.2",
     "@iconscout/react-unicons": "^1.1.5",
+    "@iconscout/react-unicons-solid": "^0.0.3",
     "@react-hook/hover": "^4.0.0",
     "bcrypt": "^5.0.0",
     "capitalize": "^2.0.3",

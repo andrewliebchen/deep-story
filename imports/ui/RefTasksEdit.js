@@ -25,16 +25,18 @@ const RefTasksEdit = (props) => {
   return (
     <Box ref={keycodesListener}>
       <TitleEdit {...props} />
-      <Flex sx={{ variant: "flex.ref", mt: 2 }}>
-        <Flex>
+      <Flex sx={{ variant: "flex.ref", mt: 2, p: 0 }}>
+        <Flex sx={{ m: 3 }}>
           <Input
-            sx={{ variant: "input.default", mr: 2 }}
+            sx={{ variant: "input.default" }}
             placeholder="Add a task and press enter"
             value={value}
             onChange={(event) => setValue(event.target.value)}
           />
         </Flex>
-        <TasksList parentId={props._id} />
+        <Box sx={{ mx: 3, mb: 3 }}>
+          <TasksList parentId={props._id} canDelete />
+        </Box>
       </Flex>
     </Box>
   );

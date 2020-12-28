@@ -19,4 +19,8 @@ Meteor.methods({
 
     return TasksCollection.update(id, { $set: { done: !task.done } });
   },
+
+  "tasks.remove"(id) {
+    return TasksCollection.remove(id);
+  },
 });

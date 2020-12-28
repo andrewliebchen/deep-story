@@ -155,6 +155,13 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
+"@iconscout/react-unicons-solid@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@iconscout/react-unicons-solid/-/react-unicons-solid-0.0.3.tgz#9861c0f1443640faa6b32b056ffa1bb9f2af17e3"
+  integrity sha512-oApQfBntjHLvUNbXL9jObCziPJLV0KTa1vqcYE+XD4dcB7e0/CHJgRzNOoBfPNUgZ09Af5ub4Z4cz+eYJNMydw==
+  dependencies:
+    react ">=15.0.0 <17.0.0"
+
 "@iconscout/react-unicons@^1.1.5":
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/@iconscout/react-unicons/-/react-unicons-1.1.5.tgz#2bb37e117a5cb9ddde70b2dbbc8c55021aac5cbb"

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 const AppProvider = (props) => {
   // Get the selected ref and set up editing state
-  const [selectedRefId, setSelectedRefId] = useState("Pir5tZo7p6Zm28nzw");
+  const [selectedRefId, setSelectedRefId] = useState("");
 
   // Global ref filter
   const [refFilterIndex, setRefFilterIndex] = useState(0);
