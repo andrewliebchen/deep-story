@@ -133,6 +133,7 @@ export default {
     secondary: "rgba(123, 97, 255, 1)",
     text: "rgba(0, 0, 0, 1)",
     textSecondary: "rgba(0, 0, 0, 0.5)",
+    textPlaceholder: "rgba(0, 0, 0, 0.3)",
     modes: refTypeColorModes,
   },
   flex: {
@@ -209,10 +210,6 @@ export default {
     heading: 700,
     bold: 700,
   },
-  heading: {
-    fontSize: 2,
-    mb: 2,
-  },
   input: {
     default: {
       ...controlBase,
@@ -245,6 +242,13 @@ export default {
       fontSize: 0,
       mb: 2,
     },
+    textarea: {
+      ...invisibleInputBase,
+      resize: "none",
+      fontSize: 1,
+      minHeight: controlHeight * 2,
+      lineHeight: "body",
+    },
   },
   lineHeights: {
     body: 1.5,
@@ -275,30 +279,12 @@ export default {
     },
   },
   text: {
-    default: {
-      "& a": {
-        fontWeight: "bold",
-        bg: "primaryMuted",
-        p: 1,
-        m: -1,
-        borderRadius: 1,
-        color: "primary",
-        "&:visited": {
-          color: "primary",
-        },
-        "&:hover": {
-          bg: "primaryBackground",
-          color: "primaryHover",
-        },
-      },
+    default: {},
+    heading: {
+      fontSize: 2,
     },
-  },
-  textarea: {
-    ref: {
-      ...invisibleInputBase,
-      resize: "none",
-      fontSize: 1,
-      minHeight: controlHeight * 2,
+    parentHeading: {
+      fontSize: 3,
     },
   },
   progress: {

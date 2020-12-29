@@ -1,8 +1,7 @@
-import { Flex, Heading, Text } from "theme-ui";
+import { Text } from "theme-ui";
 import Markdown from "react-markdown";
 import PropTypes from "prop-types";
 import React from "react";
-import TitleView from "./TitleView";
 
 const allowedMarkdownTypes = [
   "code",
@@ -16,28 +15,17 @@ const allowedMarkdownTypes = [
 ];
 
 const RefTextView = (props) => (
-  <Flex sx={{ variant: props.isParentRef ? "flex.parent" : "flex.ref" }}>
-    <TitleView {...props} />
-    <Text
-      sx={{
-        variant: "text.default",
-        color: props.content || "textSecondary",
-      }}
-    >
-      {props.content ? (
-        <Markdown allowedTypes={allowedMarkdownTypes}>{props.content}</Markdown>
-      ) : (
-        "Tell a story..."
-      )}
-    </Text>
-  </Flex>
+  <Text sx={{ mt: 3, color: props.content || "textPlaceholder" }}>
+    {props.content ? (
+      <Markdown allowedTypes={allowedMarkdownTypes}>{props.content}</Markdown>
+    ) : (
+      "Tell a story..."
+    )}
+  </Text>
 );
 
 RefTextView.propTypes = {
   content: PropTypes.node,
-  isParentRef: PropTypes.bool,
-  showTitle: PropTypes.bool,
-  title: PropTypes.string,
 };
 
 export default RefTextView;

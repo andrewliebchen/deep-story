@@ -5,6 +5,7 @@ import React from "react";
 import UilEye from "@iconscout/react-unicons/icons/uil-eye";
 import UilEyeSlash from "@iconscout/react-unicons/icons/uil-eye-slash";
 
+// TODO: Combine Edit and View components
 const TitleEdit = (props) => (
   <Flex sx={{ width: "ref", mb: 3 }}>
     <Input

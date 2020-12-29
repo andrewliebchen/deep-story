@@ -5,7 +5,9 @@ import { Heading } from "theme-ui";
 const TitleView = (props) => (
   <>
     {props.title && props.showTitle && (
-      <Heading sx={{ fontSize: props.isParentRef && 3 }}>{props.title}</Heading>
+      <Heading sx={{ variant: props.isParentRef && "text.parentHeading" }}>
+        {props.title}
+      </Heading>
     )}
   </>
 );
