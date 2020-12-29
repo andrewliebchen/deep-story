@@ -55,8 +55,8 @@ This might change...but this was always an interesting feature of Quip, especial
 
 - ✅ Add a task list
 - ✅ Tasks list CRUD
-- Progress completing tasks
-- Assign tasks to someone
+- ✅ Progress completing tasks
+- ✅Show who the task is assigned to
 - Mark priority
 - ✅ `/tasks` index page list of all tasks
 
@@ -67,6 +67,8 @@ This might change...but this was always an interesting feature of Quip, especial
 - Favorite refs
 
 ### ⏳ Milestone 5: Add teams
+
+- Assign tasks to team members
 
 ### ⏳ Milestone 6: Deployment
 

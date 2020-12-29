@@ -1,14 +1,16 @@
-import { Flex, Input, Progress, Text, Label } from "theme-ui";
+import { Avatar, Flex, Input, Progress, Text, Label } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { useKeycodes } from "@accessible/use-keycode";
 import PropTypes from "prop-types";
 import React, { useRef, useState } from "react";
 import Task from "./Task";
-import UilPlusCircle from "@iconscout/react-unicons/icons/uil-plus-circle";
+import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
+import { useAccount } from "../utils/hooks";
 
 const TasksList = (props) => {
   const [selectedTaskId, setSelectedTaskId] = useState(false);
   const [value, setValue] = useState("");
+  const { user } = useAccount();
 
   const totalTasks = props.tasks.length;
   const completedTasks = props.tasks.filter((task) => task.done).length;
@@ -19,14 +21,13 @@ const TasksList = (props) => {
     27: () => setSelectedTaskId(false),
 
     // enter
-    13: () => {
+    13: () =>
       Meteor.call(
         "tasks.insert",
         props.parentRefId || null,
         value,
         (error, success) => success && setValue("")
-      );
-    },
+      ),
   });
 
   return (
@@ -54,8 +55,14 @@ const TasksList = (props) => {
               justifyContent: "center",
             }}
           >
-            <UilPlusCircle />
+            <UilPlus />
           </Flex>
+          {user && (
+            <Avatar
+              src={user.services.google.picture}
+              sx={{ size: 24, mr: 2 }}
+            />
+          )}
           <Input
             ref={keycodesListener}
             autoFocus={props.isEditingRef}

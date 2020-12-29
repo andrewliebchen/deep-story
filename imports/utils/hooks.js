@@ -72,6 +72,15 @@ export const useFocus = () => {
 };
 
 export const useGetTasks = (query) =>
-  useTracker(() =>
-    TasksCollection.find(query, { sort: { createdAt: -1 } }).fetch()
-  );
+  useTracker(() => {
+    const tasks = TasksCollection.find(query, {
+      sort: { createdAt: -1 },
+    }).fetch();
+
+    // Join the assigned user info with the task
+    tasks.map((task, i) => {
+      tasks[i].assignedTo = Meteor.user({ _id: task.assignedTo });
+    });
+
+    return tasks;
+  });
