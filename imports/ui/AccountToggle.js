@@ -1,5 +1,4 @@
 import { Avatar, Box, Button } from "theme-ui";
-import { controlHeight } from "../utils/theme";
 import { Meteor } from "meteor/meteor";
 import { useAccount } from "../utils/hooks";
 import { useHistory } from "react-router-dom";
@@ -17,8 +16,7 @@ const AccountToogle = (props) => {
           sx={{
             variant: "button.default",
             p: 0,
-            height: controlHeight,
-            width: controlHeight,
+            size: "control",
           }}
           onClick={() => Meteor.logout((error) => history.push("/"))}
         />
