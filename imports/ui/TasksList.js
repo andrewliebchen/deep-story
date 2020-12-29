@@ -57,12 +57,13 @@ const TasksList = (props) => {
           >
             <UilPlus />
           </Flex>
-          {user && (
-            <Avatar
-              src={user.services.google.picture}
-              sx={{ size: 24, mr: 2 }}
-            />
-          )}
+          {user &&
+            (props.hideAvatars || (
+              <Avatar
+                src={user.services.google.picture}
+                sx={{ size: 24, mr: 2 }}
+              />
+            ))}
           <Input
             ref={keycodesListener}
             autoFocus={props.isEditingRef}
@@ -95,6 +96,7 @@ const TasksList = (props) => {
 TasksList.propTypes = {
   isEditingRef: PropTypes.bool,
   parentRefId: PropTypes.string,
+  hideAvatars: PropTypes.bool,
 };
 
 export default TasksList;

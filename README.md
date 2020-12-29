@@ -57,14 +57,14 @@ This might change...but this was always an interesting feature of Quip, especial
 - ✅ Tasks list CRUD
 - ✅ Progress completing tasks
 - ✅Show who the task is assigned to
-- Mark priority
+- ✅ Mark priority
 - ✅ `/tasks` index page list of all tasks
+- Group tasks on `/tasks` page by priority
 
 #### Other
 
 - Improve design
 - Add PRD content
-- Favorite refs
 
 ### ⏳ Milestone 5: Add teams
 

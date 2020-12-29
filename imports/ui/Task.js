@@ -40,11 +40,13 @@ const Task = (props) => {
         disabled={props.isEditingRef}
         onClick={() => Meteor.call("tasks.toggle", props._id)}
       />
-      <Avatar
-        src={props.assignedTo.services.google.picture}
-        sx={{ size: 24, mr: 2 }}
-        title={`Assigned to ${props.assignedTo.profile.name}`}
-      />
+      {props.hideAvatars || (
+        <Avatar
+          src={props.assignedTo.services.google.picture}
+          sx={{ size: 24, mr: 2 }}
+          title={`Assigned to ${props.assignedTo.profile.name}`}
+        />
+      )}
       {props.isSelected ? (
         <Input
           autoFocus

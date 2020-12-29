@@ -13,7 +13,7 @@ const AssignedTasksView = () => {
   return (
     <Flex sx={{ alignItems: "center", flexDirection: "column" }}>
       <Flex sx={{ variant: "flex.ref" }}>
-        <TasksList tasks={tasks} showLinks />
+        <TasksList tasks={tasks} showLinks hideAvatars />
       </Flex>
     </Flex>
   );
