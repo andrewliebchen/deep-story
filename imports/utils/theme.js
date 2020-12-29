@@ -323,4 +323,10 @@ export default {
       minHeight: controlHeight * 2,
     },
   },
+  progress: {
+    default: {
+      bg: "muted",
+      color: "primaryBackground",
+    },
+  },
 };

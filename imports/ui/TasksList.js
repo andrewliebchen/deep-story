@@ -1,4 +1,4 @@
-import { Flex, Input } from "theme-ui";
+import { Flex, Input, Progress, Text, Label } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { useKeycodes } from "@accessible/use-keycode";
 import PropTypes from "prop-types";
@@ -9,6 +9,9 @@ import UilPlusCircle from "@iconscout/react-unicons/icons/uil-plus-circle";
 const TasksList = (props) => {
   const [selectedTaskId, setSelectedTaskId] = useState(false);
   const [value, setValue] = useState("");
+
+  const totalTasks = props.tasks.length;
+  const completedTasks = props.tasks.filter((task) => task.done).length;
 
   // Listen for keycodesListener
   const keycodesListener = useKeycodes({
@@ -27,49 +30,58 @@ const TasksList = (props) => {
   });
 
   return (
-    <Flex
-      sx={{
-        flexDirection: "column",
-        m: -2,
-      }}
-    >
-      <Flex sx={{ alignItems: "center" }}>
-        <Flex
-          sx={{
-            color: "primary",
-            mr: 1,
-            size: "control",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <UilPlusCircle />
-        </Flex>
-        <Input
-          ref={keycodesListener}
-          autoFocus={props.isEditingRef}
-          placeholder="Add task and press enter"
-          sx={{
-            variant: "input.inline",
-            fontFamily: "default",
-            textAlign: "left",
-          }}
-          value={value}
-          onChange={(event) => setValue(event.target.value)}
+    <>
+      <Flex sx={{ alignItems: "center", mb: 3 }}>
+        <Progress
+          sx={{ variant: "progress.default" }}
+          max={totalTasks}
+          value={completedTasks}
         />
       </Flex>
-      {props.tasks &&
-        props.tasks.length > 0 &&
-        props.tasks.map((task) => (
-          <Task
-            key={task._id}
-            isSelected={selectedTaskId === task._id}
-            setSelectedTaskId={setSelectedTaskId}
-            {...task}
-            {...props}
+      <Flex
+        sx={{
+          flexDirection: "column",
+          mx: -2,
+        }}
+      >
+        <Flex sx={{ alignItems: "center" }}>
+          <Flex
+            sx={{
+              color: "primary",
+              mr: 1,
+              size: "control",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <UilPlusCircle />
+          </Flex>
+          <Input
+            ref={keycodesListener}
+            autoFocus={props.isEditingRef}
+            placeholder="Add task and press enter"
+            sx={{
+              variant: "input.inline",
+              fontFamily: "default",
+              textAlign: "left",
+            }}
+            value={value}
+            onChange={(event) => setValue(event.target.value)}
           />
-        ))}
-    </Flex>
+        </Flex>
+        {props.tasks &&
+          props.tasks.length > 0 &&
+          props.tasks.map((task) => (
+            <Task
+              key={task._id}
+              isSelected={selectedTaskId === task._id}
+              setSelectedTaskId={setSelectedTaskId}
+              {...task}
+              {...props}
+            />
+          ))}
+      </Flex>
+    </>
   );
 };
 
