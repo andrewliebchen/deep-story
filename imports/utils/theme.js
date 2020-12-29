@@ -24,8 +24,7 @@ const controlBase = {
   height: controlHeight,
   justifyContent: "center",
   minWidth: controlHeight,
-  px: 3,
-  py: 2,
+  p: 2,
   textDecoration: "none",
   userSelect: "none",
   "&:hover": {
@@ -57,10 +56,6 @@ const buttonNegativeStyles = {
   },
 };
 
-const iconButtonBase = {
-  p: 0,
-};
-
 const invisibleInputBase = {
   bg: "transparent",
   border: 0,
@@ -75,27 +70,53 @@ const invisibleInputBase = {
   },
 };
 
-const flexRefBase = {
-  p: 3,
-  bg: "background",
-  borderRadius: 3,
-  width: "ref",
-  mx: "auto",
-  flexDirection: "column",
-};
+const flexRefBase = {};
 
 export default {
   button: {
-    default: {
+    secondary: {
       ...controlBase,
     },
     primary: {
       ...controlBase,
       ...buttonPrimaryStyles,
     },
+    background: {
+      ...controlBase,
+      bg: "background",
+    },
+    backgroundNegative: {
+      ...controlBase,
+      bg: "background",
+      color: "negative",
+      "&:hover": {
+        bg: "negativeBackground",
+      },
+    },
     negative: {
       ...controlBase,
       ...buttonNegativeStyles,
+    },
+    positive: {
+      ...controlBase,
+      bg: "positive",
+      color: "background",
+      "&:hover": { bg: "positiveHover" },
+    },
+    transparent: {
+      ...controlBase,
+      bg: "transparent",
+    },
+  },
+  cards: {
+    primary: {
+      display: "flex",
+      justifyContent: "space-between",
+      flexDirection: "rows",
+      padding: 3,
+      bg: "muted",
+      borderRadius: 4,
+      mx: -3,
     },
   },
   colors: {
@@ -104,7 +125,7 @@ export default {
     primaryBackground: refTypeColorModes.text.primaryBackground,
     primaryMuted: refTypeColorModes.text.primaryMuted,
     background: "rgba(255, 255, 255, 1)",
-    muted: "rgba(0, 0, 0, 0.05)",
+    muted: "rgba(0, 0, 0, 0.02)",
     negative: "rgba(230, 59, 24, 1)",
     negativeBackground: "rgba(230, 59, 24, 0.2)",
     negativeMuted: "rgba(230, 59, 24, 0.03)",
@@ -119,7 +140,15 @@ export default {
   },
   flex: {
     ref: {
-      ...flexRefBase,
+      width: "ref",
+      flexDirection: "column",
+    },
+    wrapper: {
+      width: "100vw",
+      position: "relative",
+      px: 3,
+      justifyContent: "center",
+      alignItems: "center",
     },
     parent: {
       ...flexRefBase,
@@ -133,30 +162,23 @@ export default {
       justifyContent: "flex-end",
       cursor: "pointer",
       position: "relative",
-      height: 8,
+      minheight: 16,
       "&:hover": {
         bg: "primaryMuted",
-        zIndex: 1,
       },
     },
-    refWrapper: {
-      alignItems: "center",
-      justifyContent: "center",
-      width: "100vw",
-      position: "relative",
-      px: 3,
-      py: 2,
-    },
-    refRightButtons: {
+    refActions: {
       position: "absolute",
       right: 3,
-      width: 36,
-      justifyContent: "flex-end",
     },
-    refLeftButtons: {
-      position: "absolute",
-      left: 3,
-      width: 36,
+    imageWrapper: {
+      backgroundColor: "muted",
+      backgroundPosition: "center",
+      backgroundSize: "cover",
+      borderRadius: 2,
+      mr: 3,
+      overflow: "hidden",
+      size: "image",
     },
     toast: {
       color: "background",
@@ -195,48 +217,6 @@ export default {
     fontSize: 2,
     mb: 2,
   },
-  iconButton: {
-    default: {
-      ...controlBase,
-      ...iconButtonBase,
-    },
-    primary: {
-      ...controlBase,
-      ...buttonPrimaryStyles,
-      ...iconButtonBase,
-    },
-    background: {
-      ...controlBase,
-      ...iconButtonBase,
-      bg: "background",
-    },
-    backgroundNegative: {
-      ...controlBase,
-      ...iconButtonBase,
-      bg: "background",
-      color: "negative",
-      "&:hover": {
-        bg: "negativeBackground",
-      },
-    },
-    negative: {
-      ...controlBase,
-      ...buttonNegativeStyles,
-      ...iconButtonBase,
-    },
-    positive: {
-      ...controlBase,
-      ...iconButtonBase,
-      bg: "positive",
-      color: "background",
-      "&:hover": { bg: "positiveHover" },
-    },
-    transparent: {
-      ...controlBase,
-      ...iconButtonBase,
-      bg: "transparent",
-    },
-  },
   input: {
     default: {
       ...controlBase,
@@ -273,7 +253,7 @@ export default {
     body: 1.5,
     heading: 1.125,
   },
-  radii: [0, 4, 8, 12, 20, 28],
+  radii: [0, 4, 8, 12, 28],
   select: {
     default: {
       ...controlBase,
@@ -286,6 +266,8 @@ export default {
   sizes: {
     ref: 600,
     control: controlHeight,
+    image: 80,
+    avatar: controlHeight,
   },
   space: [0, 4, 8, 16, 32, 40],
   styles: {

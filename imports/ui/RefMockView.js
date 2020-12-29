@@ -56,7 +56,7 @@ const RefMockView = (props) => {
                     {props.isHovering && (
                       <IconButton
                         children={<UilCopy />}
-                        sx={{ variant: "iconButton.default", ml: "auto" }}
+                        sx={{ variant: "button.secondary", ml: "auto" }}
                         onClick={() => {
                           ultralightCopy(mockDataSet[key]);
                           setToastMessage("Copied to clipboard");
@@ -69,7 +69,7 @@ const RefMockView = (props) => {
           </Flex>
         </Flex>
       )}
-      {/* <Button sx={{ variant: "button.default", mt: 3, width: "100%" }}>
+      {/* <Button sx={{ variant: "button.secondary", mt: 3, width: "100%" }}>
       <UilArrowDown />
       <Text ml={2}>See all parameters</Text>
     </Button> */}

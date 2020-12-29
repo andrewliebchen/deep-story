@@ -46,7 +46,7 @@ const Search = (props) => {
           <Flex sx={{ variant: "flex.overlayBackground" }}>
             <IconButton
               sx={{
-                variant: "iconButton.default",
+                variant: "button.secondary",
                 position: "absolute",
                 right: 3,
                 top: 3,

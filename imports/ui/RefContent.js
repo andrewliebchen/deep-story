@@ -11,6 +11,9 @@ import RefTasksEdit from "./RefTasksEdit";
 import RefTasksView from "./RefTasksView";
 import RefTextEdit from "./RefTextEdit";
 import RefTextView from "./RefTextView";
+import TitleView from "./TitleView";
+import TitleEdit from "./TitleEdit";
+import { Flex } from "theme-ui";
 
 const RefContent = (props) => {
   const { selectedRefId } = useContext(AppContext);
@@ -40,7 +43,17 @@ const RefContent = (props) => {
       edit = <RefTextEdit {...props} />;
   }
 
-  return isSelected ? edit : view;
+  return isSelected ? (
+    <Flex sx={{ variant: "flex.ref" }}>
+      <TitleEdit {...props} />
+      {edit}
+    </Flex>
+  ) : (
+    <Flex sx={{ variant: "flex.ref" }}>
+      <TitleView {...props} />
+      {view}
+    </Flex>
+  );
 };
 
 RefContent.propTypes = {

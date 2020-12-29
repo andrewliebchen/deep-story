@@ -14,7 +14,7 @@ const AccountToogle = (props) => {
         <Avatar
           src={user.services.google.picture}
           sx={{
-            variant: "button.default",
+            variant: "button.secondary",
             p: 0,
             size: "control",
           }}

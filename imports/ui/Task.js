@@ -35,7 +35,7 @@ const Task = (props) => {
       ref={target}
     >
       <IconButton
-        sx={{ variant: "iconButton.transparent", mr: 1 }}
+        sx={{ variant: "button.transparent", mr: 1 }}
         children={props.done ? <UisCheckCircle /> : <UilCircle />}
         disabled={props.isEditingRef}
         onClick={() => Meteor.call("tasks.toggle", props._id)}
@@ -73,7 +73,7 @@ const Task = (props) => {
         <Flex ml="auto">
           <IconButton
             children={<UilTrash />}
-            sx={{ variant: "iconButton.negative", mr: 2 }}
+            sx={{ variant: "button.negative", mr: 2 }}
             title="Delete task"
             onClick={() =>
               Meteor.call("tasks.remove", props._id, (error, success) =>
@@ -83,7 +83,7 @@ const Task = (props) => {
           />
           <IconButton
             children={<UilCheck />}
-            sx={{ variant: "iconButton.positive" }}
+            sx={{ variant: "button.positive" }}
             onClick={() =>
               Meteor.call(
                 "tasks.update",
@@ -102,7 +102,7 @@ const Task = (props) => {
           {props.showLinks && props.parentId && (
             <IconButton
               children={<UilCornerUpRight />}
-              sx={{ variant: "iconButton.default", mr: 2 }}
+              sx={{ variant: "button.secondary", mr: 2 }}
               onClick={() => history.push(`/refs/${props.parentId}`)}
               title="Go to parent ref"
             />
@@ -115,7 +115,7 @@ const Task = (props) => {
                 <UilExclamationCircle />
               )
             }
-            sx={{ variant: "iconButton.default" }}
+            sx={{ variant: "button.secondary" }}
             title="Priority"
             onClick={() => Meteor.call("tasks.togglePriority", props._id)}
           />
@@ -124,7 +124,7 @@ const Task = (props) => {
         props.priority && (
           <IconButton
             children={<UisExclamationCircle />}
-            sx={{ variant: "iconButton.transparent", ml: "auto" }}
+            sx={{ variant: "button.transparent", ml: "auto" }}
             title="Priority"
             onClick={() => Meteor.call("tasks.togglePriority", props._id)}
           />

@@ -18,7 +18,7 @@ const Nav = (props) => {
       <IconButton
         onClick={() => setShowMenu(true)}
         title="Back to home"
-        variant="iconButton.default"
+        variant="button.secondary"
       >
         <UilHomeAlt />
       </IconButton>
@@ -32,13 +32,13 @@ const Nav = (props) => {
             }}
           >
             <Button
-              sx={{ variant: "button.default" }}
+              sx={{ variant: "button.secondary" }}
               onClick={() => navigate("/refs")}
             >
               All refs
             </Button>
             <Button
-              sx={{ variant: "button.default", mt: 2 }}
+              sx={{ variant: "button.secondary", mt: 2 }}
               onClick={() => navigate("/tasks")}
             >
               Your tasks

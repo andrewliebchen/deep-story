@@ -17,7 +17,7 @@ const RefsListRow = (props) => {
       }}
     >
       <Flex sx={{ alignItems: "center" }}>
-        <Box sx={{ variant: "iconButton.primary", mr: 2 }}>
+        <Box sx={{ variant: "button.primary", mr: 2 }}>
           <UilFile />
         </Box>
         <Text sx={{ variant: "text.default", fontWeight: "bold" }}>

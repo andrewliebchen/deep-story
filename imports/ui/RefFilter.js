@@ -9,7 +9,7 @@ const RefFilter = (props) => {
 
   return (
     <Button
-      sx={{ variant: "button.default", ml: 2 }}
+      sx={{ variant: "button.secondary", ml: 2 }}
       onClick={() =>
         setRefFilterIndex(
           refFilterIndex < refTypeLabels.length - 1 ? refFilterIndex + 1 : 0

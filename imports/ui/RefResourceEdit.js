@@ -1,7 +1,6 @@
-import React, { useState, useContext } from "react";
 import { Box, Flex, Text, Input, Label, Button } from "theme-ui";
 import AppContext from "./AppContext";
-import TitleEdit from "./TitleEdit";
+import React, { useState, useContext } from "react";
 
 const RefResourceEdit = (props) => {
   const { setToastMessage } = useContext(AppContext);
@@ -9,7 +8,6 @@ const RefResourceEdit = (props) => {
 
   return (
     <Box>
-      <TitleEdit {...props} />
       <Flex
         sx={{
           variant: "flex.ref",
@@ -28,7 +26,7 @@ const RefResourceEdit = (props) => {
           onChange={(event) => setValue(event.target.value)}
         />
         <Button
-          sx={{ variant: "button.default" }}
+          sx={{ variant: "button.secondary" }}
           onClick={() =>
             Meteor.call(
               "refs.updateResourceUrl",

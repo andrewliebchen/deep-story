@@ -56,15 +56,18 @@ This might change...but this was always an interesting feature of Quip, especial
 - ✅ Add a task list
 - ✅ Tasks list CRUD
 - ✅ Progress completing tasks
-- ✅Show who the task is assigned to
+- ✅ Show who the task is assigned to
 - ✅ Mark priority
 - ✅ `/tasks` index page list of all tasks
 - Group tasks on `/tasks` page by priority
+- Delete associated tasks when task ref is deleted
 
 #### Other
 
 - Improve design
 - Add PRD content
+- Should mocks and references be their own collections, like tasks?
+  Would simplify the code quite a bit...
 
 ### ⏳ Milestone 5: Add teams
 

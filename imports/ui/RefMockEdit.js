@@ -49,7 +49,7 @@ const RefMockEdit = (props) => {
                 />
                 <IconButton
                   children={<UilRefresh />}
-                  sx={{ variant: "iconButton.default" }}
+                  sx={{ variant: "button.secondary" }}
                   title="Refresh"
                   onClick={() =>
                     Meteor.call(

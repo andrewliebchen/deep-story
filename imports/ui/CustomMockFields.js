@@ -19,7 +19,7 @@ const CustomMockFields = (props) => {
       {isReady(props.customFieldData) &&
         Object.keys(props.customFieldData).map((key) => (
           <Flex key={key} sx={{ mb: 3 }}>
-            <Button sx={{ variant: "button.default", mr: 2, flexShrink: 0 }}>
+            <Button sx={{ variant: "button.secondary", mr: 2, flexShrink: 0 }}>
               {key}
             </Button>
             <Input
@@ -29,7 +29,7 @@ const CustomMockFields = (props) => {
             />
             <IconButton
               children={<UilTrash />}
-              sx={{ variant: "iconButton.negative", mr: 2 }}
+              sx={{ variant: "button.negative", mr: 2 }}
               title="Remove field"
               onClick={() =>
                 Meteor.call(
@@ -43,7 +43,7 @@ const CustomMockFields = (props) => {
             />
             <IconButton
               children={<UilRefresh />}
-              sx={{ variant: "iconButton.default" }}
+              sx={{ variant: "button.secondary" }}
               title="Refresh"
               onClick={() =>
                 Meteor.call(
@@ -59,7 +59,7 @@ const CustomMockFields = (props) => {
         ))}
 
       <Button
-        sx={{ variant: "button.default" }}
+        sx={{ variant: "button.secondary" }}
         onClick={() => setSelectingField(true)}
       >
         <UilPlus />
@@ -113,7 +113,7 @@ const CustomMockFields = (props) => {
                 .map((key) => (
                   <Button
                     key={key}
-                    sx={{ variant: "button.default", m: 1 }}
+                    sx={{ variant: "button.secondary", m: 1 }}
                     onClick={() =>
                       Meteor.call(
                         "refs.updateCustomMockData",
@@ -135,7 +135,7 @@ const CustomMockFields = (props) => {
           </Flex>
           <IconButton
             sx={{
-              variant: "iconButton.default",
+              variant: "button.secondary",
               position: "absolute",
               top: 3,
               right: 3,

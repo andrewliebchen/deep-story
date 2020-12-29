@@ -40,7 +40,7 @@ const Sandbox = () => {
           return (
             <IconButton
               key={key}
-              variant="iconButton.primary"
+              variant="button.primary"
               m={1}
               children={type.icon}
               sx={{

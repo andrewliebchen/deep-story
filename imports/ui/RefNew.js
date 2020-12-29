@@ -24,7 +24,7 @@ const RefNew = (props) => {
     <Flex
       title="Add a new ref here..."
       sx={{
-        variant: "flex.refWrapper",
+        variant: "flex.wrapper",
         bg: isExpanded && "primaryMuted",
         borderColor: "background",
         cursor: isExpanded ? "default" : "pointer",
@@ -60,7 +60,7 @@ const RefNew = (props) => {
                     }
                   )
                 }
-                sx={{ variant: "iconButton.background", mr: 2 }}
+                sx={{ variant: "button.background", mr: 2 }}
                 title={`Create a ${stub} ref`}
               />
             );
@@ -68,7 +68,7 @@ const RefNew = (props) => {
           <IconButton
             children={<UilSearchPlus />}
             onClick={() => setIsSearching(true)}
-            sx={{ variant: "iconButton.background", ml: 3 }}
+            sx={{ variant: "button.background", ml: 3 }}
             title="Add an existing ref"
           />
         </Flex>
@@ -93,7 +93,7 @@ const RefNew = (props) => {
             isSearching ? setIsSearching(false) : setIsExpanded(false);
           }}
           sx={{
-            variant: "iconButton.background",
+            variant: "button.background",
             position: "absolute",
             right: 3,
           }}
