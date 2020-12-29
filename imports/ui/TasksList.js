@@ -32,13 +32,13 @@ const TasksList = (props) => {
 
   return (
     <>
-      <Flex sx={{ alignItems: "center", mb: 3 }}>
+      {totalTasks.length > 0 && (
         <Progress
-          sx={{ variant: "progress.default" }}
+          sx={{ variant: "progress.default", mb: 3 }}
           max={totalTasks}
           value={completedTasks}
         />
-      </Flex>
+      )}
       <Flex
         sx={{
           flexDirection: "column",
