@@ -18,6 +18,7 @@ const controlBase = {
   alignItems: "center",
   bg: "primaryMuted",
   borderRadius: 3,
+  border: 0,
   color: "primary",
   cursor: "pointer",
   display: "flex",
@@ -27,6 +28,7 @@ const controlBase = {
   p: 2,
   textDecoration: "none",
   userSelect: "none",
+  flexShrink: 0,
   "&:hover": {
     bg: "primaryBackground",
   },
@@ -39,22 +41,9 @@ const controlBase = {
   },
 };
 
-const buttonPrimaryStyles = {
-  bg: "primary",
-  color: "background",
-  fontWeight: "bold",
-  "&:hover": {
-    bg: "primaryHover",
-  },
-};
+const buttonPrimaryStyles = {};
 
-const buttonNegativeStyles = {
-  color: "negative",
-  bg: "negativeMuted",
-  "&:hover": {
-    bg: "negativeBackground",
-  },
-};
+const buttonNegativeStyles = {};
 
 const invisibleInputBase = {
   bg: "transparent",
@@ -70,16 +59,20 @@ const invisibleInputBase = {
   },
 };
 
-const flexRefBase = {};
-
 export default {
   button: {
     secondary: {
       ...controlBase,
+      fontWeight: "bold",
     },
     primary: {
       ...controlBase,
-      ...buttonPrimaryStyles,
+      bg: "primary",
+      color: "background",
+      fontWeight: "bold",
+      "&:hover": {
+        bg: "primaryHover",
+      },
     },
     background: {
       ...controlBase,
@@ -95,7 +88,11 @@ export default {
     },
     negative: {
       ...controlBase,
-      ...buttonNegativeStyles,
+      color: "negative",
+      bg: "negativeMuted",
+      "&:hover": {
+        bg: "negativeBackground",
+      },
     },
     positive: {
       ...controlBase,
@@ -125,7 +122,7 @@ export default {
     primaryBackground: refTypeColorModes.text.primaryBackground,
     primaryMuted: refTypeColorModes.text.primaryMuted,
     background: "rgba(255, 255, 255, 1)",
-    muted: "rgba(0, 0, 0, 0.02)",
+    muted: "rgba(0, 0, 0, 0.03)",
     negative: "rgba(230, 59, 24, 1)",
     negativeBackground: "rgba(230, 59, 24, 0.2)",
     negativeMuted: "rgba(230, 59, 24, 0.03)",
@@ -151,7 +148,6 @@ export default {
       alignItems: "center",
     },
     parent: {
-      ...flexRefBase,
       bg: "transparent",
       my: 3,
     },
@@ -220,10 +216,10 @@ export default {
   input: {
     default: {
       ...controlBase,
+      fontFamily: "monospace",
       bg: "muted",
-      border: 0,
-      textAlign: "center",
       color: "text",
+      flexShrink: 1,
       "&:hover": {
         color: "text",
       },
@@ -243,11 +239,12 @@ export default {
       minHeight: 24,
     },
   },
-  label: {
-    fontWeight: "bold",
-    fontSize: 0,
-    maxWidth: 100,
-    mr: 2,
+  forms: {
+    label: {
+      fontWeight: "bold",
+      fontSize: 0,
+      mb: 2,
+    },
   },
   lineHeights: {
     body: 1.5,
@@ -299,7 +296,6 @@ export default {
   textarea: {
     ref: {
       ...invisibleInputBase,
-      ...flexRefBase,
       resize: "none",
       fontSize: 1,
       minHeight: controlHeight * 2,

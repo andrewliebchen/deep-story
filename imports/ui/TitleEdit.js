@@ -6,15 +6,7 @@ import UilEye from "@iconscout/react-unicons/icons/uil-eye";
 import UilEyeSlash from "@iconscout/react-unicons/icons/uil-eye-slash";
 
 const TitleEdit = (props) => (
-  <Flex
-    sx={{
-      variant: "flex.ref",
-      alignItems: "center",
-      flexDirection: "row",
-      px: 3,
-      py: 2,
-    }}
-  >
+  <Flex sx={{ width: "ref", mb: 3 }}>
     <Input
       defaultValue={props.title}
       placeholder="Add a title..."
@@ -27,6 +19,7 @@ const TitleEdit = (props) => (
         variant: "input.inline",
         color: props.showTitle ? "text" : "textSecondary",
         fontWeight: "bold",
+        fontSize: 2,
       }}
     />
     <IconButton

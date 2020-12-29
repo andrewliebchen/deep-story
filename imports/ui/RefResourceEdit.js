@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Input, Label, Button } from "theme-ui";
+import { Box, Card, Flex, Text, Input, Label, Button } from "theme-ui";
 import AppContext from "./AppContext";
 import React, { useState, useContext } from "react";
 
@@ -7,16 +7,9 @@ const RefResourceEdit = (props) => {
   const [value, setValue] = useState(props.resourceUrl);
 
   return (
-    <Box>
-      <Flex
-        sx={{
-          variant: "flex.ref",
-          alignItems: "center",
-          flexDirection: "rows",
-          mt: 2,
-        }}
-      >
-        <Label>Resource URL</Label>
+    <Card sx={{ flexDirection: "column" }}>
+      <Label>Resource URL</Label>
+      <Flex>
         <Input
           autoFocus
           type="text"
@@ -42,7 +35,7 @@ const RefResourceEdit = (props) => {
           Update
         </Button>
       </Flex>
-    </Box>
+    </Card>
   );
 };
 
