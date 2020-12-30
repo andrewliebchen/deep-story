@@ -1,79 +1,70 @@
-import { Avatar, Flex, Text, IconButton, Input } from "theme-ui";
+import { Avatar, Flex, Text, Button, Input } from "theme-ui";
 import { Meteor } from "meteor/meteor";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   UilExclamationCircle,
   UilTrash,
   UilPen,
   UilCornerUpRight,
-  UilCircle,
   UilCheck,
 } from "@iconscout/react-unicons";
-import {
-  UisCheckCircle,
-  UisExclamationCircle,
-} from "@iconscout/react-unicons-solid/";
+import { UisExclamationCircle } from "@iconscout/react-unicons-solid/";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext, useRef, useState } from "react";
 import useHover from "@react-hook/hover";
 
 const Task = (props) => {
-  const { setToastMessage, selectedRefId } = useContext(AppContext);
+  const { setToastMessage } = useContext(AppContext);
   const [value, setValue] = useState(props.text);
-  const history = useHistory();
 
   const target = useRef(null);
   const isHovering = useHover(target);
 
   return (
-    <Flex
-      sx={{
-        alignItems: "center",
-        pr: 2,
-      }}
-      ref={target}
-    >
-      <IconButton
-        sx={{ variant: "button.transparent", mr: 1 }}
-        children={props.done ? <UisCheckCircle /> : <UilCircle />}
-        disabled={props.isEditingRef}
-        onClick={() => Meteor.call("tasks.toggle", props._id)}
-      />
+    <Flex sx={{ variant: "flex.task" }} ref={target}>
       {props.hideAvatars || (
         <Avatar
-          // src={props.assignedTo.services.google.picture}
-          sx={{ size: 24, mr: 2 }}
+          src={props.assignedTo.services.google.picture}
           title={`Assigned to ${props.assignedTo.profile.name}`}
         />
       )}
-      {props.isSelected ? (
-        <Input
-          autoFocus
-          sx={{ variant: "input.inline", textAlign: "left" }}
-          value={value}
-          onChange={(event) => setValue(event.target.value)}
-        />
-      ) : (
-        <Text
-          onClick={() => props.setSelectedTaskId(props._id)}
-          title="Click to edit"
-          sx={{
-            variant: "text.default",
-            color: props.done && "textSecondary",
-            textDecoration: props.done && "line-through",
-            userSelect: "none",
-            cursor: "pointer",
-          }}
-        >
-          {props.text}
-        </Text>
-      )}
-      {props.isSelected ? (
+      <Flex sx={{ mx: 3, flexGrow: 2 }}>
+        {props.isSelected ? (
+          <Input
+            autoFocus
+            sx={{ variant: "forms.inputGhosted", textAlign: "left" }}
+            value={value}
+            onChange={(event) => setValue(event.target.value)}
+            onKeyPress={(event) =>
+              event.key === ("Enter" || "Escape") &&
+              props.setSelectedTaskId(false)
+            }
+          />
+        ) : (
+          <Text
+            onClick={() => {
+              props.setSelectedTaskId(props._id);
+              setToastMessage("Press esc or enter when you're done");
+            }}
+            title="Click to edit"
+            sx={{
+              variant: "text.default",
+              color: props.done && "textSecondary",
+              userSelect: "none",
+              cursor: "pointer",
+              flexGrow: 2,
+            }}
+          >
+            {props.text}
+          </Text>
+        )}
+      </Flex>
+      {isHovering ? (
         <Flex ml="auto">
-          <IconButton
+          <Button
             children={<UilTrash />}
-            sx={{ variant: "button.negative", mr: 2 }}
+            sx={{ variant: "button.backgroundNegative", mr: 2 }}
             title="Delete task"
             onClick={() =>
               Meteor.call("tasks.remove", props._id, (error, success) =>
@@ -81,33 +72,16 @@ const Task = (props) => {
               )
             }
           />
-          <IconButton
-            children={<UilCheck />}
-            sx={{ variant: "button.positive" }}
-            onClick={() =>
-              Meteor.call(
-                "tasks.update",
-                props._id,
-                value,
-                (error, success) => {
-                  props.setSelectedTaskId(false);
-                  setToastMessage("Task updated");
-                }
-              )
-            }
-          />
-        </Flex>
-      ) : isHovering ? (
-        <Flex ml="auto">
           {props.showLinks && props.parentId && (
-            <IconButton
-              children={<UilCornerUpRight />}
-              sx={{ variant: "button.secondary", mr: 2 }}
-              onClick={() => history.push(`/refs/${props.parentId}`)}
-              title="Go to parent ref"
-            />
+            <Link to={`/refs/${props.parentId}`}>
+              <Button
+                children={<UilCornerUpRight />}
+                sx={{ variant: "button.secondary", mr: 2 }}
+                title="Go to parent ref"
+              />
+            </Link>
           )}
-          <IconButton
+          <Button
             children={
               props.priority ? (
                 <UisExclamationCircle />
@@ -115,14 +89,14 @@ const Task = (props) => {
                 <UilExclamationCircle />
               )
             }
-            sx={{ variant: "button.secondary" }}
-            title="Priority"
+            sx={{ variant: "button.background" }}
+            title="Toggle priority"
             onClick={() => Meteor.call("tasks.togglePriority", props._id)}
           />
         </Flex>
       ) : (
         props.priority && (
-          <IconButton
+          <Button
             children={<UisExclamationCircle />}
             sx={{ variant: "button.transparent", ml: "auto" }}
             title="Priority"
@@ -130,8 +104,27 @@ const Task = (props) => {
           />
         )
       )}
+      <Button
+        sx={{
+          variant: `button.${props.done ? "primary" : "background"}`,
+          color: props.done ? "background" : isHovering ? "primary" : "muted",
+          ml: 2,
+          "&:hover": {
+            color: props.done ? "background" : "primary",
+            bg: props.done || "primaryMuted",
+          },
+        }}
+        children={<UilCheck />}
+        disabled={props.isEditingRef}
+        onClick={() => Meteor.call("tasks.toggle", props._id)}
+      />
     </Flex>
   );
+};
+
+Task.propTypes = {
+  setSelectedTaskId: PropTypes.func,
+  selectedTaskId: PropTypes.string,
 };
 
 export default Task;

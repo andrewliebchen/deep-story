@@ -203,6 +203,15 @@ export default {
       alignItems: "center",
       justifyContent: "center",
     },
+    task: {
+      alignItems: "center",
+      p: 2,
+      mx: -2,
+      borderRadius: 20,
+      "&:hover": {
+        bg: "muted",
+      },
+    },
   },
   fonts: {
     body:
@@ -223,8 +232,8 @@ export default {
       p: 0,
     },
   },
-  input: {
-    default: {
+  forms: {
+    input: {
       ...controlBase,
       fontFamily: "monospace",
       bg: "muted",
@@ -241,15 +250,17 @@ export default {
         bg: "background",
       },
     },
-    inline: {
+    inputGhosted: {
       ...invisibleInputBase,
       display: "flex",
       flex: 1,
       width: "auto",
       minHeight: 24,
+      "&:focus": {
+        bg: "transparent",
+        outline: "0",
+      },
     },
-  },
-  forms: {
     label: {
       fontWeight: "bold",
       fontSize: 0,
@@ -291,6 +302,11 @@ export default {
       lineHeight: "body",
       fontWeight: "body",
     },
+    progress: {
+      bg: "background",
+      color: "primary",
+      height: 8,
+    },
   },
   text: {
     heading: {
@@ -307,12 +323,6 @@ export default {
       fontFamily: "monospace",
       overflow: "hidden",
       flex: "1 1",
-    },
-  },
-  progress: {
-    default: {
-      bg: "muted",
-      color: "primaryBackground",
     },
   },
 };

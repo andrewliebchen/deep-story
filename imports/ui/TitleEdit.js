@@ -17,7 +17,7 @@ const TitleEdit = (props) => (
         })
       }
       sx={{
-        variant: "input.inline",
+        variant: "forms.inputGhosted",
         color: props.showTitle ? "text" : "textSecondary",
         fontWeight: "bold",
         fontSize: 2,
