@@ -1,4 +1,4 @@
-import { Text } from "theme-ui";
+import { Text, BaseStyles } from "theme-ui";
 import Markdown from "react-markdown";
 import PropTypes from "prop-types";
 import React from "react";
@@ -16,11 +16,13 @@ const allowedMarkdownTypes = [
 
 const RefTextView = (props) => (
   <Text sx={{ color: props.content || "textPlaceholder" }}>
-    {props.content ? (
-      <Markdown allowedTypes={allowedMarkdownTypes}>{props.content}</Markdown>
-    ) : (
-      "Tell a story..."
-    )}
+    <BaseStyles>
+      {props.content ? (
+        <Markdown allowedTypes={allowedMarkdownTypes}>{props.content}</Markdown>
+      ) : (
+        "Tell a story..."
+      )}
+    </BaseStyles>
   </Text>
 );
 

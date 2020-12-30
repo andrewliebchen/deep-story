@@ -6,29 +6,27 @@ Object.keys(refTypes).map((type) => {
   refTypeColor = Color(refTypes[type].color);
   refTypeColorModes[type] = {
     primary: refTypeColor.toString(),
-    primaryHover: refTypeColor.darken(0.1).rgb().toString(),
     primaryBackground: refTypeColor.alpha(0.2).rgb().toString(),
+    primaryHover: refTypeColor.darken(0.1).rgb().toString(),
     primaryMuted: refTypeColor.alpha(0.1).rgb().toString(),
   };
 });
 
-export const controlHeight = 40;
-
 const controlBase = {
   alignItems: "center",
   bg: "primaryMuted",
-  borderRadius: 3,
   border: 0,
+  borderRadius: 3,
   color: "primary",
   cursor: "pointer",
   display: "flex",
-  height: controlHeight,
+  flexShrink: 0,
+  height: "control",
   justifyContent: "center",
-  minWidth: controlHeight,
+  minWidth: "control",
   p: 2,
   textDecoration: "none",
   userSelect: "none",
-  flexShrink: 0,
   "&:hover": {
     bg: "primaryBackground",
   },
@@ -57,10 +55,6 @@ const invisibleInputBase = {
 
 export default {
   button: {
-    secondary: {
-      ...controlBase,
-      fontWeight: "bold",
-    },
     primary: {
       ...controlBase,
       bg: "primary",
@@ -69,6 +63,10 @@ export default {
       "&:hover": {
         bg: "primaryHover",
       },
+    },
+    secondary: {
+      ...controlBase,
+      fontWeight: "bold",
     },
     background: {
       ...controlBase,
@@ -103,39 +101,39 @@ export default {
   },
   cards: {
     primary: {
-      display: "flex",
-      justifyContent: "space-between",
-      flexDirection: "rows",
-      padding: 3,
       bg: "muted",
       borderRadius: 4,
+      display: "flex",
+      flexDirection: "rows",
+      justifyContent: "space-between",
       mx: -3,
+      padding: 3,
     },
   },
   colors: {
-    primary: refTypeColorModes.text.primary,
-    primaryHover: refTypeColorModes.text.primaryHover,
-    primaryBackground: refTypeColorModes.text.primaryBackground,
-    primaryMuted: refTypeColorModes.text.primaryMuted,
     background: "rgba(255, 255, 255, 1)",
+    modes: refTypeColorModes,
     muted: "rgba(0, 0, 0, 0.03)",
     negative: "rgba(230, 59, 24, 1)",
     negativeBackground: "rgba(230, 59, 24, 0.2)",
     negativeMuted: "rgba(230, 59, 24, 0.03)",
     positive: "rgba(19, 201, 141, 1)",
     positiveBackground: "rgba(19, 201, 141, 0.2)",
-    positiveMuted: "rgba(19, 201, 141, 0.03)",
     positiveHover: "rgba(14, 177, 123, 1)",
+    positiveMuted: "rgba(19, 201, 141, 0.03)",
+    primary: refTypeColorModes.text.primary,
+    primaryBackground: refTypeColorModes.text.primaryBackground,
+    primaryHover: refTypeColorModes.text.primaryHover,
+    primaryMuted: refTypeColorModes.text.primaryMuted,
     secondary: "rgba(123, 97, 255, 1)",
     text: "rgba(0, 0, 0, 1)",
-    textSecondary: "rgba(0, 0, 0, 0.5)",
     textPlaceholder: "rgba(0, 0, 0, 0.3)",
-    modes: refTypeColorModes,
+    textSecondary: "rgba(0, 0, 0, 0.5)",
   },
   flex: {
     ref: {
-      width: "ref",
       flexDirection: "column",
+      width: "ref",
     },
     wrapper: {
       width: "100vw",
@@ -174,7 +172,7 @@ export default {
     toast: {
       color: "background",
       bg: "positive",
-      height: controlHeight,
+      height: "control",
       alignItems: "center",
       px: 3,
       borderRadius: 3,
@@ -259,7 +257,7 @@ export default {
       ...invisibleInputBase,
       resize: "none",
       fontSize: 1,
-      minHeight: controlHeight * 2,
+      minHeight: 80,
       lineHeight: "body",
     },
   },
@@ -278,8 +276,8 @@ export default {
     overlay: "0 8px 16px rgba(0, 0, 0, 0.1)",
   },
   sizes: {
-    avatar: controlHeight,
-    control: controlHeight,
+    avatar: 40,
+    control: 40,
     image: 80,
     ref: 600,
   },
@@ -295,6 +293,15 @@ export default {
       color: "primary",
       height: 8,
     },
+    a: {
+      textDecoration: "none",
+    },
+    p: {
+      m: 0,
+      "& + p": {
+        mt: 3,
+      },
+    },
   },
   text: {
     heading: {
@@ -304,13 +311,13 @@ export default {
       fontSize: 3,
     },
     label: {
-      fontWeight: "bold",
       fontFamily: "monospace",
+      fontWeight: "bold",
     },
     edit: {
+      flex: "1 1",
       fontFamily: "monospace",
       overflow: "hidden",
-      flex: "1 1",
     },
   },
 };
