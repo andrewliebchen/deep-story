@@ -24,7 +24,12 @@ const Ref = (props) => {
   const isHovering = useHover(target);
 
   return (
-    <Flex ref={target} sx={{ variant: "flex.wrapper" }}>
+    <Flex
+      ref={target}
+      sx={{
+        variant: props.isParentRef ? "flex.parentWrapper" : "flex.wrapper",
+      }}
+    >
       {selectedRefId === props._id ? (
         <Flex variant="flex.refActions">
           <Button
@@ -51,16 +56,23 @@ const Ref = (props) => {
           <Flex variant="flex.refActions">
             <Button
               onClick={() => setSelectedRefId(props._id)}
-              sx={{ variant: "button.secondary", mr: 2 }}
+              sx={{
+                variant: `button.${
+                  props.isParentRef ? "background" : "secondary"
+                }`,
+                mr: 2,
+              }}
               children={<UilPen />}
               title="Edit"
             />
-            <Link to={`/refs/${props._id}`}>
-              <Button title="Show children" variant="button.primary">
-                {refCount > 0 && <Text sx={{ mr: 2 }}>{refCount}</Text>}
-                <UilCornerRightDown />
-              </Button>
-            </Link>
+            {props.isParentRef || (
+              <Link to={`/refs/${props._id}`}>
+                <Button title="Show children" variant="button.primary">
+                  {refCount > 0 && <Text sx={{ mr: 2 }}>{refCount}</Text>}
+                  <UilCornerRightDown />
+                </Button>
+              </Link>
+            )}
           </Flex>
         )
       )}

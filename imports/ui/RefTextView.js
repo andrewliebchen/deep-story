@@ -15,7 +15,7 @@ const allowedMarkdownTypes = [
 ];
 
 const RefTextView = (props) => (
-  <Text sx={{ mt: 3, color: props.content || "textPlaceholder" }}>
+  <Text sx={{ color: props.content || "textPlaceholder" }}>
     {props.content ? (
       <Markdown allowedTypes={allowedMarkdownTypes}>{props.content}</Markdown>
     ) : (

@@ -10,9 +10,6 @@ const RefTasksView = (props) => {
 
   return (
     <Flex sx={{ variant: props.isParentRef ? "flex.parent" : "flex.ref" }}>
-      <Flex mb={props.showTitle && 2}>
-        <TitleView {...props} />
-      </Flex>
       <TasksList parentRefId={props._id} tasks={tasks} />
     </Flex>
   );

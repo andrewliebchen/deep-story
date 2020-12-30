@@ -24,8 +24,6 @@ const Header = () => {
       }}
     >
       <Nav />
-      <Search showFilter={location.pathname === "/refs"} />
-
       <AccountToggle sx={{ minWidth: "auto" }} />
     </Flex>
   );

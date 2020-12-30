@@ -148,6 +148,16 @@ export default {
       justifyContent: "center",
       alignItems: "center",
     },
+    parentWrapper: {
+      width: "100vw",
+      position: "relative",
+      px: 3,
+      pb: 5,
+      pt: 3,
+      justifyContent: "center",
+      alignItems: "center",
+      bg: "primaryMuted",
+    },
     parent: {
       bg: "transparent",
       my: 3,

@@ -42,7 +42,7 @@ const Task = (props) => {
       />
       {props.hideAvatars || (
         <Avatar
-          src={props.assignedTo.services.google.picture}
+          // src={props.assignedTo.services.google.picture}
           sx={{ size: 24, mr: 2 }}
           title={`Assigned to ${props.assignedTo.profile.name}`}
         />
