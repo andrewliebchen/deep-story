@@ -1,4 +1,4 @@
-import { Flex, Text, Button, Input, IconButton } from "theme-ui";
+import { Flex, Text, Button, Input, IconButton, Card } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import fakerKeys from "../utils/fakerKeys";
 import PropTypes from "prop-types";
@@ -15,7 +15,9 @@ const CustomMockFields = (props) => {
   const [searchValue, setSearchValue] = useState("");
 
   return (
-    <Flex sx={{ variant: "flex.ref", mt: 2, flexDirection: "column" }}>
+    <Card
+      sx={{ flexDirection: "column", bg: props.isParentRef && "background" }}
+    >
       {isReady(props.customFieldData) &&
         Object.keys(props.customFieldData).map((key) => (
           <Flex key={key} sx={{ mb: 3 }}>
@@ -146,7 +148,7 @@ const CustomMockFields = (props) => {
           />
         </Flex>
       )}
-    </Flex>
+    </Card>
   );
 };
 

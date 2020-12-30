@@ -302,10 +302,8 @@ export default {
     },
     edit: {
       fontFamily: "monospace",
-      flexGrow: 1,
       overflow: "hidden",
-      textOverflow: "ellipsis",
-      whiteSpace: "no-wrap",
+      flex: "1 1",
     },
   },
   progress: {

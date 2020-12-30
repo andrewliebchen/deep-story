@@ -1,23 +1,12 @@
-import {
-  Box,
-  Button,
-  Card,
-  Flex,
-  IconButton,
-  Input,
-  Label,
-  Select,
-  Text,
-} from "theme-ui";
+import { Box, Button, Card, Flex, Select, Text } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { mockTypes } from "../utils/types";
+import { UilRefresh } from "@iconscout/react-unicons";
 import AppContext from "./AppContext";
 import capitalize from "capitalize";
+import CustomMockFields from "./CustomMockFields";
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
-import TitleEdit from "./TitleEdit";
-import UilRefresh from "@iconscout/react-unicons/icons/uil-refresh";
-import CustomMockFields from "./CustomMockFields";
 
 const RefMockEdit = (props) => {
   const { setToastMessage } = useContext(AppContext);
@@ -25,7 +14,11 @@ const RefMockEdit = (props) => {
   return (
     <Box>
       <Card
-        sx={{ flexDirection: "column", bg: props.isParentRef && "background" }}
+        sx={{
+          flexDirection: "column",
+          bg: props.isParentRef && "background",
+          mb: 3,
+        }}
       >
         <Flex sx={{ alignItems: "center" }}>
           <Text sx={{ variant: "text.label", pr: 2 }}>Type</Text>
@@ -50,10 +43,15 @@ const RefMockEdit = (props) => {
         {props.data &&
           Object.keys(props.data).map((key) => (
             <Flex key={key} sx={{ alignItems: "center", mt: 3 }}>
-              <Text sx={{ variant: "text.label", pr: 2 }}>
+              <Text sx={{ variant: "text.label", mr: 2 }}>
                 {capitalize(key)}
               </Text>
-              <Text sx={{ variant: "text.edit", pr: 2 }}>
+              <Text
+                sx={{
+                  variant: "text.edit",
+                  mr: 2,
+                }}
+              >
                 {props.data[key]}
               </Text>
               <Button
@@ -77,7 +75,6 @@ const RefMockEdit = (props) => {
             </Flex>
           ))}
       </Card>
-
       <CustomMockFields {...props} />
     </Box>
   );
