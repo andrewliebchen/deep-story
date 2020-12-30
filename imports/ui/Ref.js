@@ -70,8 +70,8 @@ const Ref = (props) => {
             {props.isParentRef || (
               <Link to={`/refs/${props._id}`}>
                 <Button title="Show children" variant="button.primary">
-                  {refCount > 0 && <Text sx={{ mr: 2 }}>{refCount}</Text>}
                   <UilCornerRightDown />
+                  {refCount > 0 && <Text sx={{ ml: 1 }}>{refCount}</Text>}
                 </Button>
               </Link>
             )}

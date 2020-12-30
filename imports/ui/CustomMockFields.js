@@ -1,13 +1,10 @@
-import { Flex, Text, Button, Input, IconButton, Card } from "theme-ui";
+import { Flex, Text, Button, Card } from "theme-ui";
 import { isReady } from "../utils/helpers";
+import { UilPlus, UilRefresh, UilTimes } from "@iconscout/react-unicons";
+import AppContext from "./AppContext";
 import fakerKeys from "../utils/fakerKeys";
 import PropTypes from "prop-types";
 import React, { useContext, useState } from "react";
-import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
-import UilRefresh from "@iconscout/react-unicons/icons/uil-refresh";
-import UilTimes from "@iconscout/react-unicons/icons/uil-times";
-import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
-import AppContext from "./AppContext";
 
 const CustomMockFields = (props) => {
   const { setToastMessage } = useContext(AppContext);
@@ -20,18 +17,21 @@ const CustomMockFields = (props) => {
     >
       {isReady(props.customFieldData) &&
         Object.keys(props.customFieldData).map((key) => (
-          <Flex key={key} sx={{ mb: 3 }}>
+          <Flex key={key} sx={{ mb: 3, alignItems: "center" }}>
             <Button sx={{ variant: "button.secondary", mr: 2, flexShrink: 0 }}>
               {key}
             </Button>
-            <Input
-              readOnly
-              sx={{ variant: "input.default", mr: 2 }}
-              value={props.customFieldData[key]}
-            />
-            <IconButton
-              children={<UilTrash />}
-              sx={{ variant: "button.negative", mr: 2 }}
+            <Text sx={{ variant: "text.edit", mr: 2 }}>
+              {props.customFieldData[key]}
+            </Text>
+            <Button
+              children={<UilTimes />}
+              sx={{
+                variant: `button.${
+                  props.isParentRef ? "negative" : "backgroundNegative"
+                }`,
+                mr: 2,
+              }}
               title="Remove field"
               onClick={() =>
                 Meteor.call(
@@ -43,9 +43,13 @@ const CustomMockFields = (props) => {
                 )
               }
             />
-            <IconButton
+            <Button
               children={<UilRefresh />}
-              sx={{ variant: "button.secondary" }}
+              sx={{
+                variant: `button.${
+                  props.isParentRef ? "secondary" : "background"
+                }`,
+              }}
               title="Refresh"
               onClick={() =>
                 Meteor.call(
@@ -61,7 +65,9 @@ const CustomMockFields = (props) => {
         ))}
 
       <Button
-        sx={{ variant: "button.secondary" }}
+        sx={{
+          variant: `button.${props.isParentRef ? "secondary" : "background"}`,
+        }}
         onClick={() => setSelectingField(true)}
       >
         <UilPlus />
