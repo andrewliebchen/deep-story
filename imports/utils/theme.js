@@ -41,10 +41,6 @@ const controlBase = {
   },
 };
 
-const buttonPrimaryStyles = {};
-
-const buttonNegativeStyles = {};
-
 const invisibleInputBase = {
   bg: "transparent",
   border: 0,
@@ -219,6 +215,13 @@ export default {
     body: 400,
     heading: 700,
     bold: 700,
+  },
+  images: {
+    avatar: {
+      ...controlBase,
+      size: "avatar",
+      p: 0,
+    },
   },
   input: {
     default: {

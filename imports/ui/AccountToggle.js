@@ -13,11 +13,6 @@ const AccountToogle = (props) => {
       {user ? (
         <Avatar
           src={user.services.google.picture}
-          sx={{
-            variant: "button.secondary",
-            p: 0,
-            size: "control",
-          }}
           onClick={() => Meteor.logout((error) => history.push("/"))}
         />
       ) : (

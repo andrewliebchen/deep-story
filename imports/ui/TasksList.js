@@ -1,4 +1,4 @@
-import { Avatar, Flex, Input, Progress, Text, Label } from "theme-ui";
+import { Card, Avatar, Flex, Input, Progress, Text, Label } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { useKeycodes } from "@accessible/use-keycode";
 import PropTypes from "prop-types";
@@ -31,7 +31,7 @@ const TasksList = (props) => {
   });
 
   return (
-    <>
+    <Card>
       {totalTasks.length > 0 && (
         <Progress
           sx={{ variant: "progress.default", mb: 3 }}
@@ -89,7 +89,7 @@ const TasksList = (props) => {
             />
           ))}
       </Flex>
-    </>
+    </Card>
   );
 };
 
