@@ -7,7 +7,9 @@ const RefResourceEdit = (props) => {
   const [value, setValue] = useState(props.resourceUrl);
 
   return (
-    <Card sx={{ flexDirection: "column" }}>
+    <Card
+      sx={{ flexDirection: "column", bg: props.isParentRef && "background" }}
+    >
       <Label>Resource URL</Label>
       <Flex>
         <Input
@@ -19,7 +21,9 @@ const RefResourceEdit = (props) => {
           onChange={(event) => setValue(event.target.value)}
         />
         <Button
-          sx={{ variant: "button.secondary" }}
+          sx={{
+            variant: `button.${props.isParentRef ? "secondary" : "background"}`,
+          }}
           onClick={() =>
             Meteor.call(
               "refs.updateResourceUrl",

@@ -24,7 +24,9 @@ const TitleEdit = (props) => (
       }}
     />
     <IconButton
-      sx={{ variant: "button.secondary" }}
+      sx={{
+        variant: `button.${props.isParentRef ? "background" : "secondary"}`,
+      }}
       children={props.showTitle ? <UilEye /> : <UilEyeSlash />}
       onClick={() =>
         Meteor.call("refs.update", props._id, {

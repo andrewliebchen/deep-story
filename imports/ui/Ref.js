@@ -38,7 +38,9 @@ const Ref = (props) => {
               Meteor.call("refs.remove", props._id)
             }
             sx={{
-              variant: "button.negative",
+              variant: `button.${
+                props.isParentRef ? "backgroundNegative" : "negative"
+              }`,
               mr: 2,
             }}
             children={<UilTrash />}

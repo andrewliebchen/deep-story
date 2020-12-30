@@ -251,6 +251,7 @@ export default {
       fontWeight: "bold",
       fontSize: 0,
       mb: 2,
+      px: 2,
     },
     textarea: {
       ...invisibleInputBase,
@@ -289,12 +290,22 @@ export default {
     },
   },
   text: {
-    default: {},
     heading: {
       fontSize: 2,
     },
     parentHeading: {
       fontSize: 3,
+    },
+    label: {
+      fontWeight: "bold",
+      fontFamily: "monospace",
+    },
+    edit: {
+      fontFamily: "monospace",
+      flexGrow: 1,
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "no-wrap",
     },
   },
   progress: {
