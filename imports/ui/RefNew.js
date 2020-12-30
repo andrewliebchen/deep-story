@@ -9,6 +9,7 @@ import UilSearchPlus from "@iconscout/react-unicons/icons/uil-search-plus";
 import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 import useHover from "@react-hook/hover";
 import { Meteor } from "meteor/meteor";
+import { useKeycodes } from "@accessible/use-keycode";
 
 const RefNew = (props) => {
   const { setSelectedRefId } = useContext(AppContext);
@@ -20,6 +21,12 @@ const RefNew = (props) => {
   const [isExpanded, setIsExpanded] = useState(props.isExpanded);
   const [isSearching, setIsSearching] = useState(false);
 
+  // Listen for keycodesListener
+  const keycodesListener = useKeycodes({
+    // esc
+    27: () => setIsExpanded(false),
+  });
+
   return (
     <Flex
       title="Add a new ref here..."
@@ -28,8 +35,9 @@ const RefNew = (props) => {
         bg: isExpanded && "primaryMuted",
         borderColor: "background",
         cursor: isExpanded ? "default" : "pointer",
-        height: isExpanded ? "auto" : 8,
+        minHeight: 16,
         p: isExpanded && 3,
+        my: 2,
         postion: "relative",
         zIndex: 1,
         "&:hover": { bg: isExpanded || "muted" },
@@ -38,7 +46,7 @@ const RefNew = (props) => {
       onClick={() => setIsExpanded(true)}
     >
       {isExpanded && !isSearching && (
-        <Flex>
+        <Flex ref={keycodesListener}>
           {Object.keys(refTypes).map((stub) => {
             const type = refTypes[stub];
             return (

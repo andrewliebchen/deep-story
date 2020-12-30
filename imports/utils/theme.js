@@ -158,18 +158,6 @@ export default {
       bg: "transparent",
       my: 3,
     },
-    refNew: {
-      width: "100vw",
-      alignItems: "center",
-      px: 3,
-      justifyContent: "flex-end",
-      cursor: "pointer",
-      position: "relative",
-      minheight: 16,
-      "&:hover": {
-        bg: "primaryMuted",
-      },
-    },
     refActions: {
       position: "absolute",
       right: 3,
@@ -290,10 +278,10 @@ export default {
     overlay: "0 8px 16px rgba(0, 0, 0, 0.1)",
   },
   sizes: {
-    ref: 600,
+    avatar: controlHeight,
     control: controlHeight,
     image: 80,
-    avatar: controlHeight,
+    ref: 600,
   },
   space: [0, 4, 8, 16, 32, 40],
   styles: {

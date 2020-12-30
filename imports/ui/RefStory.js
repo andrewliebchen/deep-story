@@ -35,23 +35,26 @@ const RefStory = () => {
       sx={{ alignItems: "center", flexDirection: "column" }}
     >
       {parentRef && <Ref {...parentRef} isParentRef />}
-      {refs
-        .filter(
-          (ref) =>
-            refFilterIndex === 0 || ref.type === refTypeLabels[refFilterIndex]
-        )
-        .map((ref, index) => {
-          const prevRef = index === 0 ? { rank: 0 } : refs[index - 1];
-          const newRefRank = (parseInt(ref.rank) + parseInt(prevRef.rank)) / 2;
+      <Box sx={{ my: 2 }}>
+        {refs
+          .filter(
+            (ref) =>
+              refFilterIndex === 0 || ref.type === refTypeLabels[refFilterIndex]
+          )
+          .map((ref, index) => {
+            const prevRef = index === 0 ? { rank: 0 } : refs[index - 1];
+            const newRefRank =
+              (parseInt(ref.rank) + parseInt(prevRef.rank)) / 2;
 
-          return (
-            <Box key={ref._id}>
-              <RefNew rank={newRefRank} />
-              <Ref {...ref} />
-            </Box>
-          );
-        })}
-      <RefNew rank={refs.length + 1} />
+            return (
+              <Box key={ref._id}>
+                <RefNew rank={newRefRank} />
+                <Ref {...ref} />
+              </Box>
+            );
+          })}
+        <RefNew rank={refs.length + 1} />
+      </Box>
     </Flex>
   );
 };
