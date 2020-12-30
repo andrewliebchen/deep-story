@@ -1,23 +1,22 @@
-import { Box } from "theme-ui";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Header from "./Header";
+import AccountToggle from "./AccountToggle";
+import AssignedTasksView from "./AssignedTasksView";
+import Nav from "./Nav";
 import React from "react";
 import RefStory from "./RefStory";
 import Sandbox from "./Sandbox";
-import AssignedTasksView from "./AssignedTasksView";
 import Toasts from "./Toasts";
 
 const App = (props) => (
   <Router>
-    <Header />
-    <Box sx={{ position: "relative", width: "100vw" }}>
-      <Switch>
-        <Route path="/refs/:parentRefId" component={RefStory} />
-        <Route path="/tasks" component={AssignedTasksView} />
-        <Route path="/sandbox" component={Sandbox} />
-        <Route path="/" component={RefStory} />
-      </Switch>
-    </Box>
+    <Nav />
+    <AccountToggle sx={{ minWidth: "auto" }} />
+    <Switch>
+      <Route path="/refs/:parentRefId" component={RefStory} />
+      <Route path="/tasks" component={AssignedTasksView} />
+      <Route path="/sandbox" component={Sandbox} />
+      <Route path="/" component={RefStory} />
+    </Switch>
     <Toasts />
   </Router>
 );

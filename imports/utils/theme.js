@@ -205,7 +205,7 @@ export default {
     heading: "inherit",
     monospace: "Menlo, monospace",
   },
-  fontSizes: [14, 16, 18, 24],
+  fontSizes: [14, 16, 18, 28],
   fontWeights: {
     body: 400,
     heading: 700,
@@ -306,9 +306,6 @@ export default {
   text: {
     heading: {
       fontSize: 2,
-    },
-    parentHeading: {
-      fontSize: 3,
     },
     label: {
       fontFamily: "monospace",

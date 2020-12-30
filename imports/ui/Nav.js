@@ -1,7 +1,7 @@
-import { IconButton, Box, Flex, Button } from "theme-ui";
+import { Box, Flex, Button } from "theme-ui";
 import { useHistory } from "react-router-dom";
 import React, { useState } from "react";
-import UilHomeAlt from "@iconscout/react-unicons/icons/uil-home-alt";
+import { UilSearch } from "@iconscout/react-unicons";
 import { Link } from "react-router-dom";
 
 const Nav = (props) => {
@@ -14,14 +14,12 @@ const Nav = (props) => {
   };
 
   return (
-    <Flex size="control">
-      <IconButton
-        onClick={() => setShowMenu(true)}
-        title="Back to home"
-        variant="button.secondary"
-      >
-        <UilHomeAlt />
-      </IconButton>
+    <Flex
+      sx={{ size: "control", position: "absolute", top: 3, left: 3, zIndex: 3 }}
+    >
+      <Button onClick={() => setShowMenu(true)} variant="button.background">
+        <UilSearch />
+      </Button>
       {showMenu && (
         <Flex sx={{ variant: "flex.overlayBackground", zIndex: 3 }}>
           <Flex

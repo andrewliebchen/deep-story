@@ -41,14 +41,13 @@ const Ref = (props) => {
               variant: `button.${
                 props.isParentRef ? "backgroundNegative" : "negative"
               }`,
-              mr: 2,
             }}
             children={<UilTrash />}
             title="Delete"
           />
           <Button
             onClick={() => setSelectedRefId(false)}
-            sx={{ variant: "button.positive" }}
+            sx={{ variant: "button.positive", ml: 2 }}
             children={<UilCheck />}
             title="Done"
           />
@@ -62,14 +61,16 @@ const Ref = (props) => {
                 variant: `button.${
                   props.isParentRef ? "background" : "secondary"
                 }`,
-                mr: 2,
               }}
               children={<UilPen />}
               title="Edit"
             />
             {props.isParentRef || (
               <Link to={`/refs/${props._id}`}>
-                <Button title="Show children" variant="button.primary">
+                <Button
+                  title="Show children"
+                  sx={{ variant: "button.primary", ml: 2 }}
+                >
                   <UilCornerRightDown />
                   {refCount > 0 && <Text sx={{ ml: 1 }}>{refCount}</Text>}
                 </Button>

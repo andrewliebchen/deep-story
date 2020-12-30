@@ -9,7 +9,7 @@ const AccountToogle = (props) => {
   const history = useHistory();
 
   return (
-    <Box {...props}>
+    <Box sx={{ position: "absolute", top: 3, right: 3, zIndex: 3 }}>
       {user ? (
         <Avatar
           src={user.services.google.picture}
