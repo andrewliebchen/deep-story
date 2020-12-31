@@ -1,38 +1,34 @@
 import React from "react";
-import UilCheckCircle from "@iconscout/react-unicons/icons/uil-check-circle";
-import UilFileUpload from "@iconscout/react-unicons/icons/uil-file-upload";
-import UilGrid from "@iconscout/react-unicons/icons/uil-grid";
-import UilHeadSide from "@iconscout/react-unicons/icons/uil-head-side";
-import UilTextFields from "@iconscout/react-unicons/icons/uil-text-fields";
+import { CheckCircle, Globe, Database, Users, Type } from "react-feather";
 
 export const refTypes = {
   text: {
     active: true,
-    icon: <UilTextFields />,
+    icon: <Type />,
     label: "Text",
     color: "#0077CC",
   },
   mock: {
     active: true,
-    icon: <UilHeadSide />,
+    icon: <Users />,
     label: "Mock",
     color: "#C48208",
   },
   resource: {
     active: true,
-    icon: <UilFileUpload />,
+    icon: <Globe />,
     label: "Resource",
     color: "#9b64bf",
   },
   table: {
     active: false,
-    icon: <UilGrid />,
+    icon: <Database />,
     label: "Table",
     color: "#15796E",
   },
   tasks: {
     active: true,
-    icon: <UilCheckCircle />,
+    icon: <CheckCircle />,
     label: "Tasks",
     color: "#fe714a",
   },
