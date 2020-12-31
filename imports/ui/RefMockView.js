@@ -8,38 +8,35 @@ import { MoreVertical } from "react-feather";
 const imageSize = 120;
 
 const RefMockView = (props) => {
-  return (
-    isReady(props.data) && (
-      <Card
-        sx={{ bg: props.isParentRef && "background", alignItems: "center" }}
-      >
-        <Flex
-          sx={{
-            variant: "flex.imageWrapper",
-            backgroundImage: `url(${props.data.image})`,
-          }}
-        />
+  console.log(props);
+  return isReady(props.data) ? (
+    <Card sx={{ bg: props.isParentRef && "background", alignItems: "center" }}>
+      <Flex
+        sx={{
+          variant: "flex.imageWrapper",
+          backgroundImage: `url(${props.data.image})`,
+        }}
+      />
+      {
         <Box sx={{ mr: 3, flexGrow: 2 }}>
           <Heading>{props.data.name || props.data.title}</Heading>
-          <Text sx={{ color: "textSecondary" }}>
-            {capitalize(props.schema)}
-          </Text>
+          <Text sx={{ color: "textSecondary" }}>Subtitle</Text>
         </Box>
-        {props.isHovering ? (
-          <Button
-            children={<MoreVertical />}
-            sx={{
-              variant: `button.${
-                props.isParentRef ? "secondary" : "background"
-              }`,
-            }}
-            title="Show all fields"
-          />
-        ) : (
-          <Box width="control" />
-        )}
-      </Card>
-    )
+      }
+      {props.isHovering ? (
+        <Button
+          children={<MoreVertical />}
+          sx={{
+            variant: `button.${props.isParentRef ? "secondary" : "background"}`,
+          }}
+          title="Show all fields"
+        />
+      ) : (
+        <Box width="control" />
+      )}
+    </Card>
+  ) : (
+    <Text>Broken mock</Text>
   );
 };
 

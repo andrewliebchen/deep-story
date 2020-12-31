@@ -3,7 +3,7 @@ import casual from "casual-browserify";
 export const mockGenerators = {
   person: casual.define("person", () => {
     return {
-      name: casual.title,
+      name: casual.full_name,
       username: casual.username,
       email: casual.email,
       city: casual.city,

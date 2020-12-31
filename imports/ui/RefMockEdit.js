@@ -1,6 +1,6 @@
 import { Box, Button, Card, Flex, Select, Text } from "theme-ui";
 import { Meteor } from "meteor/meteor";
-import { mockTypes } from "../utils/types";
+import { mockGenerators } from "../utils/mockGenerators";
 import { RefreshCcw as Refresh } from "react-feather";
 import AppContext from "./AppContext";
 import capitalize from "capitalize";
@@ -20,7 +20,7 @@ const RefMockEdit = (props) => {
           mb: 3,
         }}
       >
-        <Flex sx={{ alignItems: "center" }}>
+        {/* <Flex sx={{ alignItems: "center" }}>
           <Text sx={{ variant: "text.label", pr: 2 }}>Type</Text>
           <Select
             sx={{ variant: "select.default", ml: "auto" }}
@@ -33,49 +33,15 @@ const RefMockEdit = (props) => {
               )
             }
           >
-            {Object.keys(mockTypes).map((key) => (
-              <option key={key} value={key}>
-                {mockTypes[key].label}
+            {Object.keys(mockGenerators).map((generator) => (
+              <option key={generator} value={generator}>
+                {generator}
               </option>
             ))}
           </Select>
-        </Flex>
-        {props.data &&
-          Object.keys(props.data).map((key) => (
-            <Flex key={key} sx={{ alignItems: "center", mt: 3 }}>
-              <Text sx={{ variant: "text.label", mr: 2 }}>
-                {capitalize(key)}
-              </Text>
-              <Text
-                sx={{
-                  variant: "text.edit",
-                  mr: 2,
-                }}
-              >
-                {props.data[key]}
-              </Text>
-              <Button
-                children={<Refresh />}
-                sx={{
-                  variant: `button.${
-                    props.isParentRef ? "secondary" : "background"
-                  }`,
-                  ml: "auto",
-                }}
-                title="Refresh"
-                onClick={() =>
-                  Meteor.call(
-                    "refs.refreshMockData",
-                    props._id,
-                    key,
-                    (error, id) => setToastMessage("Mock data field refreshed")
-                  )
-                }
-              />
-            </Flex>
-          ))}
+        </Flex>*/}
+        <CustomMockFields {...props} />
       </Card>
-      <CustomMockFields {...props} />
     </Box>
   );
 };

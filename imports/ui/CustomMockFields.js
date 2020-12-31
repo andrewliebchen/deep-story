@@ -12,9 +12,7 @@ const CustomMockFields = (props) => {
   const [searchValue, setSearchValue] = useState("");
 
   return (
-    <Card
-      sx={{ flexDirection: "column", bg: props.isParentRef && "background" }}
-    >
+    <>
       {isReady(props.data) &&
         Object.keys(props.data).map((data) => (
           <Flex key={data} sx={{ mb: 3, alignItems: "center" }}>
@@ -51,7 +49,7 @@ const CustomMockFields = (props) => {
               title="Refresh"
               onClick={() =>
                 Meteor.call(
-                  "refs.refreshMockData",
+                  "refs.updateMockData",
                   props._id,
                   data,
                   "customFieldData",
@@ -69,7 +67,7 @@ const CustomMockFields = (props) => {
         onClick={() => setSelectingField(true)}
       >
         <Plus />
-        <Text ml={2}>Add custom field</Text>
+        <Text ml={2}>Add mock data</Text>
       </Button>
 
       {selectingField && (
@@ -82,6 +80,7 @@ const CustomMockFields = (props) => {
               overflow: "scroll",
               p: 0,
               maxHeight: "ref",
+              bg: "background",
             }}
           >
             <Flex
@@ -116,11 +115,11 @@ const CustomMockFields = (props) => {
                 )
                 .map((field) => (
                   <Button
-                    key={key}
+                    key={field}
                     sx={{ variant: "button.secondary", m: 1 }}
                     onClick={() =>
                       Meteor.call(
-                        "refs.updateCustomMockData",
+                        "refs.updateMockData",
                         props._id,
                         field,
                         (error, success) => {
@@ -150,7 +149,7 @@ const CustomMockFields = (props) => {
           />
         </Flex>
       )}
-    </Card>
+    </>
   );
 };
 

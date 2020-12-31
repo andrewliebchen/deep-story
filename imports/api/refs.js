@@ -17,7 +17,7 @@ Meteor.methods({
     });
 
     if (options.type === "mock") {
-      Meteor.call("refs.updateSchemaType", newRefId, "person");
+      Meteor.call("refs.scaffoldMock", newRefId, "person");
     }
 
     return newRefId;
@@ -31,31 +31,31 @@ Meteor.methods({
     return RefsCollection.remove(id);
   },
 
-  // "refs.scaffoldMock"(id, schema) {
-  //   const generatedData = casual[schema]();
-  //
-  //   return RefsCollection.update(id, {
-  //     $set: {
-  //       data: generatedData,
-  //     },
-  //   });
-  // },
-  //
-  // "refs.refreshMockData"(id, generator) {
-  //   let newData = {};
-  //   newData[generator] = casual[generator];
-  //
-  //   return RefsCollection.update(id, { $set: newData });
-  // },
-  //
-  // "refs.removeMockData"(id, generator) {
-  //   const ref = RefsCollection.findOne(id);
-  //   delete ref.data[generator];
-  //
-  //   return RefsCollection.update(id, {
-  //     $set: { data: ref.data },
-  //   });
-  // },
+  "refs.scaffoldMock"(id, generator) {
+    const generatedData = casual[generator];
+
+    return RefsCollection.update(id, {
+      $set: {
+        data: generatedData,
+      },
+    });
+  },
+
+  "refs.updateMockData"(id, generator) {
+    const ref = RefsCollection.findOne(id);
+    ref.data[generator] = casual[generator];
+
+    return RefsCollection.update(id, { $set: { data: ref.data } });
+  },
+
+  "refs.removeMockData"(id, generator) {
+    const ref = RefsCollection.findOne(id);
+    delete ref.data[generator];
+
+    return RefsCollection.update(id, {
+      $set: { data: ref.data },
+    });
+  },
 
   "refs.insertLink"(args) {
     return RefsCollection.insert({

@@ -185,7 +185,7 @@ export default {
       position: "fixed",
       top: 0,
       width: "100vw",
-      zIndex: 1,
+      zIndex: 4,
       alignItems: "center",
       justifyContent: "center",
     },
