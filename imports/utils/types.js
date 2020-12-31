@@ -42,44 +42,7 @@ export const refTypeLabels = ["all", ...Object.keys(refTypes)];
 
 export const mockTypes = {
   person: {
-    type: "object",
     label: "Person",
-    additionalProperties: false,
-    properties: {
-      name: {
-        type: "string",
-        faker: "name.findName",
-      },
-      email: {
-        type: "string",
-        format: "email",
-        faker: "internet.email",
-      },
-      image: {
-        type: "string",
-        format: "uri",
-        faker: "image.avatar",
-      },
-    },
-  },
-  transaction: {
-    type: "object",
-    label: "Transaction",
-    additionalProperties: false,
-    properties: {
-      amount: {
-        type: "number",
-        faker: "finance.amount",
-      },
-      date: {
-        type: "string",
-        faker: "date.past",
-        format: "date-time",
-      },
-      business: {
-        type: "string",
-        fake: "company.companyName",
-      },
-    },
+    properties: ["name", "username", "email", "city"],
   },
 };
