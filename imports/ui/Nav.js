@@ -2,7 +2,7 @@ import { Box, Flex, Button } from "theme-ui";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import React, { useState } from "react";
-import UilSearch from "@iconscout/react-unicons/icons/uil-search";
+import { Search } from "react-feather";
 
 const Nav = (props) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -18,7 +18,7 @@ const Nav = (props) => {
       sx={{ size: "control", position: "absolute", top: 3, left: 3, zIndex: 3 }}
     >
       <Button onClick={() => setShowMenu(true)} variant="button.background">
-        <UilSearch />
+        <Search />
       </Button>
       {showMenu && (
         <Flex sx={{ variant: "flex.overlayBackground", zIndex: 3 }}>

@@ -3,7 +3,7 @@ import { isReady } from "../utils/helpers";
 import capitalize from "capitalize";
 import PropTypes from "prop-types";
 import React from "react";
-import UilEllipsisV from "@iconscout/react-unicons/icons/uil-ellipsis-v";
+import { MoreVertical } from "react-feather";
 
 const imageSize = 120;
 
@@ -27,7 +27,7 @@ const RefMockView = (props) => {
         </Box>
         {props.isHovering ? (
           <Button
-            children={<UilEllipsisV />}
+            children={<MoreVertical />}
             sx={{
               variant: `button.${
                 props.isParentRef ? "secondary" : "background"

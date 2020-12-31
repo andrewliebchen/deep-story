@@ -1,12 +1,10 @@
-import { Flex, Text, Button, Card } from "theme-ui";
+import { Button, Card, Input, Flex, Text } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import AppContext from "./AppContext";
 import fakerKeys from "../utils/fakerKeys";
 import PropTypes from "prop-types";
 import React, { useContext, useState } from "react";
-import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
-import UilRefresh from "@iconscout/react-unicons/icons/uil-refresh";
-import UilTimes from "@iconscout/react-unicons/icons/uil-times";
+import { Plus, X, RefreshCcw as Refresh } from "react-feather";
 
 const CustomMockFields = (props) => {
   const { setToastMessage } = useContext(AppContext);
@@ -27,7 +25,7 @@ const CustomMockFields = (props) => {
               {props.customFieldData[key]}
             </Text>
             <Button
-              children={<UilTimes />}
+              children={<X />}
               sx={{
                 variant: `button.${
                   props.isParentRef ? "negative" : "backgroundNegative"
@@ -46,7 +44,7 @@ const CustomMockFields = (props) => {
               }
             />
             <Button
-              children={<UilRefresh />}
+              children={<Refresh />}
               sx={{
                 variant: `button.${
                   props.isParentRef ? "secondary" : "background"
@@ -72,7 +70,7 @@ const CustomMockFields = (props) => {
         }}
         onClick={() => setSelectingField(true)}
       >
-        <UilPlus />
+        <Plus />
         <Text ml={2}>Add custom field</Text>
       </Button>
 
@@ -143,14 +141,14 @@ const CustomMockFields = (props) => {
                 ))}
             </Flex>
           </Flex>
-          <IconButton
+          <Button
             sx={{
               variant: "button.secondary",
               position: "absolute",
               top: 3,
               right: 3,
             }}
-            children={<UilTimes />}
+            children={<X />}
             title="Close"
             onClick={() => setSelectingField(false)}
           />

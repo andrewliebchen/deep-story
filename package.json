@@ -11,7 +11,6 @@
   "dependencies": {
     "@accessible/use-keycode": "^4.0.2",
     "@babel/runtime": "^7.11.2",
-    "@iconscout/react-unicons": "^1.1.5",
     "@iconscout/react-unicons-solid": "^0.0.3",
     "@react-hook/hover": "^4.0.0",
     "bcrypt": "^5.0.0",
@@ -28,11 +27,13 @@
     "puppeteer-extra": "^3.1.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-feather": "^2.0.9",
     "react-interval": "^2.1.1",
     "react-markdown": "^5.0.3",
     "react-router-dom": "^5.2.0",
     "react-textarea-autosize": "^8.3.0",
     "react-timeago": "^5.2.0",
+    "reline": "^1.0.0-beta.3",
     "shurley": "^1.0.1",
     "theme-ui": "^0.3.4"
   },

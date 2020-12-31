@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import React from "react";
 import TimeAgo from "react-timeago";
-import UilFile from "@iconscout/react-unicons/icons/uil-file";
+import { File } from "react-feather";
 
 const RefsListRow = (props) => {
   const rowContent = (
@@ -18,7 +18,7 @@ const RefsListRow = (props) => {
     >
       <Flex sx={{ alignItems: "center" }}>
         <Box sx={{ variant: "button.primary", mr: 2 }}>
-          <UilFile />
+          <File />
         </Box>
         <Text sx={{ variant: "text.default", fontWeight: "bold" }}>
           {props.title}

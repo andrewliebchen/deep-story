@@ -2,8 +2,7 @@ import { Flex, Input, IconButton } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import React from "react";
-import UilEye from "@iconscout/react-unicons/icons/uil-eye";
-import UilEyeSlash from "@iconscout/react-unicons/icons/uil-eye-slash";
+import { Eye, EyeOff } from "react-feather";
 
 // TODO: Combine Edit and View components
 const TitleEdit = (props) => (
@@ -27,7 +26,7 @@ const TitleEdit = (props) => (
       sx={{
         variant: `button.${props.isParentRef ? "background" : "secondary"}`,
       }}
-      children={props.showTitle ? <UilEye /> : <UilEyeSlash />}
+      children={props.showTitle ? <Eye /> : <EyeOff />}
       onClick={() =>
         Meteor.call("refs.update", props._id, {
           showTitle: !props.showTitle,

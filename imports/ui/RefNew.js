@@ -7,8 +7,7 @@ import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext, useState } from "react";
 import Search from "./Search";
-import UilSearchPlus from "@iconscout/react-unicons/icons/uil-search-plus";
-import UilTimes from "@iconscout/react-unicons/icons/uil-times";
+import { X, Search as SearchIcon } from "react-feather";
 import useHover from "@react-hook/hover";
 
 const RefNew = (props) => {
@@ -74,7 +73,7 @@ const RefNew = (props) => {
             );
           })}
           <IconButton
-            children={<UilSearchPlus />}
+            children={<SearchIcon />}
             onClick={() => setIsSearching(true)}
             sx={{ variant: "button.background", ml: 3 }}
             title="Add an existing ref"
@@ -105,7 +104,7 @@ const RefNew = (props) => {
             position: "absolute",
             right: 3,
           }}
-          children={<UilTimes />}
+          children={<X />}
           title="Nevermind"
         />
       )}

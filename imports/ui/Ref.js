@@ -1,17 +1,11 @@
 import { Box, Flex, Button, Text } from "theme-ui";
+import { Check, CornerRightDown, Edit2, Trash } from "react-feather";
 import { Link } from "react-router-dom";
 import { useChildRefsCount } from "../utils/hooks";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext, useRef } from "react";
 import RefContent from "./RefContent";
-import UilCheck from "@iconscout/react-unicons/icons/uil-check";
-import UilCornerRightDown from "@iconscout/react-unicons/icons/uil-corner-right-down";
-import UilCornerUpLeft from "@iconscout/react-unicons/icons/uil-corner-up-left";
-import UilLink from "@iconscout/react-unicons/icons/uil-link";
-import UilLinkBroken from "@iconscout/react-unicons/icons/uil-link-broken";
-import UilPen from "@iconscout/react-unicons/icons/uil-pen";
-import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 import useHover from "@react-hook/hover";
 
 const Ref = (props) => {
@@ -40,13 +34,13 @@ const Ref = (props) => {
                 props.isParentRef ? "backgroundNegative" : "negative"
               }`,
             }}
-            children={<UilTrash />}
+            children={<Trash />}
             title="Delete"
           />
           <Button
             onClick={() => setSelectedRefId(false)}
             sx={{ variant: "button.positive", ml: 2 }}
-            children={<UilCheck />}
+            children={<Check />}
             title="Done"
           />
         </Flex>
@@ -60,7 +54,7 @@ const Ref = (props) => {
                   props.isParentRef ? "background" : "secondary"
                 }`,
               }}
-              children={<UilPen />}
+              children={<Edit2 />}
               title="Edit"
             />
             {props.isParentRef || (
@@ -69,7 +63,7 @@ const Ref = (props) => {
                   title="Show children"
                   sx={{ variant: "button.primary", ml: 2 }}
                 >
-                  <UilCornerRightDown />
+                  <CornerRightDown />
                   {refCount > 0 && <Text sx={{ ml: 1 }}>{refCount}</Text>}
                 </Button>
               </Link>

@@ -1,11 +1,11 @@
 import { Flex, Input, IconButton, Button } from "theme-ui";
 import { useKeycodes } from "@accessible/use-keycode";
 import { useRefSearch, useFocus } from "../utils/hooks";
+import { X } from "react-feather";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import RefsListRow from "./RefsListRow";
-import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 import RefFilter from "./RefFilter";
+import RefsListRow from "./RefsListRow";
 
 const Search = (props) => {
   const [value, setValue] = useState(props.value || "");
@@ -53,7 +53,7 @@ const Search = (props) => {
                 zIndex: 1,
               }}
               onClick={() => setBlur()}
-              children={<UilTimes />}
+              children={<X />}
             />
           </Flex>
           <Flex

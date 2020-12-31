@@ -64,7 +64,12 @@ This might change...but this was always an interesting feature of Quip, especial
 
 #### Other
 
-- Improve design
+- ✅ Improve design
+- Reduce deploy
+  - Run baseline size `meteor --extra-packages bundle-visualizer --production --settings settings.json` 4.35mb
+  - Replace Faker with [Casual](https://www.npmjs.com/package/casual)
+  - Replace unicons with [Reline](https://jxnblk.github.io/reline/)
+- Remove insecure and autopublish
 - Add PRD content
 - Should mocks and references be their own collections, like tasks?
   Would simplify the code quite a bit...

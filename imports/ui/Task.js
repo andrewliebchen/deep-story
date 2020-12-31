@@ -1,15 +1,10 @@
 import { Avatar, Flex, Text, Button, Input } from "theme-ui";
+import { Check, CornerUpRight, AlertCircle, Trash } from "react-feather";
 import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext, useRef, useState } from "react";
-import UilCheck from "@iconscout/react-unicons/icons/uil-check";
-import UilCornerUpRight from "@iconscout/react-unicons/icons/uil-corner-up-right";
-import UilExclamationCircle from "@iconscout/react-unicons/icons/uil-exclamation-circle";
-import UilPen from "@iconscout/react-unicons/icons/uil-pen";
-import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
-import UisExclamationCircle from "@iconscout/react-unicons-solid/icons/uis-exclamation-circle";
 import useHover from "@react-hook/hover";
 
 const Task = (props) => {
@@ -61,7 +56,7 @@ const Task = (props) => {
       {isHovering ? (
         <Flex ml="auto">
           <Button
-            children={<UilTrash />}
+            children={<Trash />}
             sx={{ variant: "button.backgroundNegative", mr: 2 }}
             title="Delete task"
             onClick={() =>
@@ -73,20 +68,14 @@ const Task = (props) => {
           {props.showLinks && props.parentId && (
             <Link to={`/refs/${props.parentId}`}>
               <Button
-                children={<UilCornerUpRight />}
+                children={<CornerUpRight />}
                 sx={{ variant: "button.secondary", mr: 2 }}
                 title="Go to parent ref"
               />
             </Link>
           )}
           <Button
-            children={
-              props.priority ? (
-                <UisExclamationCircle />
-              ) : (
-                <UilExclamationCircle />
-              )
-            }
+            children={<AlertCircle />}
             sx={{ variant: "button.background" }}
             title="Toggle priority"
             onClick={() => Meteor.call("tasks.togglePriority", props._id)}
@@ -95,7 +84,7 @@ const Task = (props) => {
       ) : (
         props.priority && (
           <Button
-            children={<UisExclamationCircle />}
+            children={<AlertCircle />}
             sx={{ variant: "button.transparent", ml: "auto" }}
             title="Priority"
             onClick={() => Meteor.call("tasks.togglePriority", props._id)}
@@ -112,7 +101,7 @@ const Task = (props) => {
             bg: props.done || "primaryMuted",
           },
         }}
-        children={<UilCheck />}
+        children={<Check />}
         disabled={props.isEditingRef}
         onClick={() => Meteor.call("tasks.toggle", props._id)}
       />

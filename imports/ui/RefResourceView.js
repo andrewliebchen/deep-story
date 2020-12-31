@@ -1,5 +1,5 @@
 import { Card, Flex, Text, Box, Button, Link } from "theme-ui";
-import { UilBrowser } from "@iconscout/react-unicons";
+import { ExternalLink } from "react-feather";
 import PropTypes from "prop-types";
 import React from "react";
 import { isReady } from "../utils/helpers";
@@ -26,7 +26,7 @@ const RefResourceView = (props) =>
               }`,
             }}
             title="Open resource"
-            children={<UilBrowser />}
+            children={<ExternalLink />}
           />
         </Link>
       ) : (
