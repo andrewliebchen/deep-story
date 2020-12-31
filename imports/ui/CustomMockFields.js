@@ -1,10 +1,10 @@
 import { Button, Card, Input, Flex, Text } from "theme-ui";
 import { isReady } from "../utils/helpers";
+import { mockFields } from "../utils/mockGenerators";
+import { Plus, X, RefreshCcw as Refresh } from "react-feather";
 import AppContext from "./AppContext";
-import { mockGenerators, mockFields } from "../utils/mockGenerators";
 import PropTypes from "prop-types";
 import React, { useContext, useState } from "react";
-import { Plus, X, RefreshCcw as Refresh } from "react-feather";
 
 const CustomMockFields = (props) => {
   const { setToastMessage } = useContext(AppContext);

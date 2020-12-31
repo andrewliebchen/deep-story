@@ -1,4 +1,4 @@
-import casual from "casual";
+import casual from "casual-browserify";
 
 export const mockGenerators = {
   person: casual.define("person", () => {
@@ -10,6 +10,8 @@ export const mockGenerators = {
     };
   }),
 };
+
+// export const mockGenerators = "";
 
 export const mockFields = [
   // Address
