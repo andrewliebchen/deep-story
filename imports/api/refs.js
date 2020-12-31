@@ -1,13 +1,9 @@
-import { Mongo } from "meteor/mongo";
+import { generators } from "../utils/mockGenerators";
 import { Meteor } from "meteor/meteor";
-import { mockTypes } from "../utils/types";
-import jsf from "json-schema-faker";
-import faker from "faker";
-import fakerKeys from "../utils/fakerKeys";
+import { Mongo } from "meteor/mongo";
+import casual from "casual";
 import linkPreviewGenerator from "link-preview-generator";
 import shurley from "shurley";
-
-jsf.extend("faker", () => require("faker"));
 
 export const RefsCollection = new Mongo.Collection("refs");
 
@@ -31,44 +27,34 @@ Meteor.methods({
     return RefsCollection.update(id, { $set: options });
   },
 
-  "refs.updateSchemaType"(id, schema) {
-    const generatedData = jsf.generate(mockTypes[schema]);
+  "refs.remove"(id) {
+    return RefsCollection.remove(id);
+  },
+
+  "refs.scaffoldMock"(id, schema) {
+    const generatedData = casual[schema]();
 
     return RefsCollection.update(id, {
       $set: {
-        schema: schema,
         data: generatedData,
       },
     });
   },
 
-  "refs.remove"(id) {
-    return RefsCollection.remove(id);
-  },
-
-  "refs.refreshMockData"(id, key, source = "data") {
+  "refs.refreshMockData"(id, generator) {
     let newData = {};
-    newData[`${source}.${key}`] = faker.fake(`{{${fakerKeys[key]}}}`);
+    newData[generator] = casual[generator];
 
     return RefsCollection.update(id, { $set: newData });
   },
 
-  "refs.removeMockField"(id, key) {
+  "refs.removeMockData"(id, generator) {
     const ref = RefsCollection.findOne(id);
-    delete ref.customFieldData[key];
+    delete ref.data[generator];
 
     return RefsCollection.update(id, {
-      $set: { customFieldData: ref.customFieldData },
+      $set: { data: ref.data },
     });
-  },
-
-  "refs.updateCustomMockData"(id, key) {
-    let newCustomFieldData = {};
-    newCustomFieldData[`customFieldData.${key}`] = faker.fake(
-      `{{${fakerKeys[key]}}}`
-    );
-
-    return RefsCollection.update(id, { $set: newCustomFieldData });
   },
 
   "refs.insertLink"(args) {

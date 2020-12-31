@@ -1,5 +1,17 @@
-// Source: https://www.npmjs.com/package/casual
-export default [
+import casual from "casual";
+
+export const mockGenerators = {
+  person: casual.define("person", () => {
+    return {
+      name: casual.title,
+      username: casual.username,
+      email: casual.email,
+      city: casual.city,
+    };
+  }),
+};
+
+export const mockFields = [
   // Address
   "country",
   "city",

@@ -1,7 +1,7 @@
 import { Button, Card, Input, Flex, Text } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import AppContext from "./AppContext";
-import fakerKeys from "../utils/fakerKeys";
+import { mockGenerators, mockFields } from "../utils/mockGenerators";
 import PropTypes from "prop-types";
 import React, { useContext, useState } from "react";
 import { Plus, X, RefreshCcw as Refresh } from "react-feather";
@@ -15,15 +15,13 @@ const CustomMockFields = (props) => {
     <Card
       sx={{ flexDirection: "column", bg: props.isParentRef && "background" }}
     >
-      {isReady(props.customFieldData) &&
-        Object.keys(props.customFieldData).map((key) => (
-          <Flex key={key} sx={{ mb: 3, alignItems: "center" }}>
+      {isReady(props.data) &&
+        Object.keys(props.data).map((data) => (
+          <Flex key={data} sx={{ mb: 3, alignItems: "center" }}>
             <Button sx={{ variant: "button.secondary", mr: 2, flexShrink: 0 }}>
-              {key}
+              {data}
             </Button>
-            <Text sx={{ variant: "text.edit", mr: 2 }}>
-              {props.customFieldData[key]}
-            </Text>
+            <Text sx={{ variant: "text.edit", mr: 2 }}>{props.data[data]}</Text>
             <Button
               children={<X />}
               sx={{
@@ -35,11 +33,11 @@ const CustomMockFields = (props) => {
               title="Remove field"
               onClick={() =>
                 Meteor.call(
-                  "refs.removeMockField",
+                  "refs.removeMockData",
                   props._id,
-                  key,
+                  data,
                   (error, success) =>
-                    success && setToastMessage(`Custom field "${key}" removed`)
+                    success && setToastMessage(`Custom field "${data}" removed`)
                 )
               }
             />
@@ -55,7 +53,7 @@ const CustomMockFields = (props) => {
                 Meteor.call(
                   "refs.refreshMockData",
                   props._id,
-                  key,
+                  data,
                   "customFieldData",
                   (error, id) => setToastMessage("Mock data field refreshed")
                 )
@@ -110,15 +108,13 @@ const CustomMockFields = (props) => {
                 pb: 3,
               }}
             >
-              {Object.keys(fakerKeys)
+              {mockFields
                 .filter(
-                  (key) =>
+                  (field) =>
                     searchValue.length < 2 ||
-                    fakerKeys[key]
-                      .toLowerCase()
-                      .includes(searchValue.toLowerCase())
+                    field.toLowerCase().includes(searchValue.toLowerCase())
                 )
-                .map((key) => (
+                .map((field) => (
                   <Button
                     key={key}
                     sx={{ variant: "button.secondary", m: 1 }}
@@ -126,17 +122,17 @@ const CustomMockFields = (props) => {
                       Meteor.call(
                         "refs.updateCustomMockData",
                         props._id,
-                        key,
+                        field,
                         (error, success) => {
                           if (success) {
                             setSelectingField(false);
-                            setToastMessage(`Custom field "${key}" added`);
+                            setToastMessage(`Custom field "${field}" added`);
                           }
                         }
                       )
                     }
                   >
-                    {fakerKeys[key]}
+                    {field}
                   </Button>
                 ))}
             </Flex>
