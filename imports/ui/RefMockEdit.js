@@ -1,12 +1,12 @@
 import { Box, Button, Card, Flex, Select, Text } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { mockTypes } from "../utils/types";
-import { UilRefresh } from "@iconscout/react-unicons";
 import AppContext from "./AppContext";
 import capitalize from "capitalize";
 import CustomMockFields from "./CustomMockFields";
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
+import UilRefresh from "@iconscout/react-unicons/icons/uil-refresh";
 
 const RefMockEdit = (props) => {
   const { setToastMessage } = useContext(AppContext);

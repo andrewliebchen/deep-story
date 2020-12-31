@@ -1,19 +1,17 @@
 import { Box, Flex, Button, Text } from "theme-ui";
 import { Link } from "react-router-dom";
 import { useChildRefsCount } from "../utils/hooks";
-import {
-  UilCheck,
-  UilCornerRightDown,
-  UilCornerUpLeft,
-  UilLink,
-  UilLinkBroken,
-  UilPen,
-  UilTrash,
-} from "@iconscout/react-unicons";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext, useRef } from "react";
 import RefContent from "./RefContent";
+import UilCheck from "@iconscout/react-unicons/icons/uil-check";
+import UilCornerRightDown from "@iconscout/react-unicons/icons/uil-corner-right-down";
+import UilCornerUpLeft from "@iconscout/react-unicons/icons/uil-corner-up-left";
+import UilLink from "@iconscout/react-unicons/icons/uil-link";
+import UilLinkBroken from "@iconscout/react-unicons/icons/uil-link-broken";
+import UilPen from "@iconscout/react-unicons/icons/uil-pen";
+import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
 import useHover from "@react-hook/hover";
 
 const Ref = (props) => {

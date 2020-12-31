@@ -1,17 +1,15 @@
 import { Avatar, Flex, Text, Button, Input } from "theme-ui";
-import { Meteor } from "meteor/meteor";
 import { Link } from "react-router-dom";
-import {
-  UilExclamationCircle,
-  UilTrash,
-  UilPen,
-  UilCornerUpRight,
-  UilCheck,
-} from "@iconscout/react-unicons";
-import { UisExclamationCircle } from "@iconscout/react-unicons-solid/";
+import { Meteor } from "meteor/meteor";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext, useRef, useState } from "react";
+import UilCheck from "@iconscout/react-unicons/icons/uil-check";
+import UilCornerUpRight from "@iconscout/react-unicons/icons/uil-corner-up-right";
+import UilExclamationCircle from "@iconscout/react-unicons/icons/uil-exclamation-circle";
+import UilPen from "@iconscout/react-unicons/icons/uil-pen";
+import UilTrash from "@iconscout/react-unicons/icons/uil-trash";
+import UisExclamationCircle from "@iconscout/react-unicons-solid/icons/uis-exclamation-circle";
 import useHover from "@react-hook/hover";
 
 const Task = (props) => {

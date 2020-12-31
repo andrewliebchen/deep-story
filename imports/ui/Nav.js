@@ -1,8 +1,8 @@
 import { Box, Flex, Button } from "theme-ui";
+import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import React, { useState } from "react";
-import { UilSearch } from "@iconscout/react-unicons";
-import { Link } from "react-router-dom";
+import UilSearch from "@iconscout/react-unicons/icons/uil-search";
 
 const Nav = (props) => {
   const [showMenu, setShowMenu] = useState(false);

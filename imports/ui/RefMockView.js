@@ -1,9 +1,9 @@
 import { Box, Button, Card, Flex, Heading, Text } from "theme-ui";
-import { UilEllipsisV } from "@iconscout/react-unicons";
+import { isReady } from "../utils/helpers";
 import capitalize from "capitalize";
 import PropTypes from "prop-types";
 import React from "react";
-import { isReady } from "../utils/helpers";
+import UilEllipsisV from "@iconscout/react-unicons/icons/uil-ellipsis-v";
 
 const imageSize = 120;
 

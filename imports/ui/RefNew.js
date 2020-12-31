@@ -1,5 +1,7 @@
 import { Flex, IconButton } from "theme-ui";
+import { Meteor } from "meteor/meteor";
 import { refTypes } from "../utils/types";
+import { useKeycodes } from "@accessible/use-keycode";
 import { useParams } from "react-router-dom";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
@@ -8,8 +10,6 @@ import Search from "./Search";
 import UilSearchPlus from "@iconscout/react-unicons/icons/uil-search-plus";
 import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 import useHover from "@react-hook/hover";
-import { Meteor } from "meteor/meteor";
-import { useKeycodes } from "@accessible/use-keycode";
 
 const RefNew = (props) => {
   const { setSelectedRefId } = useContext(AppContext);

@@ -1,10 +1,12 @@
 import { Flex, Text, Button, Card } from "theme-ui";
 import { isReady } from "../utils/helpers";
-import { UilPlus, UilRefresh, UilTimes } from "@iconscout/react-unicons";
 import AppContext from "./AppContext";
 import fakerKeys from "../utils/fakerKeys";
 import PropTypes from "prop-types";
 import React, { useContext, useState } from "react";
+import UilPlus from "@iconscout/react-unicons/icons/uil-plus";
+import UilRefresh from "@iconscout/react-unicons/icons/uil-refresh";
+import UilTimes from "@iconscout/react-unicons/icons/uil-times";
 
 const CustomMockFields = (props) => {
   const { setToastMessage } = useContext(AppContext);
