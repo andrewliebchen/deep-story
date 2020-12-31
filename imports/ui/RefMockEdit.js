@@ -1,17 +1,14 @@
 import { Box, Button, Card, Flex, Select, Text, Input } from "theme-ui";
 import { Meteor } from "meteor/meteor";
-import { mockGenerators } from "../utils/mockGenerators";
 import AppContext from "./AppContext";
 import capitalize from "capitalize";
-import MockFieldSelector from "./MockFieldSelector";
 import PropTypes from "prop-types";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { isReady } from "../utils/helpers";
 import { RefreshCcw as Refresh, Plus, X } from "react-feather";
 
 const RefMockEdit = (props) => {
   const { setToastMessage } = useContext(AppContext);
-  const [selectingField, setSelectingField] = useState(false);
 
   return (
     <Card
@@ -24,12 +21,11 @@ const RefMockEdit = (props) => {
       {isReady(props.data) &&
         Object.keys(props.data).map((data) => (
           <Flex key={data} sx={{ mb: 3, alignItems: "center" }}>
-            <Button sx={{ variant: "button.secondary", mr: 2, flexShrink: 0 }}>
-              {data}
-            </Button>
+            <Input sx={{ mr: 2, width: 144 }} value={data} readOnly />
             <Input sx={{ mr: 2 }} value={props.data[data]} readOnly />
             <Button
               children={<X />}
+              disabled={data === "image"}
               sx={{
                 variant: `button.${
                   props.isParentRef ? "negative" : "backgroundNegative"
@@ -67,10 +63,6 @@ const RefMockEdit = (props) => {
             />
           </Flex>
         ))}
-
-      {selectingField && (
-        <MockFieldSelector setSelectingField={setSelectingField} {...props} />
-      )}
 
       <Button
         sx={{

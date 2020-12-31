@@ -79,6 +79,10 @@ export default {
       "&:hover": {
         bg: "negativeBackground",
       },
+      "&:disabled": {
+        color: "negativeBackground",
+        cursor: "not-allowed",
+      },
     },
     negative: {
       ...controlBase,
@@ -86,6 +90,10 @@ export default {
       bg: "negativeMuted",
       "&:hover": {
         bg: "negativeBackground",
+      },
+      "&:disabled": {
+        color: "negativeBackground",
+        cursor: "not-allowed",
       },
     },
     positive: {

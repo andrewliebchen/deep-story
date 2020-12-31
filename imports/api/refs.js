@@ -1,9 +1,8 @@
-import { generators } from "../utils/mockGenerators";
 import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
-import casual from "casual-browserify";
 import linkPreviewGenerator from "link-preview-generator";
 import shurley from "shurley";
+import axios from "axios";
 
 export const RefsCollection = new Mongo.Collection("refs");
 
@@ -32,30 +31,39 @@ Meteor.methods({
   },
 
   "refs.scaffoldMock"(id, generator) {
-    const generatedData = casual[generator];
+    axios.get("https://randomuser.me/api/").then((response) => {
+      const data = response.data.results[0];
+      const formattedData = {
+        name: `${data.name.first} ${data.name.last}`,
+        image: data.picture.medium,
+        username: data.login.username,
+        age: data.dob.age,
+        email: data.email,
+      };
 
-    return RefsCollection.update(id, {
-      $set: {
-        data: generatedData,
-      },
+      RefsCollection.update(id, {
+        $set: {
+          data: formattedData,
+        },
+      });
     });
   },
 
-  "refs.updateMockData"(id, generator) {
-    const ref = RefsCollection.findOne(id);
-    ref.data[generator] = casual[generator];
-
-    return RefsCollection.update(id, { $set: { data: ref.data } });
-  },
-
-  "refs.removeMockData"(id, generator) {
-    const ref = RefsCollection.findOne(id);
-    delete ref.data[generator];
-
-    return RefsCollection.update(id, {
-      $set: { data: ref.data },
-    });
-  },
+  // "refs.updateMockData"(id, generator) {
+  //   const ref = RefsCollection.findOne(id);
+  //   ref.data[generator] = casual[generator];
+  //
+  //   return RefsCollection.update(id, { $set: { data: ref.data } });
+  // },
+  //
+  // "refs.removeMockData"(id, generator) {
+  //   const ref = RefsCollection.findOne(id);
+  //   delete ref.data[generator];
+  //
+  //   return RefsCollection.update(id, {
+  //     $set: { data: ref.data },
+  //   });
+  // },
 
   "refs.insertLink"(args) {
     return RefsCollection.insert({

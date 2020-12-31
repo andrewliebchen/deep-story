@@ -19,7 +19,7 @@ const RefMockView = (props) =>
       {
         <Box sx={{ mr: 3, flexGrow: 2 }}>
           <Heading>{props.data.name || props.data.title}</Heading>
-          <Text sx={{ color: "textSecondary" }}>Subtitle</Text>
+          <Text sx={{ color: "textSecondary" }}>Person</Text>
         </Box>
       }
       {props.isHovering ? (
