@@ -20,6 +20,9 @@ const TitleEdit = (props) => (
         color: props.showTitle ? "text" : "textSecondary",
         fontWeight: "bold",
         fontSize: 2,
+        "&::placeholder": {
+          fontWeight: "normal",
+        },
       }}
     />
     <IconButton

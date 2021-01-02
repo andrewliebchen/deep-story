@@ -1,7 +1,7 @@
 import { Flex, Button, Heading } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { refTypes } from "../utils/types";
-import { X, Search as SearchIcon } from "react-feather";
+import { X, Link } from "react-feather";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext, useEffect, useState } from "react";
@@ -69,7 +69,7 @@ const RefNew = (props) => {
             );
           })}
           <Button
-            children={<SearchIcon />}
+            children={<Link />}
             onClick={() => setIsSearching(true)}
             sx={{ variant: "button.background", ml: 3 }}
             title="Add an existing ref"

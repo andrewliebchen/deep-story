@@ -44,7 +44,6 @@ const invisibleInputBase = {
   border: 0,
   borderRadius: 0,
   caretColor: "primary",
-  fontFamily: "monospace",
   minWidth: "auto",
   p: 0,
   whiteSpace: "pre-wrap",
@@ -176,6 +175,7 @@ export default {
       mr: 3,
       overflow: "hidden",
       size: "image",
+      flexShrink: 0,
     },
     toast: {
       color: "background",
@@ -229,7 +229,6 @@ export default {
   forms: {
     input: {
       ...controlBase,
-      fontFamily: "monospace",
       bg: "muted",
       color: "text",
       flexShrink: 1,
@@ -242,6 +241,9 @@ export default {
       },
       "&:focus": {
         bg: "background",
+      },
+      "&::placeholder": {
+        color: "textPlaceholder",
       },
     },
     inputGhosted: {
@@ -316,12 +318,10 @@ export default {
       fontSize: 2,
     },
     label: {
-      fontFamily: "monospace",
       fontWeight: "bold",
     },
     edit: {
       flex: "1 1",
-      fontFamily: "monospace",
       overflow: "hidden",
     },
   },
