@@ -1,14 +1,14 @@
-import { Flex, IconButton } from "theme-ui";
+import { Flex, Button, Heading } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { refTypes } from "../utils/types";
+import { useAccount } from "../utils/hooks";
 import { useKeycodes } from "@accessible/use-keycode";
 import { useParams } from "react-router-dom";
-import { useAccount } from "../utils/hooks";
+import { X, Search as SearchIcon } from "react-feather";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext, useState } from "react";
 import Search from "./Search";
-import { X, Search as SearchIcon } from "react-feather";
 import useHover from "@react-hook/hover";
 
 const RefNew = (props) => {
@@ -31,28 +31,31 @@ const RefNew = (props) => {
 
   return (
     <Flex
-      title="Add a new ref here..."
       sx={{
         variant: "flex.wrapper",
         bg: isExpanded && "primaryMuted",
         borderColor: "background",
         cursor: isExpanded ? "default" : "pointer",
         minHeight: 16,
-        p: isExpanded && 3,
+        p: isExpanded && 4,
         my: 2,
         postion: "relative",
         zIndex: 1,
+        flexDirection: "column",
         "&:hover": { bg: isExpanded || "muted" },
       }}
       ref={target}
       onClick={() => setIsExpanded(true)}
     >
+      {isExpanded && (
+        <Heading sx={{ mb: 3, fontWeight: "bold" }}>Create a new a Ref</Heading>
+      )}
       {isExpanded && !isSearching && (
         <Flex ref={keycodesListener}>
           {Object.keys(refTypes).map((stub) => {
             const type = refTypes[stub];
             return (
-              <IconButton
+              <Button
                 children={type.icon}
                 disabled={!type.active}
                 key={stub}
@@ -75,7 +78,7 @@ const RefNew = (props) => {
               />
             );
           })}
-          <IconButton
+          <Button
             children={<SearchIcon />}
             onClick={() => setIsSearching(true)}
             sx={{ variant: "button.background", ml: 3 }}

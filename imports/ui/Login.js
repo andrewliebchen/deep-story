@@ -11,7 +11,6 @@ const Login = () => (
       alignItems: "center",
     }}
   >
-    {console.log("hi")}
     <AccountToggle />
   </Flex>
 );

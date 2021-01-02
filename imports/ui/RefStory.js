@@ -29,10 +29,17 @@ const RefStory = () => {
     27: () => setSelectedRefId(false),
   });
 
+  const noRefs = refs.length === 0;
+
   return (
     <Flex
       ref={keycodesListener}
-      sx={{ alignItems: "center", flexDirection: "column" }}
+      sx={{
+        minHeight: "100vh",
+        alignItems: "center",
+        flexDirection: "column",
+        justifyContent: noRefs && "center",
+      }}
     >
       {parentRef && <Ref {...parentRef} isParentRef />}
       <Box sx={{ my: 2 }}>
@@ -53,7 +60,7 @@ const RefStory = () => {
               </Box>
             );
           })}
-        <RefNew rank={refs.length + 1} isExpanded={refs.length === 0} />
+        <RefNew rank={refs.length + 1} isExpanded={noRefs} />
       </Box>
     </Flex>
   );
