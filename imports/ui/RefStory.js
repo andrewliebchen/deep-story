@@ -56,13 +56,13 @@ const RefStory = () => {
 
             return (
               <Box key={ref._id}>
-                <RefNew rank={newRefRank} />
+                <RefNew rank={newRefRank} parentId={parentId} />
                 <Ref {...ref} />
               </Box>
             );
           })}
 
-        <RefNew parentId={parentId} />
+        <RefNew parentId={parentId} rank={1} />
       </Box>
     </Flex>
   );

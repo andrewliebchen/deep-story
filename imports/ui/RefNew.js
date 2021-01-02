@@ -108,10 +108,6 @@ const RefNew = (props) => {
   );
 };
 
-RefNew.defaultProps = {
-  rank: 0,
-};
-
 RefNew.propTypes = {
   rank: PropTypes.number.isRequired,
   parentId: PropTypes.string.isRequired,
