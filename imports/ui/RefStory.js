@@ -14,8 +14,10 @@ const RefStory = () => {
   const { parentRefId } = useParams();
   const { userId } = useAccount();
 
+  const parentId = parentRefId || userId;
+
   // Get the refs
-  const { refs, parentRef } = useChildRefs(parentRefId || userId);
+  const { refs, parentRef } = useChildRefs(parentId);
 
   // Set the color mode based on the parent ref type
   const [colorMode, setColorMode] = useColorMode();
@@ -29,8 +31,6 @@ const RefStory = () => {
     27: () => setSelectedRefId(false),
   });
 
-  const noRefs = refs.length === 0;
-
   return (
     <Flex
       ref={keycodesListener}
@@ -38,10 +38,11 @@ const RefStory = () => {
         minHeight: "100vh",
         alignItems: "center",
         flexDirection: "column",
-        justifyContent: noRefs && "center",
+        justifyContent: !parentRefId && "center",
+        postion: "relative",
       }}
     >
-      {parentRef && <Ref {...parentRef} isParentRef />}
+      {isReady(parentRef) && <Ref {...parentRef} isParentRef />}
       <Box sx={{ my: 2 }}>
         {refs
           .filter(
@@ -55,12 +56,12 @@ const RefStory = () => {
 
             return (
               <Box key={ref._id}>
-                <RefNew rank={newRefRank} />
                 <Ref {...ref} />
               </Box>
             );
           })}
-        <RefNew rank={refs.length + 1} isExpanded={noRefs} />
+
+        <RefNew parentId={parentId} />
       </Box>
     </Flex>
   );

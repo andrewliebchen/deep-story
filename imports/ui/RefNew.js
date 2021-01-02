@@ -1,33 +1,21 @@
 import { Flex, Button, Heading } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { refTypes } from "../utils/types";
-import { useAccount } from "../utils/hooks";
-import { useKeycodes } from "@accessible/use-keycode";
-import { useParams } from "react-router-dom";
 import { X, Search as SearchIcon } from "react-feather";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Search from "./Search";
 import useHover from "@react-hook/hover";
 
 const RefNew = (props) => {
-  // TODO: Maybe the parentId comes from props...since it could be the userId or the parentRefIdk
   const { setSelectedRefId } = useContext(AppContext);
-  const { parentRefId } = useParams();
-  const { userId } = useAccount();
 
   const target = React.useRef(null);
   const isHovering = useHover(target);
 
-  const [isExpanded, setIsExpanded] = useState(props.isExpanded);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
-
-  // Listen for keycodesListener
-  const keycodesListener = useKeycodes({
-    // esc
-    27: () => setIsExpanded(false),
-  });
 
   return (
     <Flex
@@ -44,14 +32,14 @@ const RefNew = (props) => {
         flexDirection: "column",
         "&:hover": { bg: isExpanded || "muted" },
       }}
-      ref={target}
       onClick={() => setIsExpanded(true)}
+      ref={target}
     >
       {isExpanded && (
         <Heading sx={{ mb: 3, fontWeight: "bold" }}>Create a new a Ref</Heading>
       )}
       {isExpanded && !isSearching && (
-        <Flex ref={keycodesListener}>
+        <Flex>
           {Object.keys(refTypes).map((stub) => {
             const type = refTypes[stub];
             return (
@@ -64,7 +52,7 @@ const RefNew = (props) => {
                     "refs.insert",
                     {
                       type: stub,
-                      parentId: parentRefId || userId,
+                      parentId: props.parentId,
                       rank: props.rank,
                     },
                     (error, id) => {
@@ -99,8 +87,8 @@ const RefNew = (props) => {
           }
         />
       )}
-      {isExpanded && !props.isExpanded && (
-        <IconButton
+      {isExpanded && (
+        <Button
           onClick={(event) => {
             event.stopPropagation();
             isSearching ? setIsSearching(false) : setIsExpanded(false);
@@ -119,12 +107,12 @@ const RefNew = (props) => {
 };
 
 RefNew.defaultProps = {
-  isExpanded: false,
+  rank: 0,
 };
 
 RefNew.propTypes = {
-  isExpanded: PropTypes.bool,
   rank: PropTypes.number.isRequired,
+  parentId: PropTypes.string.isRequired,
 };
 
 export default RefNew;
