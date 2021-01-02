@@ -5,15 +5,15 @@ import { useChildRefs, useAccount } from "../utils/hooks";
 import { useKeycodes } from "@accessible/use-keycode";
 import { useParams } from "react-router-dom";
 import AppContext from "./AppContext";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Ref from "./Ref";
 import RefNew from "./RefNew";
 
 const RefStory = () => {
   const { setSelectedRefId, refFilterIndex } = useContext(AppContext);
+
   const { parentRefId } = useParams();
   const { userId } = useAccount();
-
   const parentId = parentRefId || userId;
 
   // Get the refs
@@ -56,6 +56,7 @@ const RefStory = () => {
 
             return (
               <Box key={ref._id}>
+                <RefNew rank={newRefRank} />
                 <Ref {...ref} />
               </Box>
             );
