@@ -8,6 +8,8 @@ import React, { useContext, useEffect, useState } from "react";
 import Search from "./Search";
 import useHover from "@react-hook/hover";
 
+// Fix this
+
 const RefNew = (props) => {
   const { setSelectedRefId } = useContext(AppContext);
 
@@ -78,9 +80,9 @@ const RefNew = (props) => {
         <Search
           autoFocus
           navigate={false}
-          onClick={(linkTargetRefId) =>
+          selectRef={(linkTargetRefId) =>
             Meteor.call("refs.insertLink", {
-              parentId: parentRefId,
+              parentId: props.parentId,
               linkId: linkTargetRefId,
               rank: props.rank,
             })

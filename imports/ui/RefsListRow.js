@@ -1,12 +1,14 @@
 import { Box, Flex, Text } from "theme-ui";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import React from "react";
 import TimeAgo from "react-timeago";
 import { File } from "react-feather";
 
 const RefsListRow = (props) => {
-  const rowContent = (
+  const history = useHistory();
+
+  return (
     <Flex
       sx={{
         borderRadius: 2,
@@ -14,6 +16,10 @@ const RefsListRow = (props) => {
         justifyContent: "space-between",
         p: 3,
         "&:hover": { bg: "muted" },
+      }}
+      onClick={() => {
+        props.selectRef();
+        history.push(`/refs/${props._id}`);
       }}
     >
       <Flex sx={{ alignItems: "center" }}>
@@ -31,21 +37,6 @@ const RefsListRow = (props) => {
       </Flex>
     </Flex>
   );
-
-  return (
-    <>
-      {props.navigate ? (
-        <Link
-          to={`/refs/${props._id}`}
-          onClick={() => props.onClick(props._id)}
-        >
-          {rowContent}
-        </Link>
-      ) : (
-        <Box onClick={() => props.onClick(props._id)}>{rowContent}</Box>
-      )}
-    </>
-  );
 };
 
 RefsListRow.defaultProps = {
@@ -55,8 +46,7 @@ RefsListRow.defaultProps = {
 RefsListRow.propTypes = {
   _id: PropTypes.string,
   createdAt: PropTypes.number,
-  onClick: PropTypes.func,
-  navigate: PropTypes.bool,
+  selectRef: PropTypes.func,
 };
 
 export default RefsListRow;

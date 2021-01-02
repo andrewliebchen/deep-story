@@ -193,7 +193,7 @@ export default {
       position: "fixed",
       top: 0,
       width: "100vw",
-      zIndex: 4,
+      zIndex: 9,
       alignItems: "center",
       justifyContent: "center",
     },

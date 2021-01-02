@@ -1,86 +1,61 @@
-import { Flex, Input, IconButton, Button } from "theme-ui";
+import { Box, Flex, Input, Button } from "theme-ui";
 import { useKeycodes } from "@accessible/use-keycode";
 import { useRefSearch, useFocus } from "../utils/hooks";
 import { X } from "react-feather";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import RefFilter from "./RefFilter";
 import RefsListRow from "./RefsListRow";
 
 const Search = (props) => {
   const [value, setValue] = useState(props.value || "");
-  const [setFocus, focusProps] = useFocus();
   const searchResults = useRefSearch(value);
 
-  const setBlur = () => {
-    setValue("");
-    setFocus(false);
-  };
-
-  const keycodesListener = useKeycodes({
-    // esc
-    27: () => setBlur(),
-  });
-
   return (
-    <Flex
-      ref={keycodesListener}
-      sx={{ px: 3, width: "ref", position: "relative" }}
-    >
-      <Input
-        type="text"
-        placeholder="Search"
+    <Flex variant="flex.overlayBackground">
+      <Button
         sx={{
-          variant: "input.default",
-          position: "relative",
-          zIndex: 2,
+          variant: "button.secondary",
+          position: "absolute",
+          right: 3,
+          top: 3,
+          zIndex: 1,
         }}
-        onChange={(event) => setValue(event.target.value)}
-        value={value}
-        {...props}
-        {...focusProps}
+        onClick={() => setBlur()}
+        children={<X />}
       />
-      {props.showFilter && <RefFilter />}
-      {value.length > 2 && (
-        <>
-          <Flex sx={{ variant: "flex.overlayBackground" }}>
-            <IconButton
-              sx={{
-                variant: "button.secondary",
-                position: "absolute",
-                right: 3,
-                top: 3,
-                zIndex: 1,
-              }}
-              onClick={() => setBlur()}
-              children={<X />}
-            />
-          </Flex>
-          <Flex
-            sx={{
-              variant: "flex.ref",
-              borderRadius: 5,
-              boxShadow: "overlay",
-              flexDirection: "column",
-              left: 0,
-              position: "absolute",
-              pt: 72,
-              top: -3,
-              zIndex: 1,
-            }}
-          >
+      <Flex
+        sx={{
+          flexDirection: "column",
+          p: 3,
+          width: "ref",
+          position: "relative",
+          bg: "background",
+          boxShadow: "overlay",
+          borderRadius: 4,
+        }}
+      >
+        <Input
+          type="text"
+          placeholder="Search"
+          sx={{
+            variant: "input.default",
+            position: "relative",
+            zIndex: 2,
+          }}
+          autoFocus
+          onChange={(event) => setValue(event.target.value)}
+          value={value}
+          {...props}
+        />
+        {value.length > 2 && (
+          <Box mt={3}>
             {value &&
               searchResults.map((ref) => (
-                <RefsListRow
-                  key={ref._id}
-                  onClick={() => setBlur()}
-                  {...props}
-                  {...ref}
-                />
+                <RefsListRow key={ref._id} {...props} {...ref} />
               ))}
-          </Flex>
-        </>
-      )}
+          </Box>
+        )}
+      </Flex>
     </Flex>
   );
 };

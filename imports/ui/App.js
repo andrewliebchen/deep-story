@@ -22,7 +22,7 @@ const App = (props) => {
       {isLoggedIn ? (
         <>
           <Nav />
-          <Box sx={{ position: "absolute", top: 3, right: 3, zIndex: 3 }}>
+          <Box sx={{ position: "absolute", top: 3, right: 3, zIndex: 2 }}>
             <AccountToggle sx={{ minWidth: "auto" }} />
           </Box>
           <Toasts />

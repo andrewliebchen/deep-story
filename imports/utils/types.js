@@ -1,6 +1,7 @@
 import React from "react";
 import { CheckCircle, Globe, Database, Users, Type } from "react-feather";
 
+// Add link type, remove search
 export const refTypes = {
   text: {
     active: true,
