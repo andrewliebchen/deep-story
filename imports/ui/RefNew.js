@@ -3,6 +3,7 @@ import { Meteor } from "meteor/meteor";
 import { refTypes } from "../utils/types";
 import { useKeycodes } from "@accessible/use-keycode";
 import { useParams } from "react-router-dom";
+import { useAccount } from "../utils/hooks";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext, useState } from "react";
@@ -11,8 +12,10 @@ import { X, Search as SearchIcon } from "react-feather";
 import useHover from "@react-hook/hover";
 
 const RefNew = (props) => {
+  // TODO: Maybe the parentId comes from props...since it could be the userId or the parentRefId
   const { setSelectedRefId } = useContext(AppContext);
   const { parentRefId } = useParams();
+  const { userId } = useAccount();
 
   const target = React.useRef(null);
   const isHovering = useHover(target);
@@ -58,7 +61,7 @@ const RefNew = (props) => {
                     "refs.insert",
                     {
                       type: stub,
-                      parentId: parentRefId,
+                      parentId: parentRefId || userId,
                       rank: props.rank,
                     },
                     (error, id) => {

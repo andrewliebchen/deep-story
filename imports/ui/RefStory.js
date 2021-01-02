@@ -53,7 +53,7 @@ const RefStory = () => {
               </Box>
             );
           })}
-        <RefNew rank={refs.length + 1} />
+        <RefNew rank={refs.length + 1} isExpanded={refs.length === 0} />
       </Box>
     </Flex>
   );
