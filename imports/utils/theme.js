@@ -37,6 +37,9 @@ const controlBase = {
       bg: "background",
     },
   },
+  "&::placeholder": {
+    color: "textPlaceholder",
+  },
 };
 
 const invisibleInputBase = {
@@ -232,6 +235,7 @@ export default {
       bg: "muted",
       color: "text",
       flexShrink: 1,
+      textAlign: "center",
       "&:hover": {
         color: "text",
       },
@@ -242,9 +246,6 @@ export default {
       "&:focus": {
         bg: "background",
       },
-      "&::placeholder": {
-        color: "textPlaceholder",
-      },
     },
     inputGhosted: {
       ...invisibleInputBase,
@@ -252,6 +253,7 @@ export default {
       flex: 1,
       width: "auto",
       minHeight: 24,
+      textAlign: "left",
       "&:focus": {
         bg: "transparent",
         outline: "0",

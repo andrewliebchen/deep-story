@@ -16,7 +16,12 @@ const Nav = (props) => {
         variant="button.background"
         children={<SearchIcon />}
       />
-      {showSearch && <Search selectRef={() => setShowSearch(false)} />}
+      {showSearch && (
+        <Search
+          selectRef={() => setShowSearch(false)}
+          closeSearch={() => setShowSearch(false)}
+        />
+      )}
     </Flex>
   );
 };

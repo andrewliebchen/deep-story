@@ -12,17 +12,23 @@ const Search = (props) => {
 
   return (
     <Flex variant="flex.overlayBackground">
-      <Button
+      <Box
         sx={{
-          variant: "button.secondary",
           position: "absolute",
           right: 3,
           top: 3,
           zIndex: 1,
+          bg: "background",
         }}
-        onClick={() => setBlur()}
-        children={<X />}
-      />
+      >
+        <Button
+          sx={{
+            variant: "button.secondary",
+          }}
+          onClick={props.closeSearch}
+          children={<X />}
+        />
+      </Box>
       <Flex
         sx={{
           flexDirection: "column",
@@ -65,6 +71,7 @@ Search.propTypes = {
   value: PropTypes.string,
   navigate: PropTypes.bool,
   showFilter: PropTypes.bool,
+  closeSearch: PropTypes.func,
 };
 
 export default Search;
