@@ -12,7 +12,7 @@ import { X, Search as SearchIcon } from "react-feather";
 import useHover from "@react-hook/hover";
 
 const RefNew = (props) => {
-  // TODO: Maybe the parentId comes from props...since it could be the userId or the parentRefId
+  // TODO: Maybe the parentId comes from props...since it could be the userId or the parentRefIdk
   const { setSelectedRefId } = useContext(AppContext);
   const { parentRefId } = useParams();
   const { userId } = useAccount();
