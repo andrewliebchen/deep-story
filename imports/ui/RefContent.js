@@ -11,12 +11,11 @@ import RefTasksEdit from "./RefTasksEdit";
 import RefTasksView from "./RefTasksView";
 import RefTextEdit from "./RefTextEdit";
 import RefTextView from "./RefTextView";
-import TitleView from "./TitleView";
-import TitleEdit from "./TitleEdit";
-import { Flex } from "theme-ui";
+import RefTitle from "./RefTitle";
+import { Box } from "theme-ui";
 
 const RefContent = (props) => {
-  const { selectedRefId } = useContext(AppContext);
+  const { selectedRefId, setSelectedRefId } = useContext(AppContext);
   const isSelected = selectedRefId === props._id;
 
   let view, edit;
@@ -43,16 +42,11 @@ const RefContent = (props) => {
       edit = <RefTextEdit {...props} />;
   }
 
-  return isSelected ? (
-    <Flex sx={{ variant: "flex.ref" }}>
-      <TitleEdit {...props} />
-      {edit}
-    </Flex>
-  ) : (
-    <Flex sx={{ variant: "flex.ref" }}>
-      <TitleView {...props} />
-      {view}
-    </Flex>
+  return (
+    <Box sx={{ p: 2 }}>
+      <RefTitle isSelected={isSelected} {...props} />
+      {isSelected ? edit : view}
+    </Box>
   );
 };
 

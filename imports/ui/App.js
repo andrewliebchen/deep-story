@@ -12,7 +12,7 @@ import RefStory from "./RefStory";
 import Toasts from "./Toasts";
 import { useAccount } from "../utils/hooks";
 import Login from "./Login";
-import { Box } from "theme-ui";
+import { Flex, Box } from "theme-ui";
 
 const App = (props) => {
   const { isLoggedIn } = useAccount();
@@ -20,13 +20,10 @@ const App = (props) => {
   return (
     <Router>
       {isLoggedIn ? (
-        <>
+        <Flex sx={{ width: "100vw", p: 3, justifyContent: "space-between" }}>
           <Nav />
-          <Box sx={{ position: "absolute", top: 3, right: 3, zIndex: 2 }}>
-            <AccountToggle sx={{ minWidth: "auto" }} />
-          </Box>
-          <Toasts />
-        </>
+          <AccountToggle />
+        </Flex>
       ) : (
         <Redirect to="/login" />
       )}
@@ -36,6 +33,7 @@ const App = (props) => {
         <Route path="/login" component={Login} />
         <Route path="/" component={RefStory} />
       </Switch>
+      <Toasts />
     </Router>
   );
 };

@@ -47,11 +47,22 @@ const invisibleInputBase = {
   border: 0,
   borderRadius: 0,
   caretColor: "primary",
-  minWidth: "auto",
   p: 0,
   whiteSpace: "pre-wrap",
+  width: "100%",
   "&:focus": {
     outline: "none",
+  },
+};
+
+const cardBase = {
+  borderRadius: 4,
+  display: "flex",
+  flexDirection: "column",
+  padding: 2,
+  width: "ref",
+  "&:hover": {
+    bg: "muted",
   },
 };
 
@@ -111,13 +122,32 @@ export default {
   },
   cards: {
     primary: {
-      bg: "muted",
-      borderRadius: 4,
-      display: "flex",
-      flexDirection: "rows",
-      justifyContent: "space-between",
-      mx: -3,
-      padding: 3,
+      ...cardBase,
+    },
+    selected: {
+      ...cardBase,
+      border: "3px solid",
+      borderColor: "muted",
+      "&:hover": {
+        bg: "transparent",
+      },
+    },
+    parent: {
+      ...cardBase,
+      width: "parentRef",
+      bg: "primaryMuted",
+      p: 4,
+      "&:hover": {
+        bg: "primaryBackground",
+      },
+    },
+    editing: {
+      bg: "background",
+      border: "3px solid",
+      borderColor: "muted",
+      "&:hover": {
+        bg: "background",
+      },
     },
   },
   colors: {
@@ -141,26 +171,11 @@ export default {
     textSecondary: "rgba(0, 0, 0, 0.5)",
   },
   flex: {
-    ref: {
-      flexDirection: "column",
-      width: "ref",
-    },
     wrapper: {
-      width: "100vw",
       position: "relative",
       px: 3,
       justifyContent: "center",
       alignItems: "center",
-    },
-    parentWrapper: {
-      width: "100vw",
-      position: "relative",
-      px: 3,
-      pb: 5,
-      pt: 3,
-      justifyContent: "center",
-      alignItems: "center",
-      bg: "primaryMuted",
     },
     parent: {
       bg: "transparent",
@@ -169,6 +184,9 @@ export default {
     refActions: {
       position: "absolute",
       right: 3,
+      top: 0,
+      bottom: 0,
+      alignItems: "center",
     },
     imageWrapper: {
       backgroundColor: "muted",
@@ -269,7 +287,6 @@ export default {
       ...invisibleInputBase,
       resize: "none",
       fontSize: 1,
-      minHeight: 80,
       lineHeight: "body",
     },
   },
@@ -291,7 +308,8 @@ export default {
     avatar: 40,
     control: 40,
     image: 80,
-    ref: 600,
+    ref: 632,
+    parentRef: 664,
   },
   space: [0, 4, 8, 16, 32, 40],
   styles: {

@@ -1,6 +1,5 @@
 import { Flex, Text } from "theme-ui";
 import React from "react";
-import TitleView from "./TitleView";
 import TasksList from "./TasksList";
 import { useGetTasks } from "../utils/hooks";
 import PropTypes from "prop-types";

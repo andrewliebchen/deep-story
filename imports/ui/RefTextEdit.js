@@ -4,7 +4,6 @@ import { Box, jsx } from "theme-ui";
 import PropTypes from "prop-types";
 import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
-import TitleEdit from "./TitleEdit";
 
 const RefTextEdit = (props) => (
   <TextareaAutosize

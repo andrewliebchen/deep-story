@@ -6,7 +6,12 @@ import { isReady } from "../utils/helpers";
 
 const RefResourceView = (props) =>
   isReady(props.data) && (
-    <Card sx={{ alignItems: "center", bg: props.isParentRef && "background" }}>
+    <Flex
+      sx={{
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}
+    >
       <Flex
         sx={{
           variant: "flex.imageWrapper",
@@ -33,7 +38,7 @@ const RefResourceView = (props) =>
           </Link>
         )}
       </Box>
-    </Card>
+    </Flex>
   );
 
 RefResourceView.propTypes = {

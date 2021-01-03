@@ -8,8 +8,13 @@ import { MoreVertical } from "react-feather";
 const imageSize = 120;
 
 const RefMockView = (props) =>
-  isReady(props.data) ? (
-    <Card sx={{ bg: props.isParentRef && "background", alignItems: "center" }}>
+  isReady(props.data) && (
+    <Flex
+      sx={{
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}
+    >
       <Flex
         sx={{
           variant: "flex.imageWrapper",
@@ -33,9 +38,7 @@ const RefMockView = (props) =>
       ) : (
         <Box width="control" />
       )}
-    </Card>
-  ) : (
-    <Text>Broken mock</Text>
+    </Flex>
   );
 
 RefMockView.propTypes = {

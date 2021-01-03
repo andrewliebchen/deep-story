@@ -1,12 +1,10 @@
-import { Flex, Input, IconButton } from "theme-ui";
+import { Flex, Input, Button, Heading } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import React from "react";
-import { Eye, EyeOff } from "react-feather";
 
-// TODO: Combine Edit and View components
-const TitleEdit = (props) => (
-  <Flex sx={{ width: "ref", mb: 3 }}>
+const RefTitle = (props) =>
+  props.isSelected ? (
     <Input
       defaultValue={props.title}
       placeholder="Add a title..."
@@ -25,25 +23,19 @@ const TitleEdit = (props) => (
         },
       }}
     />
-    <IconButton
-      sx={{
-        variant: `button.${props.isParentRef ? "background" : "secondary"}`,
-      }}
-      children={props.showTitle ? <Eye /> : <EyeOff />}
-      onClick={() =>
-        Meteor.call("refs.update", props._id, {
-          showTitle: !props.showTitle,
-        })
-      }
-      title={props.showTitle ? "Hide ref title" : "Show ref title"}
-    />
-  </Flex>
-);
+  ) : props.title && props.showTitle ? (
+    <Heading sx={props.isParentRef ? { fontSize: 3, mt: 2, mb: 3 } : { mb: 2 }}>
+      {props.title}
+    </Heading>
+  ) : (
+    false
+  );
 
-TitleEdit.propTypes = {
+RefTitle.propTypes = {
   _id: PropTypes.string,
   showTitle: PropTypes.bool,
   title: PropTypes.string,
+  isSelected: PropTypes.bool,
 };
 
-export default TitleEdit;
+export default RefTitle;

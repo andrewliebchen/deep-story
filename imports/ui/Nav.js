@@ -8,9 +8,7 @@ const Nav = (props) => {
   const [showSearch, setShowSearch] = useState(false);
 
   return (
-    <Flex
-      sx={{ size: "control", position: "absolute", top: 3, left: 3, zIndex: 3 }}
-    >
+    <Flex>
       <Button
         onClick={() => setShowSearch(true)}
         variant="button.background"
