@@ -50,6 +50,7 @@ const invisibleInputBase = {
   p: 0,
   whiteSpace: "pre-wrap",
   width: "100%",
+  fontFamily: "monospace",
   "&:focus": {
     outline: "none",
   },
@@ -59,7 +60,7 @@ const cardBase = {
   borderRadius: 4,
   display: "flex",
   flexDirection: "column",
-  padding: 2,
+  p: 4,
   width: "ref",
   "&:hover": {
     bg: "muted",
@@ -111,9 +112,9 @@ export default {
     },
     positive: {
       ...controlBase,
-      bg: "positive",
-      color: "background",
-      "&:hover": { bg: "positiveHover" },
+      bg: "positiveMuted",
+      color: "positive",
+      "&:hover": { bg: "positiveBackground" },
     },
     transparent: {
       ...controlBase,
@@ -124,27 +125,16 @@ export default {
     primary: {
       ...cardBase,
     },
-    selected: {
-      ...cardBase,
-      border: "3px solid",
-      borderColor: "muted",
-      "&:hover": {
-        bg: "transparent",
-      },
-    },
     parent: {
       ...cardBase,
-      width: "parentRef",
-      bg: "primaryMuted",
-      p: 4,
+      border: "5px solid",
+      borderColor: "muted",
       "&:hover": {
-        bg: "primaryBackground",
+        borderColor: "transparent",
       },
     },
     editing: {
       bg: "background",
-      border: "3px solid",
-      borderColor: "muted",
       "&:hover": {
         bg: "background",
       },
@@ -156,11 +146,10 @@ export default {
     muted: "rgba(0, 0, 0, 0.03)",
     negative: "rgba(230, 59, 24, 1)",
     negativeBackground: "rgba(230, 59, 24, 0.2)",
-    negativeMuted: "rgba(230, 59, 24, 0.03)",
+    negativeMuted: "rgba(230, 59, 24, 0.05)",
     positive: "rgba(19, 201, 141, 1)",
     positiveBackground: "rgba(19, 201, 141, 0.2)",
-    positiveHover: "rgba(14, 177, 123, 1)",
-    positiveMuted: "rgba(19, 201, 141, 0.03)",
+    positiveMuted: "rgba(19, 201, 141, 0.1)",
     primary: refTypeColorModes.text.primary,
     primaryBackground: refTypeColorModes.text.primaryBackground,
     primaryHover: refTypeColorModes.text.primaryHover,
@@ -180,13 +169,6 @@ export default {
     parent: {
       bg: "transparent",
       my: 3,
-    },
-    refActions: {
-      position: "absolute",
-      right: 3,
-      top: 0,
-      bottom: 0,
-      alignItems: "center",
     },
     imageWrapper: {
       backgroundColor: "muted",
@@ -292,7 +274,7 @@ export default {
   },
   lineHeights: {
     body: 1.5,
-    heading: 1.125,
+    heading: 1.5,
   },
   radii: [0, 4, 8, 12, 28],
   select: {
@@ -308,8 +290,7 @@ export default {
     avatar: 40,
     control: 40,
     image: 80,
-    ref: 632,
-    parentRef: 664,
+    ref: 764,
   },
   space: [0, 4, 8, 16, 32, 40],
   styles: {
@@ -324,6 +305,7 @@ export default {
       height: 8,
     },
     a: {
+      color: "primary",
       textDecoration: "none",
     },
     p: {

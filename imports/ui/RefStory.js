@@ -35,35 +35,22 @@ const RefStory = () => {
   });
 
   return (
-    <Flex
-      ref={keycodesListener}
-      sx={{
-        minHeight: "100vh",
-        alignItems: "center",
-        flexDirection: "column",
-        justifyContent: !parentRefId && "center",
-        postion: "relative",
-      }}
-    >
+    <Box ref={keycodesListener}>
       {isReady(parentRef) && <Ref {...parentRef} isParentRef />}
-      <Box sx={{ my: 2 }}>
-        {filteredRefs.map((ref, index) => {
-          const prevRef = index === 0 ? { rank: 0 } : refs[index - 1];
-          const newRefRank = (parseInt(ref.rank) + parseInt(prevRef.rank)) / 2;
+      {filteredRefs.map((ref, index) => {
+        const prevRef = index === 0 ? { rank: 0 } : refs[index - 1];
+        const newRefRank = (parseInt(ref.rank) + parseInt(prevRef.rank)) / 2;
 
-          return (
-            <Box key={ref._id}>
-              <RefNew rank={newRefRank} parentId={parentId} />
-              <Ref {...ref} />
-            </Box>
-          );
-        })}
-
-        <RefNew parentId={parentId} rank={1} />
-      </Box>
-
+        return (
+          <Box key={ref._id}>
+            <RefNew rank={newRefRank} parentId={parentId} />
+            <Ref {...ref} />
+          </Box>
+        );
+      })}
+      <RefNew parentId={parentId} rank={1} />
       <RefStoryNav refs={filteredRefs} />
-    </Flex>
+    </Box>
   );
 };
 

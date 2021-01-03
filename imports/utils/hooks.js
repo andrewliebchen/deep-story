@@ -3,6 +3,7 @@ import { RefsCollection } from "../api/refs";
 import { TasksCollection } from "../api/tasks";
 import { useTracker } from "meteor/react-meteor-data";
 import { useState } from "react";
+import { isReady } from "./helpers";
 
 const userId = Meteor.userId();
 
@@ -16,6 +17,8 @@ export const useAccount = () =>
       isLoggedIn: !!userId,
     };
   }, []);
+
+export const useGetRef = (id) => useTracker(() => RefsCollection.findOne(id));
 
 export const useBaseRefs = () =>
   useTracker(() => {
@@ -44,31 +47,12 @@ export const useChildRefs = (parentId) =>
 export const useChildRefsCount = (parentId) =>
   useTracker(() => RefsCollection.find({ parentId: parentId }).fetch().length);
 
-export const useGetRef = (id) => {
-  return useTracker(() => RefsCollection.findOne(id), []);
-};
-
 export const useRefSearch = (value) => {
   const refs = useTracker(() => RefsCollection.find({}).fetch());
 
   return refs.filter(
     (ref) => ref.title && ref.title.toLowerCase().includes(value.toLowerCase())
   );
-};
-
-export const useFocus = () => {
-  const [focus, setFocus] = useState(false);
-  const setFocusWithTrueDefault = (param) =>
-    setFocus(typeof parm === "boolean" ? param : false);
-  return [
-    setFocusWithTrueDefault,
-    {
-      key: focus,
-      autoFocus: focus,
-      onFocus: () => setFocus(true),
-      onBlur: () => setFocus(false),
-    },
-  ];
 };
 
 export const useGetTasks = (query) =>

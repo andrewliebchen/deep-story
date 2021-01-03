@@ -22,24 +22,20 @@ const RefNew = (props) => {
   return (
     <Flex
       sx={{
-        variant: "flex.wrapper",
+        justifyContent: "center",
         bg: isExpanded && "primaryMuted",
-        borderColor: "background",
         cursor: isExpanded ? "default" : "pointer",
         minHeight: 16,
         p: isExpanded && 4,
-        my: 2,
-        postion: "relative",
-        zIndex: 1,
-        flexDirection: "column",
+        borderRadius: 4,
+        width: "ref",
+        mx: "auto",
+        my: isExpanded && 3,
         "&:hover": { bg: isExpanded || "muted" },
       }}
       onClick={() => setIsExpanded(true)}
       ref={target}
     >
-      {isExpanded && (
-        <Heading sx={{ mb: 3, fontWeight: "bold" }}>Create a new a Ref</Heading>
-      )}
       {isExpanded && !isSearching && (
         <Flex>
           {Object.keys(refTypes).map((stub) => {
@@ -87,21 +83,6 @@ const RefNew = (props) => {
               rank: props.rank,
             })
           }
-        />
-      )}
-      {isExpanded && (
-        <Button
-          onClick={(event) => {
-            event.stopPropagation();
-            isSearching ? setIsSearching(false) : setIsExpanded(false);
-          }}
-          sx={{
-            variant: "button.background",
-            position: "absolute",
-            right: 3,
-          }}
-          children={<X />}
-          title="Nevermind"
         />
       )}
     </Flex>

@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 import React, { useContext, useRef } from "react";
 import RefContent from "./RefContent";
 import useHover from "@react-hook/hover";
-import { Eye, EyeOff } from "react-feather";
 
 const Ref = (props) => {
   const { selectedRefId, setSelectedRefId } = useContext(AppContext);
@@ -18,67 +17,29 @@ const Ref = (props) => {
   const isHovering = useHover(target);
 
   return (
-    <Flex
-      sx={{ position: "relative", width: "100vw", justifyContent: "center" }}
+    <Card
       ref={target}
+      onClick={() => !isSelected && setSelectedRefId(props._id)}
+      sx={{
+        variant: isSelected
+          ? "cards.editing"
+          : props.isParentRef && "cards.parent",
+        cursor: isSelected ? "default" : "pointer",
+        position: "relative",
+        mx: "auto",
+        opacity: selectedRefId && (isSelected || 0.3),
+      }}
     >
-      <Card
-        onClick={() => !isSelected && setSelectedRefId(props._id)}
-        sx={{
-          variant: isSelected
-            ? "cards.editing"
-            : props.isParentRef && "cards.parent",
-          cursor: isSelected ? "default" : "pointer",
-        }}
-      >
-        {isSelected && (
-          <Flex
-            sx={{
-              p: 2,
-              bg: "muted",
-              borderRadius: 3,
-              justifyContent: "space-between",
-            }}
-          >
-            <Button
-              sx={{
-                variant: "button.background",
-              }}
-              children={props.showTitle ? <Eye /> : <EyeOff />}
-              onClick={() =>
-                Meteor.call("refs.update", props._id, {
-                  showTitle: !props.showTitle,
-                })
-              }
-              title={props.showTitle ? "Hide ref title" : "Show ref title"}
-            />
-            <Flex>
-              <Button
-                onClick={() =>
-                  window.confirm("Are you sure you want to delete this ref?") &&
-                  Meteor.call("refs.remove", props._id)
-                }
-                sx={{
-                  variant: "button.backgroundNegative",
-                }}
-                children={<Trash />}
-                title="Delete"
-              />
-              <Button
-                onClick={() => setSelectedRefId(false)}
-                sx={{ variant: "button.positive", ml: 2 }}
-                children={<Check />}
-                title="Done"
-              />
-            </Flex>
-          </Flex>
-        )}
+      <RefContent isHovering={isHovering} {...props} />
 
-        <RefContent isHovering={isHovering} {...props} />
-      </Card>
-
-      {isHovering && (
-        <Flex variant="flex.refActions">
+      {!selectedRefId && isHovering && (
+        <Flex
+          sx={{
+            position: "absolute",
+            right: 3,
+            top: 3,
+          }}
+        >
           <Link to={`/refs/${props._id}`}>
             <Button
               title="Show children"
@@ -90,7 +51,7 @@ const Ref = (props) => {
           </Link>
         </Flex>
       )}
-    </Flex>
+    </Card>
   );
 };
 

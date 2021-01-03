@@ -43,7 +43,7 @@ const RefContent = (props) => {
   }
 
   return (
-    <Box sx={{ p: 2 }}>
+    <Box>
       <RefTitle isSelected={isSelected} {...props} />
       {isSelected ? edit : view}
     </Box>

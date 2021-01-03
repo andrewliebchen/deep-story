@@ -19,24 +19,14 @@ const RefResourceView = (props) =>
         }}
       />
       <Box sx={{ mr: 3 }}>
-        <Text sx={{ fontWeight: "bold" }}>{props.data.title}</Text>
+        <Link
+          href={props.resourceUrl}
+          target="_blank"
+          sx={{ fontWeight: "bold" }}
+        >
+          {props.data.title}
+        </Link>
         <Text sx={{ color: "textSecondary" }}>{props.data.description}</Text>
-      </Box>
-      <Box sx={{ size: "control", flexShrink: 0 }}>
-        {props.isHovering && (
-          <Link href={props.resourceUrl} target="_blank">
-            <Button
-              sx={{
-                flexShrink: 0,
-                variant: `button.${
-                  props.isParentRef ? "secondary" : "background"
-                }`,
-              }}
-              title="Open resource"
-              children={<ExternalLink />}
-            />
-          </Link>
-        )}
       </Box>
     </Flex>
   );

@@ -24,7 +24,7 @@ const RefTitle = (props) =>
       }}
     />
   ) : props.title && props.showTitle ? (
-    <Heading sx={props.isParentRef ? { fontSize: 3, mt: 2, mb: 3 } : { mb: 2 }}>
+    <Heading sx={{ fontSize: props.isParentRef && 3, mb: 2 }}>
       {props.title}
     </Heading>
   ) : (

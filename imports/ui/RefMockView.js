@@ -27,17 +27,6 @@ const RefMockView = (props) =>
           <Text sx={{ color: "textSecondary" }}>Person</Text>
         </Box>
       }
-      {props.isHovering ? (
-        <Button
-          children={<MoreVertical />}
-          sx={{
-            variant: `button.${props.isParentRef ? "secondary" : "background"}`,
-          }}
-          title="Show all fields"
-        />
-      ) : (
-        <Box width="control" />
-      )}
     </Flex>
   );
 
