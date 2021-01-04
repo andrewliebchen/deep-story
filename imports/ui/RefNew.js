@@ -11,12 +11,12 @@ import useHover from "@react-hook/hover";
 // Fix this
 
 const RefNew = (props) => {
-  const { setSelectedRefId } = useContext(AppContext);
+  const { setSelectedRefId, setToastMessage } = useContext(AppContext);
 
   const target = React.useRef(null);
   const isHovering = useHover(target);
 
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(props.shouldBeExpanded);
   const [isSearching, setIsSearching] = useState(false);
 
   return (
@@ -56,6 +56,7 @@ const RefNew = (props) => {
                     (error, id) => {
                       setIsExpanded(false);
                       setSelectedRefId(id);
+                      setToastMessage("Ref created, now do your thing...");
                     }
                   )
                 }
@@ -89,9 +90,14 @@ const RefNew = (props) => {
   );
 };
 
+RefNew.defaultProps = {
+  shouldBeExpanded: false,
+};
+
 RefNew.propTypes = {
   rank: PropTypes.number.isRequired,
   parentId: PropTypes.string.isRequired,
+  shouldBeExpanded: PropTypes.bool,
 };
 
 export default RefNew;

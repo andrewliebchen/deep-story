@@ -11,6 +11,10 @@ const Header = (props) => (
       width: "100vw",
       p: 4,
       justifyContent: "space-between",
+      bg: "background",
+      position: "sticky",
+      top: 0,
+      zIndex: 1,
     }}
   >
     <Nav />

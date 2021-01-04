@@ -51,7 +51,11 @@ const RefStory = () => {
           </Text>
         </Flex>
       )}
-      <RefNew parentId={parentId} rank={1} />
+      <RefNew
+        parentId={parentId}
+        rank={refs.length + 1}
+        shouldBeExpanded={refs.length === 0}
+      />
       <RefStoryNav refs={refs} />
     </Box>
   );
