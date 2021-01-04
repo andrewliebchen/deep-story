@@ -11,23 +11,6 @@ const Search = (props) => {
 
   return (
     <Flex variant="flex.overlayBackground">
-      <Box
-        sx={{
-          position: "absolute",
-          right: 3,
-          top: 3,
-          zIndex: 1,
-          bg: "background",
-        }}
-      >
-        <Button
-          sx={{
-            variant: "button.secondary",
-          }}
-          onClick={props.closeSearch}
-          children={<X />}
-        />
-      </Box>
       <Flex
         sx={{
           flexDirection: "column",
@@ -39,19 +22,30 @@ const Search = (props) => {
           borderRadius: 4,
         }}
       >
-        <Input
-          type="text"
-          placeholder="Search"
-          sx={{
-            variant: "input.default",
-            position: "relative",
-            zIndex: 2,
-          }}
-          autoFocus
-          onChange={(event) => setValue(event.target.value)}
-          value={value}
-          {...props}
-        />
+        <Flex>
+          <Input
+            type="text"
+            placeholder="Search"
+            sx={{
+              variant: "input.default",
+              position: "relative",
+              zIndex: 2,
+            }}
+            autoFocus
+            onChange={(event) => setValue(event.target.value)}
+            value={value}
+            {...props}
+          />
+          <Button
+            sx={{
+              variant: "button.secondary",
+              ml: 2,
+            }}
+            onClick={props.closeSearch}
+            children={<X />}
+            title="Close search"
+          />
+        </Flex>
         {value.length > 2 && (
           <Box mt={3}>
             {value &&

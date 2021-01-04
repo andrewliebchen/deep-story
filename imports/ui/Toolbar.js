@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Button, Flex } from "theme-ui";
+import { Button, Flex, Input } from "theme-ui";
 import AppContext from "./AppContext";
 import { useGetRef } from "../utils/hooks";
 import { Eye, EyeOff, Trash, Check, Search as SearchIcon } from "react-feather";
@@ -49,14 +49,11 @@ const Toolbar = (props) => {
           />
         </Flex>
       ) : (
-        <Flex>
-          <Button
+        <Flex sx={{ width: "ref", px: 4 }}>
+          <Input
+            placeholder="Search"
             onClick={() => setShowGlobalSearch(true)}
-            sx={{ variant: "button.secondary", mr: 2 }}
-            children={<SearchIcon />}
-            title="Search"
           />
-          <RefFilter />
         </Flex>
       )}
     </>

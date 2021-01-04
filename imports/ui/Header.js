@@ -9,7 +9,7 @@ const Header = (props) => (
     sx={{
       alignItems: "center",
       width: "100vw",
-      p: 3,
+      p: 4,
       justifyContent: "space-between",
     }}
   >

@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import AssignedTasksView from "./AssignedTasksView";
 import React, { useContext } from "react";
 import RefStory from "./RefStory";
@@ -19,7 +14,7 @@ const App = (props) => {
   const { isLoggedIn } = useAccount();
 
   return (
-    <Router>
+    <BrowserRouter>
       {isLoggedIn ? <Header /> : <Redirect to="/login" />}
       <Switch>
         <Route path="/refs/:parentRefId" component={RefStory} />
@@ -34,7 +29,7 @@ const App = (props) => {
           closeSearch={() => setShowGlobalSearch(false)}
         />
       )}
-    </Router>
+    </BrowserRouter>
   );
 };
 

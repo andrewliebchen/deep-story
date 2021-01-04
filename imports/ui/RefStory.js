@@ -10,16 +10,13 @@ import RefNew from "./RefNew";
 import RefStoryNav from "./RefStoryNav";
 
 const RefStory = () => {
-  const { setSelectedRefId, refFilterIndex } = useContext(AppContext);
+  const { setSelectedRefId } = useContext(AppContext);
   const { parentRefId } = useParams();
   const { userId } = useAccount();
   const parentId = parentRefId || userId;
 
   // Get the refs
   const { refs, parentRef } = useChildRefs(parentId);
-  const filteredRefs = refs.filter(
-    (ref) => refFilterIndex === 0 || ref.type === refTypeLabels[refFilterIndex]
-  );
 
   // Set the color mode based on the parent ref type
   const [colorMode, setColorMode] = useColorMode();
@@ -30,19 +27,32 @@ const RefStory = () => {
   return (
     <Box>
       {isReady(parentRef) && <Ref {...parentRef} isParentRef />}
-      {filteredRefs.map((ref, index) => {
-        const prevRef = index === 0 ? { rank: 0 } : refs[index - 1];
-        const newRefRank = (parseInt(ref.rank) + parseInt(prevRef.rank)) / 2;
+      {refs.length > 0 ? (
+        refs.map((ref, index) => {
+          const prevRef = index === 0 ? { rank: 0 } : refs[index - 1];
+          const newRefRank = (parseInt(ref.rank) + parseInt(prevRef.rank)) / 2;
 
-        return (
-          <Box key={ref._id}>
-            <RefNew rank={newRefRank} parentId={parentId} />
-            <Ref {...ref} />
-          </Box>
-        );
-      })}
+          return (
+            <Box key={ref._id}>
+              <RefNew rank={newRefRank} parentId={parentId} />
+              <Ref {...ref} />
+            </Box>
+          );
+        })
+      ) : (
+        <Flex
+          sx={{
+            p: 5,
+            justifyContent: "center",
+          }}
+        >
+          <Text sx={{ color: "textPlaceholder", fontWeight: "bold" }}>
+            No refs yet...
+          </Text>
+        </Flex>
+      )}
       <RefNew parentId={parentId} rank={1} />
-      <RefStoryNav refs={filteredRefs} />
+      <RefStoryNav refs={refs} />
     </Box>
   );
 };
