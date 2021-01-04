@@ -42,7 +42,7 @@ const RefStoryNav = (props) => {
       ref={target}
       sx={{
         position: "fixed",
-        left: 3,
+        left: 4,
         top: "50%",
         transform: "translateY(-50%)",
       }}

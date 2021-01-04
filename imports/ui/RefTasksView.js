@@ -9,7 +9,7 @@ const RefTasksView = (props) => {
 
   return (
     <Flex sx={{ variant: props.isParentRef ? "flex.parent" : "flex.ref" }}>
-      <TasksList parentRefId={props._id} tasks={tasks} />
+      <TasksList parentRefId={props._id} tasks={tasks} {...props} />
     </Flex>
   );
 };

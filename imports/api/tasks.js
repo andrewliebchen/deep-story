@@ -18,6 +18,8 @@ Meteor.methods({
   "tasks.toggle"(id) {
     const task = TasksCollection.findOne(id);
 
+    console.log(task);
+
     return TasksCollection.update(id, { $set: { done: !task.done } });
   },
 

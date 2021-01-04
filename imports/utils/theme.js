@@ -200,15 +200,6 @@ export default {
       alignItems: "center",
       justifyContent: "center",
     },
-    task: {
-      alignItems: "center",
-      p: 2,
-      mx: -2,
-      borderRadius: 20,
-      "&:hover": {
-        bg: "muted",
-      },
-    },
   },
   fonts: {
     body:
@@ -300,7 +291,7 @@ export default {
       fontWeight: "body",
     },
     progress: {
-      bg: "background",
+      bg: "muted",
       color: "primary",
       height: 8,
     },

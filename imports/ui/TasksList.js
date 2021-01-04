@@ -13,49 +13,44 @@ const TasksList = (props) => {
   const totalTasks = props.tasks.length;
 
   return (
-    <Card sx={{ flexDirection: "column" }}>
-      <Flex sx={{ alignItems: "center" }}>
-        {user &&
-          (props.hideAvatars || (
-            <Avatar src={user.services.google.picture} sx={{ mr: 2 }} />
-          ))}
-        <Input
-          autoFocus={props.isEditingRef}
-          placeholder="Add a task and press enter..."
-          sx={{ fontFamily: "body" }}
-          value={value}
-          onChange={(event) => setValue(event.target.value)}
-          onKeyPress={(event) =>
-            event.key === "Enter" &&
-            value &&
-            Meteor.call(
-              "tasks.insert",
-              props.parentRefId || null,
-              value,
-              (error, success) => success && setValue("")
-            )
-          }
-        />
-      </Flex>
-      {totalTasks > 0 && (
-        <Flex sx={{ mt: 3, flexDirection: "column" }}>
-          <Progress
-            max={totalTasks}
-            value={props.tasks.filter((task) => task.done).length}
-            sx={{ mb: 2 }}
+    <Flex sx={{ flexDirection: "column", flexGrow: 2 }}>
+      {totalTasks > 0 &&
+        props.tasks.map((task) => (
+          <Task
+            key={task._id}
+            isSelected={selectedTaskId === task._id}
+            setSelectedTaskId={setSelectedTaskId}
+            {...task}
+            {...props}
           />
-          {props.tasks.map((task) => (
-            <Task
-              key={task._id}
-              isSelected={selectedTaskId === task._id}
-              setSelectedTaskId={setSelectedTaskId}
-              {...task}
-              {...props}
-            />
-          ))}
+        ))}
+
+      {props.isHovering && (
+        <Flex sx={{ alignItems: "center", mt: 2 }}>
+          {user &&
+            (props.hideAvatars || (
+              <Avatar src={user.services.google.picture} sx={{ mr: 2 }} />
+            ))}
+          <Input
+            autoFocus={props.isEditingRef}
+            placeholder="Add a task and press enter..."
+            sx={{ fontFamily: "body" }}
+            value={value}
+            onChange={(event) => setValue(event.target.value)}
+            onKeyPress={(event) =>
+              event.key === "Enter" &&
+              value &&
+              Meteor.call(
+                "tasks.insert",
+                props.parentRefId || null,
+                value,
+                (error, success) => success && setValue("")
+              )
+            }
+          />
         </Flex>
       )}
-    </Card>
+    </Flex>
   );
 };
 
@@ -63,6 +58,7 @@ TasksList.propTypes = {
   isEditingRef: PropTypes.bool,
   parentRefId: PropTypes.string,
   hideAvatars: PropTypes.bool,
+  isHovering: PropTypes.bool,
 };
 
 export default TasksList;

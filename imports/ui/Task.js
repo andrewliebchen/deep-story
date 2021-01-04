@@ -7,6 +7,8 @@ import PropTypes from "prop-types";
 import React, { useContext, useRef, useState } from "react";
 import useHover from "@react-hook/hover";
 
+// TODO: Task priority and done toggles broken
+
 const Task = (props) => {
   const { setToastMessage } = useContext(AppContext);
   const [value, setValue] = useState(props.text);
@@ -14,8 +16,21 @@ const Task = (props) => {
   const target = useRef(null);
   const isHovering = useHover(target);
 
+  console.log(props);
+
   return (
-    <Flex sx={{ variant: "flex.task" }} ref={target}>
+    <Flex
+      sx={{
+        alignItems: "center",
+        p: 2,
+        mx: -2,
+        borderRadius: 20,
+        "&:hover": {
+          bg: "background",
+        },
+      }}
+      ref={target}
+    >
       {props.hideAvatars || (
         <Avatar
           src={props.assignedTo.services.google.picture}
@@ -44,6 +59,7 @@ const Task = (props) => {
             sx={{
               variant: "text.default",
               color: props.done && "textSecondary",
+              textDecoration: props.done && "line-through",
               userSelect: "none",
               cursor: "pointer",
               flexGrow: 2,
@@ -91,20 +107,17 @@ const Task = (props) => {
           />
         )
       )}
-      <Button
-        sx={{
-          variant: `button.${props.done ? "primary" : "background"}`,
-          color: props.done ? "background" : isHovering ? "primary" : "muted",
-          ml: 2,
-          "&:hover": {
-            color: props.done ? "background" : "primary",
-            bg: props.done || "primaryMuted",
-          },
-        }}
-        children={<Check />}
-        disabled={props.isEditingRef}
-        onClick={() => Meteor.call("tasks.toggle", props._id)}
-      />
+      {props.isHovering && (
+        <Button
+          sx={{
+            variant: `button.${props.done ? "primary" : "secondary"}`,
+            ml: 2,
+          }}
+          children={<Check />}
+          disabled={props.isEditingRef}
+          onClick={() => Meteor.call("tasks.toggle", props._id)}
+        />
+      )}
     </Flex>
   );
 };
