@@ -1,5 +1,4 @@
 import { Box, Flex, Input, Button } from "theme-ui";
-import { useKeycodes } from "@accessible/use-keycode";
 import { useRefSearch } from "../utils/hooks";
 import { X } from "react-feather";
 import PropTypes from "prop-types";

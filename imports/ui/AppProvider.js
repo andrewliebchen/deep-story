@@ -11,6 +11,8 @@ const AppProvider = (props) => {
   // Toast
   const [toastMessage, setToastMessage] = useState(false);
 
+  const [showGlobalSearch, setShowGlobalSearch] = useState(false);
+
   return (
     <AppContext.Provider
       value={{
@@ -19,7 +21,9 @@ const AppProvider = (props) => {
         selectedRefId,
         setRefFilterIndex,
         setSelectedRefId,
+        setShowGlobalSearch,
         setToastMessage,
+        showGlobalSearch,
         toastMessage,
       }}
     >

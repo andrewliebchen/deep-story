@@ -32,7 +32,7 @@ const Ref = (props) => {
     >
       <RefContent isHovering={isHovering} {...props} />
 
-      {!selectedRefId && isHovering && (
+      {!selectedRefId && !props.isParentRef && isHovering && (
         <Flex
           sx={{
             position: "absolute",

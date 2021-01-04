@@ -2,7 +2,6 @@ import { Box, Flex, useColorMode, Text } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import { refTypeLabels } from "../utils/types";
 import { useChildRefs, useAccount } from "../utils/hooks";
-import { useKeycodes } from "@accessible/use-keycode";
 import { useParams } from "react-router-dom";
 import AppContext from "./AppContext";
 import React, { useContext, useEffect, useState } from "react";
@@ -28,14 +27,8 @@ const RefStory = () => {
     setColorMode(isReady(parentRef) ? parentRef.type : "default")
   );
 
-  // Listen for keycodesListener
-  const keycodesListener = useKeycodes({
-    // esc
-    27: () => setSelectedRefId(false),
-  });
-
   return (
-    <Box ref={keycodesListener}>
+    <Box>
       {isReady(parentRef) && <Ref {...parentRef} isParentRef />}
       {filteredRefs.map((ref, index) => {
         const prevRef = index === 0 ? { rank: 0 } : refs[index - 1];
