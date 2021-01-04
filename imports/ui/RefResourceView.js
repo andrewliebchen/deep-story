@@ -1,4 +1,4 @@
-import { Card, Flex, Text, Box, Button, Link } from "theme-ui";
+import { Card, Flex, Text, Box, Button, Link, Image } from "theme-ui";
 import { ExternalLink } from "react-feather";
 import PropTypes from "prop-types";
 import React from "react";
@@ -6,19 +6,9 @@ import { isReady } from "../utils/helpers";
 
 const RefResourceView = (props) =>
   isReady(props.data) && (
-    <Flex
-      sx={{
-        alignItems: "center",
-        justifyContent: "space-between",
-      }}
-    >
-      <Flex
-        sx={{
-          variant: "flex.imageWrapper",
-          backgroundImage: `url(${props.data.img})`,
-        }}
-      />
-      <Box sx={{ mr: 3 }}>
+    <Box>
+      <Image src={props.data.img} sx={{ borderRadius: 3 }} />
+      <Box sx={{ mt: 3 }}>
         <Link
           href={props.resourceUrl}
           target="_blank"
@@ -28,7 +18,7 @@ const RefResourceView = (props) =>
         </Link>
         <Text sx={{ color: "textSecondary" }}>{props.data.description}</Text>
       </Box>
-    </Flex>
+    </Box>
   );
 
 RefResourceView.propTypes = {

@@ -25,7 +25,7 @@ const RefStory = () => {
   );
 
   return (
-    <Box>
+    <Box mb={4}>
       {isReady(parentRef) && <Ref {...parentRef} isParentRef />}
       {refs.length > 0 ? (
         refs.map((ref, index) => {
