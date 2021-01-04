@@ -49,7 +49,7 @@ const Toolbar = (props) => {
           />
         </Flex>
       ) : (
-        <Flex sx={{ width: "ref", px: 4 }}>
+        <Flex sx={{ width: "ref" }}>
           <Input
             placeholder="Search"
             onClick={() => setShowGlobalSearch(true)}

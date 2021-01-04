@@ -58,7 +58,7 @@ export const useRefSearch = (value) => {
 export const useGetTasks = (query) =>
   useTracker(() => {
     const tasks = TasksCollection.find(query, {
-      sort: { createdAt: -1 },
+      sort: { createdAt: 1 },
     }).fetch();
 
     // Join the assigned user info with the task

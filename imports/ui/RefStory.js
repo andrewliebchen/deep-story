@@ -27,7 +27,7 @@ const RefStory = () => {
   return (
     <Box mb={4}>
       {isReady(parentRef) && <Ref {...parentRef} isParentRef />}
-      {refs.length > 0 ? (
+      {refs.length > 0 &&
         refs.map((ref, index) => {
           const prevRef = index === 0 ? { rank: 0 } : refs[index - 1];
           const newRefRank = (parseInt(ref.rank) + parseInt(prevRef.rank)) / 2;
@@ -38,19 +38,7 @@ const RefStory = () => {
               <Ref {...ref} />
             </Box>
           );
-        })
-      ) : (
-        <Flex
-          sx={{
-            p: 5,
-            justifyContent: "center",
-          }}
-        >
-          <Text sx={{ color: "textPlaceholder", fontWeight: "bold" }}>
-            No refs yet...
-          </Text>
-        </Flex>
-      )}
+        })}
       <RefNew
         parentId={parentId}
         rank={refs.length + 1}

@@ -7,11 +7,7 @@ import PropTypes from "prop-types";
 const RefTasksView = (props) => {
   const tasks = useGetTasks({ parentId: props._id });
 
-  return (
-    <Flex sx={{ variant: props.isParentRef ? "flex.parent" : "flex.ref" }}>
-      <TasksList parentRefId={props._id} tasks={tasks} {...props} />
-    </Flex>
-  );
+  return <TasksList parentRefId={props._id} tasks={tasks} {...props} />;
 };
 
 RefTasksView.propTypes = {

@@ -15,43 +15,47 @@ const TasksList = (props) => {
   const totalTasks = props.tasks.length;
 
   return (
-    <Flex sx={{ flexDirection: "column", flexGrow: 2 }}>
-      {totalTasks > 0 &&
-        props.tasks.map((task) => (
-          <Task
-            key={task._id}
-            isSelected={selectedTaskId === task._id}
-            setSelectedTaskId={setSelectedTaskId}
-            isHovering={props.isHovering}
-            {...task}
-          />
-        ))}
+    <Flex sx={{ flexGrow: 2, flexDirection: "column" }}>
+      <Flex sx={{ my: -2, flexDirection: "column" }}>
+        {totalTasks > 0 &&
+          props.tasks.map((task) => (
+            <Task
+              key={task._id}
+              isSelected={selectedTaskId === task._id}
+              setSelectedTaskId={setSelectedTaskId}
+              isHovering={props.isHovering}
+              {...task}
+            />
+          ))}
+      </Flex>
 
-      {props.isHovering && (
-        <Flex sx={{ alignItems: "center", mt: 2 }}>
-          {user &&
-            (props.hideAvatars || (
-              <Avatar src={user.services.google.picture} sx={{ mr: 2 }} />
-            ))}
-          <Input
-            autoFocus={props.isEditingRef}
-            placeholder="Add a task and press enter..."
-            sx={{ fontFamily: "body" }}
-            value={value}
-            onChange={(event) => setValue(event.target.value)}
-            onKeyPress={(event) =>
-              event.key === "Enter" &&
-              value &&
-              Meteor.call(
-                "tasks.insert",
-                props.parentRefId || null,
-                value,
-                (error, success) => success && setValue("")
-              )
-            }
-          />
-        </Flex>
-      )}
+      <Flex sx={{ alignItems: "center", mt: 3 }}>
+        {user &&
+          (props.hideAvatars || (
+            <Avatar src={user.services.google.picture} sx={{ mr: 2 }} />
+          ))}
+        <Input
+          autoFocus={props.isEditingRef}
+          placeholder="Add a task and press enter..."
+          sx={{
+            fontFamily: "body",
+            textAlign: "left",
+            bg: props.isHovering || props.isEditingRef ? "muted" : "background",
+          }}
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+          onKeyPress={(event) =>
+            event.key === "Enter" &&
+            value &&
+            Meteor.call(
+              "tasks.insert",
+              props.parentRefId || null,
+              value,
+              (error, success) => success && setValue("")
+            )
+          }
+        />
+      </Flex>
     </Flex>
   );
 };

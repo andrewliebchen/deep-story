@@ -31,14 +31,15 @@ const Ref = (props) => {
       }}
     >
       <RefContent isHovering={isHovering} {...props} />
-
       {!selectedRefId && isHovering && (
         <Flex
           sx={{
             position: "absolute",
-            right: 3,
-            top: 3,
             gap: 2,
+            top: 3,
+            right: 3,
+            left: 3,
+            justifyContent: "center",
           }}
         >
           <Button

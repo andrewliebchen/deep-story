@@ -18,13 +18,16 @@ const RefTitle = (props) =>
         color: props.showTitle ? "text" : "textSecondary",
         fontWeight: "bold",
         fontSize: 2,
+        width: "100%",
         "&::placeholder": {
           fontWeight: "normal",
         },
       }}
     />
   ) : props.title && props.showTitle ? (
-    <Heading sx={{ fontSize: props.isParentRef && 3, mb: 2 }}>
+    <Heading
+      sx={{ fontSize: props.isParentRef && 3, mb: props.isParentRef ? 3 : 2 }}
+    >
       {props.title}
     </Heading>
   ) : (
