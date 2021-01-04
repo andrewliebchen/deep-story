@@ -35,33 +35,42 @@ const Ref = (props) => {
         <Flex
           sx={{
             position: "absolute",
-            gap: 2,
-            top: 3,
-            right: 3,
-            left: 3,
+            top: 1,
+            left: 0,
+            right: 0,
             justifyContent: "center",
           }}
         >
-          <Button
-            children={<Edit2 />}
-            sx={{ variant: "button.background" }}
-            onClick={() => !isSelected && setSelectedRefId(props._id)}
-            title="Edit"
-          />
-          {props.isParentRef || (
+          <Flex
+            sx={{
+              bg: "background",
+              borderRadius: 3,
+              border: "4px solid",
+              borderColor: "background",
+              gap: 2,
+            }}
+          >
             <Button
-              title="Show children"
-              sx={{ variant: "button.primary" }}
-              title="View"
-              onClick={(event) => {
-                event.stopPropagation();
-                history.push(`/refs/${props._id}`);
-              }}
-            >
-              <CornerRightDown />
-              {refCount > 0 && <Text sx={{ ml: 1 }}>{refCount}</Text>}
-            </Button>
-          )}
+              children={<Edit2 />}
+              sx={{ variant: "button.secondary" }}
+              onClick={() => !isSelected && setSelectedRefId(props._id)}
+              title="Edit"
+            />
+            {props.isParentRef || (
+              <Button
+                title="Show children"
+                sx={{ variant: "button.primary" }}
+                title="View"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  history.push(`/refs/${props._id}`);
+                }}
+              >
+                <CornerRightDown />
+                {refCount > 0 && <Text sx={{ ml: 1 }}>{refCount}</Text>}
+              </Button>
+            )}
+          </Flex>
         </Flex>
       )}
     </Card>
