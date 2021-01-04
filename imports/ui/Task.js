@@ -10,13 +10,11 @@ import useHover from "@react-hook/hover";
 // TODO: Task priority and done toggles broken
 
 const Task = (props) => {
-  const { setToastMessage } = useContext(AppContext);
+  const { setToastMessage, selectedRefId } = useContext(AppContext);
   const [value, setValue] = useState(props.text);
 
   const target = useRef(null);
   const isHovering = useHover(target);
-
-  console.log(props);
 
   return (
     <Flex
@@ -69,11 +67,11 @@ const Task = (props) => {
           </Text>
         )}
       </Flex>
-      {isHovering ? (
-        <Flex ml="auto">
+      {props.parentId === selectedRefId && (
+        <Flex sx={{ ml: "auto" }}>
           <Button
             children={<Trash />}
-            sx={{ variant: "button.backgroundNegative", mr: 2 }}
+            sx={{ variant: "button.negative", mr: 2 }}
             title="Delete task"
             onClick={() =>
               Meteor.call("tasks.remove", props._id, (error, success) =>
@@ -90,30 +88,14 @@ const Task = (props) => {
               />
             </Link>
           )}
-          <Button
-            children={<AlertCircle />}
-            sx={{ variant: "button.background" }}
-            title="Toggle priority"
-            onClick={() => Meteor.call("tasks.togglePriority", props._id)}
-          />
         </Flex>
-      ) : (
-        props.priority && (
-          <Button
-            children={<AlertCircle />}
-            sx={{ variant: "button.transparent", ml: "auto" }}
-            title="Priority"
-            onClick={() => Meteor.call("tasks.togglePriority", props._id)}
-          />
-        )
       )}
-      {props.isHovering && (
+      {(props.isHovering || props.parentId === selectedRefId) && (
         <Button
           sx={{
             variant: `button.${props.done ? "primary" : "secondary"}`,
-            ml: 2,
           }}
-          children={<Check />}
+          children={props.done && <Check />}
           disabled={props.isEditingRef}
           onClick={() => Meteor.call("tasks.toggle", props._id)}
         />
@@ -125,6 +107,7 @@ const Task = (props) => {
 Task.propTypes = {
   setSelectedTaskId: PropTypes.func,
   selectedTaskId: PropTypes.string,
+  parentRefisSelected: PropTypes.bool,
 };
 
 export default Task;

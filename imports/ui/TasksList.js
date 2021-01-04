@@ -2,10 +2,12 @@ import { Avatar, Card, Flex, Input, Progress, Text } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { useAccount } from "../utils/hooks";
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Task from "./Task";
+import AppContext from "./AppContext";
 
 const TasksList = (props) => {
+  const { selectedRefId } = useContext(AppContext);
   const [selectedTaskId, setSelectedTaskId] = useState(false);
   const [value, setValue] = useState("");
   const { user } = useAccount();
@@ -20,8 +22,8 @@ const TasksList = (props) => {
             key={task._id}
             isSelected={selectedTaskId === task._id}
             setSelectedTaskId={setSelectedTaskId}
+            isHovering={props.isHovering}
             {...task}
-            {...props}
           />
         ))}
 
