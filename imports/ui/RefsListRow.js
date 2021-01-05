@@ -15,6 +15,7 @@ const RefsListRow = (props) => {
         cursor: "pointer",
         justifyContent: "space-between",
         p: 3,
+        mx: -3,
         "&:hover": { bg: "muted" },
       }}
       onClick={() => {

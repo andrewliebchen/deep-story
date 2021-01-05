@@ -49,11 +49,20 @@ const Toolbar = (props) => {
           />
         </Flex>
       ) : (
-        <Flex sx={{ width: "ref" }}>
-          <Input
-            placeholder="Search"
-            onClick={() => setShowGlobalSearch(true)}
-          />
+        <Flex
+          sx={{
+            bg: "muted",
+            width: "ref",
+            height: "control",
+            borderRadius: 3,
+            cursor: "pointer",
+            color: "textSecondary",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          onClick={() => setShowGlobalSearch(true)}
+        >
+          <SearchIcon />
         </Flex>
       )}
     </>

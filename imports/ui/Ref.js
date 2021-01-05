@@ -18,6 +18,8 @@ const Ref = (props) => {
 
   const history = useHistory();
 
+  // TODO: Investigate hiding actions if the cursor stops moving...
+
   return (
     <Card
       ref={target}

@@ -1,5 +1,5 @@
 import { Box, Flex, Input, Button } from "theme-ui";
-import { useRefSearch } from "../utils/hooks";
+import { useRefSearch, useAccount, useChildRefs } from "../utils/hooks";
 import { X } from "react-feather";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
@@ -9,12 +9,15 @@ const Search = (props) => {
   const [value, setValue] = useState(props.value || "");
   const searchResults = useRefSearch(value);
 
+  const { userId } = useAccount();
+  const { refs } = useChildRefs(userId);
+
   return (
     <Flex variant="flex.overlayBackground">
       <Flex
         sx={{
           flexDirection: "column",
-          p: 3,
+          p: 4,
           width: "ref",
           position: "relative",
           bg: "background",
@@ -46,12 +49,18 @@ const Search = (props) => {
             title="Close search"
           />
         </Flex>
-        {value.length > 2 && (
-          <Box mt={3}>
+        {value.length > 2 ? (
+          <Box sx={{ mt: 3, mb: -3 }}>
             {value &&
               searchResults.map((ref) => (
                 <RefsListRow key={ref._id} {...props} {...ref} />
               ))}
+          </Box>
+        ) : (
+          <Box sx={{ mt: 3, mb: -3 }}>
+            {refs.slice(0, 3).map((ref) => (
+              <RefsListRow key={ref._id} {...props} {...ref} />
+            ))}
           </Box>
         )}
       </Flex>
