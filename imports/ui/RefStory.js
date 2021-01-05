@@ -8,6 +8,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Ref from "./Ref";
 import RefNew from "./RefNew";
 import RefStoryNav from "./RefStoryNav";
+import PersonCard from "./PersonCard";
 
 const RefStory = () => {
   const { setSelectedRefId } = useContext(AppContext);
@@ -29,27 +30,11 @@ const RefStory = () => {
       {parentId === userId
         ? isReady(user) && (
             <Card sx={{ variant: "cards.parent", mx: "auto" }}>
-              <Flex
-                sx={{
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Flex
-                  sx={{
-                    variant: "flex.imageWrapper",
-                    backgroundImage: `url(${
-                      user.services && user.services.google.picture
-                    })`,
-                  }}
-                />
-                {
-                  <Box sx={{ mr: 3, flexGrow: 2 }}>
-                    <Heading>{user.profile.name}</Heading>
-                    <Text sx={{ color: "textSecondary" }}>You</Text>
-                  </Box>
-                }
-              </Flex>
+              <PersonCard
+                image={user.services && user.services.google.picture}
+                title={user.profile.name}
+                subtitle="You"
+              />
             </Card>
           )
         : isReady(parentRef) && <Ref {...parentRef} isParentRef />}
