@@ -1,4 +1,4 @@
-import { Box, Flex, useColorMode, Text } from "theme-ui";
+import { Card, Box, Flex, useColorMode, Text, Heading } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import { refTypeLabels } from "../utils/types";
 import { useChildRefs, useAccount } from "../utils/hooks";
@@ -12,7 +12,7 @@ import RefStoryNav from "./RefStoryNav";
 const RefStory = () => {
   const { setSelectedRefId } = useContext(AppContext);
   const { parentRefId } = useParams();
-  const { userId } = useAccount();
+  const { user, userId } = useAccount();
   const parentId = parentRefId || userId;
 
   // Get the refs
@@ -26,7 +26,33 @@ const RefStory = () => {
 
   return (
     <Box mb={4}>
-      {isReady(parentRef) && <Ref {...parentRef} isParentRef />}
+      {parentId === userId
+        ? isReady(user) && (
+            <Card sx={{ variant: "cards.parent", mx: "auto" }}>
+              <Flex
+                sx={{
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Flex
+                  sx={{
+                    variant: "flex.imageWrapper",
+                    backgroundImage: `url(${
+                      user.services && user.services.google.picture
+                    })`,
+                  }}
+                />
+                {
+                  <Box sx={{ mr: 3, flexGrow: 2 }}>
+                    <Heading>{user.profile.name}</Heading>
+                    <Text sx={{ color: "textSecondary" }}>You</Text>
+                  </Box>
+                }
+              </Flex>
+            </Card>
+          )
+        : isReady(parentRef) && <Ref {...parentRef} isParentRef />}
       {refs.length > 0 &&
         refs.map((ref, index) => {
           const prevRef = index === 0 ? { rank: 0 } : refs[index - 1];
