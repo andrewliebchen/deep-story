@@ -14,8 +14,9 @@ const RefMockEdit = (props) => {
     <Card
       sx={{
         flexDirection: "column",
-        bg: props.isParentRef && "background",
-        mb: 3,
+        bg: "muted",
+        mx: -4,
+        my: 3,
       }}
     >
       {isReady(props.data) &&

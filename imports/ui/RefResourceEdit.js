@@ -1,6 +1,7 @@
 import { Box, Card, Flex, Text, Input, Label, Button } from "theme-ui";
 import AppContext from "./AppContext";
 import React, { useState, useContext } from "react";
+import { RotateCcw } from "react-feather";
 
 const RefResourceEdit = (props) => {
   const { setToastMessage } = useContext(AppContext);
@@ -8,37 +9,41 @@ const RefResourceEdit = (props) => {
 
   return (
     <Card
-      sx={{ flexDirection: "column", bg: props.isParentRef && "background" }}
+      sx={{
+        bg: "muted",
+        mx: -4,
+        my: 3,
+      }}
     >
       <Label>Resource URL</Label>
-      <Flex>
-        <Input
-          autoFocus
-          type="text"
-          sx={{ variant: "input.default", mr: 2 }}
-          defaultValue={value}
-          placeholder="https://www.example.com"
-          onChange={(event) => setValue(event.target.value)}
-        />
-        <Button
-          sx={{
-            variant: `button.${props.isParentRef ? "secondary" : "background"}`,
-          }}
-          onClick={() =>
-            Meteor.call(
-              "refs.updateResourceUrl",
-              props._id,
-              value,
-              (error, success) => {
-                success && setToastMessage("Resource preview updated");
-                error && alert(error);
-              }
-            )
-          }
-        >
-          Update
-        </Button>
-      </Flex>
+      <Input
+        autoFocus
+        type="url"
+        sx={{ variant: "input.default", mb: 3 }}
+        defaultValue={value}
+        placeholder="https://www.example.com"
+        onChange={(event) => setValue(event.target.value)}
+      />
+      <Button
+        sx={{
+          variant: "button.primary",
+          px: 3,
+        }}
+        onClick={() =>
+          Meteor.call(
+            "refs.updateResourceUrl",
+            props._id,
+            value,
+            (error, success) => {
+              success && setToastMessage("Resource preview updated");
+              error && alert(error);
+            }
+          )
+        }
+      >
+        <RotateCcw />
+        <Text ml={2}>Update</Text>
+      </Button>
     </Card>
   );
 };

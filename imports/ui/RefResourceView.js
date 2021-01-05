@@ -7,7 +7,9 @@ import { isReady } from "../utils/helpers";
 const RefResourceView = (props) =>
   isReady(props.data) && (
     <Box>
-      <Image src={props.data.img} sx={{ borderRadius: 3 }} />
+      <Flex sx={{ justifyContent: "center" }}>
+        <Image src={props.data.img} sx={{ borderRadius: 3 }} />
+      </Flex>
       <Box sx={{ mt: 3 }}>
         <Link
           href={props.resourceUrl}
