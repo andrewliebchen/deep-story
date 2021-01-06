@@ -1,9 +1,10 @@
+import { isReady } from "./helpers";
 import { Meteor } from "meteor/meteor";
+import { MocksCollection } from "../api/mocks";
 import { RefsCollection } from "../api/refs";
 import { TasksCollection } from "../api/tasks";
-import { useTracker } from "meteor/react-meteor-data";
 import { useState } from "react";
-import { isReady } from "./helpers";
+import { useTracker } from "meteor/react-meteor-data";
 
 const userId = Meteor.userId();
 
@@ -54,6 +55,13 @@ export const useRefSearch = (value) => {
     (ref) => ref.title && ref.title.toLowerCase().includes(value.toLowerCase())
   );
 };
+
+export const useGetMocks = (query) =>
+  useTracker(() => {
+    const mocks = MocksCollection.find(query).fetch();
+
+    return mocks;
+  });
 
 export const useGetTasks = (query) =>
   useTracker(() => {

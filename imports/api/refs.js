@@ -2,7 +2,6 @@ import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
 import linkPreviewGenerator from "link-preview-generator";
 import shurley from "shurley";
-import axios from "axios";
 
 export const RefsCollection = new Mongo.Collection("refs");
 
@@ -15,10 +14,6 @@ Meteor.methods({
       ...options,
     });
 
-    if (options.type === "mock") {
-      Meteor.call("refs.scaffoldMock", newRefId, "person");
-    }
-
     return newRefId;
   },
 
@@ -28,25 +23,6 @@ Meteor.methods({
 
   "refs.remove"(id) {
     return RefsCollection.remove(id);
-  },
-
-  "refs.scaffoldMock"(id, generator) {
-    axios.get("https://randomuser.me/api/").then((response) => {
-      const data = response.data.results[0];
-      const formattedData = {
-        name: `${data.name.first} ${data.name.last}`,
-        image: data.picture.medium,
-        username: data.login.username,
-        age: data.dob.age,
-        email: data.email,
-      };
-
-      RefsCollection.update(id, {
-        $set: {
-          data: formattedData,
-        },
-      });
-    });
   },
 
   // "refs.updateMockData"(id, generator) {

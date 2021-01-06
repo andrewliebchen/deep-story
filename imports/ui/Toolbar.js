@@ -33,7 +33,11 @@ const Toolbar = (props) => {
           <Button
             onClick={() =>
               window.confirm("Are you sure you want to delete this ref?") &&
-              Meteor.call("refs.remove", selectedRef._id)
+              Meteor.call(
+                "refs.remove",
+                selectedRef._id,
+                (error, success) => success && setSelectedRefId("")
+              )
             }
             sx={{
               variant: "button.negative",

@@ -40,6 +40,7 @@ const RefNew = (props) => {
         <Flex>
           {Object.keys(refTypes).map((stub) => {
             const type = refTypes[stub];
+
             return (
               <Button
                 children={type.icon}
@@ -47,7 +48,7 @@ const RefNew = (props) => {
                 key={stub}
                 onClick={() =>
                   Meteor.call(
-                    "refs.insert",
+                    type.method,
                     {
                       type: stub,
                       parentId: props.parentId,

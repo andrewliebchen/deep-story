@@ -1,6 +1,7 @@
 import { Accounts } from "meteor/accounts-base";
 import { RefsCollection } from "../imports/api/refs";
 import { TasksCollection } from "../imports/api/tasks";
+import { MocksCollection } from "../imports/api/mocks";
 
 Accounts.onCreateUser((options, user) => {
   user.profile = options.profile || {};
