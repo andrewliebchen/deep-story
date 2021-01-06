@@ -18,8 +18,6 @@ Meteor.methods({
   "tasks.toggle"(id) {
     const task = TasksCollection.findOne(id);
 
-    console.log(task);
-
     return TasksCollection.update(id, { $set: { done: !task.done } });
   },
 
@@ -29,11 +27,5 @@ Meteor.methods({
 
   "tasks.update"(id, value) {
     return TasksCollection.update(id, { $set: { text: value } });
-  },
-
-  "tasks.togglePriority"(id) {
-    const task = TasksCollection.findOne(id);
-
-    return TasksCollection.update(id, { $set: { priority: !task.priority } });
   },
 });

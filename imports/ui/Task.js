@@ -3,11 +3,21 @@ import { Check, CornerUpRight, AlertCircle, Trash } from "react-feather";
 import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
 import AppContext from "./AppContext";
+import Markdown from "react-markdown";
 import PropTypes from "prop-types";
 import React, { useContext, useRef, useState } from "react";
 import useHover from "@react-hook/hover";
 
 // TODO: Task priority and done toggles broken
+
+const allowedMarkdownTypes = [
+  "emphasis",
+  "inlineCode",
+  "link",
+  "strong",
+  "text",
+  "paragraph",
+];
 
 const Task = (props) => {
   const { setToastMessage, selectedRefId } = useContext(AppContext);
@@ -61,6 +71,9 @@ const Task = (props) => {
               userSelect: "none",
               cursor: "pointer",
               flexGrow: 2,
+              "& > p": {
+                m: 0,
+              },
             }}
           >
             {props.text}
@@ -94,8 +107,9 @@ const Task = (props) => {
         <Button
           sx={{
             variant: `button.${props.done ? "primary" : "secondary"}`,
+            color: "background",
           }}
-          children={props.done && <Check />}
+          children={<Check />}
           disabled={props.isEditingRef}
           onClick={() => Meteor.call("tasks.toggle", props._id)}
         />

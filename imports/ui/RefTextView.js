@@ -12,6 +12,8 @@ const allowedMarkdownTypes = [
   "root",
   "strong",
   "text",
+  "list",
+  "listItem",
 ];
 
 const RefTextView = (props) => (
