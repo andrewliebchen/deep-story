@@ -53,9 +53,7 @@ const RefMockEdit = (props) => {
           ))}
           <Button
             sx={{
-              variant: `button.${
-                props.isParentRef ? "secondary" : "background"
-              }`,
+              variant: "button.background",
             }}
             onClick={() =>
               window.confirm(

@@ -1,9 +1,16 @@
-import React, { useContext } from "react";
 import { Button, Flex, Input } from "theme-ui";
-import AppContext from "./AppContext";
 import { useGetRef } from "../utils/hooks";
-import { Eye, EyeOff, Trash, Check, Search as SearchIcon } from "react-feather";
+import {
+  Check,
+  Eye,
+  EyeOff,
+  Trash,
+  RotateCcw,
+  Search as SearchIcon,
+} from "react-feather";
 import { isReady } from "../utils/helpers";
+import AppContext from "./AppContext";
+import React, { useContext } from "react";
 import RefFilter from "./RefFilter";
 import Search from "./Search";
 
@@ -17,19 +24,41 @@ const Toolbar = (props) => {
     <>
       {isReady(selectedRef) ? (
         <Flex>
-          <Button
-            sx={{
-              variant: "button.secondary",
-              mr: 2,
-            }}
-            children={selectedRef.showTitle ? <Eye /> : <EyeOff />}
-            onClick={() =>
-              Meteor.call("refs.update", selectedRef._id, {
-                showTitle: !selectedRef.showTitle,
-              })
-            }
-            title={selectedRef.showTitle ? "Hide ref title" : "Show ref title"}
-          />
+          <Flex mr={3}>
+            <Button
+              sx={{
+                variant: "button.secondary",
+                mr: 2,
+              }}
+              children={selectedRef.showTitle ? <Eye /> : <EyeOff />}
+              onClick={() =>
+                Meteor.call("refs.update", selectedRef._id, {
+                  showTitle: !selectedRef.showTitle,
+                })
+              }
+              title={
+                selectedRef.showTitle ? "Hide ref title" : "Show ref title"
+              }
+            />
+            {selectedRef.type === "mock" && (
+              <Button
+                sx={{ variant: "button.secondary" }}
+                onClick={() =>
+                  window.confirm(
+                    "Are you sure you want to update this mock? You might not see this person again..."
+                  ) &&
+                  Meteor.call(
+                    "mocks.refreshData",
+                    mock._id,
+                    (error, success) =>
+                      success && setToastMessage("Mock data refreshed")
+                  )
+                }
+              >
+                <RotateCcw />
+              </Button>
+            )}
+          </Flex>
           <Button
             onClick={() =>
               window.confirm("Are you sure you want to delete this ref?") &&
