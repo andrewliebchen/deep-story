@@ -8,7 +8,6 @@ import AppContext from "./AppContext";
 
 const TasksList = (props) => {
   const { selectedRefId } = useContext(AppContext);
-  const [selectedTaskId, setSelectedTaskId] = useState(false);
   const [value, setValue] = useState("");
   const { user } = useAccount();
 
@@ -21,10 +20,7 @@ const TasksList = (props) => {
           props.tasks.map((task) => (
             <Task
               key={task._id}
-              isSelected={selectedTaskId === task._id}
-              setSelectedTaskId={setSelectedTaskId}
               isParentRefHovering={props.isHovering}
-              isParentRefSelected={props.isSelected}
               {...task}
             />
           ))}
@@ -36,10 +32,8 @@ const TasksList = (props) => {
             <Avatar src={user.services.google.picture} sx={{ mr: 2 }} />
           ))}
         <Input
-          autoFocus={props.isEditingRef}
           placeholder="Add a task and press enter..."
           sx={{
-            fontFamily: "body",
             textAlign: "left",
             bg: props.isHovering || props.isEditingRef ? "muted" : "background",
           }}

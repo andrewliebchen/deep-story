@@ -20,11 +20,9 @@ const allowedMarkdownTypes = [
 ];
 
 const Task = (props) => {
-  const { setToastMessage } = useContext(AppContext);
-  const [value, setValue] = useState(props.text);
-
-  const target = useRef(null);
-  const isHovering = useHover(target);
+  const { selectedRefId, setSelectedRefId } = useContext(AppContext);
+  const [autoFocus, setAutoFocus] = useState(false);
+  const isSelected = selectedRefId === props.parentId;
 
   return (
     <Flex
@@ -33,56 +31,51 @@ const Task = (props) => {
         p: 2,
         mx: -2,
         borderRadius: 20,
-        "&:hover": {
-          bg: "background",
-        },
       }}
-      ref={target}
     >
       {props.hideAvatars || (
         <Avatar
           src={props.assignedTo.services.google.picture}
           title={`Assigned to ${props.assignedTo.profile.name}`}
+          mr={3}
         />
       )}
-      <Flex sx={{ mx: 3, flexGrow: 2 }}>
-        {props.isSelected ? (
-          <Input
-            autoFocus
-            sx={{ variant: "forms.inputGhosted", textAlign: "left" }}
-            value={value}
-            onChange={(event) => setValue(event.target.value)}
-            onKeyPress={(event) => {
-              event.key === "Enter" && props.setSelectedTaskId(false);
-              Meteor.call("tasks.update", props._id, value);
-            }}
-          />
-        ) : (
-          <Text
-            onClick={(event) => {
-              event.stopPropagation();
-              props.setSelectedTaskId(props._id);
-              setToastMessage("Press enter when you're done");
-            }}
-            title="Click to edit"
-            sx={{
-              variant: "text.default",
-              color: props.done && "textSecondary",
-              textDecoration: props.done && "line-through",
-              userSelect: "none",
-              cursor: "pointer",
-              flexGrow: 2,
-              "& > p": {
-                m: 0,
-              },
-            }}
-          >
-            {props.text}
-          </Text>
-        )}
-      </Flex>
+
+      {isSelected ? (
+        <Input
+          autoFocus={autoFocus}
+          sx={{
+            variant: "forms.inputGhosted",
+            textAlign: "left",
+            textDecoration: props.done && "line-through",
+          }}
+          defaultValue={props.text}
+          disabled={props.done}
+          onChange={(event) =>
+            Meteor.call("tasks.update", props._id, event.target.value)
+          }
+        />
+      ) : (
+        <Text
+          onClick={(event) => setSelectedRefId(props.parentId)}
+          title="Click to edit"
+          sx={{
+            variant: "text.default",
+            color: props.done && "textSecondary",
+            textDecoration: props.done && "line-through",
+            userSelect: "none",
+            cursor: "pointer",
+            flexGrow: 2,
+            "& > p": {
+              m: 0,
+            },
+          }}
+        >
+          {props.text}
+        </Text>
+      )}
       {props.isParentRefSelected && (
-        <Flex sx={{ ml: "auto" }}>
+        <Flex sx={{ ml: 2 }}>
           <Button
             children={<Trash />}
             sx={{ variant: "button.negative", mr: 2 }}
@@ -114,7 +107,10 @@ const Task = (props) => {
           }}
           children={<Check />}
           disabled={props.isEditingRef}
-          onClick={() => Meteor.call("tasks.toggle", props._id)}
+          onClick={(event) => {
+            // TODO: Fix this
+            Meteor.call("tasks.toggle", props._id);
+          }}
         />
       )}
     </Flex>
@@ -122,10 +118,10 @@ const Task = (props) => {
 };
 
 Task.propTypes = {
-  setSelectedTaskId: PropTypes.func,
   isParentRefSelected: PropTypes.bool,
   isParentRefHovering: PropTypes.bool,
-  isSelected: PropTypes.bool,
+  showLinks: PropTypes.bool,
+  isAutoFocused: PropTypes.bool,
 };
 
 export default Task;

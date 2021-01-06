@@ -227,6 +227,7 @@ export default {
       color: "text",
       flexShrink: 1,
       textAlign: "center",
+      fontFamily: "monospace",
       "&:hover": {
         color: "text",
       },
