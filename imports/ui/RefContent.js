@@ -1,6 +1,4 @@
-import AppContext from "./AppContext";
-import PropTypes from "prop-types";
-import React, { useContext } from "react";
+import React from "react";
 import RefLinkEdit from "./RefLinkEdit";
 import RefLinkView from "./RefLinkView";
 import RefMockEdit from "./RefMockEdit";
@@ -12,12 +10,10 @@ import RefTasksView from "./RefTasksView";
 import RefTextEdit from "./RefTextEdit";
 import RefTextView from "./RefTextView";
 import RefTitle from "./RefTitle";
-import { Box } from "theme-ui";
+import { Flex } from "theme-ui";
+import PropTypes from "prop-types";
 
 const RefContent = (props) => {
-  const { selectedRefId, setSelectedRefId } = useContext(AppContext);
-  const isSelected = selectedRefId === props._id;
-
   let view, edit;
 
   switch (props.type) {
@@ -43,16 +39,15 @@ const RefContent = (props) => {
   }
 
   return (
-    <Box>
-      <RefTitle isSelected={isSelected} {...props} />
-      {isSelected ? edit : view}
-    </Box>
+    <Flex sx={{ flexDirection: "column" }}>
+      <RefTitle {...props} />
+      {props.isSelected ? edit : view}
+    </Flex>
   );
 };
 
 RefContent.propTypes = {
-  _id: PropTypes.string,
-  isParentRef: PropTypes.bool,
+  isSelected: PropTypes.bool,
 };
 
 export default RefContent;

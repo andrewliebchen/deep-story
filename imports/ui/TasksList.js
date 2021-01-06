@@ -23,7 +23,8 @@ const TasksList = (props) => {
               key={task._id}
               isSelected={selectedTaskId === task._id}
               setSelectedTaskId={setSelectedTaskId}
-              isHovering={props.isHovering}
+              isParentRefHovering={props.isHovering}
+              isParentRefSelected={props.isSelected}
               {...task}
             />
           ))}
@@ -65,6 +66,7 @@ TasksList.propTypes = {
   parentRefId: PropTypes.string,
   hideAvatars: PropTypes.bool,
   isHovering: PropTypes.bool,
+  isSelected: PropTypes.bool,
 };
 
 export default TasksList;

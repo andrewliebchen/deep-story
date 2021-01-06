@@ -1,11 +1,12 @@
 import { Box, Card, Flex, Button, Text } from "theme-ui";
-import { Check, CornerRightDown, Edit2, Trash } from "react-feather";
-import { useHistory } from "react-router-dom";
+import { CornerRightDown } from "react-feather";
 import { useChildRefsCount } from "../utils/hooks";
+import { useHistory } from "react-router-dom";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext, useRef } from "react";
 import RefContent from "./RefContent";
+import useDoubleClick from "use-double-click";
 import useHover from "@react-hook/hover";
 
 const Ref = (props) => {
@@ -13,16 +14,22 @@ const Ref = (props) => {
   const isSelected = selectedRefId === props._id;
   const refCount = useChildRefsCount(props._id);
 
-  const target = useRef(null);
-  const isHovering = useHover(target);
-
   const history = useHistory();
 
-  // TODO: Investigate hiding actions if the cursor stops moving...
+  const targetRef = useRef(null);
+  const isHovering = useHover(targetRef);
+
+  useDoubleClick({
+    onSingleClick: (event) => isSelected || setSelectedRefId(props._id),
+    onDoubleClick: (event) => isSelected || history.push(`/refs/${props._id}`),
+    ref: targetRef,
+    latency: 250,
+  });
 
   return (
     <Card
-      ref={target}
+      ref={targetRef}
+      title="Click to edit, double click to view"
       sx={{
         variant: isSelected
           ? "cards.editing"
@@ -30,51 +37,10 @@ const Ref = (props) => {
         position: "relative",
         mx: "auto",
         opacity: selectedRefId && (isSelected || 0.3),
+        cursor: isSelected ? "default" : "pointer",
       }}
     >
-      <RefContent isHovering={isHovering} {...props} />
-      {!selectedRefId && isHovering && (
-        <Flex
-          sx={{
-            position: "absolute",
-            top: 1,
-            left: 0,
-            right: 0,
-            justifyContent: "center",
-          }}
-        >
-          <Flex
-            sx={{
-              bg: "background",
-              borderRadius: 3,
-              border: "4px solid",
-              borderColor: "background",
-              gap: 2,
-            }}
-          >
-            <Button
-              children={<Edit2 />}
-              sx={{ variant: "button.secondary" }}
-              onClick={() => !isSelected && setSelectedRefId(props._id)}
-              title="Edit"
-            />
-            {props.isParentRef || (
-              <Button
-                title="Show children"
-                sx={{ variant: "button.primary" }}
-                title="View"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  history.push(`/refs/${props._id}`);
-                }}
-              >
-                <CornerRightDown />
-                {refCount > 0 && <Text sx={{ ml: 1 }}>{refCount}</Text>}
-              </Button>
-            )}
-          </Flex>
-        </Flex>
-      )}
+      <RefContent isHovering={isHovering} isSelected={isSelected} {...props} />
     </Card>
   );
 };

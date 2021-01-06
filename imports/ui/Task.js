@@ -20,7 +20,7 @@ const allowedMarkdownTypes = [
 ];
 
 const Task = (props) => {
-  const { setToastMessage, selectedRefId } = useContext(AppContext);
+  const { setToastMessage } = useContext(AppContext);
   const [value, setValue] = useState(props.text);
 
   const target = useRef(null);
@@ -80,7 +80,7 @@ const Task = (props) => {
           </Text>
         )}
       </Flex>
-      {props.parentId === selectedRefId && (
+      {props.isParentRefSelected && (
         <Flex sx={{ ml: "auto" }}>
           <Button
             children={<Trash />}
@@ -92,7 +92,7 @@ const Task = (props) => {
               )
             }
           />
-          {props.showLinks && props.parentId && (
+          {props.showLinks && (
             <Link to={`/refs/${props.parentId}`}>
               <Button
                 children={<CornerUpRight />}
@@ -103,11 +103,13 @@ const Task = (props) => {
           )}
         </Flex>
       )}
-      {(props.isHovering || props.parentId === selectedRefId) && (
+      {(props.isParentRefHovering || props.isParentRefSelected) && (
         <Button
           sx={{
-            variant: `button.${props.done ? "primary" : "secondary"}`,
-            color: "background",
+            variant: "button.background",
+            bg: "transparent",
+            color: props.done ? "primary" : "muted",
+            "&:hover": { bg: "primaryBackground", color: "primary" },
           }}
           children={<Check />}
           disabled={props.isEditingRef}
@@ -120,8 +122,9 @@ const Task = (props) => {
 
 Task.propTypes = {
   setSelectedTaskId: PropTypes.func,
-  selectedTaskId: PropTypes.string,
-  parentRefisSelected: PropTypes.bool,
+  isParentRefSelected: PropTypes.bool,
+  isParentRefHovering: PropTypes.bool,
+  isSelected: PropTypes.bool,
 };
 
 export default Task;

@@ -2887,6 +2887,11 @@ use-composed-ref@^1.0.0:
   dependencies:
     ts-essentials "^2.0.3"
 
+use-double-click@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/use-double-click/-/use-double-click-1.0.5.tgz#656a3c3c528b5cd3ff40ee548bac0d50b714dfc6"
+  integrity sha512-71LUca6NtzpzHYlcfM/dOdmwvmvpMbzeIVQpN87w+DctpLiMCXtZpsN8FNWPgHpPBtNhvucPUHIDh5al8D8C7w==
+
 use-isomorphic-layout-effect@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/use-isomorphic-layout-effect/-/use-isomorphic-layout-effect-1.1.0.tgz#4db2111e0d53ca694187ea5fd5cb2ba610286fe0"
