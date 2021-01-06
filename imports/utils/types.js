@@ -22,7 +22,7 @@ export const refTypes = {
     icon: <Globe />,
     label: "Resource",
     color: "#9b64bf",
-    method: "refs.insert",
+    method: "resources.insert",
   },
   table: {
     active: false,

@@ -1,11 +1,14 @@
-import { Box, Card, Flex, Text, Input, Label, Button } from "theme-ui";
+import { Card, Text, Input, Label, Button } from "theme-ui";
 import AppContext from "./AppContext";
 import React, { useState, useContext } from "react";
 import { RotateCcw } from "react-feather";
+import { useGetResource } from "../utils/hooks";
+import { isReady } from "../utils/helpers";
 
 const RefResourceEdit = (props) => {
   const { setToastMessage } = useContext(AppContext);
-  const [value, setValue] = useState(props.resourceUrl);
+  const resource = useGetResource({ parentId: props._id });
+  const [value, setValue] = useState(resource.url);
 
   return (
     <Card
@@ -20,7 +23,7 @@ const RefResourceEdit = (props) => {
         autoFocus
         type="url"
         sx={{ variant: "input.default", mb: 3 }}
-        defaultValue={value}
+        value={value}
         placeholder="https://www.example.com"
         onChange={(event) => setValue(event.target.value)}
       />
@@ -31,8 +34,8 @@ const RefResourceEdit = (props) => {
         }}
         onClick={() =>
           Meteor.call(
-            "refs.updateResourceUrl",
-            props._id,
+            "resources.update",
+            resource._id,
             value,
             (error, success) => {
               success && setToastMessage("Resource preview updated");
