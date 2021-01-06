@@ -57,12 +57,8 @@ export const useRefSearch = (value) => {
   );
 };
 
-export const useGetMocks = (query) =>
-  useTracker(() => {
-    const mocks = MocksCollection.find(query).fetch();
-
-    return mocks;
-  });
+export const useGetMock = (query) =>
+  useTracker(() => MocksCollection.findOne(query));
 
 export const useGetResource = (query) =>
   useTracker(() => ResourcesCollection.findOne(query));
