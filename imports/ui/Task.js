@@ -52,16 +52,17 @@ const Task = (props) => {
             sx={{ variant: "forms.inputGhosted", textAlign: "left" }}
             value={value}
             onChange={(event) => setValue(event.target.value)}
-            onKeyPress={(event) =>
-              event.key === ("Enter" || "Escape") &&
-              props.setSelectedTaskId(false)
-            }
+            onKeyPress={(event) => {
+              event.key === "Enter" && props.setSelectedTaskId(false);
+              Meteor.call("tasks.update", props._id, value);
+            }}
           />
         ) : (
           <Text
-            onClick={() => {
+            onClick={(event) => {
+              event.stopPropagation();
               props.setSelectedTaskId(props._id);
-              setToastMessage("Press esc or enter when you're done");
+              setToastMessage("Press enter when you're done");
             }}
             title="Click to edit"
             sx={{
