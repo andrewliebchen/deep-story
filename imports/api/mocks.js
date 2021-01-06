@@ -42,7 +42,6 @@ Meteor.methods({
   },
 
   "mocks.refreshData"(id) {
-    console.log(id);
     axios.get("https://randomuser.me/api/").then((response) =>
       MocksCollection.update(id, {
         $set: { data: formatData(response.data.results[0]) },

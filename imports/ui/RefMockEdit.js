@@ -1,10 +1,8 @@
-import { Box, Button, Card, Flex, Select, Text, Input } from "theme-ui";
-import { isReady } from "../utils/helpers";
+import { Button, Card, Flex, Text, Input } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { RotateCcw, X } from "react-feather";
 import { useGetMocks } from "../utils/hooks";
 import AppContext from "./AppContext";
-import capitalize from "capitalize";
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
 
