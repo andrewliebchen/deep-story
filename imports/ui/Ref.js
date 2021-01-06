@@ -16,19 +16,19 @@ const Ref = (props) => {
 
   const history = useHistory();
 
-  const targetRef = useRef(null);
-  const isHovering = useHover(targetRef);
+  const target = useRef(null);
+  const isHovering = useHover(target);
 
   useDoubleClick({
     onSingleClick: (event) => isSelected || setSelectedRefId(props._id),
     onDoubleClick: (event) => isSelected || history.push(`/refs/${props._id}`),
-    ref: targetRef,
+    ref: target,
     latency: 250,
   });
 
   return (
     <Card
-      ref={targetRef}
+      ref={target}
       title="Click to edit, double click to view"
       sx={{
         variant: isSelected
@@ -41,6 +41,22 @@ const Ref = (props) => {
       }}
     >
       <RefContent isHovering={isHovering} isSelected={isSelected} {...props} />
+      {!props.isParentRef && isHovering && refCount > 0 && (
+        <Flex
+          sx={{
+            position: "absolute",
+            top: 3,
+            right: 3,
+            color: "textPlaceholder",
+            bg: "background",
+            p: 2,
+            borderRadius: 3,
+          }}
+        >
+          <Text sx={{ fontWeight: "bold" }}>{refCount}</Text>
+          <CornerRightDown />
+        </Flex>
+      )}
     </Card>
   );
 };
