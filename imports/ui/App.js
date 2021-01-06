@@ -8,10 +8,17 @@ import Login from "./Login";
 import Header from "./Header";
 import AppContext from "./AppContext";
 import Search from "./Search";
+import { useHotkeys } from "react-hotkeys-hook";
 
 const App = (props) => {
-  const { showGlobalSearch, setShowGlobalSearch } = useContext(AppContext);
+  const {
+    showGlobalSearch,
+    setShowGlobalSearch,
+    setSelectedRefId,
+  } = useContext(AppContext);
   const { isLoggedIn } = useAccount();
+
+  useHotkeys("esc", () => setSelectedRefId(""));
 
   return (
     <BrowserRouter>

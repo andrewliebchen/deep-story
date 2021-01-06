@@ -9,7 +9,6 @@
     "deploy": "DEPLOY_HOSTNAME=us-east-1.galaxy-deploy.meteor.com meteor deploy deep-story --settings settings.json"
   },
   "dependencies": {
-    "@accessible/use-keycode": "^4.0.2",
     "@babel/runtime": "^7.11.2",
     "@iconscout/react-unicons-solid": "^0.0.3",
     "@react-hook/hover": "^4.0.0",
@@ -27,6 +26,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-feather": "^2.0.9",
+    "react-hotkeys-hook": "^3.0.3",
     "react-interval": "^2.1.1",
     "react-markdown": "^5.0.3",
     "react-router-dom": "^5.2.0",
