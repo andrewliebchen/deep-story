@@ -305,6 +305,21 @@ export default {
         mt: 3,
       },
     },
+    ul: {
+      mt: 3,
+      mb: 0,
+    },
+    ol: {
+      mt: 3,
+      mb: 0,
+    },
+    code: {
+      fontSize: 1,
+      bg: "muted",
+      p: 1,
+      m: -1,
+      borderRadius: 1,
+    },
   },
   text: {
     heading: {
