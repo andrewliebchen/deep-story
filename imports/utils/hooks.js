@@ -1,9 +1,9 @@
-import { isReady } from "./helpers";
 import { Meteor } from "meteor/meteor";
 import { MocksCollection } from "../api/mocks";
 import { RefsCollection } from "../api/refs";
 import { ResourcesCollection } from "../api/resources";
 import { TasksCollection } from "../api/tasks";
+import { TextsCollection } from "../api/texts";
 import { useState } from "react";
 import { useTracker } from "meteor/react-meteor-data";
 
@@ -76,3 +76,6 @@ export const useGetTasks = (query) =>
 
     return tasks;
   });
+
+export const useGetText = (query) =>
+  useTracker(() => TextsCollection.findOne(query));

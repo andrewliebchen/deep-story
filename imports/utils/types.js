@@ -8,7 +8,7 @@ export const refTypes = {
     icon: <Type />,
     label: "Text",
     color: "#0077CC",
-    method: "refs.insert",
+    method: "texts.insert",
   },
   mock: {
     active: true,

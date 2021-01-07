@@ -1,4 +1,6 @@
+import { isReady } from "../utils/helpers";
 import { Text, BaseStyles } from "theme-ui";
+import { useGetText } from "../utils/hooks";
 import Markdown from "react-markdown";
 import PropTypes from "prop-types";
 import React from "react";
@@ -16,20 +18,22 @@ const allowedMarkdownTypes = [
   "listItem",
 ];
 
-const RefTextView = (props) => (
-  <Text sx={{ color: props.content || "textPlaceholder" }}>
-    <BaseStyles>
-      {props.content ? (
-        <Markdown allowedTypes={allowedMarkdownTypes}>{props.content}</Markdown>
-      ) : (
-        "Tell a story..."
-      )}
-    </BaseStyles>
-  </Text>
-);
+const RefTextView = (props) => {
+  const text = useGetText({ parentId: props._id });
+
+  return isReady(text) ? (
+    <Text>
+      <BaseStyles>
+        <Markdown allowedTypes={allowedMarkdownTypes}>{text.content}</Markdown>
+      </BaseStyles>
+    </Text>
+  ) : (
+    <Text color="textPlaceholder">Tell a story...</Text>
+  );
+};
 
 RefTextView.propTypes = {
-  content: PropTypes.node,
+  _id: PropTypes.string,
 };
 
 export default RefTextView;
