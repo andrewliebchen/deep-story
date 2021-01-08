@@ -206,7 +206,8 @@ export default {
     body:
       'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
     heading: "inherit",
-    monospace: "Menlo, monospace",
+    monospace:
+      '"SF Mono", "SFMono-Regular", ui-monospace, "Menlo", "Consolas", monospace',
   },
   fontSizes: [14, 16, 18, 28],
   fontWeights: {
