@@ -2,9 +2,6 @@ import AppContext from "./AppContext";
 import React, { useState } from "react";
 
 const AppProvider = (props) => {
-  // Get the selected ref and set up editing state
-  const [selectedRefId, setSelectedRefId] = useState("");
-
   // Toast
   const [toastMessage, setToastMessage] = useState(false);
 
@@ -14,8 +11,6 @@ const AppProvider = (props) => {
     <AppContext.Provider
       value={{
         ...props,
-        selectedRefId,
-        setSelectedRefId,
         setShowGlobalSearch,
         setToastMessage,
         showGlobalSearch,

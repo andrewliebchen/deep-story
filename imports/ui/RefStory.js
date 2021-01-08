@@ -5,7 +5,7 @@ import { useChildRefs, useAccount } from "../utils/hooks";
 import { useParams } from "react-router-dom";
 import AppContext from "./AppContext";
 import React, { useContext, useEffect, useState } from "react";
-import Ref from "./Ref";
+import RefView from "./RefView";
 import RefNew from "./RefNew";
 import RefStoryNav from "./RefStoryNav";
 import PersonCard from "./PersonCard";
@@ -37,7 +37,7 @@ const RefStory = () => {
               />
             </Card>
           )
-        : isReady(parentRef) && <Ref {...parentRef} isParentRef />}
+        : isReady(parentRef) && <RefView {...parentRef} isParentRef />}
       {refs.length > 0 &&
         refs.map((ref, index) => {
           const prevRef = index === 0 ? { rank: 0 } : refs[index - 1];
@@ -46,7 +46,7 @@ const RefStory = () => {
           return (
             <Box key={ref._id}>
               <RefNew rank={newRefRank} parentId={parentId} />
-              <Ref {...ref} />
+              <RefView {...ref} />
             </Box>
           );
         })}

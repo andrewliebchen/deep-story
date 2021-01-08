@@ -9,6 +9,7 @@ import Header from "./Header";
 import AppContext from "./AppContext";
 import Search from "./Search";
 import { useHotkeys } from "react-hotkeys-hook";
+import RefEdit from "./RefEdit";
 
 const App = (props) => {
   const {
@@ -24,6 +25,8 @@ const App = (props) => {
     <BrowserRouter>
       {isLoggedIn ? <Header /> : <Redirect to="/login" />}
       <Switch>
+        <Route path="/refs/:refId/edit" component={RefEdit} />
+
         <Route path="/refs/:parentRefId" component={RefStory} />
         <Route path="/tasks" component={AssignedTasksView} />
         <Route path="/login" component={Login} />

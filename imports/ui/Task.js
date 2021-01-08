@@ -7,6 +7,7 @@ import Markdown from "react-markdown";
 import PropTypes from "prop-types";
 import React, { useContext, useRef, useState } from "react";
 import useHover from "@react-hook/hover";
+import { useParams } from "react-router-dom";
 
 // TODO: Task priority and done toggles broken
 
@@ -20,9 +21,7 @@ const allowedMarkdownTypes = [
 ];
 
 const Task = (props) => {
-  const { selectedRefId, setSelectedRefId } = useContext(AppContext);
   const [autoFocus, setAutoFocus] = useState(false);
-  const isSelected = selectedRefId === props.parentId;
 
   return (
     <Flex
@@ -41,7 +40,7 @@ const Task = (props) => {
         />
       )}
 
-      {isSelected ? (
+      {props.isEditingRef ? (
         <Input
           autoFocus={autoFocus}
           sx={{
@@ -57,14 +56,12 @@ const Task = (props) => {
         />
       ) : (
         <Text
-          onClick={(event) => setSelectedRefId(props.parentId)}
           title="Click to edit"
           sx={{
             variant: "text.default",
             color: props.done && "textSecondary",
             textDecoration: props.done && "line-through",
             userSelect: "none",
-            cursor: "pointer",
             flexGrow: 2,
             "& > p": {
               m: 0,
@@ -118,7 +115,7 @@ const Task = (props) => {
 };
 
 Task.propTypes = {
-  isParentRefSelected: PropTypes.bool,
+  isEditingRef: PropTypes.bool,
   isParentRefHovering: PropTypes.bool,
   showLinks: PropTypes.bool,
   isAutoFocused: PropTypes.bool,

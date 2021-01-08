@@ -197,7 +197,7 @@ export default {
       position: "fixed",
       top: 0,
       width: "100vw",
-      zIndex: 9,
+      zIndex: 5,
       alignItems: "center",
       justifyContent: "center",
     },
@@ -229,6 +229,7 @@ export default {
       flexShrink: 1,
       textAlign: "center",
       fontFamily: "monospace",
+      cursor: "text",
       "&:hover": {
         color: "text",
       },
@@ -247,6 +248,7 @@ export default {
       width: "auto",
       minHeight: 24,
       textAlign: "left",
+      cursor: "text",
       "&:focus": {
         bg: "transparent",
         outline: "0",

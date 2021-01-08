@@ -1,5 +1,6 @@
 import { Button, Flex, Input } from "theme-ui";
 import { useGetRef } from "../utils/hooks";
+import { useHistory } from "react-router-dom";
 import {
   Check,
   Eye,
@@ -7,31 +8,37 @@ import {
   Trash,
   RotateCcw,
   Search as SearchIcon,
+  ArrowLeft,
+  ArrowRight,
 } from "react-feather";
 import { isReady } from "../utils/helpers";
-import AppContext from "./AppContext";
-import React, { useContext } from "react";
+import React from "react";
 import RefFilter from "./RefFilter";
 import Search from "./Search";
 
 const Toolbar = (props) => {
-  const { setSelectedRefId } = useContext(AppContext);
+  const history = useHistory();
 
   return (
     <Flex
       sx={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        padding: 4,
+        zIndex: 1,
         bg: "background",
-        boxShadow: "overlay",
         justifyContent: "space-between",
-        p: 2,
-        borderRadius: 20,
-        flexGrow: 2,
-        position: "sticky",
-        top: 88,
-        width: "ref",
-        zIndex: 3,
       }}
     >
+      <Button
+        sx={{ variant: "button.secondary" }}
+        children={<ArrowLeft />}
+        title="Done"
+        onClick={() => history.goBack()}
+      />
+
       <Flex>
         <Button
           sx={{
@@ -65,14 +72,14 @@ const Toolbar = (props) => {
           </Button>
         )}
       </Flex>
-      <Flex>
+      <Flex sx={{ width: "control", gap: 2, justifyContent: "flex-end" }}>
         <Button
           onClick={() =>
             window.confirm("Are you sure you want to delete this ref?") &&
             Meteor.call(
               "refs.remove",
               props._id,
-              (error, success) => success && setSelectedRefId("")
+              (error, success) => success && history.push("/refs")
             )
           }
           sx={{
@@ -82,10 +89,9 @@ const Toolbar = (props) => {
           title="Delete"
         />
         <Button
-          onClick={() => setSelectedRefId(false)}
-          sx={{ variant: "button.positive", ml: 2 }}
-          children={<Check />}
-          title="Done"
+          onClick={() => history.push(`/refs/${props._id}`)}
+          sx={{ variant: "button.primary" }}
+          children={<ArrowRight />}
         />
       </Flex>
     </Flex>

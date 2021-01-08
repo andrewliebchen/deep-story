@@ -7,7 +7,6 @@ import Task from "./Task";
 import AppContext from "./AppContext";
 
 const TasksList = (props) => {
-  const { selectedRefId } = useContext(AppContext);
   const [value, setValue] = useState("");
   const { user } = useAccount();
 
@@ -21,6 +20,7 @@ const TasksList = (props) => {
             <Task
               key={task._id}
               isParentRefHovering={props.isHovering}
+              isEditingRef={props.isEditingRef}
               {...task}
             />
           ))}

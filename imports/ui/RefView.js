@@ -1,18 +1,15 @@
-import { Box, Card, Flex, Button, Text } from "theme-ui";
+import { Box, Card, Flex, Button, Text, Heading } from "theme-ui";
 import { CornerRightDown } from "react-feather";
 import { useChildRefsCount } from "../utils/hooks";
 import { useHistory } from "react-router-dom";
-import AppContext from "./AppContext";
 import PropTypes from "prop-types";
-import React, { useContext, useRef } from "react";
-import RefContent from "./RefContent";
+import React, { useRef } from "react";
 import useDoubleClick from "use-double-click";
 import useHover from "@react-hook/hover";
 import Toolbar from "./Toolbar";
+import RefContent from "./RefContent";
 
-const Ref = (props) => {
-  const { selectedRefId, setSelectedRefId } = useContext(AppContext);
-  const isSelected = selectedRefId === props._id;
+const RefView = (props) => {
   const refCount = useChildRefsCount(props._id);
 
   const history = useHistory();
@@ -21,8 +18,8 @@ const Ref = (props) => {
   const isHovering = useHover(target);
 
   useDoubleClick({
-    onSingleClick: (event) => isSelected || setSelectedRefId(props._id),
-    onDoubleClick: (event) => isSelected || history.push(`/refs/${props._id}`),
+    onSingleClick: (event) => history.push(`/refs/${props._id}/edit`),
+    onDoubleClick: (event) => history.push(`/refs/${props._id}`),
     ref: target,
     latency: 250,
   });
@@ -34,26 +31,28 @@ const Ref = (props) => {
         alignItems: "center",
       }}
     >
-      {isSelected && <Toolbar {...props} />}
       <Card
         ref={target}
         title="Click to edit, double click to view"
         sx={{
-          variant: isSelected
-            ? "cards.editing"
-            : props.isParentRef && "cards.parent",
+          variant: props.isParentRef && "cards.parent",
           position: "relative",
           mx: "auto",
-          opacity: selectedRefId && (isSelected || 0.1),
-          cursor: isSelected ? "default" : "pointer",
+          cursor: "pointer",
         }}
       >
-        <RefContent
-          isHovering={isHovering}
-          isSelected={isSelected}
-          {...props}
-        />
-        {!props.isParentRef && isHovering && refCount > 0 && !isSelected && (
+        {props.title && props.showTitle && (
+          <Heading
+            sx={{
+              fontSize: props.isParentRef && 3,
+              mb: props.isParentRef ? 3 : 2,
+            }}
+          >
+            {props.title}
+          </Heading>
+        )}
+        <RefContent isHovering={isHovering} {...props} />
+        {!props.isParentRef && isHovering && refCount > 0 && (
           <Flex
             sx={{
               position: "absolute",
@@ -74,10 +73,10 @@ const Ref = (props) => {
   );
 };
 
-Ref.propTypes = {
+RefView.propTypes = {
   _id: PropTypes.string,
   isParentRef: PropTypes.bool,
   rank: PropTypes.number,
 };
 
-export default Ref;
+export default RefView;
