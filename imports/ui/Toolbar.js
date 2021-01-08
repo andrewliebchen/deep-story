@@ -1,22 +1,18 @@
-import { Button, Flex, Input } from "theme-ui";
-import { useGetRef } from "../utils/hooks";
-import { useHistory } from "react-router-dom";
+import { Button, Flex, Text } from "theme-ui";
 import {
-  Check,
   Eye,
   EyeOff,
   Trash,
   RotateCcw,
-  Search as SearchIcon,
   ArrowLeft,
-  ArrowRight,
+  CornerRightDown,
 } from "react-feather";
-import { isReady } from "../utils/helpers";
+import { useChildRefsCount } from "../utils/hooks";
+import { useHistory } from "react-router-dom";
 import React from "react";
-import RefFilter from "./RefFilter";
-import Search from "./Search";
 
 const Toolbar = (props) => {
+  const refCount = useChildRefsCount(props._id);
   const history = useHistory();
 
   return (
@@ -91,8 +87,10 @@ const Toolbar = (props) => {
         <Button
           onClick={() => history.push(`/refs/${props._id}`)}
           sx={{ variant: "button.primary" }}
-          children={<ArrowRight />}
-        />
+        >
+          {refCount > 0 && <Text mr={2}>{refCount}</Text>}
+          <CornerRightDown />
+        </Button>
       </Flex>
     </Flex>
   );

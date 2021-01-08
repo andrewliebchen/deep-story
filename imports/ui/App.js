@@ -12,11 +12,7 @@ import { useHotkeys } from "react-hotkeys-hook";
 import RefEdit from "./RefEdit";
 
 const App = (props) => {
-  const {
-    showGlobalSearch,
-    setShowGlobalSearch,
-    setSelectedRefId,
-  } = useContext(AppContext);
+  const { showGlobalSearch, setShowGlobalSearch } = useContext(AppContext);
   const { isLoggedIn } = useAccount();
 
   useHotkeys("esc", () => setSelectedRefId(""));
@@ -26,7 +22,6 @@ const App = (props) => {
       {isLoggedIn ? <Header /> : <Redirect to="/login" />}
       <Switch>
         <Route path="/refs/:refId/edit" component={RefEdit} />
-
         <Route path="/refs/:parentRefId" component={RefStory} />
         <Route path="/tasks" component={AssignedTasksView} />
         <Route path="/login" component={Login} />

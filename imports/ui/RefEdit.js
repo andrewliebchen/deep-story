@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
-import { isReady } from "../utils/helpers";
 import { Box, Flex, Input, useColorMode } from "theme-ui";
-import Toolbar from "./Toolbar";
+import { isReady } from "../utils/helpers";
+import { useGetRef } from "../utils/hooks";
+import { useParams } from "react-router-dom";
+import React, { useEffect } from "react";
 import RefLinkEdit from "./RefLinkEdit";
 import RefMockEdit from "./RefMockEdit";
 import RefResourceEdit from "./RefResourceEdit";
 import RefTasksEdit from "./RefTasksEdit";
 import RefTextEdit from "./RefTextEdit";
-import { useParams } from "react-router-dom";
-import { useGetRef } from "../utils/hooks";
+import Toolbar from "./Toolbar";
 
 const RefContent = (ref) => {
   switch (ref.type) {
@@ -46,33 +46,35 @@ const RefEdit = (props) => {
       }}
     >
       <Toolbar {...ref} />
-      <Box
-        sx={{
-          width: "ref",
-        }}
-      >
-        <Input
-          defaultValue={props.title}
-          placeholder="Add a title..."
-          onChange={(event) =>
-            Meteor.call("refs.update", props._id, {
-              title: event.target.value,
-            })
-          }
+      {isReady(ref) && (
+        <Box
           sx={{
-            variant: "forms.inputGhosted",
-            color: props.showTitle ? "text" : "textSecondary",
-            fontWeight: "bold",
-            fontSize: 2,
-            mb: 3,
-            width: "100%",
-            "&::placeholder": {
-              fontWeight: "normal",
-            },
+            width: "ref",
           }}
-        />
-        <RefContent {...ref} />
-      </Box>
+        >
+          <Input
+            defaultValue={ref.title}
+            placeholder="Add a title..."
+            onChange={(event) =>
+              Meteor.call("refs.update", ref._id, {
+                title: event.target.value,
+              })
+            }
+            sx={{
+              variant: "forms.inputGhosted",
+              color: ref.showTitle ? "text" : "textSecondary",
+              fontWeight: "bold",
+              fontSize: 2,
+              mb: 3,
+              width: "100%",
+              "&::placeholder": {
+                fontWeight: "normal",
+              },
+            }}
+          />
+          <RefContent {...ref} />
+        </Box>
+      )}
     </Flex>
   );
 };
