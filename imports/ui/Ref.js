@@ -8,6 +8,7 @@ import React, { useContext, useRef } from "react";
 import RefContent from "./RefContent";
 import useDoubleClick from "use-double-click";
 import useHover from "@react-hook/hover";
+import Toolbar from "./Toolbar";
 
 const Ref = (props) => {
   const { selectedRefId, setSelectedRefId } = useContext(AppContext);
@@ -27,37 +28,49 @@ const Ref = (props) => {
   });
 
   return (
-    <Card
-      ref={target}
-      title="Click to edit, double click to view"
+    <Flex
       sx={{
-        variant: isSelected
-          ? "cards.editing"
-          : props.isParentRef && "cards.parent",
-        position: "relative",
-        mx: "auto",
-        opacity: selectedRefId && (isSelected || 0.3),
-        cursor: isSelected ? "default" : "pointer",
+        flexDirection: "column",
+        alignItems: "center",
       }}
     >
-      <RefContent isHovering={isHovering} isSelected={isSelected} {...props} />
-      {!props.isParentRef && isHovering && refCount > 0 && (
-        <Flex
-          sx={{
-            position: "absolute",
-            top: 3,
-            right: 3,
-            color: "textPlaceholder",
-            bg: "background",
-            p: 2,
-            borderRadius: 3,
-          }}
-        >
-          <Text sx={{ fontWeight: "bold" }}>{refCount}</Text>
-          <CornerRightDown />
-        </Flex>
-      )}
-    </Card>
+      {isSelected && <Toolbar {...props} />}
+      <Card
+        ref={target}
+        title="Click to edit, double click to view"
+        sx={{
+          variant: isSelected
+            ? "cards.editing"
+            : props.isParentRef && "cards.parent",
+          position: "relative",
+          mx: "auto",
+          opacity: selectedRefId && (isSelected || 0.1),
+          cursor: isSelected ? "default" : "pointer",
+        }}
+      >
+        <RefContent
+          isHovering={isHovering}
+          isSelected={isSelected}
+          {...props}
+        />
+        {!props.isParentRef && isHovering && refCount > 0 && !isSelected && (
+          <Flex
+            sx={{
+              position: "absolute",
+              top: 3,
+              right: 3,
+              color: "textPlaceholder",
+              bg: "background",
+              p: 2,
+              borderRadius: 3,
+            }}
+          >
+            <Text sx={{ fontWeight: "bold" }}>{refCount}</Text>
+            <CornerRightDown />
+          </Flex>
+        )}
+      </Card>
+    </Flex>
   );
 };
 

@@ -112,9 +112,9 @@ export default {
     },
     positive: {
       ...controlBase,
-      bg: "positiveMuted",
-      color: "positive",
-      "&:hover": { bg: "positiveBackground" },
+      bg: "positive",
+      color: "background",
+      "&:hover": { bg: "positiveHover" },
     },
     transparent: {
       ...controlBase,
@@ -150,6 +150,7 @@ export default {
     positive: "rgba(19, 201, 141, 1)",
     positiveBackground: "rgba(19, 201, 141, 0.2)",
     positiveMuted: "rgba(19, 201, 141, 0.1)",
+    positiveHover: "rgba(14, 177, 123, 1)",
     primary: refTypeColorModes.text.primary,
     primaryBackground: refTypeColorModes.text.primaryBackground,
     primaryHover: refTypeColorModes.text.primaryHover,

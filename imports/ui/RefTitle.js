@@ -18,6 +18,7 @@ const RefTitle = (props) =>
         color: props.showTitle ? "text" : "textSecondary",
         fontWeight: "bold",
         fontSize: 2,
+        mb: 3,
         width: "100%",
         "&::placeholder": {
           fontWeight: "normal",

@@ -2,7 +2,7 @@ import React from "react";
 import Nav from "./Nav";
 import AccountToggle from "./AccountToggle";
 import { Flex } from "theme-ui";
-import Toolbar from "./Toolbar";
+import { Search } from "react-feather";
 
 const Header = (props) => (
   <Flex
@@ -18,7 +18,21 @@ const Header = (props) => (
     }}
   >
     <Nav />
-    <Toolbar />
+    <Flex
+      sx={{
+        bg: "muted",
+        width: "ref",
+        height: "control",
+        borderRadius: 3,
+        cursor: "pointer",
+        color: "textSecondary",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+      onClick={() => setShowGlobalSearch(true)}
+    >
+      <Search />
+    </Flex>
     <AccountToggle />
   </Flex>
 );

@@ -15,90 +15,80 @@ import RefFilter from "./RefFilter";
 import Search from "./Search";
 
 const Toolbar = (props) => {
-  const { selectedRefId, setSelectedRefId, setShowGlobalSearch } = useContext(
-    AppContext
-  );
-  const selectedRef = useGetRef(selectedRefId);
+  const { setSelectedRefId } = useContext(AppContext);
 
   return (
-    <>
-      {isReady(selectedRef) ? (
-        <Flex>
-          <Flex mr={3}>
-            <Button
-              sx={{
-                variant: "button.secondary",
-                mr: 2,
-              }}
-              children={selectedRef.showTitle ? <Eye /> : <EyeOff />}
-              onClick={() =>
-                Meteor.call("refs.update", selectedRef._id, {
-                  showTitle: !selectedRef.showTitle,
-                })
-              }
-              title={
-                selectedRef.showTitle ? "Hide ref title" : "Show ref title"
-              }
-            />
-            {selectedRef.type === "mock" && (
-              <Button
-                sx={{ variant: "button.secondary" }}
-                onClick={() =>
-                  window.confirm(
-                    "Are you sure you want to update this mock? You might not see this person again..."
-                  ) &&
-                  Meteor.call(
-                    "mocks.refreshData",
-                    mock._id,
-                    (error, success) =>
-                      success && setToastMessage("Mock data refreshed")
-                  )
-                }
-              >
-                <RotateCcw />
-              </Button>
-            )}
-          </Flex>
+    <Flex
+      sx={{
+        bg: "background",
+        boxShadow: "overlay",
+        justifyContent: "space-between",
+        p: 2,
+        borderRadius: 20,
+        flexGrow: 2,
+        position: "sticky",
+        top: 88,
+        width: "ref",
+        zIndex: 3,
+      }}
+    >
+      <Flex>
+        <Button
+          sx={{
+            variant: "button.secondary",
+            mr: 2,
+          }}
+          children={props.showTitle ? <Eye /> : <EyeOff />}
+          onClick={() =>
+            Meteor.call("refs.update", props._id, {
+              showTitle: !props.showTitle,
+            })
+          }
+          title={props.showTitle ? "Hide ref title" : "Show ref title"}
+        />
+        {props.type === "mock" && (
           <Button
+            sx={{ variant: "button.secondary" }}
             onClick={() =>
-              window.confirm("Are you sure you want to delete this ref?") &&
+              window.confirm(
+                "Are you sure you want to update this mock? You might not see this person again..."
+              ) &&
               Meteor.call(
-                "refs.remove",
-                selectedRef._id,
-                (error, success) => success && setSelectedRefId("")
+                "mocks.refreshData",
+                mock._id,
+                (error, success) =>
+                  success && setToastMessage("Mock data refreshed")
               )
             }
-            sx={{
-              variant: "button.negative",
-            }}
-            children={<Trash />}
-            title="Delete"
-          />
-          <Button
-            onClick={() => setSelectedRefId(false)}
-            sx={{ variant: "button.positive", ml: 2 }}
-            children={<Check />}
-            title="Done"
-          />
-        </Flex>
-      ) : (
-        <Flex
+          >
+            <RotateCcw />
+          </Button>
+        )}
+      </Flex>
+      <Flex>
+        <Button
+          onClick={() =>
+            window.confirm("Are you sure you want to delete this ref?") &&
+            Meteor.call(
+              "refs.remove",
+              props._id,
+              (error, success) => success && setSelectedRefId("")
+            )
+          }
           sx={{
-            bg: "muted",
-            width: "ref",
-            height: "control",
-            borderRadius: 3,
-            cursor: "pointer",
-            color: "textSecondary",
-            justifyContent: "center",
-            alignItems: "center",
+            variant: "button.negative",
           }}
-          onClick={() => setShowGlobalSearch(true)}
-        >
-          <SearchIcon />
-        </Flex>
-      )}
-    </>
+          children={<Trash />}
+          title="Delete"
+        />
+        <Button
+          onClick={() => setSelectedRefId(false)}
+          sx={{ variant: "button.positive", ml: 2 }}
+          children={<Check />}
+          title="Done"
+        />
+      </Flex>
+    </Flex>
   );
 };
 

@@ -1,4 +1,4 @@
-import { Card, Text, Input, Label, Button } from "theme-ui";
+import { Card, Text, Input, Label, Button, Flex } from "theme-ui";
 import AppContext from "./AppContext";
 import React, { useState, useContext } from "react";
 import { RotateCcw } from "react-feather";
@@ -11,13 +11,7 @@ const RefResourceEdit = (props) => {
   const [value, setValue] = useState(resource.url);
 
   return (
-    <Card
-      sx={{
-        bg: "muted",
-        mx: -4,
-        my: 3,
-      }}
-    >
+    <Flex sx={{ flexDirection: "column" }}>
       <Label>Resource URL</Label>
       <Input
         autoFocus
@@ -47,7 +41,7 @@ const RefResourceEdit = (props) => {
         <RotateCcw />
         <Text ml={2}>Update</Text>
       </Button>
-    </Card>
+    </Flex>
   );
 };
 
