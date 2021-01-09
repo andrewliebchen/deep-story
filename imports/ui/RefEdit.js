@@ -9,6 +9,7 @@ import RefResourceEdit from "./RefResourceEdit";
 import RefTasksEdit from "./RefTasksEdit";
 import RefTextEdit from "./RefTextEdit";
 import Toolbar from "./Toolbar";
+import Container from "./Container";
 
 const RefContent = (ref) => {
   switch (ref.type) {
@@ -38,14 +39,7 @@ const RefEdit = (props) => {
   useEffect(() => setColorMode(isReady(ref) ? ref.type : "default"));
 
   return (
-    <Flex
-      sx={{
-        bg: "background",
-        width: "100vw",
-        justifyContent: "center",
-      }}
-    >
-      <Toolbar {...ref} />
+    <Container header={<Toolbar {...ref} />}>
       {isReady(ref) && (
         <Box
           sx={{
@@ -75,7 +69,7 @@ const RefEdit = (props) => {
           <RefContent {...ref} />
         </Box>
       )}
-    </Flex>
+    </Container>
   );
 };
 

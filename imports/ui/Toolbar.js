@@ -16,18 +16,7 @@ const Toolbar = (props) => {
   const history = useHistory();
 
   return (
-    <Flex
-      sx={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        padding: 4,
-        zIndex: 1,
-        bg: "background",
-        justifyContent: "space-between",
-      }}
-    >
+    <Flex sx={{ variant: "flex.header" }}>
       <Button
         sx={{ variant: "button.secondary" }}
         children={<ArrowLeft />}
