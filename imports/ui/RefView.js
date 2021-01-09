@@ -30,6 +30,8 @@ const RefView = (props) => {
       sx={{
         flexDirection: "column",
         alignItems: "center",
+        mt: -104, // Offset the scroll by the height of the header
+        pt: 104,
       }}
     >
       <Card
