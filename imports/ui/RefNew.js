@@ -4,7 +4,7 @@ import { refTypes } from "../utils/types";
 import { X, Link } from "react-feather";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import Search from "./Search";
 import useHover from "@react-hook/hover";
 
@@ -13,7 +13,7 @@ import useHover from "@react-hook/hover";
 const RefNew = (props) => {
   const { setSelectedRefId, setToastMessage } = useContext(AppContext);
 
-  const target = React.useRef(null);
+  const target = useRef(null);
   const isHovering = useHover(target);
 
   const [isExpanded, setIsExpanded] = useState(props.shouldBeExpanded);
