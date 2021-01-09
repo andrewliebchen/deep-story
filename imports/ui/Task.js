@@ -9,8 +9,6 @@ import React, { useContext, useRef, useState } from "react";
 import useHover from "@react-hook/hover";
 import { useParams } from "react-router-dom";
 
-// TODO: Task priority and done toggles broken
-
 const allowedMarkdownTypes = [
   "emphasis",
   "inlineCode",
@@ -94,7 +92,7 @@ const Task = (props) => {
           )}
         </Flex>
       )}
-      {(props.isParentRefHovering || props.isParentRefSelected) && (
+      {props.isHoveringRef && (
         <Button
           sx={{
             variant: "button.background",
@@ -104,8 +102,19 @@ const Task = (props) => {
           }}
           children={<Check />}
           disabled={props.isEditingRef}
-          onClick={(event) => {
-            // TODO: Fix this
+          onClick={() => {
+            Meteor.call("tasks.toggle", props._id);
+          }}
+        />
+      )}
+      {props.isEditingRef && (
+        <Button
+          sx={{
+            variant: `button.${props.done ? "primary" : "secondary"}`,
+            color: props.done || "background",
+          }}
+          children={<Check />}
+          onClick={() => {
             Meteor.call("tasks.toggle", props._id);
           }}
         />
@@ -116,7 +125,7 @@ const Task = (props) => {
 
 Task.propTypes = {
   isEditingRef: PropTypes.bool,
-  isParentRefHovering: PropTypes.bool,
+  isHoveringRef: PropTypes.bool,
   showLinks: PropTypes.bool,
   isAutoFocused: PropTypes.bool,
 };

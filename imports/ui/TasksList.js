@@ -19,7 +19,7 @@ const TasksList = (props) => {
           props.tasks.map((task) => (
             <Task
               key={task._id}
-              isParentRefHovering={props.isHovering}
+              isHoveringRef={props.isHovering}
               isEditingRef={props.isEditingRef}
               {...task}
             />
@@ -60,7 +60,6 @@ TasksList.propTypes = {
   parentRefId: PropTypes.string,
   hideAvatars: PropTypes.bool,
   isHovering: PropTypes.bool,
-  isSelected: PropTypes.bool,
 };
 
 export default TasksList;
