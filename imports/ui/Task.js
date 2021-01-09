@@ -91,7 +91,7 @@ const Task = (props) => {
           {props.text}
         </Text>
       )}
-      {props.isParentRefSelected && (
+      {props.isEditingRef && (
         <Flex sx={{ ml: 2 }}>
           <Button
             children={<Trash />}
