@@ -3,13 +3,15 @@ import { CornerRightDown } from "react-feather";
 import { useChildRefsCount } from "../utils/hooks";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import useDoubleClick from "use-double-click";
 import useHover from "@react-hook/hover";
 import Toolbar from "./Toolbar";
 import RefContent from "./RefContent";
+import AppContext from "./AppContext";
 
 const RefView = (props) => {
+  const { taskCheckboxHovering } = useContext(AppContext);
   const refCount = useChildRefsCount(props._id);
 
   const history = useHistory();
@@ -17,8 +19,11 @@ const RefView = (props) => {
   const target = useRef(null);
   const isHovering = useHover(target);
 
+  console.log(taskCheckboxHovering);
+
   useDoubleClick({
-    onSingleClick: (event) => history.push(`/refs/${props._id}/edit`),
+    onSingleClick: (event) =>
+      taskCheckboxHovering || history.push(`/refs/${props._id}/edit`),
     onDoubleClick: (event) => history.push(`/refs/${props._id}`),
     ref: target,
     latency: 250,

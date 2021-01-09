@@ -2,9 +2,8 @@ import AppContext from "./AppContext";
 import React, { useState } from "react";
 
 const AppProvider = (props) => {
-  // Toast
+  const [taskCheckboxHovering, setTaskCheckboxHovering] = useState(false);
   const [toastMessage, setToastMessage] = useState(false);
-
   const [showGlobalSearch, setShowGlobalSearch] = useState(false);
 
   return (
@@ -15,6 +14,8 @@ const AppProvider = (props) => {
         setToastMessage,
         showGlobalSearch,
         toastMessage,
+        taskCheckboxHovering,
+        setTaskCheckboxHovering,
       }}
     >
       {props.children}

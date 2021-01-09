@@ -5,9 +5,9 @@ import { Meteor } from "meteor/meteor";
 import AppContext from "./AppContext";
 import Markdown from "react-markdown";
 import PropTypes from "prop-types";
-import React, { useContext, useRef, useState } from "react";
-import useHover from "@react-hook/hover";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import useHover from "@react-hook/hover";
 
 const allowedMarkdownTypes = [
   "emphasis",
@@ -17,6 +17,30 @@ const allowedMarkdownTypes = [
   "text",
   "paragraph",
 ];
+
+const ViewCheckBox = (props) => {
+  const { setTaskCheckboxHovering, taskCheckboxHovering } = useContext(
+    AppContext
+  );
+
+  const target = useRef(null);
+  const isHovering = useHover(target);
+
+  useEffect(() => setTaskCheckboxHovering(isHovering || taskCheckboxHovering));
+
+  return (
+    <Button
+      ref={target}
+      sx={{
+        variant: `button.${props.done ? "primary" : "secondary"}`,
+        color: props.done || "background",
+      }}
+      children={<Check />}
+      disabled={props.isEditingRef}
+      onClick={(event) => Meteor.call("tasks.toggle", props._id)}
+    />
+  );
+};
 
 const Task = (props) => {
   const [autoFocus, setAutoFocus] = useState(false);
@@ -92,32 +116,18 @@ const Task = (props) => {
           )}
         </Flex>
       )}
-      {props.isHoveringRef && (
-        <Button
-          sx={{
-            variant: "button.background",
-            bg: "transparent",
-            color: props.done ? "primary" : "muted",
-            "&:hover": { bg: "primaryBackground", color: "primary" },
-          }}
-          children={<Check />}
-          disabled={props.isEditingRef}
-          onClick={() => {
-            Meteor.call("tasks.toggle", props._id);
-          }}
-        />
-      )}
+      {props.isHoveringRef && <ViewCheckBox {...props} />}
       {props.isEditingRef && (
-        <Button
-          sx={{
-            variant: `button.${props.done ? "primary" : "secondary"}`,
-            color: props.done || "background",
-          }}
-          children={<Check />}
-          onClick={() => {
-            Meteor.call("tasks.toggle", props._id);
-          }}
-        />
+        <Flex>
+          <Button
+            sx={{
+              variant: `button.${props.done ? "primary" : "secondary"}`,
+              color: props.done || "background",
+            }}
+            children={<Check />}
+            onClick={() => Meteor.call("tasks.toggle", props._id)}
+          />
+        </Flex>
       )}
     </Flex>
   );
