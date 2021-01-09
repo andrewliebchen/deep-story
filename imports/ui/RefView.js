@@ -26,6 +26,7 @@ const RefView = (props) => {
 
   return (
     <Flex
+      id={`ref_${props._id}`}
       sx={{
         flexDirection: "column",
         alignItems: "center",

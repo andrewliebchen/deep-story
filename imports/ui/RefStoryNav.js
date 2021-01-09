@@ -1,6 +1,7 @@
+import { Box, Flex, Text } from "theme-ui";
 import React, { useRef } from "react";
 import useHover from "@react-hook/hover";
-import { Box, Flex, Text } from "theme-ui";
+import PropTypes from "prop-types";
 
 const RefStoryNavElement = (props) => {
   const target = useRef(null);
@@ -19,6 +20,9 @@ const RefStoryNavElement = (props) => {
             : "muted",
           mr: 3,
           borderRadius: 1,
+          ".refStoryNavElementIsActive > &": {
+            bg: "primary",
+          },
         }}
       />
       <Text
@@ -52,6 +56,10 @@ const RefStoryNav = (props) => {
       ))}
     </Box>
   );
+};
+
+RefStoryNav.propTypes = {
+  refs: PropTypes.array,
 };
 
 export default RefStoryNav;
