@@ -19,14 +19,12 @@ const allowedMarkdownTypes = [
 ];
 
 const ViewCheckBox = (props) => {
-  const { setTaskCheckboxHovering, taskCheckboxHovering } = useContext(
-    AppContext
-  );
+  const { stopEditMode, setStopEditMode } = useContext(AppContext);
 
   const target = useRef(null);
   const isHovering = useHover(target);
 
-  useEffect(() => setTaskCheckboxHovering(isHovering || taskCheckboxHovering));
+  useEffect(() => setStopEditMode(isHovering || stopEditMode));
 
   return (
     <Button

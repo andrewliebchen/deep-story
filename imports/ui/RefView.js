@@ -11,7 +11,7 @@ import RefContent from "./RefContent";
 import AppContext from "./AppContext";
 
 const RefView = (props) => {
-  const { taskCheckboxHovering } = useContext(AppContext);
+  const { stopEditMode } = useContext(AppContext);
   const refCount = useChildRefsCount(props._id);
 
   const history = useHistory();
@@ -19,11 +19,9 @@ const RefView = (props) => {
   const target = useRef(null);
   const isHovering = useHover(target);
 
-  console.log(taskCheckboxHovering);
-
   useDoubleClick({
     onSingleClick: (event) =>
-      taskCheckboxHovering || history.push(`/refs/${props._id}/edit`),
+      stopEditMode || history.push(`/refs/${props._id}/edit`),
     onDoubleClick: (event) => history.push(`/refs/${props._id}`),
     ref: target,
     latency: 250,

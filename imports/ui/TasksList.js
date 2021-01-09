@@ -7,6 +7,7 @@ import Task from "./Task";
 import AppContext from "./AppContext";
 
 const TasksList = (props) => {
+  const { setStopEditMode } = useContext(AppContext);
   const [value, setValue] = useState("");
   const { user } = useAccount();
 
@@ -38,6 +39,7 @@ const TasksList = (props) => {
             bg: props.isHovering || props.isEditingRef ? "muted" : "background",
           }}
           value={value}
+          onClick={(event) => setStopEditMode(true)}
           onChange={(event) => setValue(event.target.value)}
           onKeyPress={(event) =>
             event.key === "Enter" &&
