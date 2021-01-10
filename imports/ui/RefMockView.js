@@ -1,4 +1,4 @@
-import { Flex } from "theme-ui";
+import { Flex, Text } from "theme-ui";
 import { useGetMock } from "../utils/hooks";
 import PersonCard from "./PersonCard";
 import PropTypes from "prop-types";
@@ -9,7 +9,8 @@ const RefMockView = (props) => {
   const mock = useGetMock({ parentId: props._id });
 
   return (
-    isReady(mock) && (
+    isReady(mock) &&
+    isReady(mock.data) && (
       <Flex sx={{ flexDirection: "column" }}>
         <PersonCard
           key={mock._id}
