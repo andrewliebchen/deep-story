@@ -29,6 +29,7 @@ const Search = (props) => {
       >
         <Flex>
           <Input
+            autoFocus
             type="text"
             placeholder="Search"
             sx={{
@@ -37,6 +38,9 @@ const Search = (props) => {
               zIndex: 2,
             }}
             autoFocus
+            onKeyDown={(event) =>
+              event.keyCode === 27 && setShowGlobalSearch(false)
+            }
             onChange={(event) => setValue(event.target.value)}
             value={value}
             {...props}
@@ -44,7 +48,7 @@ const Search = (props) => {
           <Button
             sx={{
               variant: "button.secondary",
-              ml: 2,
+              ml: 3,
             }}
             onClick={() => setShowGlobalSearch(false)}
             children={<X />}

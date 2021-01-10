@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { useHotkeys } from "react-hotkeys-hook";
 import AppContext from "./AppContext";
 import AssignedTasksView from "./AssignedTasksView";
 import Login from "./Login";
@@ -10,6 +11,8 @@ import Toasts from "./Toasts";
 
 const App = (props) => {
   const { showGlobalSearch, setShowGlobalSearch } = useContext(AppContext);
+
+  useHotkeys("esc", () => setShowGlobalSearch(false));
 
   return (
     <BrowserRouter>

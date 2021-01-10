@@ -4,9 +4,11 @@ import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import React from "react";
 import TimeAgo from "react-timeago";
+import { refTypes, refTypeLabels } from "../utils/types";
 
 const RefsListRow = (props) => {
   const history = useHistory();
+  const type = refTypes[props.type];
 
   return (
     <Flex
@@ -24,11 +26,21 @@ const RefsListRow = (props) => {
       }}
     >
       <Flex sx={{ alignItems: "center" }}>
-        <Box sx={{ variant: "button.primary", mr: 2 }}>
-          <File />
-        </Box>
+        <Flex
+          sx={{
+            size: "control",
+            borderRadius: 3,
+            mr: 2,
+            alignItems: "center",
+            justifyContent: "center",
+            bg: type.color,
+            color: "background",
+          }}
+        >
+          {type.icon}
+        </Flex>
         <Text sx={{ variant: "text.default", fontWeight: "bold" }}>
-          {props.title}
+          {props.title || "Untitled"}
         </Text>
       </Flex>
       <Flex sx={{ alignItems: "center" }}>
@@ -49,6 +61,7 @@ RefsListRow.propTypes = {
   createdAt: PropTypes.number,
   selectRef: PropTypes.func,
   navigate: PropTypes.bool,
+  type: PropTypes.oneOf(refTypeLabels),
 };
 
 export default RefsListRow;
