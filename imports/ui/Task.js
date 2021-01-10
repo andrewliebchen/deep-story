@@ -1,5 +1,5 @@
 import { Avatar, Flex, Text, Button, Input } from "theme-ui";
-import { Check, CornerUpRight, AlertCircle, Trash } from "react-feather";
+import { Check, CornerUpRight, AlertCircle, X } from "react-feather";
 import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
 import AppContext from "./AppContext";
@@ -94,8 +94,8 @@ const Task = (props) => {
       {props.isEditingRef && (
         <Flex sx={{ ml: 2 }}>
           <Button
-            children={<Trash />}
-            sx={{ variant: "button.negative", mr: 2 }}
+            children={<X />}
+            sx={{ variant: "button.backgroundNegative", mr: 2 }}
             title="Delete task"
             onClick={() =>
               Meteor.call("tasks.remove", props._id, (error, success) =>
