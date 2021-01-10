@@ -16,20 +16,29 @@ const formatData = (data) => {
 
 Meteor.methods({
   "mocks.insert"(options) {
-    axios.get("https://randomuser.me/api/").then((response) => {
+    return axios.get("https://randomuser.me/api/").then((response) => {
       const formattedData = formatData(response.data.results[0]);
 
-      const newRefId = Meteor.call("refs.insert", {
+      const newParentRefId = Meteor.call("refs.insert", {
         ...options,
       });
 
-      return MocksCollection.insert({
-        parentId: newRefId,
+      const newMockId = MocksCollection.insert({
+        parentId: newParentRefId,
         createdAt: Date.now(),
         createdBy: Meteor.userId(),
         data: formattedData,
       });
+
+      console.log(newParentRefId, newMockId);
+
+      return {
+        parentRefId: newParentRefId,
+        id: newMockId,
+      };
     });
+
+    return resonse;
   },
 
   "mocks.removeField"(id, key) {

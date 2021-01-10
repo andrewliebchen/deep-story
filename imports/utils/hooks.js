@@ -22,15 +22,6 @@ export const useAccount = () =>
 
 export const useGetRef = (id) => useTracker(() => RefsCollection.findOne(id));
 
-export const useBaseRefs = () =>
-  useTracker(() => {
-    const refs = RefsCollection.find({ parentId: userId }).fetch();
-
-    return {
-      refs,
-    };
-  }, []);
-
 export const useChildRefs = (parentId) =>
   useTracker(() => {
     const refs = RefsCollection.find(

@@ -23,8 +23,7 @@ const RefResourceView = (props) => {
       </Box>
     </Box>
   ) : (
-    <Flex sx={{ justifyContent: "space-between" }}>
-      <Text>{resource.url}</Text>
+    <Flex sx={{ justifyContent: "center" }}>
       <Text sx={{ color: "textSecondary" }}>Generating preview</Text>
     </Flex>
   );

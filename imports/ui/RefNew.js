@@ -6,12 +6,12 @@ import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext, useEffect, useState, useRef } from "react";
 import Search from "./Search";
+import { useHistory } from "react-router-dom";
 import useHover from "@react-hook/hover";
 
-// Fix this
-
 const RefNew = (props) => {
-  const { setSelectedRefId, setToastMessage } = useContext(AppContext);
+  const { setToastMessage } = useContext(AppContext);
+  const history = useHistory();
 
   const target = useRef(null);
   const isHovering = useHover(target);
@@ -54,9 +54,8 @@ const RefNew = (props) => {
                       parentId: props.parentId,
                       rank: props.rank,
                     },
-                    (error, id) => {
-                      setIsExpanded(false);
-                      setSelectedRefId(id);
+                    (error, response) => {
+                      history.push(`/refs/${response.parentRefId}/edit`);
                       setToastMessage("Ref created, now do your thing...");
                     }
                   )

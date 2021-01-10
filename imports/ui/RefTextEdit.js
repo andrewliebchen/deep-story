@@ -9,7 +9,7 @@ import TextareaAutosize from "react-textarea-autosize";
 
 const RefTextEdit = (props) => {
   const text = useGetText({ parentId: props._id });
-
+  console.log(text);
   return (
     isReady(text) && (
       <TextareaAutosize

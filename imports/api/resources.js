@@ -7,16 +7,21 @@ export const ResourcesCollection = new Mongo.Collection("resources");
 
 Meteor.methods({
   "resources.insert"(options) {
-    const newRefId = Meteor.call("refs.insert", {
+    const newParentRefId = Meteor.call("refs.insert", {
       ...options,
     });
 
-    return ResourcesCollection.insert({
-      parentId: newRefId,
+    const newResourceId = ResourcesCollection.insert({
+      parentId: newParentRefId,
       createdAt: Date.now(),
       createdBy: Meteor.userId(),
       url: "",
     });
+
+    return {
+      parentRefId: newParentRefId,
+      id: newResourceId,
+    };
   },
 
   "resources.update"(id, url) {

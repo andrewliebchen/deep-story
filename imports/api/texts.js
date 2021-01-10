@@ -5,15 +5,21 @@ export const TextsCollection = new Mongo.Collection("texts");
 
 Meteor.methods({
   "texts.insert"(options) {
-    const newRefId = Meteor.call("refs.insert", {
+    const newParentRefId = Meteor.call("refs.insert", {
       ...options,
     });
 
-    return TextsCollection.insert({
-      parentId: newRefId,
+    const newTextId = TextsCollection.insert({
+      parentId: newParentRefId,
       createdAt: Date.now(),
       createdBy: Meteor.userId(),
+      text: "",
     });
+
+    return {
+      parentRefId: newParentRefId,
+      id: newTextId,
+    };
   },
 
   "texts.update"(id, options) {

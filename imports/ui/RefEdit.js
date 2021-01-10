@@ -33,14 +33,13 @@ const RefContent = (ref) => {
 const RefEdit = (props) => {
   const { refId } = useParams();
   const ref = useGetRef(refId);
-
   // Set the color mode based on the parent ref type
   const [colorMode, setColorMode] = useColorMode();
   useEffect(() => setColorMode(isReady(ref) ? ref.type : "default"));
 
   return (
-    <Container header={<Toolbar {...ref} />}>
-      {isReady(ref) && (
+    isReady(ref) && (
+      <Container header={<Toolbar {...ref} />}>
         <Box
           sx={{
             width: "ref",
@@ -68,8 +67,8 @@ const RefEdit = (props) => {
           />
           <RefContent {...ref} />
         </Box>
-      )}
-    </Container>
+      </Container>
+    )
   );
 };
 
