@@ -1,10 +1,10 @@
-import { Avatar, Card, Flex, Input, Progress, Text } from "theme-ui";
+import { Flex, Input } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { useAccount } from "../utils/hooks";
+import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useState, useContext } from "react";
 import Task from "./Task";
-import AppContext from "./AppContext";
 
 const TasksList = (props) => {
   const { setStopEditMode } = useContext(AppContext);

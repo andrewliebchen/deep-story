@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { Flex, Heading, IconButton, Text, useColorMode } from "theme-ui";
+import { Flex, useColorMode } from "theme-ui";
 import { useGetTasks, useAccount } from "../utils/hooks";
-import TasksList from "./TasksList";
 import Container from "./Container";
+import React, { useEffect } from "react";
+import TasksList from "./TasksList";
 
 const AssignedTasksView = () => {
   const { userId } = useAccount();

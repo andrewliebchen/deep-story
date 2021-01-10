@@ -1,14 +1,13 @@
-import { Box, Card, Flex, Button, Text, Heading } from "theme-ui";
+import { Card, Flex, Text, Heading } from "theme-ui";
 import { CornerRightDown } from "react-feather";
 import { useChildRefsCount } from "../utils/hooks";
 import { useHistory } from "react-router-dom";
+import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useRef, useContext } from "react";
+import RefContent from "./RefContent";
 import useDoubleClick from "use-double-click";
 import useHover from "@react-hook/hover";
-import Toolbar from "./Toolbar";
-import RefContent from "./RefContent";
-import AppContext from "./AppContext";
 
 const RefView = (props) => {
   const { stopEditMode } = useContext(AppContext);
@@ -40,9 +39,9 @@ const RefView = (props) => {
         title="Click to edit, double click to view"
         sx={{
           variant: props.isParentRef && "cards.parent",
-          position: "relative",
-          mx: "auto",
           cursor: "pointer",
+          mx: "auto",
+          position: "relative",
         }}
       >
         {props.title && props.showTitle && (
@@ -59,13 +58,13 @@ const RefView = (props) => {
         {!props.isParentRef && isHovering && refCount > 0 && (
           <Flex
             sx={{
-              position: "absolute",
-              top: 3,
-              right: 3,
-              color: "textPlaceholder",
               bg: "background",
-              p: 2,
               borderRadius: 3,
+              color: "textPlaceholder",
+              p: 2,
+              position: "absolute",
+              right: 3,
+              top: 3,
             }}
           >
             <Text sx={{ fontWeight: "bold" }}>{refCount}</Text>

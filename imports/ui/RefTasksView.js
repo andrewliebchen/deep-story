@@ -1,8 +1,7 @@
-import { Flex, Text } from "theme-ui";
-import React from "react";
-import TasksList from "./TasksList";
 import { useGetTasks } from "../utils/hooks";
 import PropTypes from "prop-types";
+import React from "react";
+import TasksList from "./TasksList";
 
 const RefTasksView = (props) => {
   const tasks = useGetTasks({ parentId: props._id });

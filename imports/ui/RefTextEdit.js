@@ -1,7 +1,8 @@
 /** @jsx jsx */
 
-import { Box, jsx } from "theme-ui";
+import { jsx } from "theme-ui";
 import { isReady } from "../utils/helpers";
+import { Meteor } from "meteor/meteor";
 import { useGetText } from "../utils/hooks";
 import PropTypes from "prop-types";
 import React from "react";
@@ -9,7 +10,7 @@ import TextareaAutosize from "react-textarea-autosize";
 
 const RefTextEdit = (props) => {
   const text = useGetText({ parentId: props._id });
-  console.log(text);
+
   return (
     isReady(text) && (
       <TextareaAutosize

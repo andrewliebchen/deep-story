@@ -1,14 +1,13 @@
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import AssignedTasksView from "./AssignedTasksView";
-import React, { useContext } from "react";
-import RefStory from "./RefStory";
-import Toasts from "./Toasts";
-import { useAccount } from "../utils/hooks";
-import Login from "./Login";
-import AppContext from "./AppContext";
-import Search from "./Search";
 import { useHotkeys } from "react-hotkeys-hook";
+import AppContext from "./AppContext";
+import AssignedTasksView from "./AssignedTasksView";
+import Login from "./Login";
+import React, { useContext } from "react";
 import RefEdit from "./RefEdit";
+import RefStory from "./RefStory";
+import Search from "./Search";
+import Toasts from "./Toasts";
 
 const App = (props) => {
   const { showGlobalSearch, setShowGlobalSearch } = useContext(AppContext);

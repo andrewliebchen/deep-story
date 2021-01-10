@@ -1,16 +1,14 @@
-import { Flex, Button, Heading } from "theme-ui";
+import { Flex, Button } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { refTypes } from "../utils/types";
-import { X, Link } from "react-feather";
-import AppContext from "./AppContext";
-import PropTypes from "prop-types";
-import React, { useContext, useEffect, useState, useRef } from "react";
-import Search from "./Search";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-feather";
+import PropTypes from "prop-types";
+import React, { useState, useRef } from "react";
+import Search from "./Search";
 import useHover from "@react-hook/hover";
 
 const RefNew = (props) => {
-  const { setToastMessage } = useContext(AppContext);
   const history = useHistory();
 
   const target = useRef(null);
@@ -22,15 +20,15 @@ const RefNew = (props) => {
   return (
     <Flex
       sx={{
-        justifyContent: "center",
         bg: isExpanded && "primaryMuted",
-        cursor: isExpanded ? "default" : "pointer",
-        minHeight: 16,
-        p: isExpanded && 4,
         borderRadius: 4,
-        width: "ref",
+        cursor: isExpanded ? "default" : "pointer",
+        justifyContent: "center",
+        minHeight: 16,
         mx: "auto",
         my: isExpanded && 3,
+        p: isExpanded && 4,
+        width: "ref",
         "&:hover": { bg: isExpanded || "muted" },
       }}
       onClick={() => setIsExpanded(true)}

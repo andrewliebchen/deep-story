@@ -1,14 +1,14 @@
-import React from "react";
-import AccountToggle from "./AccountToggle";
 import { Flex } from "theme-ui";
+import AccountToggle from "./AccountToggle";
+import React from "react";
 
 const Login = () => (
   <Flex
     sx={{
-      height: "100vh",
-      width: "100vw",
-      justifyContent: "center",
       alignItems: "center",
+      height: "100vh",
+      justifyContent: "center",
+      width: "100vw",
     }}
   >
     <AccountToggle />

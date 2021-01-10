@@ -1,9 +1,9 @@
-import { Card, Text, Input, Label, Button, Flex } from "theme-ui";
-import AppContext from "./AppContext";
-import React, { useState, useContext, useEffect } from "react";
+import { Text, Input, Label, Button, Flex } from "theme-ui";
+import { isReady } from "../utils/helpers";
 import { RotateCcw } from "react-feather";
 import { useGetResource } from "../utils/hooks";
-import { isReady } from "../utils/helpers";
+import AppContext from "./AppContext";
+import React, { useContext } from "react";
 
 const RefResourceEdit = (props) => {
   const { setToastMessage } = useContext(AppContext);

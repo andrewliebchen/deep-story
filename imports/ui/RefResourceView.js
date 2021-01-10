@@ -1,9 +1,8 @@
-import { Card, Flex, Text, Box, Button, Link, Image } from "theme-ui";
-import { ExternalLink } from "react-feather";
-import PropTypes from "prop-types";
-import React from "react";
+import { Flex, Text, Box, Link, Image } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import { useGetResource } from "../utils/hooks";
+import PropTypes from "prop-types";
+import React from "react";
 
 const RefResourceView = (props) => {
   const resource = useGetResource({ parentId: props._id });

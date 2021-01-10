@@ -1,7 +1,7 @@
 import { Box, Flex, Text, Link } from "theme-ui";
+import PropTypes from "prop-types";
 import React, { useRef } from "react";
 import useHover from "@react-hook/hover";
-import PropTypes from "prop-types";
 
 const RefStoryNavElement = (props) => {
   const target = useRef(null);

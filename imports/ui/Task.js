@@ -1,12 +1,10 @@
 import { Avatar, Flex, Text, Button, Input } from "theme-ui";
-import { Check, CornerUpRight, AlertCircle, X } from "react-feather";
+import { Check, CornerUpRight, X } from "react-feather";
 import { Link } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
 import AppContext from "./AppContext";
-import Markdown from "react-markdown";
 import PropTypes from "prop-types";
 import React, { useContext, useRef, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import useHover from "@react-hook/hover";
 
 const allowedMarkdownTypes = [

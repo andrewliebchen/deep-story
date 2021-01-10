@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Box, Flex, Text, Input, IconButton } from "theme-ui";
-import PropTypes from "prop-types";
-import TasksList from "./TasksList";
+import { Flex } from "theme-ui";
 import { useGetTasks } from "../utils/hooks";
+import PropTypes from "prop-types";
+import React from "react";
+import TasksList from "./TasksList";
 
 const RefTasksEdit = (props) => {
   const tasks = useGetTasks({ parentId: props._id });

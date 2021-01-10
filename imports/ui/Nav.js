@@ -1,7 +1,7 @@
-import { Box, Flex, Button } from "theme-ui";
-import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import { Button } from "theme-ui";
 import { Home } from "react-feather";
+import { Link } from "react-router-dom";
+import React from "react";
 
 const Nav = (props) => (
   <Link to="/refs">

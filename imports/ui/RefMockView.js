@@ -1,9 +1,9 @@
-import { Flex, Text } from "theme-ui";
+import { Flex } from "theme-ui";
+import { isReady } from "../utils/helpers";
 import { useGetMock } from "../utils/hooks";
 import PersonCard from "./PersonCard";
 import PropTypes from "prop-types";
 import React from "react";
-import { isReady } from "../utils/helpers";
 
 const RefMockView = (props) => {
   const mock = useGetMock({ parentId: props._id });

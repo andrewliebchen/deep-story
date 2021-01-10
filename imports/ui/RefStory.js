@@ -1,18 +1,15 @@
-import { Card, Box, Flex, useColorMode, Text, Heading } from "theme-ui";
+import { Card, Box, useColorMode } from "theme-ui";
 import { isReady } from "../utils/helpers";
-import { refTypeLabels } from "../utils/types";
 import { useChildRefs, useAccount } from "../utils/hooks";
 import { useParams } from "react-router-dom";
-import AppContext from "./AppContext";
-import React, { useContext, useEffect, useState } from "react";
-import RefView from "./RefView";
+import Container from "./Container";
+import PersonCard from "./PersonCard";
+import React, { useEffect } from "react";
 import RefNew from "./RefNew";
 import RefStoryNav from "./RefStoryNav";
-import PersonCard from "./PersonCard";
-import Container from "./Container";
+import RefView from "./RefView";
 
 const RefStory = () => {
-  const { setSelectedRefId } = useContext(AppContext);
   const { parentRefId } = useParams();
   const { user, userId } = useAccount();
   const parentId = parentRefId || userId;

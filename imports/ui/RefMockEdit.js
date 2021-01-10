@@ -1,11 +1,11 @@
-import { Button, Card, Flex, Text, Input } from "theme-ui";
+import { Button, Flex, Input } from "theme-ui";
+import { isReady } from "../utils/helpers";
 import { Meteor } from "meteor/meteor";
-import { RotateCcw, X } from "react-feather";
+import { X } from "react-feather";
 import { useGetMock } from "../utils/hooks";
 import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
-import { isReady } from "../utils/helpers";
 
 const RefMockEdit = (props) => {
   const { setToastMessage } = useContext(AppContext);

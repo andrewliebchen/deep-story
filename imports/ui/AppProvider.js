@@ -11,11 +11,11 @@ const AppProvider = (props) => {
       value={{
         ...props,
         setShowGlobalSearch,
+        setStopEditMode,
         setToastMessage,
         showGlobalSearch,
-        toastMessage,
         stopEditMode,
-        setStopEditMode,
+        toastMessage,
       }}
     >
       {props.children}

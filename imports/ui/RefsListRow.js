@@ -1,9 +1,9 @@
 import { Box, Flex, Text } from "theme-ui";
+import { File } from "react-feather";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import React from "react";
 import TimeAgo from "react-timeago";
-import { File } from "react-feather";
 
 const RefsListRow = (props) => {
   const history = useHistory();

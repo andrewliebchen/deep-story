@@ -28,8 +28,8 @@ const PersonCard = (props) => (
 
 PersonCard.propTypes = {
   image: PropTypes.string,
-  title: PropTypes.string,
   subtitle: PropTypes.string,
+  title: PropTypes.string,
 };
 
 export default PersonCard;

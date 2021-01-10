@@ -1,7 +1,8 @@
-import { Box, Flex, Input, useColorMode } from "theme-ui";
+import { Box, Input, useColorMode } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import { useGetRef } from "../utils/hooks";
 import { useParams } from "react-router-dom";
+import Container from "./Container";
 import React, { useEffect } from "react";
 import RefLinkEdit from "./RefLinkEdit";
 import RefMockEdit from "./RefMockEdit";
@@ -9,7 +10,6 @@ import RefResourceEdit from "./RefResourceEdit";
 import RefTasksEdit from "./RefTasksEdit";
 import RefTextEdit from "./RefTextEdit";
 import Toolbar from "./Toolbar";
-import Container from "./Container";
 
 const RefContent = (ref) => {
   switch (ref.type) {
@@ -33,6 +33,7 @@ const RefContent = (ref) => {
 const RefEdit = (props) => {
   const { refId } = useParams();
   const ref = useGetRef(refId);
+
   // Set the color mode based on the parent ref type
   const [colorMode, setColorMode] = useColorMode();
   useEffect(() => setColorMode(isReady(ref) ? ref.type : "default"));
@@ -56,8 +57,8 @@ const RefEdit = (props) => {
             sx={{
               variant: "forms.inputGhosted",
               color: ref.showTitle ? "text" : "textSecondary",
-              fontWeight: "bold",
               fontSize: 2,
+              fontWeight: "bold",
               mb: 3,
               width: "100%",
               "&::placeholder": {
