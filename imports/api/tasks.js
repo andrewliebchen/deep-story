@@ -4,14 +4,23 @@ import { Meteor } from "meteor/meteor";
 export const TasksCollection = new Mongo.Collection("tasks");
 
 Meteor.methods({
-  "tasks.insert"(parentId, value) {
+  "tasks.insert"(options) {
+    const newParentRefId = Meteor.call("refs.insert", {
+      ...options,
+    });
+
+    return {
+      parentRefId: newParentRefId,
+    };
+  },
+
+  "tasks.insertTask"(parentId, value) {
     return TasksCollection.insert({
       createdAt: Date.now(),
       createdBy: Meteor.userId(),
       text: value,
       done: false,
       parentId: parentId,
-      assignedTo: Meteor.userId(), // TODO: This needs to be in the edit ui
     });
   },
 

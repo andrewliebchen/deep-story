@@ -46,7 +46,7 @@ const TasksList = (props) => {
             event.key === "Enter" &&
             value &&
             Meteor.call(
-              "tasks.insert",
+              "tasks.insertTask",
               props.parentRefId || null,
               value,
               (error, success) => success && setValue("")

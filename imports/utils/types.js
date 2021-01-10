@@ -36,7 +36,7 @@ export const refTypes = {
     icon: <CheckCircle />,
     label: "Tasks",
     color: "#fe714a",
-    method: "refs.insert",
+    method: "tasks.insert",
   },
 };
 
