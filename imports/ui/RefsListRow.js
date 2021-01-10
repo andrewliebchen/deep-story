@@ -19,8 +19,8 @@ const RefsListRow = (props) => {
         "&:hover": { bg: "muted" },
       }}
       onClick={() => {
-        props.selectRef();
-        history.push(`/refs/${props._id}`);
+        props.selectRef(props._id);
+        props.navigate && history.push(`/refs/${props._id}`);
       }}
     >
       <Flex sx={{ alignItems: "center" }}>
@@ -48,6 +48,7 @@ RefsListRow.propTypes = {
   _id: PropTypes.string,
   createdAt: PropTypes.number,
   selectRef: PropTypes.func,
+  navigate: PropTypes.bool,
 };
 
 export default RefsListRow;

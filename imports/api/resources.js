@@ -27,8 +27,6 @@ Meteor.methods({
   "resources.update"(id, url) {
     const parsedUrl = shurley.parse(url);
 
-    console.log(parsedUrl);
-
     const previewData = async () => {
       const result = await linkPreviewGenerator(parsedUrl);
       return result;

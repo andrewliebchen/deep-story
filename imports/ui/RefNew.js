@@ -52,10 +52,8 @@ const RefNew = (props) => {
                       parentId: props.parentId,
                       rank: props.rank,
                     },
-                    (error, response) => {
-                      history.push(`/refs/${response.parentRefId}/edit`);
-                      setToastMessage("Ref created, now do your thing...");
-                    }
+                    (error, response) =>
+                      history.push(`/refs/${response.parentRefId}/edit`)
                   )
                 }
                 sx={{ variant: "button.background", mr: 2 }}

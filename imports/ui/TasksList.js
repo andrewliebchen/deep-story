@@ -1,4 +1,4 @@
-import { Flex, Input } from "theme-ui";
+import { Avatar, Flex, Input } from "theme-ui";
 import { Meteor } from "meteor/meteor";
 import { useAccount } from "../utils/hooks";
 import AppContext from "./AppContext";

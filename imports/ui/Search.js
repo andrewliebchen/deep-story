@@ -71,8 +71,6 @@ const Search = (props) => {
 Search.propTypes = {
   autoFocus: PropTypes.bool,
   value: PropTypes.string,
-  navigate: PropTypes.bool,
-  showFilter: PropTypes.bool,
   closeSearch: PropTypes.func,
 };
 

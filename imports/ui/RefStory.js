@@ -41,7 +41,9 @@ const RefStory = () => {
           refs.map((ref, index) => {
             const prevRef = index === 0 ? { rank: 0 } : refs[index - 1];
             const newRefRank =
-              (parseInt(ref.rank) + parseInt(prevRef.rank)) / 2;
+              (parseInt(ref.rank) +
+                parseInt(prevRef.rank === 0 ? -1 : prevRef.rank)) /
+              2;
 
             return (
               <Box key={ref._id}>
