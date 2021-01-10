@@ -2,10 +2,12 @@ import { Box, Flex, Input, Button } from "theme-ui";
 import { useRefSearch, useAccount, useChildRefs } from "../utils/hooks";
 import { X } from "react-feather";
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import RefsListRow from "./RefsListRow";
+import AppContext from "./AppContext";
 
 const Search = (props) => {
+  const { setShowGlobalSearch } = useContext(AppContext);
   const [value, setValue] = useState(props.value || "");
   const searchResults = useRefSearch(value);
 
@@ -44,7 +46,10 @@ const Search = (props) => {
               variant: "button.secondary",
               ml: 2,
             }}
-            onClick={props.closeSearch}
+            onClick={() => {
+              props.closeSearch();
+              setShowGlobalSearch(false);
+            }}
             children={<X />}
             title="Close search"
           />

@@ -6,6 +6,7 @@ import {
   RotateCcw,
   ArrowLeft,
   CornerRightDown,
+  Slash,
 } from "react-feather";
 import { useChildRefsCount } from "../utils/hooks";
 import { useHistory } from "react-router-dom";
@@ -14,6 +15,7 @@ import React from "react";
 const Toolbar = (props) => {
   const refCount = useChildRefsCount(props._id);
   const history = useHistory();
+  const isLink = props.type === "link";
 
   return (
     <Flex sx={{ variant: "flex.header" }}>
@@ -60,7 +62,11 @@ const Toolbar = (props) => {
       <Flex sx={{ width: "control", gap: 2, justifyContent: "flex-end" }}>
         <Button
           onClick={() =>
-            window.confirm("Are you sure you want to delete this ref?") &&
+            window.confirm(
+              isLink
+                ? "Are you sure you want to remove the link to this ref? This will not affect the original ref."
+                : "Are you sure you want to delete this ref?"
+            ) &&
             Meteor.call(
               "refs.remove",
               props._id,
@@ -70,8 +76,8 @@ const Toolbar = (props) => {
           sx={{
             variant: "button.negative",
           }}
-          children={<Trash />}
-          title="Delete"
+          children={isLink ? <Slash /> : <Trash />}
+          title={isLink ? "Remove link to ref" : "Delete ref"}
         />
         <Button
           onClick={() => history.push(`/refs/${props._id}`)}
