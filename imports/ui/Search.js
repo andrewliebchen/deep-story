@@ -46,10 +46,7 @@ const Search = (props) => {
               variant: "button.secondary",
               ml: 2,
             }}
-            onClick={() => {
-              props.closeSearch();
-              setShowGlobalSearch(false);
-            }}
+            onClick={() => setShowGlobalSearch(false)}
             children={<X />}
             title="Close search"
           />
@@ -76,7 +73,6 @@ const Search = (props) => {
 Search.propTypes = {
   autoFocus: PropTypes.bool,
   value: PropTypes.string,
-  closeSearch: PropTypes.func,
 };
 
 export default Search;

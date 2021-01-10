@@ -22,10 +22,7 @@ const App = (props) => {
       </Switch>
       <Toasts />
       {showGlobalSearch && (
-        <Search
-          selectRef={() => setShowGlobalSearch(false)}
-          closeSearch={() => setShowGlobalSearch(false)}
-        />
+        <Search selectRef={() => setShowGlobalSearch(false)} />
       )}
     </BrowserRouter>
   );
