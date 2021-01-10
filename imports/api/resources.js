@@ -27,6 +27,8 @@ Meteor.methods({
   "resources.update"(id, url) {
     const parsedUrl = shurley.parse(url);
 
+    console.log(parsedUrl);
+
     const previewData = async () => {
       const result = await linkPreviewGenerator(parsedUrl);
       return result;
@@ -34,5 +36,9 @@ Meteor.methods({
     return previewData().then((data) =>
       ResourcesCollection.update(id, { $set: { data: data } })
     );
+  },
+
+  "resources.updateUrl"(id, url) {
+    return ResourcesCollection.update(id, { $set: { url: url } });
   },
 });

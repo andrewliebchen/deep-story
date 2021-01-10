@@ -1,13 +1,11 @@
 import { Card, Flex, Text, Box, Button, Link, Image } from "theme-ui";
 import { ExternalLink } from "react-feather";
 import PropTypes from "prop-types";
-import React, { useContext } from "react";
+import React from "react";
 import { isReady } from "../utils/helpers";
 import { useGetResource } from "../utils/hooks";
-import AppContext from "./AppContext";
 
 const RefResourceView = (props) => {
-  const { setSelectedRefId } = useContext(AppContext);
   const resource = useGetResource({ parentId: props._id });
 
   return isReady(resource) && isReady(resource.data) ? (
