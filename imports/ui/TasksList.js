@@ -37,6 +37,7 @@ const TasksList = (props) => {
           sx={{
             textAlign: "left",
             bg: props.isHovering || props.isEditingRef ? "muted" : "background",
+            fontFamily: props.isEditingRef ? "monospace" : "body",
           }}
           value={value}
           onClick={(event) => setStopEditMode(true)}
