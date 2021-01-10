@@ -1,4 +1,4 @@
-import { Box, Input, useColorMode } from "theme-ui";
+import { Button, Box, Input, Flex, useColorMode } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import { useGetRef } from "../utils/hooks";
 import { useParams } from "react-router-dom";
@@ -10,6 +10,7 @@ import RefResourceEdit from "./RefResourceEdit";
 import RefTasksEdit from "./RefTasksEdit";
 import RefTextEdit from "./RefTextEdit";
 import Toolbar from "./Toolbar";
+import { Eye, EyeOff } from "react-feather";
 
 const RefContent = (ref) => {
   switch (ref.type) {
@@ -46,26 +47,40 @@ const RefEdit = (props) => {
             width: "ref",
           }}
         >
-          <Input
-            defaultValue={ref.title}
-            placeholder="Add a title..."
-            onChange={(event) =>
-              Meteor.call("refs.update", ref._id, {
-                title: event.target.value,
-              })
-            }
-            sx={{
-              variant: "forms.inputGhosted",
-              color: ref.showTitle ? "text" : "textSecondary",
-              fontSize: 2,
-              fontWeight: "bold",
-              mb: 3,
-              width: "100%",
-              "&::placeholder": {
-                fontWeight: "normal",
-              },
-            }}
-          />
+          <Flex sx={{ alignItems: "center", mb: 3 }}>
+            <Input
+              defaultValue={ref.title}
+              placeholder="Add a title..."
+              onChange={(event) =>
+                Meteor.call("refs.update", ref._id, {
+                  title: event.target.value,
+                })
+              }
+              sx={{
+                variant: "forms.inputGhosted",
+                color: ref.showTitle ? "text" : "textSecondary",
+                fontSize: 2,
+                fontWeight: "bold",
+                width: "100%",
+                "&::placeholder": {
+                  fontWeight: "normal",
+                },
+              }}
+            />
+            <Button
+              sx={{
+                variant: "button.secondary",
+                mr: 2,
+              }}
+              children={props.showTitle ? <Eye /> : <EyeOff />}
+              onClick={() =>
+                Meteor.call("refs.update", props._id, {
+                  showTitle: !props.showTitle,
+                })
+              }
+              title={props.showTitle ? "Hide ref title" : "Show ref title"}
+            />
+          </Flex>
           <RefContent {...ref} />
         </Box>
       </Container>

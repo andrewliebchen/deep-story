@@ -1,7 +1,5 @@
 import { Button, Flex, Text } from "theme-ui";
 import {
-  Eye,
-  EyeOff,
   Trash,
   RotateCcw,
   ArrowLeft,
@@ -27,19 +25,6 @@ const Toolbar = (props) => {
       />
 
       <Flex>
-        <Button
-          sx={{
-            variant: "button.secondary",
-            mr: 2,
-          }}
-          children={props.showTitle ? <Eye /> : <EyeOff />}
-          onClick={() =>
-            Meteor.call("refs.update", props._id, {
-              showTitle: !props.showTitle,
-            })
-          }
-          title={props.showTitle ? "Hide ref title" : "Show ref title"}
-        />
         {props.type === "mock" && (
           <Button
             sx={{ variant: "button.secondary" }}

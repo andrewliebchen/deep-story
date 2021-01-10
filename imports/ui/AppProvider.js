@@ -4,7 +4,7 @@ import React, { useState } from "react";
 const AppProvider = (props) => {
   const [stopEditMode, setStopEditMode] = useState(false);
   const [toastMessage, setToastMessage] = useState(false);
-  const [showGlobalSearch, setShowGlobalSearch] = useState(true);
+  const [showGlobalSearch, setShowGlobalSearch] = useState(false);
 
   return (
     <AppContext.Provider
