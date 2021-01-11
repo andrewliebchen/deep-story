@@ -68,10 +68,7 @@ const RefEdit = (props) => {
               }}
             />
             <Button
-              sx={{
-                variant: "button.secondary",
-                mr: 2,
-              }}
+              sx={{ variant: "button.secondary" }}
               children={props.showTitle ? <Eye /> : <EyeOff />}
               onClick={() =>
                 Meteor.call("refs.update", props._id, {

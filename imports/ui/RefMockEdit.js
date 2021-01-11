@@ -25,7 +25,6 @@ const RefMockEdit = (props) => {
                 variant: `button.${
                   props.isParentRef ? "negative" : "backgroundNegative"
                 }`,
-                mr: 2,
               }}
               title={
                 key === "name" ? "Names cannot be removed" : "Remove field"

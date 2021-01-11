@@ -17,7 +17,9 @@ const allowedMarkdownTypes = [
 ];
 
 const ViewCheckBox = (props) => {
-  const { stopEditMode, setStopEditMode } = useContext(AppContext);
+  const { stopEditMode, setStopEditMode, setToastMessage } = useContext(
+    AppContext
+  );
 
   const target = useRef(null);
   const isHovering = useHover(target);
