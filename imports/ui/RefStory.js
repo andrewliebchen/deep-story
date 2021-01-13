@@ -1,10 +1,10 @@
-import { Card, Box, useColorMode } from "theme-ui";
+import { Card, Box } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import { useChildRefs, useAccount } from "../utils/hooks";
 import { useParams } from "react-router-dom";
 import Container from "./Container";
 import PersonCard from "./PersonCard";
-import React, { useEffect } from "react";
+import React from "react";
 import RefNew from "./RefNew";
 import RefStoryNav from "./RefStoryNav";
 import RefView from "./RefView";
@@ -14,14 +14,7 @@ const RefStory = () => {
   const { user, userId } = useAccount();
   const parentId = parentRefId || userId;
 
-  // Get the refs
   const { refs, parentRef } = useChildRefs(parentId);
-
-  // Set the color mode based on the parent ref type
-  const [colorMode, setColorMode] = useColorMode();
-  useEffect(() =>
-    setColorMode(isReady(parentRef) ? parentRef.type : "default")
-  );
 
   return (
     <Container showHeader>

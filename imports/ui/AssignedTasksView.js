@@ -1,15 +1,12 @@
-import { Flex, useColorMode } from "theme-ui";
+import { Flex } from "theme-ui";
 import { useGetTasks, useAccount } from "../utils/hooks";
 import Container from "./Container";
-import React, { useEffect } from "react";
+import React from "react";
 import TasksList from "./TasksList";
 
 const AssignedTasksView = () => {
   const { userId } = useAccount();
   const tasks = useGetTasks({ assignedTo: userId });
-
-  const [colorMode, setColorMode] = useColorMode();
-  useEffect(() => setColorMode("tasks"));
 
   return (
     <Container>

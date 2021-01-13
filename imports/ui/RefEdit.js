@@ -1,9 +1,9 @@
-import { Button, Box, Input, Flex, useColorMode } from "theme-ui";
+import { Button, Box, Input, Flex } from "theme-ui";
 import { isReady } from "../utils/helpers";
 import { useGetRef } from "../utils/hooks";
 import { useParams } from "react-router-dom";
 import Container from "./Container";
-import React, { useEffect } from "react";
+import React from "react";
 import RefLinkEdit from "./RefLinkEdit";
 import RefMockEdit from "./RefMockEdit";
 import RefResourceEdit from "./RefResourceEdit";
@@ -34,10 +34,6 @@ const RefContent = (ref) => {
 const RefEdit = (props) => {
   const { refId } = useParams();
   const ref = useGetRef(refId);
-
-  // Set the color mode based on the parent ref type
-  const [colorMode, setColorMode] = useColorMode();
-  useEffect(() => setColorMode(isReady(ref) ? ref.type : "default"));
 
   return (
     isReady(ref) && (
