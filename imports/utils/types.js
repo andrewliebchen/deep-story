@@ -1,7 +1,6 @@
 import React from "react";
 import { CheckCircle, Globe, Database, Users, Type } from "react-feather";
 
-// Add link type, remove search
 export const refTypes = {
   text: {
     active: true,
@@ -9,6 +8,7 @@ export const refTypes = {
     label: "Text",
     color: "#0077CC",
     method: "texts.insert",
+    route: "/texts",
   },
   mock: {
     active: true,
@@ -16,6 +16,7 @@ export const refTypes = {
     label: "Mock",
     color: "#AE7709",
     method: "mocks.insert",
+    route: "/mocks",
   },
   resource: {
     active: true,
@@ -23,13 +24,15 @@ export const refTypes = {
     label: "Resource",
     color: "#EF43AA",
     method: "resources.insert",
+    route: "/resources",
   },
-  table: {
+  data: {
     active: false,
     icon: <Database />,
-    label: "Table",
+    label: "Data",
     color: "#2E8A74",
     method: "refs.insert",
+    route: "/data",
   },
   tasks: {
     active: true,
@@ -37,6 +40,7 @@ export const refTypes = {
     label: "Tasks",
     color: "#864EBC",
     method: "tasks.insert",
+    route: "/tasks",
   },
 };
 
