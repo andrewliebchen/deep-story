@@ -56,7 +56,7 @@ const AccountToogle = (props) => {
       ) : (
         <Button
           variant="button.primary"
-          onClick={() => Meteor.loginWithGoogle({ loginStyle: "redirect" })}
+          onClick={() => Meteor.loginWithGoogle()}
         >
           Log in with Google
         </Button>
