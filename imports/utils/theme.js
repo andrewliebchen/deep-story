@@ -54,6 +54,7 @@ const cardBase = {
 };
 
 export default {
+  useColorSchemeMediaQuery: true,
   button: {
     primary: {
       ...controlBase,
@@ -205,6 +206,17 @@ export default {
       position: "sticky",
       top: 0,
       zIndex: 1,
+    },
+    dropdownMenu: {
+      bg: "background",
+      borderRadius: 4,
+      boxShadow: "overlay",
+      flexDirection: "column",
+      gap: 2,
+      p: 3,
+      position: "absolute",
+      top: -3,
+      width: 300,
     },
   },
   fonts: {

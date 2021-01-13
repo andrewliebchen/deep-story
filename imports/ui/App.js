@@ -3,11 +3,12 @@ import { useHotkeys } from "react-hotkeys-hook";
 import AppContext from "./AppContext";
 import AssignedTasksView from "./AssignedTasksView";
 import Login from "./Login";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import RefEdit from "./RefEdit";
 import RefStory from "./RefStory";
 import Search from "./Search";
 import Toasts from "./Toasts";
+import { useAccount } from "../utils/hooks";
 
 const App = (props) => {
   const { showGlobalSearch, setShowGlobalSearch } = useContext(AppContext);

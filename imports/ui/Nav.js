@@ -2,7 +2,7 @@ import { Box, Flex, Button, Text } from "theme-ui";
 import { Home } from "react-feather";
 import { refTypes } from "../utils/types";
 import { useHistory } from "react-router-dom";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import useHover from "@react-hook/hover";
 
 const Nav = (props) => {
@@ -21,16 +21,8 @@ const Nav = (props) => {
       {isHovering ? (
         <Flex
           sx={{
-            bg: "background",
-            borderRadius: 4,
-            boxShadow: "overlay",
-            flexDirection: "column",
-            gap: 2,
+            variant: "flex.dropdownMenu",
             left: -3,
-            p: 3,
-            position: "absolute",
-            top: -3,
-            width: 300,
           }}
         >
           <Button
